@@ -71,4 +71,8 @@ public class Citizen extends User
             "isLocal" + ":" + getIsLocal()+ "," +
             "balance" + ":" + getBalance()+ "]";
   }
+  //method
+  public void pay(){
+    //todo
+  }
 }

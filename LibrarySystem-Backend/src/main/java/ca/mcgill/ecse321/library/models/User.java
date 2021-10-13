@@ -254,4 +254,14 @@ public class User
             "password" + ":" + getPassword()+ "," +
             "onlineAccountActivated" + ":" + getOnlineAccountActivated()+ "]";
   }
+  //method
+  public void reserve(LibraryItem aLibraryItem){
+    //todo
+  }
+  public void cancelRevervation(int reservationId){
+    //todo
+  }
+  public void renew(int reservationId){
+    //todo
+  }
 }

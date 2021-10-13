@@ -1,5 +1,8 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
+
+import org.apache.tomcat.jni.Library;
+
 import java.sql.Time;
 
 // line 21 "model.ump"
@@ -256,6 +259,25 @@ public class HeadLibrarian extends User
       aShift.delete();
     }
     super.delete();
+  }
+  //method
+  public void checkout(int cardId, LibraryItem aLibraryItem){
+      //todo
+  }
+  public void createAccount(String fullName, String address){
+    //todo
+  }
+  public void assignShift(Shift aShift){
+    //todo
+  }
+  public void updateOpeningHours(OpeningHour oldOpeningHour, OpeningHour newOpeningHour){
+      //TODO
+  }
+  public void addLibraryItem(LibraryItem aLibraryItem){
+    //todo
+  }
+  public void removeLibraryItem(String barcode){
+      //todo
   }
 
 }
