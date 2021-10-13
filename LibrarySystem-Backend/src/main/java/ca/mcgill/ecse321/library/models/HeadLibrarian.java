@@ -26,6 +26,15 @@ public class HeadLibrarian extends User
     shifts = new ArrayList<Shift>();
   }
 
+  public enum DayofWeek{
+    Monday,
+    Tuesday,
+    Wednsday,
+    Thursday,
+    Firday,
+    Saturday,
+    Sunday
+  }
   //------------------------
   // INTERFACE
   //------------------------
@@ -95,7 +104,7 @@ public class HeadLibrarian extends User
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public OpeningHour addOpeningHour(Time aStartTime, Time aEndTime, DayofWeek aDay)
+  public OpeningHour addOpeningHour(Time aStartTime, Time aEndTime, ca.mcgill.ecse321.library.models.OpeningHour.DayofWeek aDay)
   {
     return new OpeningHour(aStartTime, aEndTime, aDay, this);
   }
