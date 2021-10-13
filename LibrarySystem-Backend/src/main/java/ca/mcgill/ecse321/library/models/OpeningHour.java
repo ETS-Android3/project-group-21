@@ -5,6 +5,11 @@ import java.sql.Time;
 // line 70 "model.ump"
 public class OpeningHour
 {
+  //------------------------
+  // ENUMERATIONS
+  //------------------------
+
+  public enum DayofWeek { Monday, Tuesday, Wednesday, Thursday, Friday }
 
   //------------------------
   // MEMBER VARIABLES
