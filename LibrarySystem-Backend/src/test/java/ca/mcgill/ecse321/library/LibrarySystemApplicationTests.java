@@ -7,9 +7,8 @@ package ca.mcgill.ecse321.library;
 //@SpringBootTest
 class LibrarySystemApplicationTests {
 
-//	@Test
+	//@Test
 	void contextLoads() {
-
 	}
 
 }
