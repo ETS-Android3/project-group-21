@@ -3,18 +3,26 @@ public class Shift
 {
 
   //------------------------
+  // ENUMERATIONS
+  //------------------------
+
+  public enum DayofWeek { Monday, Tuesday, Wednesday, Thursday, Friday }
+  
+  //------------------------
   // MEMBER VARIABLES
   //------------------------
 
   //Shift Associations
+  private DayofWeek day;
   private HeadLibrarian headLibrarian;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Shift(HeadLibrarian aHeadLibrarian)
+  public Shift(HeadLibrarian aHeadLibrarian, DayofWeek aDay)
   {
+    day = aDay
     boolean didAddHeadLibrarian = setHeadLibrarian(aHeadLibrarian);
     if (!didAddHeadLibrarian)
     {
