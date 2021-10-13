@@ -7,6 +7,8 @@ public class LibraryItem {
   //------------------------
 
   public enum ItemType { Book, Movie, Music, Newspaper, Archive }
+   
+   // Add any code that gets generated for library item after this!
 
   //------------------------
   // MEMBER VARIABLES
