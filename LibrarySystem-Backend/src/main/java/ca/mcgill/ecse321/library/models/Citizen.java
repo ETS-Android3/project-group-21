@@ -1,78 +1,28 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.29.1.4607.2d2b84eb8 modeling language!*/
+
 package ca.mcgill.ecse321.library.models;
 
-// line 11 "model.ump"
-// line 29 "model.ump"
-public class Citizen extends User
+// line 11 "../../../../../LibrarySystem.ump"
+public class Citizen
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //Citizen Attributes
-  private boolean isLocal;
-  private double balance;
-
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Citizen(String aFullName, int aCardId, String aAdress, String aUsername, String aPassword, boolean aOnlineAccountActivated, boolean aIsLocal, double aBalance)
-  {
-    super(aFullName, aCardId, aAdress, aUsername, aPassword, aOnlineAccountActivated);
-    isLocal = aIsLocal;
-    balance = aBalance;
-  }
+  public Citizen()
+  {}
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setIsLocal(boolean aIsLocal)
-  {
-    boolean wasSet = false;
-    isLocal = aIsLocal;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setBalance(double aBalance)
-  {
-    boolean wasSet = false;
-    balance = aBalance;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean getIsLocal()
-  {
-    return isLocal;
-  }
-
-  public double getBalance()
-  {
-    return balance;
-  }
-  /* Code from template attribute_IsBoolean */
-  public boolean isIsLocal()
-  {
-    return isLocal;
-  }
-
   public void delete()
-  {
-    super.delete();
-  }
+  {}
 
-
-  public String toString()
-  {
-    return super.toString() + "["+
-            "isLocal" + ":" + getIsLocal()+ "," +
-            "balance" + ":" + getBalance()+ "]";
-  }
-  //method
-  public void pay(){
-    //todo
-  }
 }

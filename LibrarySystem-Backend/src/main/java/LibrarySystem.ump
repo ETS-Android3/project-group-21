@@ -1,0 +1,23 @@
+namespace ca.mcgill.ecse321.library.models;
+
+class Library{}
+
+class User{}
+
+class HeadLibrarian{}
+
+class Librarian{}
+
+class Citizen{}
+
+class Reservation{}
+
+class LibraryItem{}
+
+class OpeningHour{}
+
+class Shift{}
+
+enum ItemType{Book, Music, Movie}
+
+enum DayOfWeek{Monday, Tuesday}

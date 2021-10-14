@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse321.library.models;
 
-// line 15 "../../../../../LibrarySystem.ump"
+// line 15 "../../../../../../LibrarySystem.ump"
 public class LibraryItem
 {
 
