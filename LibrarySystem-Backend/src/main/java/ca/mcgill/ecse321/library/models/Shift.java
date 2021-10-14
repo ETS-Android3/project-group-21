@@ -22,7 +22,7 @@ public class Shift
 
   public Shift(HeadLibrarian aHeadLibrarian, DayofWeek aDay)
   {
-    day = aDay
+    day = aDay;
     boolean didAddHeadLibrarian = setHeadLibrarian(aHeadLibrarian);
     if (!didAddHeadLibrarian)
     {
