@@ -22,6 +22,8 @@ public class Reservation
     }
   }
 
+  public 
+
   //------------------------
   // INTERFACE
   //------------------------
