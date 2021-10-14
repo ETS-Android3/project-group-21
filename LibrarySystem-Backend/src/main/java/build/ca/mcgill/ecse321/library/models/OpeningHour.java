@@ -3,8 +3,8 @@
 
 package ca.mcgill.ecse321.library.models;
 
-// line 15 "../../../../../LibrarySystem.ump"
-public class LibraryItem
+// line 17 "../../../../../../LibrarySystem.ump"
+public class OpeningHour
 {
 
   //------------------------
@@ -15,7 +15,7 @@ public class LibraryItem
   // CONSTRUCTOR
   //------------------------
 
-  public LibraryItem()
+  public OpeningHour()
   {}
 
   //------------------------

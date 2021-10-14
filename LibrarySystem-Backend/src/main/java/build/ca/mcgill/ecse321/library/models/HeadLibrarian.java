@@ -3,8 +3,8 @@
 
 package ca.mcgill.ecse321.library.models;
 
-// line 15 "../../../../../LibrarySystem.ump"
-public class LibraryItem
+// line 7 "../../../../../../LibrarySystem.ump"
+public class HeadLibrarian
 {
 
   //------------------------
@@ -15,7 +15,7 @@ public class LibraryItem
   // CONSTRUCTOR
   //------------------------
 
-  public LibraryItem()
+  public HeadLibrarian()
   {}
 
   //------------------------
