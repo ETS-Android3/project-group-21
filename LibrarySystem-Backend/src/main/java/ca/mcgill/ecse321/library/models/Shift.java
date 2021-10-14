@@ -1,9 +1,9 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4607.2d2b84eb8 modeling language!*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse321.library.models;
 
-// line 19 "../../../../../LibrarySystem.ump"
+// line 40 "../../../../../LibrarySystem.ump"
 public class Shift
 {
 

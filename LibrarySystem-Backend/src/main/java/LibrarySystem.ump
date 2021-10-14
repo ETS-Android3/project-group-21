@@ -1,6 +1,31 @@
 namespace ca.mcgill.ecse321.library.models;
 
-class Library{}
+association{
+  1 Reservation -> 1 LibraryItem;
+}
+
+class Library{
+	1 -- 1 HeadLibrarian;
+	1 -- 0..* Librarian;
+	1 -- 0..* Citizen;
+	1 -- 0..* Reservation;
+	1 -- 0..* LibraryItem;
+	1 -- 1..* OpeningHour;
+}
+
+class Reservation{
+	unique Integer reservationID;
+}
+
+class LibraryItem{
+	enum ItemType {Book, Music, Movie, Newspaper, Archive}
+	ItemType type;
+	unique Integer barcode;
+	title;
+	boolean isReservable;
+	boolean isReserved;
+	Integer loanPeriod;
+}
 
 class User{}
 
@@ -10,14 +35,9 @@ class Librarian{}
 
 class Citizen{}
 
-class Reservation{}
-
-class LibraryItem{}
-
 class OpeningHour{}
 
 class Shift{}
 
-enum ItemType{Book, Music, Movie}
-
-enum DayOfWeek{Monday, Tuesday}
+enum DayOfWeek {Monday, Tuesday}
+	
