@@ -53,7 +53,7 @@ public class LibraryItem
     boolean didAddLibrary = setLibrary(aLibrary);
     if (!didAddLibrary)
     {
-      throw new RuntimeException("Unable to create libraryItem due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create libraryitem due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
   }
 
@@ -177,9 +177,9 @@ public class LibraryItem
     library = aLibrary;
     if (existingLibrary != null && !existingLibrary.equals(aLibrary))
     {
-      existingLibrary.removeLibraryItem(this);
+      existingLibrary.removeLibraryitem(this);
     }
-    library.addLibraryItem(this);
+    library.addLibraryitem(this);
     wasSet = true;
     return wasSet;
   }
@@ -191,7 +191,7 @@ public class LibraryItem
     this.library = null;
     if(placeholderLibrary != null)
     {
-      placeholderLibrary.removeLibraryItem(this);
+      placeholderLibrary.removeLibraryitem(this);
     }
   }
 

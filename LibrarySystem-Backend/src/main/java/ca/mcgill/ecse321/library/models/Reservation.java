@@ -23,13 +23,14 @@ public class Reservation
 
   //Reservation Associations
   private Library library;
+  private User user;
   private LibraryItem libraryItem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Reservation(int aReservationID, Library aLibrary, LibraryItem aLibraryItem)
+  public Reservation(int aReservationID, Library aLibrary, User aUser, LibraryItem aLibraryItem)
   {
     if (!setReservationID(aReservationID))
     {
@@ -39,6 +40,11 @@ public class Reservation
     if (!didAddLibrary)
     {
       throw new RuntimeException("Unable to create reservation due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+    boolean didAddUser = setUser(aUser);
+    if (!didAddUser)
+    {
+      throw new RuntimeException("Unable to create reservation due to user. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     if (!setLibraryItem(aLibraryItem))
     {
@@ -89,6 +95,11 @@ public class Reservation
     return library;
   }
   /* Code from template association_GetOne */
+  public User getUser()
+  {
+    return user;
+  }
+  /* Code from template association_GetOne */
   public LibraryItem getLibraryItem()
   {
     return libraryItem;
@@ -109,6 +120,37 @@ public class Reservation
       existingLibrary.removeReservation(this);
     }
     library.addReservation(this);
+    wasSet = true;
+    return wasSet;
+  }
+  /* Code from template association_SetOneToAtMostN */
+  public boolean setUser(User aUser)
+  {
+    boolean wasSet = false;
+    //Must provide user to reservation
+    if (aUser == null)
+    {
+      return wasSet;
+    }
+
+    //user already at maximum (5)
+    if (aUser.numberOfReservation() >= User.maximumNumberOfReservation())
+    {
+      return wasSet;
+    }
+    
+    User existingUser = user;
+    user = aUser;
+    if (existingUser != null && !existingUser.equals(aUser))
+    {
+      boolean didRemove = existingUser.removeReservation(this);
+      if (!didRemove)
+      {
+        user = existingUser;
+        return wasSet;
+      }
+    }
+    user.addReservation(this);
     wasSet = true;
     return wasSet;
   }
@@ -133,6 +175,12 @@ public class Reservation
     {
       placeholderLibrary.removeReservation(this);
     }
+    User placeholderUser = user;
+    this.user = null;
+    if(placeholderUser != null)
+    {
+      placeholderUser.removeReservation(this);
+    }
     libraryItem = null;
   }
 
@@ -142,6 +190,7 @@ public class Reservation
     return super.toString() + "["+
             "reservationID" + ":" + getReservationID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "library = "+(getLibrary()!=null?Integer.toHexString(System.identityHashCode(getLibrary())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "user = "+(getUser()!=null?Integer.toHexString(System.identityHashCode(getUser())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "libraryItem = "+(getLibraryItem()!=null?Integer.toHexString(System.identityHashCode(getLibraryItem())):"null");
   }
 }

@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 
-// line 45 "../../../../../LibrarySystem.ump"
+// line 57 "../../../../../LibrarySystem.ump"
 public class OpeningHour
 {
 
@@ -39,7 +39,7 @@ public class OpeningHour
     boolean didAddLibrary = setLibrary(aLibrary);
     if (!didAddLibrary)
     {
-      throw new RuntimeException("Unable to create openingHour due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create openinghour due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     boolean didAddHeadLibrarian = setHeadLibrarian(aHeadLibrarian);
     if (!didAddHeadLibrarian)
@@ -104,13 +104,13 @@ public class OpeningHour
   public boolean setLibrary(Library aLibrary)
   {
     boolean wasSet = false;
-    //Must provide library to openingHour
+    //Must provide library to openinghour
     if (aLibrary == null)
     {
       return wasSet;
     }
 
-    if (library != null && library.numberOfOpeningHours() <= Library.minimumNumberOfOpeningHours())
+    if (library != null && library.numberOfOpeninghour() <= Library.minimumNumberOfOpeninghour())
     {
       return wasSet;
     }
@@ -119,14 +119,14 @@ public class OpeningHour
     library = aLibrary;
     if (existingLibrary != null && !existingLibrary.equals(aLibrary))
     {
-      boolean didRemove = existingLibrary.removeOpeningHour(this);
+      boolean didRemove = existingLibrary.removeOpeninghour(this);
       if (!didRemove)
       {
         library = existingLibrary;
         return wasSet;
       }
     }
-    library.addOpeningHour(this);
+    library.addOpeninghour(this);
     wasSet = true;
     return wasSet;
   }
@@ -156,7 +156,7 @@ public class OpeningHour
     this.library = null;
     if(placeholderLibrary != null)
     {
-      placeholderLibrary.removeOpeningHour(this);
+      placeholderLibrary.removeOpeninghour(this);
     }
     HeadLibrarian placeholderHeadLibrarian = headLibrarian;
     this.headLibrarian = null;
