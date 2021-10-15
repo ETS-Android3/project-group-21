@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 import java.sql.Time;
 
-// line 33 "../../../../../LibrarySystem.ump"
+// line 41 "../../../../../LibrarySystem.ump"
 public class HeadLibrarian extends User
 {
 
@@ -25,22 +25,22 @@ public class HeadLibrarian extends User
   // CONSTRUCTOR
   //------------------------
 
-  public HeadLibrarian(Shift aAShift, Library aLibrary)
+  public HeadLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift, Library aLibrary)
   {
-    super();
+    super(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated);
     aShift = aAShift;
     openinghour = new ArrayList<OpeningHour>();
     shift = new ArrayList<Shift>();
-    if (aLibrary == null || aLibrary.getHeadLibrarian() != null)
+    if (aLibrary == null || aLibrary.getHeadlibrarian() != null)
     {
       throw new RuntimeException("Unable to create HeadLibrarian due to aLibrary. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     library = aLibrary;
   }
 
-  public HeadLibrarian(Shift aAShift)
+  public HeadLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift)
   {
-    super();
+    super(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated);
     aShift = aAShift;
     openinghour = new ArrayList<OpeningHour>();
     shift = new ArrayList<Shift>();

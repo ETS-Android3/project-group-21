@@ -14,214 +14,214 @@ public class Library
   //------------------------
 
   //Library Associations
-  private HeadLibrarian headLibrarian;
-  private List<Librarian> librarians;
-  private List<Citizen> citizens;
-  private List<Reservation> reservations;
-  private List<LibraryItem> libraryItems;
-  private List<OpeningHour> openingHours;
+  private HeadLibrarian headlibrarian;
+  private List<Librarian> librarian;
+  private List<Citizen> citizen;
+  private List<Reservation> reservation;
+  private List<LibraryItem> libraryitem;
+  private List<OpeningHour> openinghour;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Library(HeadLibrarian aHeadLibrarian)
+  public Library(HeadLibrarian aHeadlibrarian)
   {
-    if (aHeadLibrarian == null || aHeadLibrarian.getLibrary() != null)
+    if (aHeadlibrarian == null || aHeadlibrarian.getLibrary() != null)
     {
-      throw new RuntimeException("Unable to create Library due to aHeadLibrarian. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create Library due to aHeadlibrarian. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    headLibrarian = aHeadLibrarian;
-    librarians = new ArrayList<Librarian>();
-    citizens = new ArrayList<Citizen>();
-    reservations = new ArrayList<Reservation>();
-    libraryItems = new ArrayList<LibraryItem>();
-    openingHours = new ArrayList<OpeningHour>();
+    headlibrarian = aHeadlibrarian;
+    librarian = new ArrayList<Librarian>();
+    citizen = new ArrayList<Citizen>();
+    reservation = new ArrayList<Reservation>();
+    libraryitem = new ArrayList<LibraryItem>();
+    openinghour = new ArrayList<OpeningHour>();
   }
 
-  public Library(Shift aAShiftForHeadLibrarian)
+  public Library(String aFullNameForHeadlibrarian, int aCardIDForHeadlibrarian, String aAddressForHeadlibrarian, String aUsernameForHeadlibrarian, String aPasswordForHeadlibrarian, boolean aOnlineAccountActivatedForHeadlibrarian, Shift aAShiftForHeadlibrarian)
   {
-    headLibrarian = new HeadLibrarian(aAShiftForHeadLibrarian, this);
-    librarians = new ArrayList<Librarian>();
-    citizens = new ArrayList<Citizen>();
-    reservations = new ArrayList<Reservation>();
-    libraryItems = new ArrayList<LibraryItem>();
-    openingHours = new ArrayList<OpeningHour>();
+    headlibrarian = new HeadLibrarian(aFullNameForHeadlibrarian, aCardIDForHeadlibrarian, aAddressForHeadlibrarian, aUsernameForHeadlibrarian, aPasswordForHeadlibrarian, aOnlineAccountActivatedForHeadlibrarian, aAShiftForHeadlibrarian, this);
+    librarian = new ArrayList<Librarian>();
+    citizen = new ArrayList<Citizen>();
+    reservation = new ArrayList<Reservation>();
+    libraryitem = new ArrayList<LibraryItem>();
+    openinghour = new ArrayList<OpeningHour>();
   }
 
   //------------------------
   // INTERFACE
   //------------------------
   /* Code from template association_GetOne */
-  public HeadLibrarian getHeadLibrarian()
+  public HeadLibrarian getHeadlibrarian()
   {
-    return headLibrarian;
+    return headlibrarian;
   }
   /* Code from template association_GetMany */
   public Librarian getLibrarian(int index)
   {
-    Librarian aLibrarian = librarians.get(index);
+    Librarian aLibrarian = librarian.get(index);
     return aLibrarian;
   }
 
-  public List<Librarian> getLibrarians()
+  public List<Librarian> getLibrarian()
   {
-    List<Librarian> newLibrarians = Collections.unmodifiableList(librarians);
-    return newLibrarians;
+    List<Librarian> newLibrarian = Collections.unmodifiableList(librarian);
+    return newLibrarian;
   }
 
-  public int numberOfLibrarians()
+  public int numberOfLibrarian()
   {
-    int number = librarians.size();
+    int number = librarian.size();
     return number;
   }
 
-  public boolean hasLibrarians()
+  public boolean hasLibrarian()
   {
-    boolean has = librarians.size() > 0;
+    boolean has = librarian.size() > 0;
     return has;
   }
 
   public int indexOfLibrarian(Librarian aLibrarian)
   {
-    int index = librarians.indexOf(aLibrarian);
+    int index = librarian.indexOf(aLibrarian);
     return index;
   }
   /* Code from template association_GetMany */
   public Citizen getCitizen(int index)
   {
-    Citizen aCitizen = citizens.get(index);
+    Citizen aCitizen = citizen.get(index);
     return aCitizen;
   }
 
-  public List<Citizen> getCitizens()
+  public List<Citizen> getCitizen()
   {
-    List<Citizen> newCitizens = Collections.unmodifiableList(citizens);
-    return newCitizens;
+    List<Citizen> newCitizen = Collections.unmodifiableList(citizen);
+    return newCitizen;
   }
 
-  public int numberOfCitizens()
+  public int numberOfCitizen()
   {
-    int number = citizens.size();
+    int number = citizen.size();
     return number;
   }
 
-  public boolean hasCitizens()
+  public boolean hasCitizen()
   {
-    boolean has = citizens.size() > 0;
+    boolean has = citizen.size() > 0;
     return has;
   }
 
   public int indexOfCitizen(Citizen aCitizen)
   {
-    int index = citizens.indexOf(aCitizen);
+    int index = citizen.indexOf(aCitizen);
     return index;
   }
   /* Code from template association_GetMany */
   public Reservation getReservation(int index)
   {
-    Reservation aReservation = reservations.get(index);
+    Reservation aReservation = reservation.get(index);
     return aReservation;
   }
 
-  public List<Reservation> getReservations()
+  public List<Reservation> getReservation()
   {
-    List<Reservation> newReservations = Collections.unmodifiableList(reservations);
-    return newReservations;
+    List<Reservation> newReservation = Collections.unmodifiableList(reservation);
+    return newReservation;
   }
 
-  public int numberOfReservations()
+  public int numberOfReservation()
   {
-    int number = reservations.size();
+    int number = reservation.size();
     return number;
   }
 
-  public boolean hasReservations()
+  public boolean hasReservation()
   {
-    boolean has = reservations.size() > 0;
+    boolean has = reservation.size() > 0;
     return has;
   }
 
   public int indexOfReservation(Reservation aReservation)
   {
-    int index = reservations.indexOf(aReservation);
+    int index = reservation.indexOf(aReservation);
     return index;
   }
   /* Code from template association_GetMany */
-  public LibraryItem getLibraryItem(int index)
+  public LibraryItem getLibraryitem(int index)
   {
-    LibraryItem aLibraryItem = libraryItems.get(index);
-    return aLibraryItem;
+    LibraryItem aLibraryitem = libraryitem.get(index);
+    return aLibraryitem;
   }
 
-  public List<LibraryItem> getLibraryItems()
+  public List<LibraryItem> getLibraryitem()
   {
-    List<LibraryItem> newLibraryItems = Collections.unmodifiableList(libraryItems);
-    return newLibraryItems;
+    List<LibraryItem> newLibraryitem = Collections.unmodifiableList(libraryitem);
+    return newLibraryitem;
   }
 
-  public int numberOfLibraryItems()
+  public int numberOfLibraryitem()
   {
-    int number = libraryItems.size();
+    int number = libraryitem.size();
     return number;
   }
 
-  public boolean hasLibraryItems()
+  public boolean hasLibraryitem()
   {
-    boolean has = libraryItems.size() > 0;
+    boolean has = libraryitem.size() > 0;
     return has;
   }
 
-  public int indexOfLibraryItem(LibraryItem aLibraryItem)
+  public int indexOfLibraryitem(LibraryItem aLibraryitem)
   {
-    int index = libraryItems.indexOf(aLibraryItem);
+    int index = libraryitem.indexOf(aLibraryitem);
     return index;
   }
   /* Code from template association_GetMany */
-  public OpeningHour getOpeningHour(int index)
+  public OpeningHour getOpeninghour(int index)
   {
-    OpeningHour aOpeningHour = openingHours.get(index);
-    return aOpeningHour;
+    OpeningHour aOpeninghour = openinghour.get(index);
+    return aOpeninghour;
   }
 
-  public List<OpeningHour> getOpeningHours()
+  public List<OpeningHour> getOpeninghour()
   {
-    List<OpeningHour> newOpeningHours = Collections.unmodifiableList(openingHours);
-    return newOpeningHours;
+    List<OpeningHour> newOpeninghour = Collections.unmodifiableList(openinghour);
+    return newOpeninghour;
   }
 
-  public int numberOfOpeningHours()
+  public int numberOfOpeninghour()
   {
-    int number = openingHours.size();
+    int number = openinghour.size();
     return number;
   }
 
-  public boolean hasOpeningHours()
+  public boolean hasOpeninghour()
   {
-    boolean has = openingHours.size() > 0;
+    boolean has = openinghour.size() > 0;
     return has;
   }
 
-  public int indexOfOpeningHour(OpeningHour aOpeningHour)
+  public int indexOfOpeninghour(OpeningHour aOpeninghour)
   {
-    int index = openingHours.indexOf(aOpeningHour);
+    int index = openinghour.indexOf(aOpeninghour);
     return index;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfLibrarians()
+  public static int minimumNumberOfLibrarian()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Librarian addLibrarian(Shift aAShift)
+  public Librarian addLibrarian()
   {
-    return new Librarian(aAShift, this);
+    return new Librarian(this);
   }
 
   public boolean addLibrarian(Librarian aLibrarian)
   {
     boolean wasAdded = false;
-    if (librarians.contains(aLibrarian)) { return false; }
+    if (librarian.contains(aLibrarian)) { return false; }
     Library existingLibrary = aLibrarian.getLibrary();
     boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
     if (isNewLibrary)
@@ -230,7 +230,7 @@ public class Library
     }
     else
     {
-      librarians.add(aLibrarian);
+      librarian.add(aLibrarian);
     }
     wasAdded = true;
     return wasAdded;
@@ -242,7 +242,7 @@ public class Library
     //Unable to remove aLibrarian, as it must always have a library
     if (!this.equals(aLibrarian.getLibrary()))
     {
-      librarians.remove(aLibrarian);
+      librarian.remove(aLibrarian);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -254,9 +254,9 @@ public class Library
     if(addLibrarian(aLibrarian))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
-      librarians.remove(aLibrarian);
-      librarians.add(index, aLibrarian);
+      if(index > numberOfLibrarian()) { index = numberOfLibrarian() - 1; }
+      librarian.remove(aLibrarian);
+      librarian.add(index, aLibrarian);
       wasAdded = true;
     }
     return wasAdded;
@@ -265,12 +265,12 @@ public class Library
   public boolean addOrMoveLibrarianAt(Librarian aLibrarian, int index)
   {
     boolean wasAdded = false;
-    if(librarians.contains(aLibrarian))
+    if(librarian.contains(aLibrarian))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
-      librarians.remove(aLibrarian);
-      librarians.add(index, aLibrarian);
+      if(index > numberOfLibrarian()) { index = numberOfLibrarian() - 1; }
+      librarian.remove(aLibrarian);
+      librarian.add(index, aLibrarian);
       wasAdded = true;
     } 
     else 
@@ -280,20 +280,20 @@ public class Library
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfCitizens()
+  public static int minimumNumberOfCitizen()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Citizen addCitizen()
+  public Citizen addCitizen(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, boolean aIsLocal, double aBalance)
   {
-    return new Citizen(this);
+    return new Citizen(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated, aIsLocal, aBalance, this);
   }
 
   public boolean addCitizen(Citizen aCitizen)
   {
     boolean wasAdded = false;
-    if (citizens.contains(aCitizen)) { return false; }
+    if (citizen.contains(aCitizen)) { return false; }
     Library existingLibrary = aCitizen.getLibrary();
     boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
     if (isNewLibrary)
@@ -302,7 +302,7 @@ public class Library
     }
     else
     {
-      citizens.add(aCitizen);
+      citizen.add(aCitizen);
     }
     wasAdded = true;
     return wasAdded;
@@ -314,7 +314,7 @@ public class Library
     //Unable to remove aCitizen, as it must always have a library
     if (!this.equals(aCitizen.getLibrary()))
     {
-      citizens.remove(aCitizen);
+      citizen.remove(aCitizen);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -326,9 +326,9 @@ public class Library
     if(addCitizen(aCitizen))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfCitizens()) { index = numberOfCitizens() - 1; }
-      citizens.remove(aCitizen);
-      citizens.add(index, aCitizen);
+      if(index > numberOfCitizen()) { index = numberOfCitizen() - 1; }
+      citizen.remove(aCitizen);
+      citizen.add(index, aCitizen);
       wasAdded = true;
     }
     return wasAdded;
@@ -337,12 +337,12 @@ public class Library
   public boolean addOrMoveCitizenAt(Citizen aCitizen, int index)
   {
     boolean wasAdded = false;
-    if(citizens.contains(aCitizen))
+    if(citizen.contains(aCitizen))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfCitizens()) { index = numberOfCitizens() - 1; }
-      citizens.remove(aCitizen);
-      citizens.add(index, aCitizen);
+      if(index > numberOfCitizen()) { index = numberOfCitizen() - 1; }
+      citizen.remove(aCitizen);
+      citizen.add(index, aCitizen);
       wasAdded = true;
     } 
     else 
@@ -352,20 +352,20 @@ public class Library
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfReservations()
+  public static int minimumNumberOfReservation()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Reservation addReservation(int aReservationID, LibraryItem aLibraryItem)
+  public Reservation addReservation(int aReservationID, User aUser, LibraryItem aLibraryItem)
   {
-    return new Reservation(aReservationID, this, aLibraryItem);
+    return new Reservation(aReservationID, this, aUser, aLibraryItem);
   }
 
   public boolean addReservation(Reservation aReservation)
   {
     boolean wasAdded = false;
-    if (reservations.contains(aReservation)) { return false; }
+    if (reservation.contains(aReservation)) { return false; }
     Library existingLibrary = aReservation.getLibrary();
     boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
     if (isNewLibrary)
@@ -374,7 +374,7 @@ public class Library
     }
     else
     {
-      reservations.add(aReservation);
+      reservation.add(aReservation);
     }
     wasAdded = true;
     return wasAdded;
@@ -386,7 +386,7 @@ public class Library
     //Unable to remove aReservation, as it must always have a library
     if (!this.equals(aReservation.getLibrary()))
     {
-      reservations.remove(aReservation);
+      reservation.remove(aReservation);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -398,9 +398,9 @@ public class Library
     if(addReservation(aReservation))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfReservations()) { index = numberOfReservations() - 1; }
-      reservations.remove(aReservation);
-      reservations.add(index, aReservation);
+      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+      reservation.remove(aReservation);
+      reservation.add(index, aReservation);
       wasAdded = true;
     }
     return wasAdded;
@@ -409,12 +409,12 @@ public class Library
   public boolean addOrMoveReservationAt(Reservation aReservation, int index)
   {
     boolean wasAdded = false;
-    if(reservations.contains(aReservation))
+    if(reservation.contains(aReservation))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfReservations()) { index = numberOfReservations() - 1; }
-      reservations.remove(aReservation);
-      reservations.add(index, aReservation);
+      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+      reservation.remove(aReservation);
+      reservation.add(index, aReservation);
       wasAdded = true;
     } 
     else 
@@ -424,211 +424,211 @@ public class Library
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfLibraryItems()
+  public static int minimumNumberOfLibraryitem()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public LibraryItem addLibraryItem(LibraryItem.ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod)
+  public LibraryItem addLibraryitem(LibraryItem.ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod)
   {
     return new LibraryItem(aType, aBarcode, aTitle, aIsReservable, aIsReserved, aLoanPeriod, this);
   }
 
-  public boolean addLibraryItem(LibraryItem aLibraryItem)
+  public boolean addLibraryitem(LibraryItem aLibraryitem)
   {
     boolean wasAdded = false;
-    if (libraryItems.contains(aLibraryItem)) { return false; }
-    Library existingLibrary = aLibraryItem.getLibrary();
+    if (libraryitem.contains(aLibraryitem)) { return false; }
+    Library existingLibrary = aLibraryitem.getLibrary();
     boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
     if (isNewLibrary)
     {
-      aLibraryItem.setLibrary(this);
+      aLibraryitem.setLibrary(this);
     }
     else
     {
-      libraryItems.add(aLibraryItem);
+      libraryitem.add(aLibraryitem);
     }
     wasAdded = true;
     return wasAdded;
   }
 
-  public boolean removeLibraryItem(LibraryItem aLibraryItem)
+  public boolean removeLibraryitem(LibraryItem aLibraryitem)
   {
     boolean wasRemoved = false;
-    //Unable to remove aLibraryItem, as it must always have a library
-    if (!this.equals(aLibraryItem.getLibrary()))
+    //Unable to remove aLibraryitem, as it must always have a library
+    if (!this.equals(aLibraryitem.getLibrary()))
     {
-      libraryItems.remove(aLibraryItem);
+      libraryitem.remove(aLibraryitem);
       wasRemoved = true;
     }
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addLibraryItemAt(LibraryItem aLibraryItem, int index)
+  public boolean addLibraryitemAt(LibraryItem aLibraryitem, int index)
   {  
     boolean wasAdded = false;
-    if(addLibraryItem(aLibraryItem))
+    if(addLibraryitem(aLibraryitem))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfLibraryItems()) { index = numberOfLibraryItems() - 1; }
-      libraryItems.remove(aLibraryItem);
-      libraryItems.add(index, aLibraryItem);
+      if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
+      libraryitem.remove(aLibraryitem);
+      libraryitem.add(index, aLibraryitem);
       wasAdded = true;
     }
     return wasAdded;
   }
 
-  public boolean addOrMoveLibraryItemAt(LibraryItem aLibraryItem, int index)
+  public boolean addOrMoveLibraryitemAt(LibraryItem aLibraryitem, int index)
   {
     boolean wasAdded = false;
-    if(libraryItems.contains(aLibraryItem))
+    if(libraryitem.contains(aLibraryitem))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfLibraryItems()) { index = numberOfLibraryItems() - 1; }
-      libraryItems.remove(aLibraryItem);
-      libraryItems.add(index, aLibraryItem);
+      if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
+      libraryitem.remove(aLibraryitem);
+      libraryitem.add(index, aLibraryitem);
       wasAdded = true;
     } 
     else 
     {
-      wasAdded = addLibraryItemAt(aLibraryItem, index);
+      wasAdded = addLibraryitemAt(aLibraryitem, index);
     }
     return wasAdded;
   }
   /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfOpeningHoursValid()
+  public boolean isNumberOfOpeninghourValid()
   {
-    boolean isValid = numberOfOpeningHours() >= minimumNumberOfOpeningHours();
+    boolean isValid = numberOfOpeninghour() >= minimumNumberOfOpeninghour();
     return isValid;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfOpeningHours()
+  public static int minimumNumberOfOpeninghour()
   {
     return 1;
   }
   /* Code from template association_AddMandatoryManyToOne */
-  public OpeningHour addOpeningHour(Time aStartTime, Time aEndTime, OpeningHour.DayOfWeek aDay, HeadLibrarian aHeadLibrarian)
+  public OpeningHour addOpeninghour(Time aStartTime, Time aEndTime, OpeningHour.DayOfWeek aDay, HeadLibrarian aHeadLibrarian)
   {
-    OpeningHour aNewOpeningHour = new OpeningHour(aStartTime, aEndTime, aDay, this, aHeadLibrarian);
-    return aNewOpeningHour;
+    OpeningHour aNewOpeninghour = new OpeningHour(aStartTime, aEndTime, aDay, this, aHeadLibrarian);
+    return aNewOpeninghour;
   }
 
-  public boolean addOpeningHour(OpeningHour aOpeningHour)
+  public boolean addOpeninghour(OpeningHour aOpeninghour)
   {
     boolean wasAdded = false;
-    if (openingHours.contains(aOpeningHour)) { return false; }
-    Library existingLibrary = aOpeningHour.getLibrary();
+    if (openinghour.contains(aOpeninghour)) { return false; }
+    Library existingLibrary = aOpeninghour.getLibrary();
     boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
 
-    if (isNewLibrary && existingLibrary.numberOfOpeningHours() <= minimumNumberOfOpeningHours())
+    if (isNewLibrary && existingLibrary.numberOfOpeninghour() <= minimumNumberOfOpeninghour())
     {
       return wasAdded;
     }
     if (isNewLibrary)
     {
-      aOpeningHour.setLibrary(this);
+      aOpeninghour.setLibrary(this);
     }
     else
     {
-      openingHours.add(aOpeningHour);
+      openinghour.add(aOpeninghour);
     }
     wasAdded = true;
     return wasAdded;
   }
 
-  public boolean removeOpeningHour(OpeningHour aOpeningHour)
+  public boolean removeOpeninghour(OpeningHour aOpeninghour)
   {
     boolean wasRemoved = false;
-    //Unable to remove aOpeningHour, as it must always have a library
-    if (this.equals(aOpeningHour.getLibrary()))
+    //Unable to remove aOpeninghour, as it must always have a library
+    if (this.equals(aOpeninghour.getLibrary()))
     {
       return wasRemoved;
     }
 
     //library already at minimum (1)
-    if (numberOfOpeningHours() <= minimumNumberOfOpeningHours())
+    if (numberOfOpeninghour() <= minimumNumberOfOpeninghour())
     {
       return wasRemoved;
     }
 
-    openingHours.remove(aOpeningHour);
+    openinghour.remove(aOpeninghour);
     wasRemoved = true;
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addOpeningHourAt(OpeningHour aOpeningHour, int index)
+  public boolean addOpeninghourAt(OpeningHour aOpeninghour, int index)
   {  
     boolean wasAdded = false;
-    if(addOpeningHour(aOpeningHour))
+    if(addOpeninghour(aOpeninghour))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfOpeningHours()) { index = numberOfOpeningHours() - 1; }
-      openingHours.remove(aOpeningHour);
-      openingHours.add(index, aOpeningHour);
+      if(index > numberOfOpeninghour()) { index = numberOfOpeninghour() - 1; }
+      openinghour.remove(aOpeninghour);
+      openinghour.add(index, aOpeninghour);
       wasAdded = true;
     }
     return wasAdded;
   }
 
-  public boolean addOrMoveOpeningHourAt(OpeningHour aOpeningHour, int index)
+  public boolean addOrMoveOpeninghourAt(OpeningHour aOpeninghour, int index)
   {
     boolean wasAdded = false;
-    if(openingHours.contains(aOpeningHour))
+    if(openinghour.contains(aOpeninghour))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfOpeningHours()) { index = numberOfOpeningHours() - 1; }
-      openingHours.remove(aOpeningHour);
-      openingHours.add(index, aOpeningHour);
+      if(index > numberOfOpeninghour()) { index = numberOfOpeninghour() - 1; }
+      openinghour.remove(aOpeninghour);
+      openinghour.add(index, aOpeninghour);
       wasAdded = true;
     } 
     else 
     {
-      wasAdded = addOpeningHourAt(aOpeningHour, index);
+      wasAdded = addOpeninghourAt(aOpeninghour, index);
     }
     return wasAdded;
   }
 
   public void delete()
   {
-    HeadLibrarian existingHeadLibrarian = headLibrarian;
-    headLibrarian = null;
-    if (existingHeadLibrarian != null)
+    HeadLibrarian existingHeadlibrarian = headlibrarian;
+    headlibrarian = null;
+    if (existingHeadlibrarian != null)
     {
-      existingHeadLibrarian.delete();
+      existingHeadlibrarian.delete();
     }
-    while (librarians.size() > 0)
+    while (librarian.size() > 0)
     {
-      Librarian aLibrarian = librarians.get(librarians.size() - 1);
+      Librarian aLibrarian = librarian.get(librarian.size() - 1);
       aLibrarian.delete();
-      librarians.remove(aLibrarian);
+      librarian.remove(aLibrarian);
     }
     
-    while (citizens.size() > 0)
+    while (citizen.size() > 0)
     {
-      Citizen aCitizen = citizens.get(citizens.size() - 1);
+      Citizen aCitizen = citizen.get(citizen.size() - 1);
       aCitizen.delete();
-      citizens.remove(aCitizen);
+      citizen.remove(aCitizen);
     }
     
-    while (reservations.size() > 0)
+    while (reservation.size() > 0)
     {
-      Reservation aReservation = reservations.get(reservations.size() - 1);
+      Reservation aReservation = reservation.get(reservation.size() - 1);
       aReservation.delete();
-      reservations.remove(aReservation);
+      reservation.remove(aReservation);
     }
     
-    while (libraryItems.size() > 0)
+    while (libraryitem.size() > 0)
     {
-      LibraryItem aLibraryItem = libraryItems.get(libraryItems.size() - 1);
-      aLibraryItem.delete();
-      libraryItems.remove(aLibraryItem);
+      LibraryItem aLibraryitem = libraryitem.get(libraryitem.size() - 1);
+      aLibraryitem.delete();
+      libraryitem.remove(aLibraryitem);
     }
     
-    while (openingHours.size() > 0)
+    while (openinghour.size() > 0)
     {
-      OpeningHour aOpeningHour = openingHours.get(openingHours.size() - 1);
-      aOpeningHour.delete();
-      openingHours.remove(aOpeningHour);
+      OpeningHour aOpeninghour = openinghour.get(openinghour.size() - 1);
+      aOpeninghour.delete();
+      openinghour.remove(aOpeninghour);
     }
     
   }

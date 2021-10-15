@@ -6,12 +6,12 @@ association{
 }
 
 class Library{
-	1 <@>- 1 HeadLibrarian;
-	1 <@>- 0..* Librarian;
-	1 <@>- 0..* Citizen;
-	1 <@>- 0..* Reservation;
-	1 <@>- 0..* LibraryItem;
-	1 <@>- 1..* OpeningHour;
+	1 <@>- 1 HeadLibrarian headlibrarian;
+	1 <@>- 0..* Librarian librarian;
+	1 <@>- 0..* Citizen citizen;
+	1 <@>- 0..* Reservation reservation;
+	1 <@>- 0..* LibraryItem libraryitem;
+	1 <@>- 1..* OpeningHour openinghour;
 }
 
 class Reservation{
@@ -28,7 +28,15 @@ class LibraryItem{
 	Integer loanPeriod;
 }
 
-class User{}
+class User{
+	String fullName;
+	unique Integer cardID;
+	String address;
+	String username;
+	String password;
+	boolean onlineAccountActivated;
+	1 -- 5 Reservation reservation;
+}
 
 class HeadLibrarian{
 	isA User;
@@ -45,7 +53,11 @@ class Librarian{
 	* -- * Shift shift;
 }
 
-class Citizen{}
+class Citizen{
+	isA User;
+	boolean isLocal;
+	Double balance;
+}
 
 class OpeningHour{
 	enum DayOfWeek { 
