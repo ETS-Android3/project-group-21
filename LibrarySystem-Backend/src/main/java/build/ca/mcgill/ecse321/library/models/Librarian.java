@@ -3,27 +3,27 @@
 
 package ca.mcgill.ecse321.library.models;
 
-// line 43 "../../../../../LibrarySystem.ump"
-public class Citizen
+// line 41 "../../../../../../LibrarySystem.ump"
+public class Librarian
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //Citizen Associations
+  //Librarian Associations
   private Library library;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Citizen(Library aLibrary)
+  public Librarian(Library aLibrary)
   {
     boolean didAddLibrary = setLibrary(aLibrary);
     if (!didAddLibrary)
     {
-      throw new RuntimeException("Unable to create citizen due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create librarian due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
   }
 
@@ -48,9 +48,9 @@ public class Citizen
     library = aLibrary;
     if (existingLibrary != null && !existingLibrary.equals(aLibrary))
     {
-      existingLibrary.removeCitizen(this);
+      existingLibrary.removeLibrarian(this);
     }
-    library.addCitizen(this);
+    library.addLibrarian(this);
     wasSet = true;
     return wasSet;
   }
@@ -61,7 +61,7 @@ public class Citizen
     this.library = null;
     if(placeholderLibrary != null)
     {
-      placeholderLibrary.removeCitizen(this);
+      placeholderLibrary.removeLibrarian(this);
     }
   }
 
