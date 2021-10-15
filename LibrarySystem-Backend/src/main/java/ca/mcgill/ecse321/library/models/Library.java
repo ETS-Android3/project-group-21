@@ -213,9 +213,9 @@ public class Library
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Librarian addLibrarian()
+  public Librarian addLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift)
   {
-    return new Librarian(this);
+    return new Librarian(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated, aAShift, this);
   }
 
   public boolean addLibrarian(Librarian aLibrarian)
