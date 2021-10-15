@@ -78,6 +78,4 @@ class Shift{
 	Time endTime;
 	DayOfWeek day;
 
-	* shift -- 1 HeadLibrarian ;
-	* shift -- * Librarian ;
 }

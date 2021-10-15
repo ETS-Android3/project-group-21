@@ -81,29 +81,10 @@ public class Librarian extends User
     int index = shift.indexOf(aShift);
     return index;
   }
-  /* Code from template association_GetMany_clear */
-  protected void clear_shift()
-  {
-    shift.clear();
-  }
   /* Code from template association_GetOne */
   public Library getLibrary()
   {
     return library;
-  }
-  /* Code from template association_GetMany_relatedSpecialization */
-  public Shift getShift_Shift(int index)
-  {
-    Shift aShift = (Shift)shift.get(index);
-    return aShift;
-  }
-
-  /* required for Java 7. */
-  @SuppressWarnings("unchecked")
-  public List<Shift> getShift_Shift()
-  {
-    List<? extends Shift> newShift = Collections.unmodifiableList(shift);
-    return (List<Shift>)newShift;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfShift()
@@ -114,7 +95,6 @@ public class Librarian extends User
   public boolean addShift(Shift aShift)
   {
     boolean wasAdded = false;
-    if (shift.contains(aShift)) { return false; }
     if (shift.contains(aShift)) { return false; }
     shift.add(aShift);
     if (aShift.indexOfLibrarian(this) != -1)
@@ -206,89 +186,6 @@ public class Librarian extends User
     library.addLibrarian(this);
     wasSet = true;
     return wasSet;
-  }
-  /* Code from template association_set_specialization_reqCommonCode */  /* Code from template association_MinimumNumberOfMethod_relatedSpecialization */
-  public static int minimumNumberOfShift_Shift()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToManyMethod_relatedSpecialization */
-  public boolean addShift(Shift aShift)
-  {
-    boolean wasAdded = false;
-    if (shift.contains(aShift)) { return false; }
-    if (shift.contains(aShift)) { return false; }
-    shift.add(aShift);
-    if (aShift.indexOfLibrarian(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aShift.addLibrarian(this);
-      if (!wasAdded)
-      {
-        shift.remove(aShift);
-      }
-    }
-    return wasAdded;
-  }
-  /* Code from template association_RemoveMany */
-  public boolean removeShift(Shift aShift)
-  {
-    boolean wasRemoved = false;
-    if (!shift.contains(aShift))
-    {
-      return wasRemoved;
-    }
-
-    int oldIndex = shift.indexOf(aShift);
-    shift.remove(oldIndex);
-    if (aShift.indexOfLibrarian(this) == -1)
-    {
-      wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aShift.removeLibrarian(this);
-      if (!wasRemoved)
-      {
-        shift.add(oldIndex,aShift);
-      }
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions_relatedSpecialization */
-  public boolean addShiftAt(Shift aShift, int index)
-  {  
-    boolean wasAdded = false;
-    if(addShift(aShift))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfShift()) { index = numberOfShift() - 1; }
-      shift.remove(aShift);
-      shift.add(index, aShift);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveShiftAt(Shift aShift, int index)
-  {
-    boolean wasAdded = false;
-    if(shift.contains(aShift))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfShift()) { index = numberOfShift() - 1; }
-      shift.remove(aShift);
-      shift.add(index, aShift);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addShiftAt(aShift, index);
-    }
-    return wasAdded;
   }
 
   public void delete()

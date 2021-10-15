@@ -90,34 +90,10 @@ public class Shift
   {
     return day;
   }
-  /* Code from template association_GetOne_relatedSpecialization */
-  public HeadLibrarian getHeadLibrarian_OneHeadLibrarian()
-  {
-    return (HeadLibrarian)headLibrarian;
-  } 
-  /* Code from template association_GetMany_relatedSpecialization */
-  public Librarian getLibrarian_Librarian(int index)
-  {
-    Librarian aLibrarian = (Librarian)librarians.get(index);
-    return aLibrarian;
-  }
-
-  /* required for Java 7. */
-  @SuppressWarnings("unchecked")
-  public List<Librarian> getLibrarians_Librarian()
-  {
-    List<? extends Librarian> newLibrarians = Collections.unmodifiableList(librarians);
-    return (List<Librarian>)newLibrarians;
-  }
   /* Code from template association_GetOne */
   public HeadLibrarian getHeadLibrarian()
   {
     return headLibrarian;
-  }
-  /* Code from template association_GetOne_clear */
-  protected void clear_headLibrarian()
-  {
-    headLibrarian = null;
   }
   /* Code from template association_GetMany */
   public Librarian getLibrarian(int index)
@@ -149,113 +125,6 @@ public class Shift
     int index = librarians.indexOf(aLibrarian);
     return index;
   }
-  /* Code from template association_GetMany_clear */
-  protected void clear_librarians()
-  {
-    librarians.clear();
-  }
-  /* Code from template association_set_specialization_reqCommonCode */  /* Code from template association_SetOneToMany_relatedSpecialization */
-  public boolean setHeadLibrarian_HeadLibrarian(HeadLibrarian aHeadLibrarian)
-  {
-    boolean wasSet = false;
-    if (aHeadLibrarian == null)
-    {
-      return wasSet;
-    }
-
-    HeadLibrarian existingHeadLibrarian = (HeadLibrarian)headLibrarian;
-    headLibrarian = aHeadLibrarian;
-    if (existingHeadLibrarian != null && !existingHeadLibrarian.equals(aHeadLibrarian))
-    {
-      existingHeadLibrarian.removeShift(this);
-    }
-    headLibrarian.addShift(this);
-    wasSet = true;
-    return wasSet;
-  }
-  /* Code from template association_set_specialization_reqCommonCode */  /* Code from template association_MinimumNumberOfMethod_relatedSpecialization */
-  public static int minimumNumberOfLibrarians_Librarian()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToManyMethod_relatedSpecialization */
-  public boolean addLibrarian(Librarian aLibrarian)
-  {
-    boolean wasAdded = false;
-    if (librarians.contains(aLibrarian)) { return false; }
-    if (librarians.contains(aLibrarian)) { return false; }
-    librarians.add(aLibrarian);
-    if (aLibrarian.indexOfShift(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aLibrarian.addShift(this);
-      if (!wasAdded)
-      {
-        librarians.remove(aLibrarian);
-      }
-    }
-    return wasAdded;
-  }
-  /* Code from template association_RemoveMany */
-  public boolean removeLibrarian(Librarian aLibrarian)
-  {
-    boolean wasRemoved = false;
-    if (!librarians.contains(aLibrarian))
-    {
-      return wasRemoved;
-    }
-
-    int oldIndex = librarians.indexOf(aLibrarian);
-    librarians.remove(oldIndex);
-    if (aLibrarian.indexOfShift(this) == -1)
-    {
-      wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aLibrarian.removeShift(this);
-      if (!wasRemoved)
-      {
-        librarians.add(oldIndex,aLibrarian);
-      }
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions_relatedSpecialization */
-  public boolean addLibrarianAt(Librarian aLibrarian, int index)
-  {  
-    boolean wasAdded = false;
-    if(addLibrarian(aLibrarian))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
-      librarians.remove(aLibrarian);
-      librarians.add(index, aLibrarian);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveLibrarianAt(Librarian aLibrarian, int index)
-  {
-    boolean wasAdded = false;
-    if(librarians.contains(aLibrarian))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
-      librarians.remove(aLibrarian);
-      librarians.add(index, aLibrarian);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addLibrarianAt(aLibrarian, index);
-    }
-    return wasAdded;
-  }
   /* Code from template association_SetOneToMany */
   public boolean setHeadLibrarian(HeadLibrarian aHeadLibrarian)
   {
@@ -284,7 +153,6 @@ public class Shift
   public boolean addLibrarian(Librarian aLibrarian)
   {
     boolean wasAdded = false;
-    if (librarians.contains(aLibrarian)) { return false; }
     if (librarians.contains(aLibrarian)) { return false; }
     librarians.add(aLibrarian);
     if (aLibrarian.indexOfShift(this) != -1)
@@ -382,7 +250,6 @@ public class Shift
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "day" + "=" + (getDay() != null ? !getDay().equals(this)  ? getDay().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "headLibrarian = "+(getHeadLibrarian()!=null?Integer.toHexString(System.identityHashCode(getHeadLibrarian())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "headLibrarian = "+(getHeadLibrarian()!=null?Integer.toHexString(System.identityHashCode(getHeadLibrarian())):"null");
   }
 }

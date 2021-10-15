@@ -123,29 +123,10 @@ public class HeadLibrarian extends User
     int index = shift.indexOf(aShift);
     return index;
   }
-  /* Code from template association_GetMany_clear */
-  protected void clear_shift()
-  {
-    shift.clear();
-  }
   /* Code from template association_GetOne */
   public Library getLibrary()
   {
     return library;
-  }
-  /* Code from template association_GetMany_relatedSpecialization */
-  public Shift getShift_Shift(int index)
-  {
-    Shift aShift = (Shift)shift.get(index);
-    return aShift;
-  }
-
-  /* required for Java 7. */
-  @SuppressWarnings("unchecked")
-  public List<Shift> getShift_Shift()
-  {
-    List<? extends Shift> newShift = Collections.unmodifiableList(shift);
-    return (List<Shift>)newShift;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfOpeninghour()
@@ -234,7 +215,6 @@ public class HeadLibrarian extends User
   {
     boolean wasAdded = false;
     if (shift.contains(aShift)) { return false; }
-    if (shift.contains(aShift)) { return false; }
     HeadLibrarian existingHeadLibrarian = aShift.getHeadLibrarian();
     boolean isNewHeadLibrarian = existingHeadLibrarian != null && !this.equals(existingHeadLibrarian);
     if (isNewHeadLibrarian)
@@ -261,79 +241,6 @@ public class HeadLibrarian extends User
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addShiftAt(Shift aShift, int index)
-  {  
-    boolean wasAdded = false;
-    if(addShift(aShift))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfShift()) { index = numberOfShift() - 1; }
-      shift.remove(aShift);
-      shift.add(index, aShift);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveShiftAt(Shift aShift, int index)
-  {
-    boolean wasAdded = false;
-    if(shift.contains(aShift))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfShift()) { index = numberOfShift() - 1; }
-      shift.remove(aShift);
-      shift.add(index, aShift);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addShiftAt(aShift, index);
-    }
-    return wasAdded;
-  }
-  /* Code from template association_set_specialization_reqCommonCode */  /* Code from template association_MinimumNumberOfMethod_relatedSpecialization */
-  public static int minimumNumberOfShift_Shift()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToOne_relatedSpecialization */
-  public Shift addShift(Time aStartTime, Time aEndTime, Shift.DayOfWeek aDay)
-  {
-    return new Shift(aStartTime, aEndTime, aDay, this);
-  }
-
-  public boolean addShift(Shift aShift)
-  {
-    boolean wasAdded = false;
-    if (shift.contains(aShift)) { return false; }
-    if (shift.contains(aShift)) { return false; }
-    HeadLibrarian existingHeadLibrarian = aShift.getHeadLibrarian();
-    boolean isNewHeadLibrarian = existingHeadLibrarian != null && !this.equals(existingHeadLibrarian);
-    if (isNewHeadLibrarian)
-    {
-      aShift.setHeadLibrarian(this);
-    }
-    else
-    {
-      shift.add(aShift);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeShift(Shift aShift)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aShift, as it must always have a headLibrarian
-    if (!this.equals(aShift.getHeadLibrarian()))
-    {
-      shift.remove(aShift);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions_relatedSpecialization */
   public boolean addShiftAt(Shift aShift, int index)
   {  
     boolean wasAdded = false;
