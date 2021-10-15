@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse321.library.models;
 
-// line 31 "../../../../../LibrarySystem.ump"
+// line 31 "../../../../../../LibrarySystem.ump"
 public class User
 {
 
