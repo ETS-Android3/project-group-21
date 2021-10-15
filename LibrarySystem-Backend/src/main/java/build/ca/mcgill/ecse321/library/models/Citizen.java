@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse321.library.models;
 
-// line 48 "../../../../../LibrarySystem.ump"
+// line 48 "../../../../../../LibrarySystem.ump"
 public class Citizen
 {
 

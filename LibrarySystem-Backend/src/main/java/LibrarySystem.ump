@@ -38,7 +38,12 @@ class HeadLibrarian{
 
 }
 
-class Librarian{}
+class Librarian{
+	isA User;
+	Shift aShift;
+
+	* -- * Shift shift;
+}
 
 class Citizen{}
 
@@ -52,4 +57,15 @@ class OpeningHour{
 
 }
 
-class Shift{}
+class Shift{
+	enum DayOfWeek { 
+		Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday 
+		}
+	//Essentailly the same as the OpeningHour Class
+	Time startTime;
+	Time endTime;
+	DayOfWeek day;
+
+	* shift -- 1 HeadLibrarian ;
+	* shift -- * Librarian ;
+}
