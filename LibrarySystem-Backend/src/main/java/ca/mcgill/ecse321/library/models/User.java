@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 32 "../../../../../LibrarySystem.ump"
+
 public abstract class User
 {
 
@@ -227,72 +231,72 @@ public abstract class User
     }
   }
 
-  public boolean addReservation(Reservation aReservation)
-  {
-    boolean wasAdded = false;
-    if (reservation.contains(aReservation)) { return false; }
-    if (numberOfReservation() >= maximumNumberOfReservation())
-    {
-      return wasAdded;
-    }
-
-    User existingUser = aReservation.getUser();
-    boolean isNewUser = existingUser != null && !this.equals(existingUser);
-    if (isNewUser)
-    {
-      aReservation.setUser(this);
-    }
-    else
-    {
-      reservation.add(aReservation);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeReservation(Reservation aReservation)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aReservation, as it must always have a user
-    if (!this.equals(aReservation.getUser()))
-    {
-      reservation.remove(aReservation);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addReservationAt(Reservation aReservation, int index)
-  {  
-    boolean wasAdded = false;
-    if(addReservation(aReservation))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
-      reservation.remove(aReservation);
-      reservation.add(index, aReservation);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveReservationAt(Reservation aReservation, int index)
-  {
-    boolean wasAdded = false;
-    if(reservation.contains(aReservation))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
-      reservation.remove(aReservation);
-      reservation.add(index, aReservation);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addReservationAt(aReservation, index);
-    }
-    return wasAdded;
-  }
+//  public boolean addReservation(Reservation aReservation)
+//  {
+//    boolean wasAdded = false;
+//    if (reservation.contains(aReservation)) { return false; }
+//    if (numberOfReservation() >= maximumNumberOfReservation())
+//    {
+//      return wasAdded;
+//    }
+//
+//    User existingUser = aReservation.getUser();
+//    boolean isNewUser = existingUser != null && !this.equals(existingUser);
+//    if (isNewUser)
+//    {
+//      aReservation.setUser(this);
+//    }
+//    else
+//    {
+//      reservation.add(aReservation);
+//    }
+//    wasAdded = true;
+//    return wasAdded;
+//  }
+//
+//  public boolean removeReservation(Reservation aReservation)
+//  {
+//    boolean wasRemoved = false;
+//    //Unable to remove aReservation, as it must always have a user
+//    if (!this.equals(aReservation.getUser()))
+//    {
+//      reservation.remove(aReservation);
+//      wasRemoved = true;
+//    }
+//    return wasRemoved;
+//  }
+//  /* Code from template association_AddIndexControlFunctions */
+//  public boolean addReservationAt(Reservation aReservation, int index)
+//  {  
+//    boolean wasAdded = false;
+//    if(addReservation(aReservation))
+//    {
+//      if(index < 0 ) { index = 0; }
+//      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+//      reservation.remove(aReservation);
+//      reservation.add(index, aReservation);
+//      wasAdded = true;
+//    }
+//    return wasAdded;
+//  }
+//
+//  public boolean addOrMoveReservationAt(Reservation aReservation, int index)
+//  {
+//    boolean wasAdded = false;
+//    if(reservation.contains(aReservation))
+//    {
+//      if(index < 0 ) { index = 0; }
+//      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+//      reservation.remove(aReservation);
+//      reservation.add(index, aReservation);
+//      wasAdded = true;
+//    } 
+//    else 
+//    {
+//      wasAdded = addReservationAt(aReservation, index);
+//    }
+//    return wasAdded;
+//  }
 
   public void delete()
   {

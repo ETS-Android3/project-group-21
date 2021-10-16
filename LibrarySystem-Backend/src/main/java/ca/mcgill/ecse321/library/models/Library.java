@@ -3,9 +3,14 @@
 
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import java.sql.Time;
 
 // line 8 "../../../../../LibrarySystem.ump"
+
 public class Library
 {
 
@@ -369,150 +374,150 @@ public class Library
     }
     return wasAdded;
   }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfReservation()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToOne */
-  public Reservation addReservation(int aReservationID, User aUser, LibraryItem aLibraryItem)
-  {
-    return new Reservation(aReservationID, this, aUser, aLibraryItem);
-  }
-
-  public boolean addReservation(Reservation aReservation)
-  {
-    boolean wasAdded = false;
-    if (reservation.contains(aReservation)) { return false; }
-    Library existingLibrary = aReservation.getLibrary();
-    boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
-    if (isNewLibrary)
-    {
-      aReservation.setLibrary(this);
-    }
-    else
-    {
-      reservation.add(aReservation);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeReservation(Reservation aReservation)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aReservation, as it must always have a library
-    if (!this.equals(aReservation.getLibrary()))
-    {
-      reservation.remove(aReservation);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addReservationAt(Reservation aReservation, int index)
-  {  
-    boolean wasAdded = false;
-    if(addReservation(aReservation))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
-      reservation.remove(aReservation);
-      reservation.add(index, aReservation);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveReservationAt(Reservation aReservation, int index)
-  {
-    boolean wasAdded = false;
-    if(reservation.contains(aReservation))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
-      reservation.remove(aReservation);
-      reservation.add(index, aReservation);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addReservationAt(aReservation, index);
-    }
-    return wasAdded;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfLibraryitem()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToOne */
-  public LibraryItem addLibraryitem(LibraryItem.ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod)
-  {
-    return new LibraryItem(aType, aBarcode, aTitle, aIsReservable, aIsReserved, aLoanPeriod, this);
-  }
-
-  public boolean addLibraryitem(LibraryItem aLibraryitem)
-  {
-    boolean wasAdded = false;
-    if (libraryitem.contains(aLibraryitem)) { return false; }
-    Library existingLibrary = aLibraryitem.getLibrary();
-    boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
-    if (isNewLibrary)
-    {
-      aLibraryitem.setLibrary(this);
-    }
-    else
-    {
-      libraryitem.add(aLibraryitem);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeLibraryitem(LibraryItem aLibraryitem)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aLibraryitem, as it must always have a library
-    if (!this.equals(aLibraryitem.getLibrary()))
-    {
-      libraryitem.remove(aLibraryitem);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addLibraryitemAt(LibraryItem aLibraryitem, int index)
-  {  
-    boolean wasAdded = false;
-    if(addLibraryitem(aLibraryitem))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
-      libraryitem.remove(aLibraryitem);
-      libraryitem.add(index, aLibraryitem);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveLibraryitemAt(LibraryItem aLibraryitem, int index)
-  {
-    boolean wasAdded = false;
-    if(libraryitem.contains(aLibraryitem))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
-      libraryitem.remove(aLibraryitem);
-      libraryitem.add(index, aLibraryitem);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addLibraryitemAt(aLibraryitem, index);
-    }
-    return wasAdded;
-  }
+//  /* Code from template association_MinimumNumberOfMethod */
+//  public static int minimumNumberOfReservation()
+//  {
+//    return 0;
+//  }
+//  /* Code from template association_AddManyToOne */
+//  public Reservation addReservation(int aReservationID, User aUser, LibraryItem aLibraryItem)
+//  {
+//    return new Reservation(aReservationID, this, aUser, aLibraryItem);
+//  }
+//
+//  public boolean addReservation(Reservation aReservation)
+//  {
+//    boolean wasAdded = false;
+//    if (reservation.contains(aReservation)) { return false; }
+//    Library existingLibrary = aReservation.getLibrary();
+//    boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
+//    if (isNewLibrary)
+//    {
+//      aReservation.setLibrary(this);
+//    }
+//    else
+//    {
+//      reservation.add(aReservation);
+//    }
+//    wasAdded = true;
+//    return wasAdded;
+//  }
+//
+//  public boolean removeReservation(Reservation aReservation)
+//  {
+//    boolean wasRemoved = false;
+//    //Unable to remove aReservation, as it must always have a library
+//    if (!this.equals(aReservation.getLibrary()))
+//    {
+//      reservation.remove(aReservation);
+//      wasRemoved = true;
+//    }
+//    return wasRemoved;
+//  }
+//  /* Code from template association_AddIndexControlFunctions */
+//  public boolean addReservationAt(Reservation aReservation, int index)
+//  {  
+//    boolean wasAdded = false;
+//    if(addReservation(aReservation))
+//    {
+//      if(index < 0 ) { index = 0; }
+//      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+//      reservation.remove(aReservation);
+//      reservation.add(index, aReservation);
+//      wasAdded = true;
+//    }
+//    return wasAdded;
+//  }
+//
+//  public boolean addOrMoveReservationAt(Reservation aReservation, int index)
+//  {
+//    boolean wasAdded = false;
+//    if(reservation.contains(aReservation))
+//    {
+//      if(index < 0 ) { index = 0; }
+//      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+//      reservation.remove(aReservation);
+//      reservation.add(index, aReservation);
+//      wasAdded = true;
+//    } 
+//    else 
+//    {
+//      wasAdded = addReservationAt(aReservation, index);
+//    }
+//    return wasAdded;
+//  }
+//  /* Code from template association_MinimumNumberOfMethod */
+//  public static int minimumNumberOfLibraryitem()
+//  {
+//    return 0;
+//  }
+//  /* Code from template association_AddManyToOne */
+//  public LibraryItem addLibraryitem(LibraryItem.ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod)
+//  {
+//    return new LibraryItem(aType, aBarcode, aTitle, aIsReservable, aIsReserved, aLoanPeriod, this);
+//  }
+//
+//  public boolean addLibraryitem(LibraryItem aLibraryitem)
+//  {
+//    boolean wasAdded = false;
+//    if (libraryitem.contains(aLibraryitem)) { return false; }
+//    Library existingLibrary = aLibraryitem.getLibrary();
+//    boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
+//    if (isNewLibrary)
+//    {
+//      aLibraryitem.setLibrary(this);
+//    }
+//    else
+//    {
+//      libraryitem.add(aLibraryitem);
+//    }
+//    wasAdded = true;
+//    return wasAdded;
+//  }
+//
+//  public boolean removeLibraryitem(LibraryItem aLibraryitem)
+//  {
+//    boolean wasRemoved = false;
+//    //Unable to remove aLibraryitem, as it must always have a library
+//    if (!this.equals(aLibraryitem.getLibrary()))
+//    {
+//      libraryitem.remove(aLibraryitem);
+//      wasRemoved = true;
+//    }
+//    return wasRemoved;
+//  }
+//  /* Code from template association_AddIndexControlFunctions */
+//  public boolean addLibraryitemAt(LibraryItem aLibraryitem, int index)
+//  {  
+//    boolean wasAdded = false;
+//    if(addLibraryitem(aLibraryitem))
+//    {
+//      if(index < 0 ) { index = 0; }
+//      if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
+//      libraryitem.remove(aLibraryitem);
+//      libraryitem.add(index, aLibraryitem);
+//      wasAdded = true;
+//    }
+//    return wasAdded;
+//  }
+//
+//  public boolean addOrMoveLibraryitemAt(LibraryItem aLibraryitem, int index)
+//  {
+//    boolean wasAdded = false;
+//    if(libraryitem.contains(aLibraryitem))
+//    {
+//      if(index < 0 ) { index = 0; }
+//      if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
+//      libraryitem.remove(aLibraryitem);
+//      libraryitem.add(index, aLibraryitem);
+//      wasAdded = true;
+//    } 
+//    else 
+//    {
+//      wasAdded = addLibraryitemAt(aLibraryitem, index);
+//    }
+//    return wasAdded;
+//  }
   /* Code from template association_IsNumberOfValidMethod */
   public boolean isNumberOfOpeninghourValid()
   {

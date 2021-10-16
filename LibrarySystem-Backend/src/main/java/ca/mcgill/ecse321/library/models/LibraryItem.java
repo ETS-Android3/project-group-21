@@ -4,7 +4,13 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 // line 22 "../../../../../LibrarySystem.ump"
+@Entity
+@Table(name = "libraryitem")
 public class LibraryItem
 {
 
@@ -33,7 +39,7 @@ public class LibraryItem
   private int loanPeriod;
 
   //LibraryItem Associations
-  private Library library;
+//  private Library library;
 
   //------------------------
   // CONSTRUCTOR
@@ -125,6 +131,7 @@ public class LibraryItem
     return type;
   }
 
+  @Id
   public int getBarcode()
   {
     return barcode;
@@ -159,11 +166,11 @@ public class LibraryItem
   {
     return loanPeriod;
   }
-  /* Code from template association_GetOne */
-  public Library getLibrary()
-  {
-    return library;
-  }
+//  /* Code from template association_GetOne */
+//  public Library getLibrary()
+//  {
+//    return library;
+//  }
   /* Code from template association_SetOneToMany */
   public boolean setLibrary(Library aLibrary)
   {
@@ -173,13 +180,13 @@ public class LibraryItem
       return wasSet;
     }
 
-    Library existingLibrary = library;
-    library = aLibrary;
-    if (existingLibrary != null && !existingLibrary.equals(aLibrary))
-    {
-      existingLibrary.removeLibraryitem(this);
-    }
-    library.addLibraryitem(this);
+//    Library existingLibrary = library;
+//    library = aLibrary;
+//    if (existingLibrary != null && !existingLibrary.equals(aLibrary))
+//    {
+//      existingLibrary.removeLibraryitem(this);
+//    }
+//    library.addLibraryitem(this);
     wasSet = true;
     return wasSet;
   }
@@ -187,24 +194,24 @@ public class LibraryItem
   public void delete()
   {
     libraryitemsByBarcode.remove(getBarcode());
-    Library placeholderLibrary = library;
-    this.library = null;
-    if(placeholderLibrary != null)
-    {
-      placeholderLibrary.removeLibraryitem(this);
-    }
+//    Library placeholderLibrary = library;
+//    this.library = null;
+//    if(placeholderLibrary != null)
+//    {
+//      placeholderLibrary.removeLibraryitem(this);
+//    }
   }
 
 
-  public String toString()
-  {
-    return super.toString() + "["+
-            "barcode" + ":" + getBarcode()+ "," +
-            "title" + ":" + getTitle()+ "," +
-            "isReservable" + ":" + getIsReservable()+ "," +
-            "isReserved" + ":" + getIsReserved()+ "," +
-            "loanPeriod" + ":" + getLoanPeriod()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "type" + "=" + (getType() != null ? !getType().equals(this)  ? getType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "library = "+(getLibrary()!=null?Integer.toHexString(System.identityHashCode(getLibrary())):"null");
-  }
+//  public String toString()
+//  {
+//    return super.toString() + "["+
+//            "barcode" + ":" + getBarcode()+ "," +
+//            "title" + ":" + getTitle()+ "," +
+//            "isReservable" + ":" + getIsReservable()+ "," +
+//            "isReserved" + ":" + getIsReserved()+ "," +
+//            "loanPeriod" + ":" + getLoanPeriod()+ "]" + System.getProperties().getProperty("line.separator") +
+//            "  " + "type" + "=" + (getType() != null ? !getType().equals(this)  ? getType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+//            "  " + "library = "+(getLibrary()!=null?Integer.toHexString(System.identityHashCode(getLibrary())):"null");
+//  }
 }

@@ -4,6 +4,8 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+
 // line 58 "../../../../../LibrarySystem.ump"
 public class Citizen extends User
 {
