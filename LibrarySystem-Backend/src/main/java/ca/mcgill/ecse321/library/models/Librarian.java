@@ -57,7 +57,7 @@ public class Librarian extends User
     return aShift;
   }
   /* Code from template association_GetMany */
-  @ManytoMany
+  @ManyToMany
   public Shift getShift(int index)
   {
     Shift aShift = shift.get(index);

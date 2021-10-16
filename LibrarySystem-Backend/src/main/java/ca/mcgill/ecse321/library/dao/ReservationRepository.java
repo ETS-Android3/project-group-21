@@ -12,6 +12,6 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	
 	Reservation findReservationByReservationID(int reservationID);
 	Reservation findByLibraryItem(LibraryItem libraryItem);
-//	List<Reservation> findByUser(User user);
+	List<Reservation> findByUser(User user);
 
 }

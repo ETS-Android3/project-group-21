@@ -131,7 +131,7 @@ public class HeadLibrarian extends User
     return index;
   }
   /* Code from template association_GetOne */
-  @OneToOne
+  @OnetoOne
   public Library getLibrary()
   {
     return library;
