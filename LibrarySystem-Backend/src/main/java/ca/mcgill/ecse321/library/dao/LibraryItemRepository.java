@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import ca.mcgill.ecse321.library.models.LibraryItem;
 
-public interface LibraryItemRepository extends CrudRepository<LibraryItem, String>{
+public interface LibraryItemRepository extends CrudRepository<LibraryItem, Integer>{
 	
-	LibraryItem findLibraryItemByBarcode(String barcode);
+	LibraryItem findLibraryItemByBarcode(int barcode);
 
 }

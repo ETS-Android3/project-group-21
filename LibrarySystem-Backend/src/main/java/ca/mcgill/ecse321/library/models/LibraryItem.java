@@ -5,6 +5,8 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -39,11 +41,13 @@ public class LibraryItem
   private int loanPeriod;
 
   //LibraryItem Associations
-//  private Library library;
+  private Library library;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
+  
+  public LibraryItem() {}
 
   public LibraryItem(ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod, Library aLibrary)
   {
@@ -132,6 +136,7 @@ public class LibraryItem
   }
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getBarcode()
   {
     return barcode;
@@ -166,11 +171,11 @@ public class LibraryItem
   {
     return loanPeriod;
   }
-//  /* Code from template association_GetOne */
-//  public Library getLibrary()
-//  {
-//    return library;
-//  }
+  /* Code from template association_GetOne */
+  public Library getLibrary()
+  {
+    return library;
+  }
   /* Code from template association_SetOneToMany */
   public boolean setLibrary(Library aLibrary)
   {
@@ -180,13 +185,13 @@ public class LibraryItem
       return wasSet;
     }
 
-//    Library existingLibrary = library;
-//    library = aLibrary;
-//    if (existingLibrary != null && !existingLibrary.equals(aLibrary))
-//    {
-//      existingLibrary.removeLibraryitem(this);
-//    }
-//    library.addLibraryitem(this);
+    Library existingLibrary = library;
+    library = aLibrary;
+    if (existingLibrary != null && !existingLibrary.equals(aLibrary))
+    {
+      existingLibrary.removeLibraryitem(this);
+    }
+    library.addLibraryitem(this);
     wasSet = true;
     return wasSet;
   }
@@ -194,24 +199,24 @@ public class LibraryItem
   public void delete()
   {
     libraryitemsByBarcode.remove(getBarcode());
-//    Library placeholderLibrary = library;
-//    this.library = null;
-//    if(placeholderLibrary != null)
-//    {
-//      placeholderLibrary.removeLibraryitem(this);
-//    }
+    Library placeholderLibrary = library;
+    this.library = null;
+    if(placeholderLibrary != null)
+    {
+      placeholderLibrary.removeLibraryitem(this);
+    }
   }
 
 
-//  public String toString()
-//  {
-//    return super.toString() + "["+
-//            "barcode" + ":" + getBarcode()+ "," +
-//            "title" + ":" + getTitle()+ "," +
-//            "isReservable" + ":" + getIsReservable()+ "," +
-//            "isReserved" + ":" + getIsReserved()+ "," +
-//            "loanPeriod" + ":" + getLoanPeriod()+ "]" + System.getProperties().getProperty("line.separator") +
-//            "  " + "type" + "=" + (getType() != null ? !getType().equals(this)  ? getType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-//            "  " + "library = "+(getLibrary()!=null?Integer.toHexString(System.identityHashCode(getLibrary())):"null");
-//  }
+  public String toString()
+  {
+    return super.toString() + "["+
+            "barcode" + ":" + getBarcode()+ "," +
+            "title" + ":" + getTitle()+ "," +
+            "isReservable" + ":" + getIsReservable()+ "," +
+            "isReserved" + ":" + getIsReserved()+ "," +
+            "loanPeriod" + ":" + getLoanPeriod()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "type" + "=" + (getType() != null ? !getType().equals(this)  ? getType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "library = "+(getLibrary()!=null?Integer.toHexString(System.identityHashCode(getLibrary())):"null");
+  }
 }

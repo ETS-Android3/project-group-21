@@ -9,7 +9,7 @@ class LibrarySystemApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertTrue(true);
+
 
 	}
 
