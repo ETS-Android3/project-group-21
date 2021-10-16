@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 32 "../../../../../LibrarySystem.ump"
+@Entity
 public class User
 {
 
@@ -114,7 +118,7 @@ public class User
   {
     return fullName;
   }
-
+  @Id
   public int getCardID()
   {
     return cardID;

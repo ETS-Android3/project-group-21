@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 22 "../../../../../LibrarySystem.ump"
+@Entity
 public class LibraryItem
 {
 
@@ -124,7 +128,7 @@ public class LibraryItem
   {
     return type;
   }
-
+  @Id
   public int getBarcode()
   {
     return barcode;

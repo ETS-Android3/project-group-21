@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 50 "../../../../../LibrarySystem.ump"
+@Entity
 public class Librarian extends User
 {
 

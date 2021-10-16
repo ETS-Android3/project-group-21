@@ -5,7 +5,11 @@ package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 73 "../../../../../LibrarySystem.ump"
+@Entity
 public class Shift
 {
 
@@ -120,7 +124,7 @@ public class Shift
   {
     return day;
   }
-
+  @Id
   public int getShiftCode()
   {
     return shiftCode;

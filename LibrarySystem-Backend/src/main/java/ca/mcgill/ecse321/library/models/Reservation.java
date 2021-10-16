@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 18 "../../../../../LibrarySystem.ump"
+@Entity
 public class Reservation
 {
 
@@ -74,7 +78,7 @@ public class Reservation
     reservationsByReservationID.put(aReservationID, this);
     return wasSet;
   }
-
+  @Id
   public int getReservationID()
   {
     return reservationID;

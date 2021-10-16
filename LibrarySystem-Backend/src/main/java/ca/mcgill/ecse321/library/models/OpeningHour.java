@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 63 "../../../../../LibrarySystem.ump"
+@Entity
 public class OpeningHour
 {
 
@@ -85,7 +89,7 @@ public class OpeningHour
   {
     return endTime;
   }
-
+  @Id
   public DayOfWeek getDay()
   {
     return day;

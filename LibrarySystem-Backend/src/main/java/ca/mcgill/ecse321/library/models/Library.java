@@ -5,7 +5,11 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 import java.sql.Time;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 8 "../../../../../LibrarySystem.ump"
+@Entity
 public class Library
 {
 
@@ -65,7 +69,7 @@ public class Library
     wasSet = true;
     return wasSet;
   }
-
+  @Id
   public String getName()
   {
     return name;

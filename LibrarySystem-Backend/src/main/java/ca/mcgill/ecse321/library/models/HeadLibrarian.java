@@ -5,7 +5,11 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 import java.sql.Time;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 // line 42 "../../../../../LibrarySystem.ump"
+@Entity
 public class HeadLibrarian extends User
 {
 
