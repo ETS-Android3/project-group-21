@@ -6,6 +6,7 @@ association{
 }
 
 class Library{
+	String name;
 	1 <@>- 1 HeadLibrarian headlibrarian;
 	1 <@>- 0..* Librarian librarian;
 	1 <@>- 0..* Citizen citizen;
@@ -77,5 +78,6 @@ class Shift{
 	Time startTime;
 	Time endTime;
 	DayOfWeek day;
+	unique Integer shiftCode;
 
 }

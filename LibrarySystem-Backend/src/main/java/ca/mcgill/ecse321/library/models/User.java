@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-// line 31 "../../../../../LibrarySystem.ump"
+// line 32 "../../../../../LibrarySystem.ump"
 public class User
 {
 

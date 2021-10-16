@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 import java.util.*;
 
-// line 72 "../../../../../LibrarySystem.ump"
+// line 73 "../../../../../LibrarySystem.ump"
 public class Shift
 {
 
@@ -16,6 +16,12 @@ public class Shift
   public enum DayOfWeek { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
   //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  private static Map<Integer, Shift> shiftsByShiftCode = new HashMap<Integer, Shift>();
+
+  //------------------------
   // MEMBER VARIABLES
   //------------------------
 
@@ -23,6 +29,7 @@ public class Shift
   private Time startTime;
   private Time endTime;
   private DayOfWeek day;
+  private int shiftCode;
 
   //Shift Associations
   private HeadLibrarian headLibrarian;
@@ -32,11 +39,15 @@ public class Shift
   // CONSTRUCTOR
   //------------------------
 
-  public Shift(Time aStartTime, Time aEndTime, DayOfWeek aDay, HeadLibrarian aHeadLibrarian)
+  public Shift(Time aStartTime, Time aEndTime, DayOfWeek aDay, int aShiftCode, HeadLibrarian aHeadLibrarian)
   {
     startTime = aStartTime;
     endTime = aEndTime;
     day = aDay;
+    if (!setShiftCode(aShiftCode))
+    {
+      throw new RuntimeException("Cannot create due to duplicate shiftCode. See http://manual.umple.org?RE003ViolationofUniqueness.html");
+    }
     boolean didAddHeadLibrarian = setHeadLibrarian(aHeadLibrarian);
     if (!didAddHeadLibrarian)
     {
@@ -73,6 +84,25 @@ public class Shift
     return wasSet;
   }
 
+  public boolean setShiftCode(int aShiftCode)
+  {
+    boolean wasSet = false;
+    Integer anOldShiftCode = getShiftCode();
+    if (anOldShiftCode != null && anOldShiftCode.equals(aShiftCode)) {
+      return true;
+    }
+    if (hasWithShiftCode(aShiftCode)) {
+      return wasSet;
+    }
+    shiftCode = aShiftCode;
+    wasSet = true;
+    if (anOldShiftCode != null) {
+      shiftsByShiftCode.remove(anOldShiftCode);
+    }
+    shiftsByShiftCode.put(aShiftCode, this);
+    return wasSet;
+  }
+
   /**
    * Essentailly the same as the OpeningHour Class
    */
@@ -89,6 +119,21 @@ public class Shift
   public DayOfWeek getDay()
   {
     return day;
+  }
+
+  public int getShiftCode()
+  {
+    return shiftCode;
+  }
+  /* Code from template attribute_GetUnique */
+  public static Shift getWithShiftCode(int aShiftCode)
+  {
+    return shiftsByShiftCode.get(aShiftCode);
+  }
+  /* Code from template attribute_HasUnique */
+  public static boolean hasWithShiftCode(int aShiftCode)
+  {
+    return getWithShiftCode(aShiftCode) != null;
   }
   /* Code from template association_GetOne */
   public HeadLibrarian getHeadLibrarian()
@@ -229,6 +274,7 @@ public class Shift
 
   public void delete()
   {
+    shiftsByShiftCode.remove(getShiftCode());
     HeadLibrarian placeholderHeadLibrarian = headLibrarian;
     this.headLibrarian = null;
     if(placeholderHeadLibrarian != null)
@@ -246,7 +292,8 @@ public class Shift
 
   public String toString()
   {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+    return super.toString() + "["+
+            "shiftCode" + ":" + getShiftCode()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "day" + "=" + (getDay() != null ? !getDay().equals(this)  ? getDay().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +

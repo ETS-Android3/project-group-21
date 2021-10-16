@@ -13,6 +13,9 @@ public class Library
   // MEMBER VARIABLES
   //------------------------
 
+  //Library Attributes
+  private String name;
+
   //Library Associations
   private HeadLibrarian headlibrarian;
   private List<Librarian> librarian;
@@ -25,8 +28,9 @@ public class Library
   // CONSTRUCTOR
   //------------------------
 
-  public Library(HeadLibrarian aHeadlibrarian)
+  public Library(String aName, HeadLibrarian aHeadlibrarian)
   {
+    name = aName;
     if (aHeadlibrarian == null || aHeadlibrarian.getLibrary() != null)
     {
       throw new RuntimeException("Unable to create Library due to aHeadlibrarian. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
@@ -39,8 +43,9 @@ public class Library
     openinghour = new ArrayList<OpeningHour>();
   }
 
-  public Library(String aFullNameForHeadlibrarian, int aCardIDForHeadlibrarian, String aAddressForHeadlibrarian, String aUsernameForHeadlibrarian, String aPasswordForHeadlibrarian, boolean aOnlineAccountActivatedForHeadlibrarian, Shift aAShiftForHeadlibrarian)
+  public Library(String aName, String aFullNameForHeadlibrarian, int aCardIDForHeadlibrarian, String aAddressForHeadlibrarian, String aUsernameForHeadlibrarian, String aPasswordForHeadlibrarian, boolean aOnlineAccountActivatedForHeadlibrarian, Shift aAShiftForHeadlibrarian)
   {
+    name = aName;
     headlibrarian = new HeadLibrarian(aFullNameForHeadlibrarian, aCardIDForHeadlibrarian, aAddressForHeadlibrarian, aUsernameForHeadlibrarian, aPasswordForHeadlibrarian, aOnlineAccountActivatedForHeadlibrarian, aAShiftForHeadlibrarian, this);
     librarian = new ArrayList<Librarian>();
     citizen = new ArrayList<Citizen>();
@@ -52,6 +57,19 @@ public class Library
   //------------------------
   // INTERFACE
   //------------------------
+
+  public boolean setName(String aName)
+  {
+    boolean wasSet = false;
+    name = aName;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public String getName()
+  {
+    return name;
+  }
   /* Code from template association_GetOne */
   public HeadLibrarian getHeadlibrarian()
   {
@@ -633,4 +651,11 @@ public class Library
     
   }
 
+
+  public String toString()
+  {
+    return super.toString() + "["+
+            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "headlibrarian = "+(getHeadlibrarian()!=null?Integer.toHexString(System.identityHashCode(getHeadlibrarian())):"null");
+  }
 }

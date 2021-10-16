@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-// line 49 "../../../../../LibrarySystem.ump"
+// line 50 "../../../../../LibrarySystem.ump"
 public class Librarian extends User
 {
 

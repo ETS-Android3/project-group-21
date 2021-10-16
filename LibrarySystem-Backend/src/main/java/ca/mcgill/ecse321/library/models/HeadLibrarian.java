@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 import java.sql.Time;
 
-// line 41 "../../../../../LibrarySystem.ump"
+// line 42 "../../../../../LibrarySystem.ump"
 public class HeadLibrarian extends User
 {
 
@@ -38,13 +38,13 @@ public class HeadLibrarian extends User
     library = aLibrary;
   }
 
-  public HeadLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift)
+  public HeadLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift, String aNameForLibrary)
   {
     super(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated);
     aShift = aAShift;
     openinghour = new ArrayList<OpeningHour>();
     shift = new ArrayList<Shift>();
-    library = new Library(this);
+    library = new Library(aNameForLibrary, this);
   }
 
   //------------------------
@@ -206,9 +206,9 @@ public class HeadLibrarian extends User
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Shift addShift(Time aStartTime, Time aEndTime, Shift.DayOfWeek aDay)
+  public Shift addShift(Time aStartTime, Time aEndTime, Shift.DayOfWeek aDay, int aShiftCode)
   {
-    return new Shift(aStartTime, aEndTime, aDay, this);
+    return new Shift(aStartTime, aEndTime, aDay, aShiftCode, this);
   }
 
   public boolean addShift(Shift aShift)

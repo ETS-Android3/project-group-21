@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 
-// line 62 "../../../../../LibrarySystem.ump"
+// line 63 "../../../../../LibrarySystem.ump"
 public class OpeningHour
 {
 
