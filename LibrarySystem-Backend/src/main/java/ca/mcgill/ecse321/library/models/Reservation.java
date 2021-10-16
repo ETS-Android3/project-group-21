@@ -135,7 +135,7 @@ public class Reservation
     {
       existingLibrary.removeReservation(this);
     }
-    library.addReservation(this);
+    library.setReservation(this);
     wasSet = true;
     return wasSet;
   }
@@ -166,7 +166,7 @@ public class Reservation
         return wasSet;
       }
     }
-    user.addReservation(this);
+    user.setReservation(this);
     wasSet = true;
     return wasSet;
   }

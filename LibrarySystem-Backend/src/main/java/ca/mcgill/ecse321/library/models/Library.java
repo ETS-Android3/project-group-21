@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.sql.Time;
 
 // line 8 "../../../../../LibrarySystem.ump"
-
+@Entity
 public class Library
 {
 
@@ -68,22 +68,32 @@ public class Library
     return wasSet;
   }
 
+  @Id
   public String getName()
   {
     return name;
   }
   /* Code from template association_GetOne */
+  @OneToOne(cascade = {CascadeType.ALL})
   public HeadLibrarian getHeadlibrarian()
   {
     return headlibrarian;
   }
+  
+  // to match getHeadlibrarian
+  public boolean setHeadlibrarian(HeadLibrarian headlibrarian) {
+	  this.headlibrarian = headlibrarian;
+	  return true;
+  }
+  
   /* Code from template association_GetMany */
+  @OneToMany(cascade = {CascadeType.ALL})
   public Librarian getLibrarian(int index)
   {
     Librarian aLibrarian = librarian.get(index);
     return aLibrarian;
   }
-
+  @OneToMany(cascade = {CascadeType.ALL})
   public List<Librarian> getLibrarian()
   {
     List<Librarian> newLibrarian = Collections.unmodifiableList(librarian);
@@ -108,12 +118,13 @@ public class Library
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany(cascade = {CascadeType.ALL})
   public Citizen getCitizen(int index)
   {
     Citizen aCitizen = citizen.get(index);
     return aCitizen;
   }
-
+  @OneToMany(cascade = {CascadeType.ALL})
   public List<Citizen> getCitizen()
   {
     List<Citizen> newCitizen = Collections.unmodifiableList(citizen);
@@ -138,12 +149,13 @@ public class Library
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany(cascade = {CascadeType.ALL})
   public Reservation getReservation(int index)
   {
     Reservation aReservation = reservation.get(index);
     return aReservation;
   }
-
+  @OneToMany(cascade = {CascadeType.ALL})
   public List<Reservation> getReservation()
   {
     List<Reservation> newReservation = Collections.unmodifiableList(reservation);
@@ -168,12 +180,13 @@ public class Library
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany(cascade = {CascadeType.ALL})
   public LibraryItem getLibraryitem(int index)
   {
     LibraryItem aLibraryitem = libraryitem.get(index);
     return aLibraryitem;
   }
-
+  @OneToMany(cascade = {CascadeType.ALL})
   public List<LibraryItem> getLibraryitem()
   {
     List<LibraryItem> newLibraryitem = Collections.unmodifiableList(libraryitem);
@@ -198,12 +211,13 @@ public class Library
     return index;
   }
   /* Code from template association_GetMany */
+  @OneToMany(cascade = {CascadeType.ALL})
   public OpeningHour getOpeninghour(int index)
   {
     OpeningHour aOpeninghour = openinghour.get(index);
     return aOpeninghour;
   }
-
+  @OneToMany(cascade = {CascadeType.ALL})
   public List<OpeningHour> getOpeninghour()
   {
     List<OpeningHour> newOpeninghour = Collections.unmodifiableList(openinghour);
@@ -233,12 +247,14 @@ public class Library
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Librarian addLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift)
+  // originally: addLibrarian
+  public Librarian setLibrarian(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, Shift aAShift)
   {
     return new Librarian(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated, aAShift, this);
   }
 
-  public boolean addLibrarian(Librarian aLibrarian)
+  // originally: addLibrarian
+  public boolean setLibrarian(Librarian aLibrarian)
   {
     boolean wasAdded = false;
     if (librarian.contains(aLibrarian)) { return false; }
@@ -271,7 +287,7 @@ public class Library
   public boolean addLibrarianAt(Librarian aLibrarian, int index)
   {  
     boolean wasAdded = false;
-    if(addLibrarian(aLibrarian))
+    if(setLibrarian(aLibrarian))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfLibrarian()) { index = numberOfLibrarian() - 1; }
@@ -305,12 +321,14 @@ public class Library
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Citizen addCitizen(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, boolean aIsLocal, double aBalance)
+  // originally: addCitizen
+  public Citizen setCitizen(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated, boolean aIsLocal, double aBalance)
   {
     return new Citizen(aFullName, aCardID, aAddress, aUsername, aPassword, aOnlineAccountActivated, aIsLocal, aBalance, this);
   }
-
-  public boolean addCitizen(Citizen aCitizen)
+  
+  // originally: addCitizen
+  public boolean setCitizen(Citizen aCitizen)
   {
     boolean wasAdded = false;
     if (citizen.contains(aCitizen)) { return false; }
@@ -340,10 +358,11 @@ public class Library
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addCitizenAt(Citizen aCitizen, int index)
+  // originally: addCitizenAt
+  public boolean setCitizenAt(Citizen aCitizen, int index)
   {  
     boolean wasAdded = false;
-    if(addCitizen(aCitizen))
+    if(setCitizen(aCitizen))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfCitizen()) { index = numberOfCitizen() - 1; }
@@ -367,7 +386,7 @@ public class Library
     } 
     else 
     {
-      wasAdded = addCitizenAt(aCitizen, index);
+      wasAdded = setCitizenAt(aCitizen, index);
     }
     return wasAdded;
   }
@@ -377,12 +396,14 @@ public class Library
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Reservation addReservation(int aReservationID, User aUser, LibraryItem aLibraryItem)
+  // originally: addReservation
+  public Reservation setReservation(int aReservationID, User aUser, LibraryItem aLibraryItem)
   {
     return new Reservation(aReservationID, this, aUser, aLibraryItem);
   }
 
-  public boolean addReservation(Reservation aReservation)
+  // originally: addReservation
+  public boolean setReservation(Reservation aReservation)
   {
     boolean wasAdded = false;
     if (reservation.contains(aReservation)) { return false; }
@@ -415,7 +436,7 @@ public class Library
   public boolean addReservationAt(Reservation aReservation, int index)
   {  
     boolean wasAdded = false;
-    if(addReservation(aReservation))
+    if(setReservation(aReservation))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
@@ -449,12 +470,14 @@ public class Library
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public LibraryItem addLibraryitem(LibraryItem.ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod)
+  // originally: Libraryitem
+  public LibraryItem setLibraryitem(LibraryItem.ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod)
   {
     return new LibraryItem(aType, aBarcode, aTitle, aIsReservable, aIsReserved, aLoanPeriod, this);
   }
 
-  public boolean addLibraryitem(LibraryItem aLibraryitem)
+  // originally: Libraryitem
+  public boolean setLibraryitem(LibraryItem aLibraryitem)
   {
     boolean wasAdded = false;
     if (libraryitem.contains(aLibraryitem)) { return false; }
@@ -487,7 +510,7 @@ public class Library
   public boolean addLibraryitemAt(LibraryItem aLibraryitem, int index)
   {  
     boolean wasAdded = false;
-    if(addLibraryitem(aLibraryitem))
+    if(setLibraryitem(aLibraryitem))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfLibraryitem()) { index = numberOfLibraryitem() - 1; }
@@ -515,32 +538,34 @@ public class Library
     }
     return wasAdded;
   }
-  /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfOpeninghourValid()
-  {
-    boolean isValid = numberOfOpeninghour() >= minimumNumberOfOpeninghour();
-    return isValid;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfOpeninghour()
-  {
-    return 1;
-  }
+//  /* Code from template association_IsNumberOfValidMethod */
+//  public boolean isNumberOfOpeninghourValid()
+//  {
+//    boolean isValid = numberOfOpeninghour() >= minimumNumberOfOpeninghour();
+//    return isValid;
+//  }
+//  /* Code from template association_MinimumNumberOfMethod */
+//  public static int minimumNumberOfOpeninghour()
+//  {
+//    return 1;
+//  }
   /* Code from template association_AddMandatoryManyToOne */
-  public OpeningHour addOpeninghour(Time aStartTime, Time aEndTime, OpeningHour.DayOfWeek aDay, HeadLibrarian aHeadLibrarian)
+  // originally: addOpeninghour
+  public OpeningHour setOpeninghour(Time aStartTime, Time aEndTime, OpeningHour.DayOfWeek aDay, HeadLibrarian aHeadLibrarian)
   {
     OpeningHour aNewOpeninghour = new OpeningHour(aStartTime, aEndTime, aDay, this, aHeadLibrarian);
     return aNewOpeninghour;
   }
 
-  public boolean addOpeninghour(OpeningHour aOpeninghour)
+  // originally: addOpeninghour
+  public boolean setOpeninghour(OpeningHour aOpeninghour)
   {
     boolean wasAdded = false;
     if (openinghour.contains(aOpeninghour)) { return false; }
     Library existingLibrary = aOpeninghour.getLibrary();
     boolean isNewLibrary = existingLibrary != null && !this.equals(existingLibrary);
 
-    if (isNewLibrary && existingLibrary.numberOfOpeninghour() <= minimumNumberOfOpeninghour())
+    if (isNewLibrary /*&& existingLibrary.numberOfOpeninghour() <= minimumNumberOfOpeninghour()*/)
     {
       return wasAdded;
     }
@@ -565,11 +590,11 @@ public class Library
       return wasRemoved;
     }
 
-    //library already at minimum (1)
-    if (numberOfOpeninghour() <= minimumNumberOfOpeninghour())
-    {
-      return wasRemoved;
-    }
+//    //library already at minimum (1)
+//    if (numberOfOpeninghour() <= minimumNumberOfOpeninghour())
+//    {
+//      return wasRemoved;
+//    }
 
     openinghour.remove(aOpeninghour);
     wasRemoved = true;
@@ -579,7 +604,7 @@ public class Library
   public boolean addOpeninghourAt(OpeningHour aOpeninghour, int index)
   {  
     boolean wasAdded = false;
-    if(addOpeninghour(aOpeninghour))
+    if(setOpeninghour(aOpeninghour))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfOpeninghour()) { index = numberOfOpeninghour() - 1; }

@@ -68,7 +68,7 @@ public abstract class User
     wasSet = true;
     return wasSet;
   }
-  @Id
+  
   public boolean setCardID(int aCardID)
   {
     boolean wasSet = false;
@@ -136,6 +136,7 @@ public abstract class User
     return fullName;
   }
 
+  @Id
   public int getCardID()
   {
     return cardID;
@@ -187,7 +188,7 @@ public abstract class User
     Reservation aReservation = reservation.get(index);
     return aReservation;
   }
-
+  @OneToMany
   public List<Reservation> getReservation()
   {
     List<Reservation> newReservation = Collections.unmodifiableList(reservation);
@@ -222,7 +223,8 @@ public abstract class User
     return 5;
   }
   /* Code from template association_AddOptionalNToOne */
-  public Reservation addReservation(int aReservationID, Library aLibrary, LibraryItem aLibraryItem)
+  // originally: addReservation
+  public Reservation setReservation(int aReservationID, Library aLibrary, LibraryItem aLibraryItem)
   {
     if (numberOfReservation() >= maximumNumberOfReservation())
     {
@@ -233,8 +235,9 @@ public abstract class User
       return new Reservation(aReservationID, aLibrary, this, aLibraryItem);
     }
   }
-
-  public boolean addReservation(Reservation aReservation)
+  
+  // originally: addReservation
+  public boolean setReservation(Reservation aReservation)
   {
     boolean wasAdded = false;
     if (reservation.contains(aReservation)) { return false; }
@@ -269,10 +272,11 @@ public abstract class User
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addReservationAt(Reservation aReservation, int index)
+  // originally: setReservationAt
+  public boolean setReservationAt(Reservation aReservation, int index)
   {  
     boolean wasAdded = false;
-    if(addReservation(aReservation))
+    if(setReservation(aReservation))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
@@ -296,7 +300,7 @@ public abstract class User
     } 
     else 
     {
-      wasAdded = addReservationAt(aReservation, index);
+      wasAdded = setReservationAt(aReservation, index);
     }
     return wasAdded;
   }

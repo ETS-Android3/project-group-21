@@ -64,6 +64,7 @@ public class HeadLibrarian extends User
     return wasSet;
   }
 
+  @OneToOne
   public Shift getAShift()
   {
     return aShift;
@@ -75,7 +76,7 @@ public class HeadLibrarian extends User
     OpeningHour aOpeninghour = openinghour.get(index);
     return aOpeninghour;
   }
-
+  @OneToMany
   public List<OpeningHour> getOpeninghour()
   {
     List<OpeningHour> newOpeninghour = Collections.unmodifiableList(openinghour);
@@ -136,18 +137,24 @@ public class HeadLibrarian extends User
   {
     return library;
   }
+  // to match getLibrary
+  public boolean setLibrary(Library library) {
+	  return true;
+  }
+  
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfOpeninghour()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public OpeningHour addOpeninghour(Time aStartTime, Time aEndTime, OpeningHour.DayOfWeek aDay, Library aLibrary)
+  // originally: addOpeninghour
+  public OpeningHour setOpeninghour(Time aStartTime, Time aEndTime, OpeningHour.DayOfWeek aDay, Library aLibrary)
   {
     return new OpeningHour(aStartTime, aEndTime, aDay, aLibrary, this);
   }
-
-  public boolean addOpeninghour(OpeningHour aOpeninghour)
+  // originally: addOpeninghour
+  public boolean setOpeninghour(OpeningHour aOpeninghour)
   {
     boolean wasAdded = false;
     if (openinghour.contains(aOpeninghour)) { return false; }
@@ -180,7 +187,7 @@ public class HeadLibrarian extends User
   public boolean addOpeninghourAt(OpeningHour aOpeninghour, int index)
   {  
     boolean wasAdded = false;
-    if(addOpeninghour(aOpeninghour))
+    if(setOpeninghour(aOpeninghour))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfOpeninghour()) { index = numberOfOpeninghour() - 1; }
@@ -214,12 +221,14 @@ public class HeadLibrarian extends User
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Shift addShift(Time aStartTime, Time aEndTime, Shift.DayOfWeek aDay, int aShiftCode)
+  // originally: addShift
+  public Shift setShift(Time aStartTime, Time aEndTime, Shift.DayOfWeek aDay, int aShiftCode)
   {
     return new Shift(aStartTime, aEndTime, aDay, aShiftCode, this);
   }
 
-  public boolean addShift(Shift aShift)
+  // originally: addShift
+  public boolean setShift(Shift aShift)
   {
     boolean wasAdded = false;
     if (shift.contains(aShift)) { return false; }
@@ -252,7 +261,7 @@ public class HeadLibrarian extends User
   public boolean addShiftAt(Shift aShift, int index)
   {  
     boolean wasAdded = false;
-    if(addShift(aShift))
+    if(setShift(aShift))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfShift()) { index = numberOfShift() - 1; }

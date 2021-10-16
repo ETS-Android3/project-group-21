@@ -4,11 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 // line 22 "../../../../../LibrarySystem.ump"
 @Entity
@@ -172,6 +168,7 @@ public class LibraryItem
     return loanPeriod;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Library getLibrary()
   {
     return library;
@@ -191,7 +188,7 @@ public class LibraryItem
     {
       existingLibrary.removeLibraryitem(this);
     }
-    library.addLibraryitem(this);
+    library.setLibraryitem(this);
     wasSet = true;
     return wasSet;
   }

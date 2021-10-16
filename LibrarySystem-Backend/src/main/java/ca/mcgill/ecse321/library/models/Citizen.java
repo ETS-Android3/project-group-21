@@ -89,7 +89,7 @@ public class Citizen extends User
     {
       existingLibrary.removeCitizen(this);
     }
-    library.addCitizen(this);
+    library.setCitizen(this);
     wasSet = true;
     return wasSet;
   }

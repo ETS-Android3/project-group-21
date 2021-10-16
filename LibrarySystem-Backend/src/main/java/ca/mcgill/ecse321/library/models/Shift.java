@@ -152,6 +152,7 @@ public class Shift
     return aLibrarian;
   }
 
+  @ManyToMany
   public List<Librarian> getLibrarians()
   {
     List<Librarian> newLibrarians = Collections.unmodifiableList(librarians);
@@ -190,7 +191,7 @@ public class Shift
     {
       existingHeadLibrarian.removeShift(this);
     }
-    headLibrarian.addShift(this);
+    headLibrarian.setShift(this);
     wasSet = true;
     return wasSet;
   }
@@ -200,7 +201,8 @@ public class Shift
     return 0;
   }
   /* Code from template association_AddManyToManyMethod */
-  public boolean addLibrarian(Librarian aLibrarian)
+  // originally: addLibrarian
+  public boolean setLibrarian(Librarian aLibrarian)
   {
     boolean wasAdded = false;
     if (librarians.contains(aLibrarian)) { return false; }
@@ -211,13 +213,18 @@ public class Shift
     }
     else
     {
-      wasAdded = aLibrarian.addShift(this);
+      wasAdded = aLibrarian.setShift(this);
       if (!wasAdded)
       {
         librarians.remove(aLibrarian);
       }
     }
     return wasAdded;
+  }
+  
+  // to match getLibrarians
+  public boolean setLibrarians (List<Librarian> librarians) {
+	  return true;
   }
   /* Code from template association_RemoveMany */
   public boolean removeLibrarian(Librarian aLibrarian)
@@ -245,10 +252,11 @@ public class Shift
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addLibrarianAt(Librarian aLibrarian, int index)
+  // originally: addLibrarianAt
+  public boolean setLibrarianAt(Librarian aLibrarian, int index)
   {  
     boolean wasAdded = false;
-    if(addLibrarian(aLibrarian))
+    if(setLibrarian(aLibrarian))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
@@ -259,7 +267,7 @@ public class Shift
     return wasAdded;
   }
 
-  public boolean addOrMoveLibrarianAt(Librarian aLibrarian, int index)
+  public boolean setOrMoveLibrarianAt(Librarian aLibrarian, int index)
   {
     boolean wasAdded = false;
     if(librarians.contains(aLibrarian))
@@ -272,7 +280,7 @@ public class Shift
     } 
     else 
     {
-      wasAdded = addLibrarianAt(aLibrarian, index);
+      wasAdded = setLibrarianAt(aLibrarian, index);
     }
     return wasAdded;
   }

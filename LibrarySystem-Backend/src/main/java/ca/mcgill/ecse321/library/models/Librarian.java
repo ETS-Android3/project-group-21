@@ -51,7 +51,7 @@ public class Librarian extends User
     return wasSet;
   }
 
-
+  @ManyToOne
   public Shift getAShift()
   {
     return aShift;
@@ -99,7 +99,8 @@ public class Librarian extends User
     return 0;
   }
   /* Code from template association_AddManyToManyMethod */
-  public boolean addShift(Shift aShift)
+  // originally: addShift
+  public boolean setShift(Shift aShift)
   {
     boolean wasAdded = false;
     if (shift.contains(aShift)) { return false; }
@@ -110,7 +111,7 @@ public class Librarian extends User
     }
     else
     {
-      wasAdded = aShift.addLibrarian(this);
+      wasAdded = aShift.setLibrarian(this);
       if (!wasAdded)
       {
         shift.remove(aShift);
@@ -144,10 +145,11 @@ public class Librarian extends User
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addShiftAt(Shift aShift, int index)
+  // originally: addShiftAt
+  public boolean setShiftAt(Shift aShift, int index)
   {  
     boolean wasAdded = false;
-    if(addShift(aShift))
+    if(setShift(aShift))
     {
       if(index < 0 ) { index = 0; }
       if(index > numberOfShift()) { index = numberOfShift() - 1; }
@@ -158,7 +160,8 @@ public class Librarian extends User
     return wasAdded;
   }
 
-  public boolean addOrMoveShiftAt(Shift aShift, int index)
+  //originally: addOrMoveShiftAt
+  public boolean setOrMoveShiftAt(Shift aShift, int index)
   {
     boolean wasAdded = false;
     if(shift.contains(aShift))
@@ -171,7 +174,7 @@ public class Librarian extends User
     } 
     else 
     {
-      wasAdded = addShiftAt(aShift, index);
+      wasAdded = setShiftAt(aShift, index);
     }
     return wasAdded;
   }
@@ -190,7 +193,7 @@ public class Librarian extends User
     {
       existingLibrary.removeLibrarian(this);
     }
-    library.addLibrarian(this);
+    library.setLibrarian(this);
     wasSet = true;
     return wasSet;
   }

@@ -114,7 +114,7 @@ public class OpeningHour
       return wasSet;
     }
 
-    if (library != null && library.numberOfOpeninghour() <= Library.minimumNumberOfOpeninghour())
+    if (library != null /*&& library.numberOfOpeninghour() <= Library.minimumNumberOfOpeninghour()*/)
     {
       return wasSet;
     }
@@ -130,7 +130,7 @@ public class OpeningHour
         return wasSet;
       }
     }
-    library.addOpeninghour(this);
+    library.setOpeninghour(this);
     wasSet = true;
     return wasSet;
   }
@@ -149,7 +149,7 @@ public class OpeningHour
     {
       existingHeadLibrarian.removeOpeninghour(this);
     }
-    headLibrarian.addOpeninghour(this);
+    headLibrarian.setOpeninghour(this);
     wasSet = true;
     return wasSet;
   }
