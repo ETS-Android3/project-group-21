@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.29.1.4607.2d2b84eb8 modeling language!*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
@@ -13,6 +13,7 @@ public class User
   //------------------------
 
   private static Map<Integer, User> usersByCardID = new HashMap<Integer, User>();
+  private static Map<String, User> usersByUsername = new HashMap<String, User>();
 
   //------------------------
   // MEMBER VARIABLES
@@ -37,12 +38,15 @@ public class User
   {
     fullName = aFullName;
     address = aAddress;
-    username = aUsername;
     password = aPassword;
     onlineAccountActivated = aOnlineAccountActivated;
     if (!setCardID(aCardID))
     {
       throw new RuntimeException("Cannot create due to duplicate cardID. See http://manual.umple.org?RE003ViolationofUniqueness.html");
+    }
+    if (!setUsername(aUsername))
+    {
+      throw new RuntimeException("Cannot create due to duplicate username. See http://manual.umple.org?RE003ViolationofUniqueness.html");
     }
     reservation = new ArrayList<Reservation>();
   }
@@ -89,8 +93,19 @@ public class User
   public boolean setUsername(String aUsername)
   {
     boolean wasSet = false;
+    String anOldUsername = getUsername();
+    if (anOldUsername != null && anOldUsername.equals(aUsername)) {
+      return true;
+    }
+    if (hasWithUsername(aUsername)) {
+      return wasSet;
+    }
     username = aUsername;
     wasSet = true;
+    if (anOldUsername != null) {
+      usersByUsername.remove(anOldUsername);
+    }
+    usersByUsername.put(aUsername, this);
     return wasSet;
   }
 
@@ -138,6 +153,16 @@ public class User
   public String getUsername()
   {
     return username;
+  }
+  /* Code from template attribute_GetUnique */
+  public static User getWithUsername(String aUsername)
+  {
+    return usersByUsername.get(aUsername);
+  }
+  /* Code from template attribute_HasUnique */
+  public static boolean hasWithUsername(String aUsername)
+  {
+    return getWithUsername(aUsername) != null;
   }
 
   public String getPassword()
@@ -264,6 +289,7 @@ public class User
   public void delete()
   {
     usersByCardID.remove(getCardID());
+    usersByUsername.remove(getUsername());
     for(int i=reservation.size(); i > 0; i--)
     {
       Reservation aReservation = reservation.get(i - 1);

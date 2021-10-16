@@ -33,7 +33,7 @@ class User{
 	String fullName;
 	unique Integer cardID;
 	String address;
-	String username;
+	unique String username;
 	String password;
 	boolean onlineAccountActivated;
 	1 -- 5 Reservation reservation;
