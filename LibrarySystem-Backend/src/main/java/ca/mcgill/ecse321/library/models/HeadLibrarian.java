@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 import java.sql.Time;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 
 // line 43 "../../../../../LibrarySystem.ump"
 @Entity
