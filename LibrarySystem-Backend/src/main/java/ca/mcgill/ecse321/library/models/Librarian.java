@@ -4,7 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
+import javax.persistence.*;
+
 // line 51 "../../../../../LibrarySystem.ump"
+@Entity
+@Table(name = "librarian")
 public class Librarian extends User
 {
 
@@ -52,12 +56,13 @@ public class Librarian extends User
     return aShift;
   }
   /* Code from template association_GetMany */
+  @ManytoMany
   public Shift getShift(int index)
   {
     Shift aShift = shift.get(index);
     return aShift;
   }
-
+  @ManytoMany
   public List<Shift> getShift()
   {
     List<Shift> newShift = Collections.unmodifiableList(shift);
@@ -82,6 +87,7 @@ public class Librarian extends User
     return index;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Library getLibrary()
   {
     return library;

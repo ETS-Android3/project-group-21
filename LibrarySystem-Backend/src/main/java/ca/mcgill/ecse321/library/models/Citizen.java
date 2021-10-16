@@ -4,9 +4,11 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 // line 58 "../../../../../LibrarySystem.ump"
+@Entity
+@Table (name = "citizen")
 public class Citizen extends User
 {
 
@@ -67,6 +69,7 @@ public class Citizen extends User
     return balance;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Library getLibrary()
   {
     return library;

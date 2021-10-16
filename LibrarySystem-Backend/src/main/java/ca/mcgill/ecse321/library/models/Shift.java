@@ -5,7 +5,10 @@ package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 import java.util.*;
 
+import javax.persistence.*;
+
 // line 74 "../../../../../LibrarySystem.ump"
+@Entity
 public class Shift
 {
 
@@ -120,7 +123,7 @@ public class Shift
   {
     return day;
   }
-
+  @Id
   public int getShiftCode()
   {
     return shiftCode;
@@ -136,11 +139,13 @@ public class Shift
     return getWithShiftCode(aShiftCode) != null;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public HeadLibrarian getHeadLibrarian()
   {
     return headLibrarian;
   }
   /* Code from template association_GetMany */
+  @ManytoMany
   public Librarian getLibrarian(int index)
   {
     Librarian aLibrarian = librarians.get(index);

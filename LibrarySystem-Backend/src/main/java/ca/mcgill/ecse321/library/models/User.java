@@ -7,11 +7,12 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 // line 32 "../../../../../LibrarySystem.ump"
+@Entity
+@Table(name = "user")
 public abstract class User
 {
 
@@ -69,7 +70,7 @@ public abstract class User
     wasSet = true;
     return wasSet;
   }
-
+  @Id
   public boolean setCardID(int aCardID)
   {
     boolean wasSet = false;
@@ -182,6 +183,7 @@ public abstract class User
     return onlineAccountActivated;
   }
   /* Code from template association_GetMany */
+  @OnetoMany
   public Reservation getReservation(int index)
   {
     Reservation aReservation = reservation.get(index);

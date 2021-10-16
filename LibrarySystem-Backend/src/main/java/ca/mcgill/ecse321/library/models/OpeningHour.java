@@ -4,7 +4,9 @@
 package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 
+import javax.persistence.*;
 // line 64 "../../../../../LibrarySystem.ump"
+@Entity
 public class OpeningHour
 {
 
@@ -85,17 +87,19 @@ public class OpeningHour
   {
     return endTime;
   }
-
+  @Id
   public DayOfWeek getDay()
   {
     return day;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public Library getLibrary()
   {
     return library;
   }
   /* Code from template association_GetOne */
+  @ManyToOne
   public HeadLibrarian getHeadLibrarian()
   {
     return headLibrarian;

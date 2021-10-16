@@ -69,6 +69,7 @@ public class HeadLibrarian extends User
     return aShift;
   }
   /* Code from template association_GetMany */
+  @OnetoMany
   public OpeningHour getOpeninghour(int index)
   {
     OpeningHour aOpeninghour = openinghour.get(index);
@@ -99,12 +100,13 @@ public class HeadLibrarian extends User
     return index;
   }
   /* Code from template association_GetMany */
+  @OnetoMany
   public Shift getShift(int index)
   {
     Shift aShift = shift.get(index);
     return aShift;
   }
-
+  @OnetoMany
   public List<Shift> getShift()
   {
     List<Shift> newShift = Collections.unmodifiableList(shift);
@@ -129,6 +131,7 @@ public class HeadLibrarian extends User
     return index;
   }
   /* Code from template association_GetOne */
+  @OneToOne
   public Library getLibrary()
   {
     return library;

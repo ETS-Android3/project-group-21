@@ -4,8 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.sql.Time;
 
@@ -28,6 +27,8 @@ public class Library
   private List<Reservation> reservation;
   private List<LibraryItem> libraryitem;
   private List<OpeningHour> openinghour;
+
+  
 
   //------------------------
   // CONSTRUCTOR
