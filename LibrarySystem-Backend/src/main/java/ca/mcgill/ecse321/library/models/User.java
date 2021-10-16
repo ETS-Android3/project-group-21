@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
 // line 32 "../../../../../LibrarySystem.ump"
-public class User
+public abstract class User
 {
 
   //------------------------
@@ -204,28 +204,17 @@ public class User
     int index = reservation.indexOf(aReservation);
     return index;
   }
-  /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfReservationValid()
-  {
-    boolean isValid = numberOfReservation() >= minimumNumberOfReservation() && numberOfReservation() <= maximumNumberOfReservation();
-    return isValid;
-  }
-  /* Code from template association_RequiredNumberOfMethod */
-  public static int requiredNumberOfReservation()
-  {
-    return 5;
-  }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfReservation()
   {
-    return 5;
+    return 0;
   }
   /* Code from template association_MaximumNumberOfMethod */
   public static int maximumNumberOfReservation()
   {
     return 5;
   }
-  /* Code from template association_AddMNToOnlyOne */
+  /* Code from template association_AddOptionalNToOne */
   public Reservation addReservation(int aReservationID, Library aLibrary, LibraryItem aLibraryItem)
   {
     if (numberOfReservation() >= maximumNumberOfReservation())
@@ -249,12 +238,6 @@ public class User
 
     User existingUser = aReservation.getUser();
     boolean isNewUser = existingUser != null && !this.equals(existingUser);
-
-    if (isNewUser && existingUser.numberOfReservation() <= minimumNumberOfReservation())
-    {
-      return wasAdded;
-    }
-
     if (isNewUser)
     {
       aReservation.setUser(this);
@@ -271,19 +254,44 @@ public class User
   {
     boolean wasRemoved = false;
     //Unable to remove aReservation, as it must always have a user
-    if (this.equals(aReservation.getUser()))
+    if (!this.equals(aReservation.getUser()))
     {
-      return wasRemoved;
+      reservation.remove(aReservation);
+      wasRemoved = true;
     }
-
-    //user already at minimum (5)
-    if (numberOfReservation() <= minimumNumberOfReservation())
-    {
-      return wasRemoved;
-    }
-    reservation.remove(aReservation);
-    wasRemoved = true;
     return wasRemoved;
+  }
+  /* Code from template association_AddIndexControlFunctions */
+  public boolean addReservationAt(Reservation aReservation, int index)
+  {  
+    boolean wasAdded = false;
+    if(addReservation(aReservation))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+      reservation.remove(aReservation);
+      reservation.add(index, aReservation);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveReservationAt(Reservation aReservation, int index)
+  {
+    boolean wasAdded = false;
+    if(reservation.contains(aReservation))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
+      reservation.remove(aReservation);
+      reservation.add(index, aReservation);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addReservationAt(aReservation, index);
+    }
+    return wasAdded;
   }
 
   public void delete()

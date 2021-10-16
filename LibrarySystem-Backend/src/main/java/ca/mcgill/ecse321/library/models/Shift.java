@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.library.models;
 import java.sql.Time;
 import java.util.*;
 
-// line 73 "../../../../../LibrarySystem.ump"
+// line 74 "../../../../../LibrarySystem.ump"
 public class Shift
 {
 

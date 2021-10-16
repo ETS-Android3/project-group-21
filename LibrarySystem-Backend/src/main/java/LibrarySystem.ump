@@ -30,13 +30,14 @@ class LibraryItem{
 }
 
 class User{
+	abstract;
 	String fullName;
 	unique Integer cardID;
 	String address;
 	unique String username;
 	String password;
 	boolean onlineAccountActivated;
-	1 -- 5 Reservation reservation;
+	1 -- 0..5 Reservation reservation;
 }
 
 class HeadLibrarian{

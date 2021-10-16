@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-// line 57 "../../../../../LibrarySystem.ump"
+// line 58 "../../../../../LibrarySystem.ump"
 public class Citizen extends User
 {
 

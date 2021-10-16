@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.library.models;
 import java.util.*;
 import java.sql.Time;
 
-// line 42 "../../../../../LibrarySystem.ump"
+// line 43 "../../../../../LibrarySystem.ump"
 public class HeadLibrarian extends User
 {
 
