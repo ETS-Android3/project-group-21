@@ -145,7 +145,7 @@ public class Shift
     return headLibrarian;
   }
   /* Code from template association_GetMany */
-  @ManytoMany
+  @ManyToMany
   public Librarian getLibrarian(int index)
   {
     Librarian aLibrarian = librarians.get(index);

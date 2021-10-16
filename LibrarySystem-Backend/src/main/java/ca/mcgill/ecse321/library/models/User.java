@@ -4,8 +4,6 @@
 package ca.mcgill.ecse321.library.models;
 import java.util.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 import javax.persistence.*;
 
@@ -183,7 +181,7 @@ public abstract class User
     return onlineAccountActivated;
   }
   /* Code from template association_GetMany */
-  @OnetoMany
+  @OneToMany
   public Reservation getReservation(int index)
   {
     Reservation aReservation = reservation.get(index);

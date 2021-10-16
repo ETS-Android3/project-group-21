@@ -51,6 +51,7 @@ public class Librarian extends User
     return wasSet;
   }
 
+
   public Shift getAShift()
   {
     return aShift;
@@ -62,7 +63,7 @@ public class Librarian extends User
     Shift aShift = shift.get(index);
     return aShift;
   }
-  @ManytoMany
+  @ManyToMany
   public List<Shift> getShift()
   {
     List<Shift> newShift = Collections.unmodifiableList(shift);
