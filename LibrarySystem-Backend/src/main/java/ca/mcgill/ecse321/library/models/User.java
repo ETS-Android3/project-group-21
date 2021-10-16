@@ -7,8 +7,13 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-// line 32 "../../../../../LibrarySystem.ump"
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+// line 32 "../../../../../LibrarySystem.ump"
+@Entity
+@Table(name = "user")
 public abstract class User
 {
 
@@ -133,7 +138,7 @@ public abstract class User
   {
     return fullName;
   }
-
+  @ID
   public int getCardID()
   {
     return cardID;
