@@ -12,8 +12,7 @@ import ca.mcgill.ecse321.library.models.OpeningHour;
 public interface HeadLibrarianRepository extends CrudRepository<HeadLibrarian, Long>{
 
     HeadLibrarian findHeadLibrarianByCardID(long cardID);
-    HeadLibrarian findHeadLibrarianByShift(Shift shift);
+//    HeadLibrarian findHeadLibrarianByShift(Shift shift); not sure if its needed 
 
-    HeadLibrarian findHeadLibrarianByOpeninghour(OpeningHour openinghour);
 
 }

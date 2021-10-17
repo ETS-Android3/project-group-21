@@ -67,22 +67,11 @@ public class OpeningHour
   }
   
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   public DayOfWeek getDay()
   {
     return this.day;
   }
 
-  @ManyToOne
-  public HeadLibrarian getHeadLibrarian()
-  {
-    return this.headLibrarian;
-  }
-
-  public void setHeadLibrarian(HeadLibrarian aHeadLibrarian)
-  {
-	  this.headLibrarian=aHeadLibrarian;
-  }
 
 
 }

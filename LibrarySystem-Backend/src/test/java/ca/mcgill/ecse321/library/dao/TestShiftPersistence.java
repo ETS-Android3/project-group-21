@@ -41,7 +41,7 @@ public class TestShiftPersistence {
 	}
 
 	@Test
-    @Transactional
+	@Transactional
 	void testPersistAndLoadShift() {
 
         // initialize and set attributes to the shift
