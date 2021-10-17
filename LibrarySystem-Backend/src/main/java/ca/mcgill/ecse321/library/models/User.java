@@ -18,7 +18,7 @@ public abstract class User
 
   //User Attributes
   private String fullName;
-  private int cardID;
+  private Long cardID;
   private String address;
   private String username;
   private String password;
@@ -44,7 +44,7 @@ public abstract class User
     this.fullName = aFullName;
   }
   
-  public void setCardID(int aCardID)
+  public void setCardID(Long aCardID)
   {
     this.cardID = aCardID;
   }
@@ -76,21 +76,10 @@ public abstract class User
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  public int getCardID()
+  public Long getCardID()
   {
     return this.cardID;
   }
-  
-//  /* Code from template attribute_GetUnique */
-//  public static User getWithCardID(int aCardID)
-//  {
-//    return usersByCardID.get(aCardID);
-//  }
-//  /* Code from template attribute_HasUnique */
-//  public static boolean hasWithCardID(int aCardID)
-//  {
-//    return getWithCardID(aCardID) != null;
-//  }
 
   public String getAddress()
   {

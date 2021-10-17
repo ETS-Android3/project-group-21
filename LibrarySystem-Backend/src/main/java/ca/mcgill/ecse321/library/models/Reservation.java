@@ -16,7 +16,7 @@ public class Reservation
   //------------------------
 
   //Reservation Attributes
-  private int reservationID;
+  private Long reservationID;
 
   //Reservation Associations
   private User user;
@@ -34,38 +34,29 @@ public class Reservation
   // INTERFACE
   //------------------------
 
-  public void setReservationID(int aReservationID)
+  public void setReservationID(Long aReservationID)
   {
 	  this.reservationID = aReservationID;
   }
   
-  @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  public int getReservationID()
+  @Id
+  public Long getReservationID()
   {
     return reservationID;
   }
   
-//  /* Code from template attribute_GetUnique */
-//  public static Reservation getWithReservationID(int aReservationID)
-//  {
-//    return reservationsByReservationID.get(aReservationID);
-//  }
-//  /* Code from template attribute_HasUnique */
-//  public static boolean hasWithReservationID(int aReservationID)
-//  {
-//    return getWithReservationID(aReservationID) != null;
-//  }
-  
 
+  
   @ManyToOne//(optional=false)  // Multiple(5) Reservation is associated with one User; A Reservation cannot exist without User
+//  @JoinColumn(name = "user_cardid", referencedColumnName = "cardid")
   public User getUser()
   {
     return user;
   }
 
-  @OneToOne(optional=false) // One Reservation is associated with one LibraryItem; A Reservation cannot exist without LibraryItem  
-  @JoinColumn(name = "libraryitem")
+  @OneToOne//(optional=false) // One Reservation is associated with one LibraryItem; A Reservation cannot exist without LibraryItem  
+//  @JoinColumn(name = "library_item_barcode")//, referencedColumnName = "barcode")
   public LibraryItem getLibraryItem()
   {
     return libraryItem;
