@@ -23,7 +23,7 @@ import ca.mcgill.ecse321.library.models.Shift.DayOfWeek;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class TestShiftPersistence {
-    /*
+    
     @Autowired
 	private ShiftRepository shiftRepository;
 	
@@ -41,6 +41,7 @@ public class TestShiftPersistence {
 	}
 
 	@Test
+    @Transactional
 	void testPersistAndLoadShift() {
 
         // initialize and set attributes to the shift
@@ -60,24 +61,20 @@ public class TestShiftPersistence {
         //initialize shift
         Shift s=new Shift();
         s.setDay(DayOfWeek.Monday);
-        s.setStartTime(new Time(6, 30, 0));
-        s.setEndTime(new Time(18, 30, 0));
-        Time starting=s.getStartTime();
-        Time ending=s.getEndTime();
+        DayOfWeek day=s.getDay();
         s.setLibrarians(ls);
         s.setHeadLibrarian(hl);
         shiftRepository.save(s);
         long sCode=s.getShiftCode();
 
-        s = null;
+        s = null;   //remove reference
 
         s=shiftRepository.findShiftByShiftCode(sCode);
         assertNotNull(s);
         assertEquals(userIdhl, s.getHeadLibrarian().getCardID());
         assertEquals(userIdl, s.getLibrarians().get(0).getCardID());
-        assertEquals(sCode, s.getShiftCode());
-        assertEquals(starting, s.getStartTime());
-        assertEquals(ending, s.getEndTime());    
+        assertEquals(sCode, s.getShiftCode()); 
+        assertEquals(day, s.getDay());
 	}
-    */
+    
 }
