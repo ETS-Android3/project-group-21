@@ -10,9 +10,8 @@ import ca.mcgill.ecse321.library.models.Shift;
 
 public interface ShiftRepository extends CrudRepository<Shift, Integer>{
     
-    Shift findReservationByShiftCode(int shiftCode); 
-    List<Shift> findByLibrarians(Librarian librarians);
-    List<Shift> findByHeadLibrarian(HeadLibrarian headlibrarian);
+    Shift findShiftByShiftCode(int shiftCode); 
+    List<Shift> findShiftByLibrarians(Librarian librarians);
+    List<Shift> findShiftByHeadLibrarian(HeadLibrarian headlibrarian);
 
-    //this works now, no touch
 }
