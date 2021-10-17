@@ -67,7 +67,6 @@ public class OpeningHour
   }
   
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   public DayOfWeek getDay()
   {
     return this.day;
