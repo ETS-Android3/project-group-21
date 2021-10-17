@@ -14,5 +14,4 @@ public interface ShiftRepository extends CrudRepository<Shift, Integer>{
     List<Shift> findShiftByLibrarians(Librarian librarians);
     List<Shift> findShiftByHeadLibrarian(HeadLibrarian headlibrarian);
 
-    //this works now, no touch
 }
