@@ -26,7 +26,7 @@ public class Shift
   private Time startTime;
   private Time endTime;
   private DayOfWeek day;
-  private int shiftCode;
+  private Long shiftCode;
 
   //Shift Associations
   private HeadLibrarian headLibrarian;
@@ -58,7 +58,7 @@ public class Shift
 	  this.day=aDay;
   }
 
-  public void setShiftCode(int aShiftCode)
+  public void setShiftCode(Long aShiftCode)
   {
 	  this.shiftCode=aShiftCode;
   }
@@ -83,7 +83,7 @@ public class Shift
   
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  public int getShiftCode()
+  public Long getShiftCode()
   {
     return this.shiftCode;
   }

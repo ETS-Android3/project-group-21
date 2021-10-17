@@ -7,7 +7,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "libraryitem")
+//@Table(name = "library_item")
 public class LibraryItem
 {
 
@@ -23,7 +23,7 @@ public class LibraryItem
 
   //LibraryItem Attributes
   private ItemType type;
-  private Long barcode;
+  private Long barcode;  
   private String title;
   private boolean isReservable;
   private boolean isReserved;
@@ -76,8 +76,9 @@ public class LibraryItem
     return this.type;
   }
 
-  @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
+//  @Column(name = "barcode", unique = true, nullable = false)
   public Long getBarcode()
   {
     return this.barcode;
