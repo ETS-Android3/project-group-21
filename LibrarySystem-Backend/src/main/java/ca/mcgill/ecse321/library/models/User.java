@@ -7,19 +7,10 @@ import java.util.*;
 
 import javax.persistence.*;
 
-
-// line 32 "../../../../../LibrarySystem.ump"
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 public abstract class User
 {
-
-  //------------------------
-  // STATIC VARIABLES
-  //------------------------
-
-  private static Map<Integer, User> usersByCardID = new HashMap<Integer, User>();
-  private static Map<String, User> usersByUsername = new HashMap<String, User>();
 
   //------------------------
   // MEMBER VARIABLES
@@ -39,292 +30,115 @@ public abstract class User
   //------------------------
   // CONSTRUCTOR
   //------------------------
-
-  public User(String aFullName, int aCardID, String aAddress, String aUsername, String aPassword, boolean aOnlineAccountActivated)
-  {
-    fullName = aFullName;
-    address = aAddress;
-    password = aPassword;
-    onlineAccountActivated = aOnlineAccountActivated;
-    if (!setCardID(aCardID))
-    {
-      throw new RuntimeException("Cannot create due to duplicate cardID. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    if (!setUsername(aUsername))
-    {
-      throw new RuntimeException("Cannot create due to duplicate username. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    reservation = new ArrayList<Reservation>();
+  
+  public User() {
+	  
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setFullName(String aFullName)
+  public void setFullName(String aFullName)
   {
-    boolean wasSet = false;
-    fullName = aFullName;
-    wasSet = true;
-    return wasSet;
+    this.fullName = aFullName;
   }
   
-  public boolean setCardID(int aCardID)
+  public void setCardID(int aCardID)
   {
-    boolean wasSet = false;
-    Integer anOldCardID = getCardID();
-    if (anOldCardID != null && anOldCardID.equals(aCardID)) {
-      return true;
-    }
-    if (hasWithCardID(aCardID)) {
-      return wasSet;
-    }
-    cardID = aCardID;
-    wasSet = true;
-    if (anOldCardID != null) {
-      usersByCardID.remove(anOldCardID);
-    }
-    usersByCardID.put(aCardID, this);
-    return wasSet;
+    this.cardID = aCardID;
   }
 
-  public boolean setAddress(String aAddress)
+  public void setAddress(String aAddress)
   {
-    boolean wasSet = false;
-    address = aAddress;
-    wasSet = true;
-    return wasSet;
+    this.address = aAddress;
   }
 
-  public boolean setUsername(String aUsername)
+  public void setUsername(String aUsername)
   {
-    boolean wasSet = false;
-    String anOldUsername = getUsername();
-    if (anOldUsername != null && anOldUsername.equals(aUsername)) {
-      return true;
-    }
-    if (hasWithUsername(aUsername)) {
-      return wasSet;
-    }
-    username = aUsername;
-    wasSet = true;
-    if (anOldUsername != null) {
-      usersByUsername.remove(anOldUsername);
-    }
-    usersByUsername.put(aUsername, this);
-    return wasSet;
+    this.username = aUsername;
   }
 
-  public boolean setPassword(String aPassword)
+  public void setPassword(String aPassword)
   {
-    boolean wasSet = false;
-    password = aPassword;
-    wasSet = true;
-    return wasSet;
+    this.password = aPassword;
   }
 
-  public boolean setOnlineAccountActivated(boolean aOnlineAccountActivated)
+  public void setOnlineAccountActivated(boolean aOnlineAccountActivated)
   {
-    boolean wasSet = false;
-    onlineAccountActivated = aOnlineAccountActivated;
-    wasSet = true;
-    return wasSet;
+    this.onlineAccountActivated = aOnlineAccountActivated;
   }
 
   public String getFullName()
   {
-    return fullName;
+    return this.fullName;
   }
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getCardID()
   {
-    return cardID;
+    return this.cardID;
   }
-  /* Code from template attribute_GetUnique */
-  public static User getWithCardID(int aCardID)
-  {
-    return usersByCardID.get(aCardID);
-  }
-  /* Code from template attribute_HasUnique */
-  public static boolean hasWithCardID(int aCardID)
-  {
-    return getWithCardID(aCardID) != null;
-  }
+  
+//  /* Code from template attribute_GetUnique */
+//  public static User getWithCardID(int aCardID)
+//  {
+//    return usersByCardID.get(aCardID);
+//  }
+//  /* Code from template attribute_HasUnique */
+//  public static boolean hasWithCardID(int aCardID)
+//  {
+//    return getWithCardID(aCardID) != null;
+//  }
 
   public String getAddress()
   {
-    return address;
+    return this.address;
   }
 
   public String getUsername()
   {
-    return username;
+    return this.username;
   }
-  /* Code from template attribute_GetUnique */
-  public static User getWithUsername(String aUsername)
-  {
-    return usersByUsername.get(aUsername);
-  }
-  /* Code from template attribute_HasUnique */
-  public static boolean hasWithUsername(String aUsername)
-  {
-    return getWithUsername(aUsername) != null;
-  }
+  
+//  /* Code from template attribute_GetUnique */
+//  public static User getWithUsername(String aUsername)
+//  {
+//    return usersByUsername.get(aUsername);
+//  }
+//  /* Code from template attribute_HasUnique */
+//  public static boolean hasWithUsername(String aUsername)
+//  {
+//    return getWithUsername(aUsername) != null;
+//  }
 
   public String getPassword()
   {
-    return password;
+    return this.password;
   }
 
   public boolean getOnlineAccountActivated()
   {
-    return onlineAccountActivated;
+    return this.onlineAccountActivated;
   }
-  /* Code from template association_GetMany */
-  @OneToMany
-  public Reservation getReservation(int index)
-  {
-    Reservation aReservation = reservation.get(index);
-    return aReservation;
-  }
+
+//  @OneToMany
+//  public Reservation getReservation(int index)
+//  {
+//    Reservation aReservation = reservation.get(index);
+//    return aReservation;
+//  }
+  
   @OneToMany
   public List<Reservation> getReservation()
   {
-    List<Reservation> newReservation = Collections.unmodifiableList(reservation);
-    return newReservation;
+	  return this.reservation;
   }
 
-  public int numberOfReservation()
+  public void setReservation(List<Reservation> Reservations)
   {
-    int number = reservation.size();
-    return number;
-  }
-
-  public boolean hasReservation()
-  {
-    boolean has = reservation.size() > 0;
-    return has;
-  }
-
-  public int indexOfReservation(Reservation aReservation)
-  {
-    int index = reservation.indexOf(aReservation);
-    return index;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfReservation()
-  {
-    return 0;
-  }
-  /* Code from template association_MaximumNumberOfMethod */
-  public static int maximumNumberOfReservation()
-  {
-    return 5;
-  }
-  /* Code from template association_AddOptionalNToOne */
-  // originally: addReservation
-  public Reservation setReservation(int aReservationID, Library aLibrary, LibraryItem aLibraryItem)
-  {
-    if (numberOfReservation() >= maximumNumberOfReservation())
-    {
-      return null;
-    }
-    else
-    {
-      return new Reservation(aReservationID, aLibrary, this, aLibraryItem);
-    }
+	  this.reservation=Reservations;
   }
   
-  // originally: addReservation
-  public boolean setReservation(Reservation aReservation)
-  {
-    boolean wasAdded = false;
-    if (reservation.contains(aReservation)) { return false; }
-    if (numberOfReservation() >= maximumNumberOfReservation())
-    {
-      return wasAdded;
-    }
-
-    User existingUser = aReservation.getUser();
-    boolean isNewUser = existingUser != null && !this.equals(existingUser);
-    if (isNewUser)
-    {
-      aReservation.setUser(this);
-    }
-    else
-    {
-      reservation.add(aReservation);
-    }
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeReservation(Reservation aReservation)
-  {
-    boolean wasRemoved = false;
-    //Unable to remove aReservation, as it must always have a user
-    if (!this.equals(aReservation.getUser()))
-    {
-      reservation.remove(aReservation);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  // originally: setReservationAt
-  public boolean setReservationAt(Reservation aReservation, int index)
-  {  
-    boolean wasAdded = false;
-    if(setReservation(aReservation))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
-      reservation.remove(aReservation);
-      reservation.add(index, aReservation);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveReservationAt(Reservation aReservation, int index)
-  {
-    boolean wasAdded = false;
-    if(reservation.contains(aReservation))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfReservation()) { index = numberOfReservation() - 1; }
-      reservation.remove(aReservation);
-      reservation.add(index, aReservation);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = setReservationAt(aReservation, index);
-    }
-    return wasAdded;
-  }
-
-  public void delete()
-  {
-    usersByCardID.remove(getCardID());
-    usersByUsername.remove(getUsername());
-    for(int i=reservation.size(); i > 0; i--)
-    {
-      Reservation aReservation = reservation.get(i - 1);
-      aReservation.delete();
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+
-            "fullName" + ":" + getFullName()+ "," +
-            "cardID" + ":" + getCardID()+ "," +
-            "address" + ":" + getAddress()+ "," +
-            "username" + ":" + getUsername()+ "," +
-            "password" + ":" + getPassword()+ "," +
-            "onlineAccountActivated" + ":" + getOnlineAccountActivated()+ "]";
-  }
 }

@@ -6,7 +6,6 @@ import java.util.*;
 
 import javax.persistence.*;
 
-// line 22 "../../../../../LibrarySystem.ump"
 @Entity
 @Table(name = "libraryitem")
 public class LibraryItem
@@ -19,201 +18,100 @@ public class LibraryItem
   public enum ItemType { Book, Music, Movie, Newspaper, Archive }
 
   //------------------------
-  // STATIC VARIABLES
-  //------------------------
-
-  private static Map<Integer, LibraryItem> libraryitemsByBarcode = new HashMap<Integer, LibraryItem>();
-
-  //------------------------
   // MEMBER VARIABLES
   //------------------------
 
   //LibraryItem Attributes
   private ItemType type;
-  private int barcode;
+  private Long barcode;
   private String title;
   private boolean isReservable;
   private boolean isReserved;
   private int loanPeriod;
 
-  //LibraryItem Associations
-  private Library library;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
   
-  public LibraryItem() {}
-
-  public LibraryItem(ItemType aType, int aBarcode, String aTitle, boolean aIsReservable, boolean aIsReserved, int aLoanPeriod, Library aLibrary)
-  {
-    type = aType;
-    title = aTitle;
-    isReservable = aIsReservable;
-    isReserved = aIsReserved;
-    loanPeriod = aLoanPeriod;
-    if (!setBarcode(aBarcode))
-    {
-      throw new RuntimeException("Cannot create due to duplicate barcode. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    boolean didAddLibrary = setLibrary(aLibrary);
-    if (!didAddLibrary)
-    {
-      throw new RuntimeException("Unable to create libraryitem due to library. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
+  public LibraryItem() {
+	  
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setType(ItemType aType)
+  public void setType(ItemType aType)
   {
-    boolean wasSet = false;
-    type = aType;
-    wasSet = true;
-    return wasSet;
+    this.type = aType;
   }
 
-  public boolean setBarcode(int aBarcode)
-  {
-    boolean wasSet = false;
-    Integer anOldBarcode = getBarcode();
-    if (anOldBarcode != null && anOldBarcode.equals(aBarcode)) {
-      return true;
-    }
-    if (hasWithBarcode(aBarcode)) {
-      return wasSet;
-    }
-    barcode = aBarcode;
-    wasSet = true;
-    if (anOldBarcode != null) {
-      libraryitemsByBarcode.remove(anOldBarcode);
-    }
-    libraryitemsByBarcode.put(aBarcode, this);
-    return wasSet;
+  public void setBarcode(Long aBarcode){
+	  this.barcode = aBarcode;
   }
 
-  public boolean setTitle(String aTitle)
+  public void setTitle(String aTitle)
   {
-    boolean wasSet = false;
-    title = aTitle;
-    wasSet = true;
-    return wasSet;
+    this.title = aTitle;
   }
 
-  public boolean setIsReservable(boolean aIsReservable)
+  public void setIsReservable(boolean aIsReservable)
   {
-    boolean wasSet = false;
-    isReservable = aIsReservable;
-    wasSet = true;
-    return wasSet;
+    this.isReservable = aIsReservable;
   }
 
-  public boolean setIsReserved(boolean aIsReserved)
+  public void setIsReserved(boolean aIsReserved)
   {
-    boolean wasSet = false;
-    isReserved = aIsReserved;
-    wasSet = true;
-    return wasSet;
+    this.isReserved = aIsReserved;
   }
 
-  public boolean setLoanPeriod(int aLoanPeriod)
+  public void setLoanPeriod(int aLoanPeriod)
   {
-    boolean wasSet = false;
-    loanPeriod = aLoanPeriod;
-    wasSet = true;
-    return wasSet;
+    this.loanPeriod = aLoanPeriod;
   }
 
   public ItemType getType()
   {
-    return type;
+    return this.type;
   }
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  public int getBarcode()
+  public Long getBarcode()
   {
-    return barcode;
+    return this.barcode;
   }
-  /* Code from template attribute_GetUnique */
-  public static LibraryItem getWithBarcode(int aBarcode)
-  {
-    return libraryitemsByBarcode.get(aBarcode);
-  }
-  /* Code from template attribute_HasUnique */
-  public static boolean hasWithBarcode(int aBarcode)
-  {
-    return getWithBarcode(aBarcode) != null;
-  }
+  
+//  /* Code from template attribute_GetUnique */
+//  public static LibraryItem getWithBarcode(Long aBarcode)
+//  {
+//    return libraryitemsByBarcode.get(aBarcode);
+//  }
+//  /* Code from template attribute_HasUnique */
+//  public static boolean hasWithBarcode(Long aBarcode)
+//  {
+//    return getWithBarcode(aBarcode) != null;
+//  }
 
   public String getTitle()
   {
-    return title;
+    return this.title;
   }
 
   public boolean getIsReservable()
   {
-    return isReservable;
+    return this.isReservable;
   }
 
   public boolean getIsReserved()
   {
-    return isReserved;
+    return this.isReserved;
   }
 
   public int getLoanPeriod()
   {
-    return loanPeriod;
-  }
-  /* Code from template association_GetOne */
-  @ManyToOne
-  public Library getLibrary()
-  {
-    return library;
-  }
-  /* Code from template association_SetOneToMany */
-  public boolean setLibrary(Library aLibrary)
-  {
-    boolean wasSet = false;
-    if (aLibrary == null)
-    {
-      return wasSet;
-    }
-
-    Library existingLibrary = library;
-    library = aLibrary;
-    if (existingLibrary != null && !existingLibrary.equals(aLibrary))
-    {
-      existingLibrary.removeLibraryitem(this);
-    }
-    library.setLibraryitem(this);
-    wasSet = true;
-    return wasSet;
+    return this.loanPeriod;
   }
 
-  public void delete()
-  {
-    libraryitemsByBarcode.remove(getBarcode());
-    Library placeholderLibrary = library;
-    this.library = null;
-    if(placeholderLibrary != null)
-    {
-      placeholderLibrary.removeLibraryitem(this);
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+
-            "barcode" + ":" + getBarcode()+ "," +
-            "title" + ":" + getTitle()+ "," +
-            "isReservable" + ":" + getIsReservable()+ "," +
-            "isReserved" + ":" + getIsReserved()+ "," +
-            "loanPeriod" + ":" + getLoanPeriod()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "type" + "=" + (getType() != null ? !getType().equals(this)  ? getType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "library = "+(getLibrary()!=null?Integer.toHexString(System.identityHashCode(getLibrary())):"null");
-  }
 }

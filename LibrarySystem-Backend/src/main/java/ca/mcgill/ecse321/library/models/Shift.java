@@ -7,8 +7,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-// line 74 "../../../../../LibrarySystem.ump"
 @Entity
+@Table(name = "shift")
 public class Shift
 {
 
@@ -17,12 +17,6 @@ public class Shift
   //------------------------
 
   public enum DayOfWeek { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
-
-  //------------------------
-  // STATIC VARIABLES
-  //------------------------
-
-  private static Map<Integer, Shift> shiftsByShiftCode = new HashMap<Integer, Shift>();
 
   //------------------------
   // MEMBER VARIABLES
@@ -42,68 +36,31 @@ public class Shift
   // CONSTRUCTOR
   //------------------------
 
-  public Shift(Time aStartTime, Time aEndTime, DayOfWeek aDay, int aShiftCode, HeadLibrarian aHeadLibrarian)
-  {
-    startTime = aStartTime;
-    endTime = aEndTime;
-    day = aDay;
-    if (!setShiftCode(aShiftCode))
-    {
-      throw new RuntimeException("Cannot create due to duplicate shiftCode. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    boolean didAddHeadLibrarian = setHeadLibrarian(aHeadLibrarian);
-    if (!didAddHeadLibrarian)
-    {
-      throw new RuntimeException("Unable to create shift due to headLibrarian. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-    librarians = new ArrayList<Librarian>();
+  public Shift(){
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setStartTime(Time aStartTime)
+  public void setStartTime(Time aStartTime)
   {
-    boolean wasSet = false;
-    startTime = aStartTime;
-    wasSet = true;
-    return wasSet;
+	  this.startTime=aStartTime;
   }
 
-  public boolean setEndTime(Time aEndTime)
+  public void setEndTime(Time aEndTime)
   {
-    boolean wasSet = false;
-    endTime = aEndTime;
-    wasSet = true;
-    return wasSet;
+	  this.endTime=aEndTime;
   }
 
-  public boolean setDay(DayOfWeek aDay)
+  public void setDay(DayOfWeek aDay)
   {
-    boolean wasSet = false;
-    day = aDay;
-    wasSet = true;
-    return wasSet;
+	  this.day=aDay;
   }
 
-  public boolean setShiftCode(int aShiftCode)
+  public void setShiftCode(int aShiftCode)
   {
-    boolean wasSet = false;
-    Integer anOldShiftCode = getShiftCode();
-    if (anOldShiftCode != null && anOldShiftCode.equals(aShiftCode)) {
-      return true;
-    }
-    if (hasWithShiftCode(aShiftCode)) {
-      return wasSet;
-    }
-    shiftCode = aShiftCode;
-    wasSet = true;
-    if (anOldShiftCode != null) {
-      shiftsByShiftCode.remove(anOldShiftCode);
-    }
-    shiftsByShiftCode.put(aShiftCode, this);
-    return wasSet;
+	  this.shiftCode=aShiftCode;
   }
 
   /**
@@ -111,205 +68,47 @@ public class Shift
    */
   public Time getStartTime()
   {
-    return startTime;
+    return this.startTime;
   }
 
   public Time getEndTime()
   {
-    return endTime;
+    return this.endTime;
   }
 
   public DayOfWeek getDay()
   {
-    return day;
+    return this.day;
   }
+  
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getShiftCode()
   {
-    return shiftCode;
+    return this.shiftCode;
   }
-  /* Code from template attribute_GetUnique */
-  public static Shift getWithShiftCode(int aShiftCode)
-  {
-    return shiftsByShiftCode.get(aShiftCode);
-  }
-  /* Code from template attribute_HasUnique */
-  public static boolean hasWithShiftCode(int aShiftCode)
-  {
-    return getWithShiftCode(aShiftCode) != null;
-  }
-  /* Code from template association_GetOne */
+ 
   @ManyToOne
   public HeadLibrarian getHeadLibrarian()
   {
-    return headLibrarian;
-  }
-  /* Code from template association_GetMany */
-  @ManyToMany
-  public Librarian getLibrarian(int index)
-  {
-    Librarian aLibrarian = librarians.get(index);
-    return aLibrarian;
+    return this.headLibrarian;
   }
 
   @ManyToMany
   public List<Librarian> getLibrarians()
   {
-    List<Librarian> newLibrarians = Collections.unmodifiableList(librarians);
-    return newLibrarians;
+    return this.librarians;
+  }
+ 
+  public void setHeadLibrarian(HeadLibrarian aHeadLibrarian)
+  {
+	  this.headLibrarian=aHeadLibrarian;
+
   }
 
-  public int numberOfLibrarians()
-  {
-    int number = librarians.size();
-    return number;
+  public void setLibrarians (List<Librarian> alibrarians) {
+	  this.librarians=alibrarians;
   }
 
-  public boolean hasLibrarians()
-  {
-    boolean has = librarians.size() > 0;
-    return has;
-  }
-
-  public int indexOfLibrarian(Librarian aLibrarian)
-  {
-    int index = librarians.indexOf(aLibrarian);
-    return index;
-  }
-  /* Code from template association_SetOneToMany */
-  public boolean setHeadLibrarian(HeadLibrarian aHeadLibrarian)
-  {
-    boolean wasSet = false;
-    if (aHeadLibrarian == null)
-    {
-      return wasSet;
-    }
-
-    HeadLibrarian existingHeadLibrarian = headLibrarian;
-    headLibrarian = aHeadLibrarian;
-    if (existingHeadLibrarian != null && !existingHeadLibrarian.equals(aHeadLibrarian))
-    {
-      existingHeadLibrarian.removeShift(this);
-    }
-    headLibrarian.setShift(this);
-    wasSet = true;
-    return wasSet;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfLibrarians()
-  {
-    return 0;
-  }
-  /* Code from template association_AddManyToManyMethod */
-  // originally: addLibrarian
-  public boolean setLibrarian(Librarian aLibrarian)
-  {
-    boolean wasAdded = false;
-    if (librarians.contains(aLibrarian)) { return false; }
-    librarians.add(aLibrarian);
-    if (aLibrarian.indexOfShift(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aLibrarian.setShift(this);
-      if (!wasAdded)
-      {
-        librarians.remove(aLibrarian);
-      }
-    }
-    return wasAdded;
-  }
   
-  // to match getLibrarians
-  public boolean setLibrarians (List<Librarian> librarians) {
-	  return true;
-  }
-  /* Code from template association_RemoveMany */
-  public boolean removeLibrarian(Librarian aLibrarian)
-  {
-    boolean wasRemoved = false;
-    if (!librarians.contains(aLibrarian))
-    {
-      return wasRemoved;
-    }
-
-    int oldIndex = librarians.indexOf(aLibrarian);
-    librarians.remove(oldIndex);
-    if (aLibrarian.indexOfShift(this) == -1)
-    {
-      wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aLibrarian.removeShift(this);
-      if (!wasRemoved)
-      {
-        librarians.add(oldIndex,aLibrarian);
-      }
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  // originally: addLibrarianAt
-  public boolean setLibrarianAt(Librarian aLibrarian, int index)
-  {  
-    boolean wasAdded = false;
-    if(setLibrarian(aLibrarian))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
-      librarians.remove(aLibrarian);
-      librarians.add(index, aLibrarian);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean setOrMoveLibrarianAt(Librarian aLibrarian, int index)
-  {
-    boolean wasAdded = false;
-    if(librarians.contains(aLibrarian))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfLibrarians()) { index = numberOfLibrarians() - 1; }
-      librarians.remove(aLibrarian);
-      librarians.add(index, aLibrarian);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = setLibrarianAt(aLibrarian, index);
-    }
-    return wasAdded;
-  }
-
-  public void delete()
-  {
-    shiftsByShiftCode.remove(getShiftCode());
-    HeadLibrarian placeholderHeadLibrarian = headLibrarian;
-    this.headLibrarian = null;
-    if(placeholderHeadLibrarian != null)
-    {
-      placeholderHeadLibrarian.removeShift(this);
-    }
-    ArrayList<Librarian> copyOfLibrarians = new ArrayList<Librarian>(librarians);
-    librarians.clear();
-    for(Librarian aLibrarian : copyOfLibrarians)
-    {
-      aLibrarian.removeShift(this);
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+
-            "shiftCode" + ":" + getShiftCode()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "day" + "=" + (getDay() != null ? !getDay().equals(this)  ? getDay().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "headLibrarian = "+(getHeadLibrarian()!=null?Integer.toHexString(System.identityHashCode(getHeadLibrarian())):"null");
-  }
 }
