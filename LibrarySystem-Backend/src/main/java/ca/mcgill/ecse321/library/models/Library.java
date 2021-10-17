@@ -49,9 +49,6 @@ public class Library
   }
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-//  @GeneratedValue(generator="system-uuid")
-//  @GenericGenerator(name="system-uuid", strategy = "uuid")
   public String getName()
   {
     return this.name;
