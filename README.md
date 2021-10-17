@@ -15,8 +15,8 @@ In general, we are required to set up the group project with gradle and spring t
 | Name              | Role        | Time in hours |
 | :---              |    :---:    |          ---: |
 | Dania Pennimpede  | Software Developer, Testing, Documentation       | 10 hrs        |
-| Joris Ah-Kane     | Software Developer, Testing, Documentation       | hrs           |
-| Chun Li           | Software Developer, Testing, Documentation       | 13 hrs        |
+| Joris Ah-Kane     | Software Developer, Testing, Documentation       | 9  hrs        |
+| Chun Li           | Software Developer, Testing, Documentation, Project manager     | 13 hrs        |
 | Yujin Li          | Software Developer, Testing, Documentation       | 16 hrs        |
 | Kaifan Zheng      | Software Developer, Testing, Documentation       | hrs           |
 
