@@ -48,14 +48,29 @@ public class TestLibrarianPersistence {
         DayOfWeek day=s2.getDay();
         s2.setStartTime(new Time(6,30,0));
         s2.setEndTime(new Time(16,30,0));
+        s2.setHeadLibrarian(null);
         shiftRepository.save(s2);
         long sCode=s2.getShiftCode();
         List sl = new ArrayList<Shift>();
         sl.add(s2);
 
         //initiate a librarian
+        String name="Bella Madonna";
+        String password="qwerty";
+        String username="workaholic";
+        boolean active=true;
+        String address="Narnia";
+
 
         Librarian l2=new Librarian();
+        l2.setFullName(name);
+        l2.setAddress(address);
+        l2.setUsername(username);
+        l2.setPassword(password);
+        l2.setOnlineAccountActivated(active);
+
+
+        //problematic part is reference (DataIntegrity error)
         //l2.setShift(sl);
 
         librarianRepository.save(l2);
@@ -66,11 +81,16 @@ public class TestLibrarianPersistence {
         l2=null;
 
         //load in persistence
-        
         l2=librarianRepository.findLibrarianByCardID(libId);
         assertNotNull(l2);
         //assertEquals(sCode, l2.getShift().get(0).getShiftCode());
         assertEquals(libId, l2.getCardID());
+        assertEquals(name, l2.getFullName());
+        assertEquals(name, l2.getFullName());
+        assertEquals(username, l2.getUsername());
+        assertEquals(password, l2.getPassword());
+        assertEquals(address, l2.getAddress());
+        assertEquals(active, l2.getOnlineAccountActivated());
 
 	}
 }
