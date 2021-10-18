@@ -24,7 +24,7 @@ In general, we are required to set up the group project with gradle and spring t
 Here is the [UML Diagram](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/UML-Diagram)
 
 # Use Case Diagram:
-Here is the [Use Case Diagram](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Use_Case_Diagram)
+Here is the [Use Case Diagram](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Use-Case-Diagram)
 
 # Requirements:
 Here are the 15 most important [requirements](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Requirements)
