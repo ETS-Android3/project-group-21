@@ -33,7 +33,7 @@ public class TestCitizenPersistence{
 	public void testPersistAndLoadUser() {
 		Citizen aCitizen = new Citizen();
 		String name = "Noshin Chowdhury";
-		Long cardID = (long) 267901544;
+		//Long cardID = (long) 267901544;
 		String address = "YoWorld";
 		String username = "KidA";
 		String password = "KidArocks12138";
@@ -42,7 +42,7 @@ public class TestCitizenPersistence{
 		Double balance = 121.38;
 		
 		aCitizen.setFullName(name);
-		aCitizen.setCardID(cardID);
+		//aCitizen.setCardID(cardID);
 		aCitizen.setAddress(address);
 		aCitizen.setUsername(username);
 		aCitizen.setPassword(password);
@@ -54,11 +54,11 @@ public class TestCitizenPersistence{
 		Long id = aCitizen.getCardID();
 		
 		aCitizen = null;
-		aCitizen = (Citizen) citizenrepository.findCitizenByCardID(id);
+		aCitizen = citizenrepository.findCitizenByCardID(id);
 		
 		assertNotNull(aCitizen);
 		assertEquals(name,aCitizen.getFullName());
-		assertEquals(cardID,aCitizen.getCardID());
+		//assertEquals(cardID,aCitizen.getCardID());
 		assertEquals(address,aCitizen.getAddress());
 		assertEquals(password,aCitizen.getPassword());
 		assertEquals(onlineAccountActivated,aCitizen.getOnlineAccountActivated());
