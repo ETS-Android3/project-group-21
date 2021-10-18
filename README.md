@@ -18,7 +18,7 @@ In general, we are required to set up the group project with gradle and spring t
 | Joris Ah-Kane     | Software Developer, Testing, Documentation       | 9  hrs        |
 | Chun Li           | Software Developer, Testing, Documentation, Project manager     | 13 hrs        |
 | Yujin Li          | Software Developer, Testing, Documentation       | 16 hrs        |
-| Kaifan Zheng      | Software Developer, Testing, Documentation       | hrs           |
+| Kaifan Zheng      | Software Developer, Testing, Documentation       | 8 hrs           |
 
 # Class Diagram:
 Here is the [UML Diagram](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/UML-Diagram)
