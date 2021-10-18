@@ -30,4 +30,4 @@ Here is the [Use Case Diagram](https://github.com/McGill-ECSE321-Fall2021/projec
 Here are the 15 most important [requirements](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Requirements)
 
 # More
-For more information please our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
+For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
