@@ -26,8 +26,6 @@ public class OpeningHour
   private Time endTime;
   private DayOfWeek day;
 
-  //OpeningHour Associations
-  private HeadLibrarian headLibrarian;
 
   //------------------------
   // CONSTRUCTOR

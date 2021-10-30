@@ -29,8 +29,7 @@ public class Shift
   private Long shiftCode;
 
   //Shift Associations
-  private HeadLibrarian headLibrarian;
-  private List<Librarian> librarians;
+  private User user; // can only be either Librarian or HeadLibrarian
 
   //------------------------
   // CONSTRUCTOR
@@ -87,28 +86,37 @@ public class Shift
   {
     return this.shiftCode;
   }
- 
+  
   @ManyToOne
-  public HeadLibrarian getHeadLibrarian()
-  {
-    return this.headLibrarian;
+  public User getUser () {
+	  return this.user;
   }
-
-  @ManyToMany
-  public List<Librarian> getLibrarians()
-  {
-    return this.librarians;
+  
+  public void setUser(User aUser) {
+	  this.user = aUser;
   }
  
-  public void setHeadLibrarian(HeadLibrarian aHeadLibrarian)
-  {
-	  this.headLibrarian=aHeadLibrarian;
-
-  }
-
-  public void setLibrarians (List<Librarian> alibrarians) {
-	  this.librarians=alibrarians;
-  }
+//  @ManyToOne
+//  public HeadLibrarian getHeadLibrarian()
+//  {
+//    return this.headLibrarian;
+//  }
+//
+//  @ManyToMany
+//  public List<Librarian> getLibrarians()
+//  {
+//    return this.librarians;
+//  }
+// 
+//  public void setHeadLibrarian(HeadLibrarian aHeadLibrarian)
+//  {
+//	  this.headLibrarian=aHeadLibrarian;
+//
+//  }
+//
+//  public void setLibrarians (List<Librarian> alibrarians) {
+//	  this.librarians=alibrarians;
+//  }
 
   
 }

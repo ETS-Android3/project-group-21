@@ -24,9 +24,6 @@ public abstract class User
   private String password;
   private boolean onlineAccountActivated;
 
-  //User Associations
-  private List<Reservation> reservation;
-
   //------------------------
   // CONSTRUCTOR
   //------------------------
@@ -119,15 +116,15 @@ public abstract class User
 //    return aReservation;
 //  }
   
-  @OneToMany
-  public List<Reservation> getReservation()
-  {
-	  return this.reservation;
-  }
-
-  public void setReservation(List<Reservation> Reservations)
-  {
-	  this.reservation=Reservations;
-  }
+//  @OneToMany
+//  public List<Reservation> getReservation()
+//  {
+//	  return this.reservation;
+//  }
+//
+//  public void setReservation(List<Reservation> Reservations)
+//  {
+//	  this.reservation=Reservations;
+//  }
   
 }

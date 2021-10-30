@@ -8,6 +8,6 @@ import ca.mcgill.ecse321.library.models.User;
 public interface UserRepository extends CrudRepository<User, Long>{
 	
 	User findCitizenByCardID(Long cardID);
-	User findUserByReservation(Reservation reservation);
+//	User findUserByReservation(Reservation reservation);
 
 }

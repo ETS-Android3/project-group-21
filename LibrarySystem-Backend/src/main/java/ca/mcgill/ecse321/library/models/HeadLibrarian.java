@@ -14,14 +14,6 @@ public class HeadLibrarian extends User
 {
 
   //------------------------
-  // MEMBER VARIABLES
-  //------------------------
-
-  //HeadLibrarian Associations
-  private List<OpeningHour> openinghour;
-  private List<Shift> shift;
-
-  //------------------------
   // CONSTRUCTOR
   //------------------------
 
@@ -29,30 +21,6 @@ public class HeadLibrarian extends User
 	  
   }
 
-  //------------------------
-  // INTERFACE
-  //------------------------
 
-  public void setShift(List<Shift> aShift)
-  {
-    this.shift = aShift;
-  }
-
-  @OneToMany
-  public List<Shift> getShift()
-  {
-    return this.shift;
-  }
-
-  @OneToMany
-  public List<OpeningHour> getOpeninghour()
-  {
-    return this.openinghour;
-  }
-
-  public void setOpeninghour(List<OpeningHour> aOpeninghour)
-  {
-    this.openinghour = aOpeninghour;
-  }
 
  }

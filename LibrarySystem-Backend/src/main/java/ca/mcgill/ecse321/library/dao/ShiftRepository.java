@@ -11,7 +11,7 @@ import ca.mcgill.ecse321.library.models.Shift;
 public interface ShiftRepository extends CrudRepository<Shift, Long>{
     
     Shift findShiftByShiftCode(long shiftCode); 
-    List<Shift> findShiftByLibrarians(Librarian librarians);
-    List<Shift> findShiftByHeadLibrarian(HeadLibrarian headlibrarian);
+//    List<Shift> findShiftByLibrarians(Librarian librarians);
+//    List<Shift> findShiftByHeadLibrarian(HeadLibrarian headlibrarian);
 
 }

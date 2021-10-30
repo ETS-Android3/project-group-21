@@ -12,13 +12,6 @@ public class Librarian extends User
 {
 
   //------------------------
-  // MEMBER VARIABLES
-  //------------------------
-
-  //Librarian Associations
-  private List<Shift> shift;
-
-  //------------------------
   // CONSTRUCTOR
   //------------------------
 
@@ -26,20 +19,5 @@ public class Librarian extends User
 	  
   }
 
-  //------------------------
-  // INTERFACE
-  //------------------------
-
-  public void setShift(List<Shift> aShift)
-  {
-    this.shift = aShift;
-  }
-
-  @ManyToMany
-  public List<Shift> getShift()
-  {
-    return this.shift;
-  }
-  
 
 }

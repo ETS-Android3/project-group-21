@@ -48,7 +48,7 @@ public class TestLibrarianPersistence {
         DayOfWeek day=s2.getDay();
         s2.setStartTime(new Time(6,30,0));
         s2.setEndTime(new Time(16,30,0));
-        s2.setHeadLibrarian(null);
+//        s2.setHeadLibrarian(null);
         shiftRepository.save(s2);
         long sCode=s2.getShiftCode();
         List sl = new ArrayList<Shift>();
