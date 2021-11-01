@@ -7,5 +7,6 @@ import ca.mcgill.ecse321.library.models.Citizen;
 public interface CitizenRepository extends CrudRepository<Citizen, Long>{
 	
 	Citizen findCitizenByCardID(Long cardID);
+	Citizen findCitizenByUsernameAndPassword(String username,String password);
 
 }
