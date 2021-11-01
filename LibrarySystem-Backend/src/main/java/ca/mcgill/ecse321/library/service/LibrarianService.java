@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import ca.mcgill.ecse321.library.dao.*;
 import ca.mcgill.ecse321.library.models.*;
 
+@Service
 public class LibrarianService {
-
+	@Autowired
+	private ca.mcgill.ecse321.library.dao.LibrarianRepository librarianRepository;
 }
