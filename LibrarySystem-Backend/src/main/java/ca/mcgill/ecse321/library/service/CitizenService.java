@@ -18,7 +18,7 @@ public class CitizenService {
 	@Transactional
 	public Citizen creatCitizen(String fullname,String userName, String password,
 			String address, Boolean onlineAccountActivated, Boolean isLocal, Double balance) {
-		Citizen aCitizen;
+		Citizen aCitizen = null;
 		
 		if(fullname == null || fullname.equals("")) {
 			throw new IllegalArgumentException("Fullname can't be empty");
@@ -56,7 +56,9 @@ public class CitizenService {
 		aCitizen.setOnlineAccountActivated(onlineAccountActivated);
 		aCitizen.setPassword(password);
 		aCitizen.setUsername(userName);
-		aCitizen.getCardID();
+	
+		citizenRepository.save(aCitizen);
+		System.out.println("test in service: "+ aCitizen.getCardID());
 		return aCitizen;
 	}
 	
@@ -89,6 +91,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("Fullname can't be empty");
 		}
 		aCitizen.setFullName(fullName);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	
@@ -98,6 +101,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("username can't be empty");
 		}
 		aCitizen.setUsername(username);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	
@@ -107,6 +111,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("password can't be empty");
 		}
 		aCitizen.setPassword(password);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	
@@ -116,6 +121,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("address can't be empty");
 		}
 		aCitizen.setAddress(address);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	
@@ -125,6 +131,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("status of online account can't be empty");
 		}
 		aCitizen.setOnlineAccountActivated(isActivated);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	
@@ -134,6 +141,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("status of local can't be empty");
 		}
 		aCitizen.setIsLocal(isLocal);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	
@@ -143,6 +151,7 @@ public class CitizenService {
 			throw new IllegalArgumentException("balance can't be empty");
 		}
 		aCitizen.setBalance(balance);
+		citizenRepository.save(aCitizen);
 		return aCitizen;
 	}
 	

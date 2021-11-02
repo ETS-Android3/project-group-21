@@ -51,14 +51,14 @@ public class TestCitizenPersistence{
 		aCitizen.setBalance(balance);
 		
 	    citizenrepository.save(aCitizen);
-		Long id = aCitizen.getCardID();
+	    Long cardID = aCitizen.getCardID();
 		
 		aCitizen = null;
-		aCitizen = citizenrepository.findCitizenByCardID(id);
+		aCitizen = citizenrepository.findCitizenByCardID(cardID);
 		
 		assertNotNull(aCitizen);
 		assertEquals(name,aCitizen.getFullName());
-		//assertEquals(cardID,aCitizen.getCardID());
+		assertEquals(cardID,aCitizen.getCardID());
 		assertEquals(address,aCitizen.getAddress());
 		assertEquals(password,aCitizen.getPassword());
 		assertEquals(onlineAccountActivated,aCitizen.getOnlineAccountActivated());
