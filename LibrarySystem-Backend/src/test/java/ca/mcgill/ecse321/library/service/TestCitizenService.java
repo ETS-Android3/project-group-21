@@ -40,6 +40,7 @@ public class TestCitizenService {
 	private static final Boolean onlineAccountActive = true;
 	private static final Boolean isLocal = false;
 	private static final Double balance = 520.0;
+	private static final Long cardID = 123L;
 	
 	@BeforeEach
 	public void setMockOutput() {
@@ -50,7 +51,7 @@ public class TestCitizenService {
 //		thenAnswer(returnParameterAsAnswer);
 		
 		lenient().when(citizenRepository.findCitizenByCardID(anyLong())).thenAnswer((InvocationOnMock invocation) -> {
-			if (invocation.getArgument(0).equals(fullname)) {
+			if (invocation.getArgument(0).equals(cardID)) {
 				
 				Citizen aCitizen = new Citizen();
 				aCitizen.setFullName(fullname);
@@ -60,6 +61,7 @@ public class TestCitizenService {
 				aCitizen.setOnlineAccountActivated(onlineAccountActive);
 				aCitizen.setIsLocal(isLocal);
 				aCitizen.setBalance(balance);
+				aCitizen.setCardID(cardID);
 
 				return aCitizen;
 			}
@@ -76,14 +78,15 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = 520.0;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			fail();
 		}
-		Long ID = citizen.getCardID();
+		
 		
 		assertNotNull(citizen);
 		assertEquals(fullname, citizen.getFullName());
@@ -93,7 +96,7 @@ public class TestCitizenService {
 		assertEquals(onlineAccountActive, citizen.getOnlineAccountActivated());
 		assertEquals(isLocal, citizen.getIsLocal());
 		assertEquals(balance,citizen.getBalance());
-		assertEquals(ID, citizen.getCardID());
+		assertEquals(cardID, citizen.getCardID());
 	}
 	
 	@Test
@@ -105,11 +108,12 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = 520.0;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -127,11 +131,11 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = 520.0;
-		
+		Long cardID = 123L;
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -149,11 +153,11 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = 520.0;
-		
+		Long cardID = 123L;
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -171,11 +175,12 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = 520.0;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -193,11 +198,12 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = null;
 		Boolean isLocal = false;
 		Double balance = 520.0;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -214,11 +220,12 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = null;
 		Double balance = 520.0;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -235,11 +242,12 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = null;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		String error = "";
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -256,30 +264,30 @@ public class TestCitizenService {
 		Boolean onlineAccountActive = true;
 		Boolean isLocal = false;
 		Double balance = 520.0;
+		Long cardID = 123L;
 		
 		Citizen citizen = null;
 		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance);
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
 		} catch(IllegalArgumentException e) {
 			fail();
 		}
-		Long ID = citizen.getCardID();
-		System.out.println(citizen.getFullName());
-		System.out.println("the iD: "+ID);
+	
+
 		citizen = null;
 		
-		citizen = service.getCitizenByID(ID);
-		assertTrue(true);
+		citizen = service.getCitizenByID(cardID);
+
 		
-//		assertNotNull(citizen);
-//		assertEquals(fullname, citizen.getFullName());
-//		assertEquals(username, citizen.getUsername());
-//		assertEquals(password, citizen.getPassword());
-//		assertEquals(address, citizen.getAddress());
-//		assertEquals(onlineAccountActive, citizen.getOnlineAccountActivated());
-//		assertEquals(isLocal, citizen.getIsLocal());
-//		assertEquals(balance,citizen.getBalance());
-//		assertEquals(ID, citizen.getCardID());
+		assertNotNull(citizen);
+		assertEquals(fullname, citizen.getFullName());
+		assertEquals(username, citizen.getUsername());
+		assertEquals(password, citizen.getPassword());
+		assertEquals(address, citizen.getAddress());
+		assertEquals(onlineAccountActive, citizen.getOnlineAccountActivated());
+		assertEquals(isLocal, citizen.getIsLocal());
+		assertEquals(balance,citizen.getBalance());
+		assertEquals(cardID, citizen.getCardID());
 	}
 	
 }

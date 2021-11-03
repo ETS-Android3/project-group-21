@@ -47,15 +47,18 @@ public class TestShiftPersistence {
         // initialize and set attributes to the shift
         // initialize the librarian
         Librarian l = new Librarian();
+        long lID = 567L;
+        l.setCardID(lID);
 		librarianRepository.save(l);
-		long userIdl = l.getCardID();
+
         List ls=new ArrayList<Librarian>();
         ls.add(l);
 
         // initialize the headlibrarian
         HeadLibrarian hl = new HeadLibrarian();
+        long hID = 678L;
+        hl.setCardID(hID);
 		headLibrarianRepository.save(hl);
-		long userIdhl = hl.getCardID();
         
 
         //initialize shift
@@ -64,8 +67,10 @@ public class TestShiftPersistence {
         DayOfWeek day=s.getDay();
 //        s.setLibrarians(ls);
 //       s.setHeadLibrarian(hl);
+        long sCode=245L;
+        s.setShiftCode(sCode);
         shiftRepository.save(s);
-        long sCode=s.getShiftCode();
+ 
 
         s = null;   //remove reference
 

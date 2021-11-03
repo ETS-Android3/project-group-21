@@ -42,17 +42,18 @@ public class TestLibrarianPersistence {
 	void testPersistAndLoadLibrarian() {
         
         //initialize and set attributes to the librarian
-        //initialize a shift
-        Shift s2=new Shift();
-        s2.setDay(DayOfWeek.Monday);
-        DayOfWeek day=s2.getDay();
-        s2.setStartTime(new Time(6,30,0));
-        s2.setEndTime(new Time(16,30,0));
+//        //initialize a shift
+//        Shift s2=new Shift();
+//        s2.setDay(DayOfWeek.Monday);
+//        DayOfWeek day=s2.getDay();
+//        s2.setStartTime(new Time(6,30,0));
+//        s2.setEndTime(new Time(16,30,0));
 //        s2.setHeadLibrarian(null);
-        shiftRepository.save(s2);
-        long sCode=s2.getShiftCode();
-        List sl = new ArrayList<Shift>();
-        sl.add(s2);
+//        shiftRepository.save(s2);
+//        long sCode=s2.getShiftCode();
+		Long cardID = 123L;
+//        List sl = new ArrayList<Shift>();
+//        sl.add(s2);
 
         //initiate a librarian
         String name="Bella Madonna";
@@ -68,13 +69,14 @@ public class TestLibrarianPersistence {
         l2.setUsername(username);
         l2.setPassword(password);
         l2.setOnlineAccountActivated(active);
+        l2.setCardID(cardID);
 
 
         //problematic part is reference (DataIntegrity error)
         //l2.setShift(sl);
 
         librarianRepository.save(l2);
-        long libId = l2.getCardID();
+        long libId = cardID;
         
 
         //remove reference

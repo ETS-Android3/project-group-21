@@ -81,7 +81,7 @@ public class Shift
   }
   
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+ // @GeneratedValue(strategy = GenerationType.AUTO) //cannot fix the problem for now
   public Long getShiftCode()
   {
     return this.shiftCode;

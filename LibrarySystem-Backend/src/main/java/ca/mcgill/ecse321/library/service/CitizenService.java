@@ -17,7 +17,7 @@ public class CitizenService {
 	
 	@Transactional
 	public Citizen creatCitizen(String fullname,String userName, String password,
-			String address, Boolean onlineAccountActivated, Boolean isLocal, Double balance) {
+			String address, Boolean onlineAccountActivated, Boolean isLocal, Double balance, Long cardID) {
 		Citizen aCitizen = null;
 		
 		if(fullname == null || fullname.equals("")) {
@@ -48,6 +48,9 @@ public class CitizenService {
 			throw new IllegalArgumentException("Balance can't be empty");
 		}
 		
+		if(cardID == null) {
+			throw new IllegalArgumentException("CardID can't be empty");
+		}
 		aCitizen = new Citizen();
 		aCitizen.setFullName(fullname);
 		aCitizen.setBalance(balance);
@@ -56,9 +59,10 @@ public class CitizenService {
 		aCitizen.setOnlineAccountActivated(onlineAccountActivated);
 		aCitizen.setPassword(password);
 		aCitizen.setUsername(userName);
+		aCitizen.setCardID(cardID);
 	
 		citizenRepository.save(aCitizen);
-		System.out.println("test in service: "+ aCitizen.getCardID());
+		//System.out.println("test in service: "+ aCitizen.getCardID());
 		return aCitizen;
 	}
 	

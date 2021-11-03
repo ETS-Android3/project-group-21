@@ -33,16 +33,17 @@ public class TestCitizenPersistence{
 	public void testPersistAndLoadUser() {
 		Citizen aCitizen = new Citizen();
 		String name = "Noshin Chowdhury";
-		//Long cardID = (long) 267901544;
+
 		String address = "YoWorld";
 		String username = "KidA";
 		String password = "KidArocks12138";
 		Boolean onlineAccountActivated = true;
 		Boolean isLocal = false;
 		Double balance = 121.38;
+		Long cardID = 123L;
 		
 		aCitizen.setFullName(name);
-		//aCitizen.setCardID(cardID);
+		aCitizen.setCardID(cardID);
 		aCitizen.setAddress(address);
 		aCitizen.setUsername(username);
 		aCitizen.setPassword(password);
@@ -51,7 +52,7 @@ public class TestCitizenPersistence{
 		aCitizen.setBalance(balance);
 		
 	    citizenrepository.save(aCitizen);
-	    Long cardID = aCitizen.getCardID();
+
 		
 		aCitizen = null;
 		aCitizen = citizenrepository.findCitizenByCardID(cardID);
@@ -64,6 +65,7 @@ public class TestCitizenPersistence{
 		assertEquals(onlineAccountActivated,aCitizen.getOnlineAccountActivated());
 		assertEquals(isLocal,aCitizen.getIsLocal());
 		assertEquals(balance,aCitizen.getBalance());
+		assertEquals(cardID,aCitizen.getCardID());
 	}
 	
 }

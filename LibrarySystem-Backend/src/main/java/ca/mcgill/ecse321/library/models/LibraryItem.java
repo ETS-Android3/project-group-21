@@ -76,7 +76,7 @@ public class LibraryItem
     return this.type;
   }
 
-  @GeneratedValue(strategy = GenerationType.AUTO)
+ // @GeneratedValue(strategy = GenerationType.AUTO) //cannot fix the problem for now
   @Id
 //  @Column(name = "barcode", unique = true, nullable = false)
   public Long getBarcode()

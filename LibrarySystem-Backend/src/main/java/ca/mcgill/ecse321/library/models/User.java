@@ -72,7 +72,7 @@ public abstract class User
   }
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+ // @GeneratedValue(strategy = GenerationType.AUTO)  //cannot fix the problem for not
   public Long getCardID()
   {
     return this.cardID;

@@ -39,7 +39,7 @@ public class Reservation
 	  this.reservationID = aReservationID;
   }
   
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  //@GeneratedValue(strategy = GenerationType.AUTO) //cannot fix the problem for now
   @Id
   public Long getReservationID()
   {
