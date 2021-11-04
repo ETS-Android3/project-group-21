@@ -1,19 +1,11 @@
 package ca.mcgill.ecse321.library.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
-
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,11 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.library.dao.LibraryItemRepository;
 import ca.mcgill.ecse321.library.models.LibraryItem;
-import ca.mcgill.ecse321.library.service.LibraryItemService;
 
 @ExtendWith(MockitoExtension.class)
 public class TestLibraryItemService {
@@ -113,11 +103,11 @@ public class TestLibraryItemService {
 		try {
 			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
 		}catch(IllegalArgumentException e) {
-			error += e.getMessage();
+			error = e.getMessage();
 		}
 				
 		assertNull(li);
-		assertEquals("Barcode can't be empty. Item type can't be empty. Title can't be empty. Must specify if the library item is reservable. Must specify the loan period of library item. ", error);
+		assertEquals("Barcode cannot be empty. Item type cannot be empty. Title cannot be empty. Must specify if the library item is reservable. Must specify the loan period of library item. ", error);
 	}
 	
 	@Test
@@ -232,7 +222,7 @@ public class TestLibraryItemService {
 		try {
 			li = libraryItemService.deleteLibraryItem(li);
 		}catch(IllegalArgumentException e) {
-			error += e.getMessage();
+			error = e.getMessage();
 		}
 		
 		assertNull(li);
@@ -293,7 +283,7 @@ public class TestLibraryItemService {
 		}
 		
 		assertNull(updated);
-		assertEquals("Item type can't be empty.", error);
+		assertEquals("Item type cannot be empty.", error);
 	}
 	
 	
@@ -347,7 +337,7 @@ public class TestLibraryItemService {
 		}
 		
 		assertNull(updated);
-		assertEquals("Title can't be empty.", error);
+		assertEquals("Title cannot be empty.", error);
 	}
 	
 	
@@ -548,7 +538,6 @@ public class TestLibraryItemService {
 	@Test
 	public void testGetNonExistingLibraryItem() {
 		assertNull(libraryItemService.getLibraryItem(nonExistingBarcode));
-
 	}
 
 }
