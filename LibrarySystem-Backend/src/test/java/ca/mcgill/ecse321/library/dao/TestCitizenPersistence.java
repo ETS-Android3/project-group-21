@@ -52,7 +52,7 @@ public class TestCitizenPersistence{
 		aCitizen.setBalance(balance);
 		
 	    citizenrepository.save(aCitizen);
-
+	    
 		
 		aCitizen = null;
 		aCitizen = citizenrepository.findCitizenByCardID(cardID);

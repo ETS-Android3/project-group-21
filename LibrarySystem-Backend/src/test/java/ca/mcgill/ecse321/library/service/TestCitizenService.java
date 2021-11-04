@@ -9,7 +9,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.lenient;
 
-import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,9 +43,7 @@ public class TestCitizenService {
 	
 	@BeforeEach
 	public void setMockOutput() {
-//		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
-//			return invocation.getArgument(0);
-//		};
+
 //		lenient().when(citizenRepository.save(any(Citizen.class))).
 //		thenAnswer(returnParameterAsAnswer);
 		
@@ -64,13 +61,16 @@ public class TestCitizenService {
 				aCitizen.setCardID(cardID);
 
 				return aCitizen;
-			}
+			} else {
 			return null;
+			}
 		});
+
 	}
 	
 	@Test
 	public void testCreatCitizen() {
+		assertEquals(0, service.getAllCitizen().size());
 		String fullname = "Noshin Chowdhury";
 		String username = "KidA";
 		String password = "noshinKidA";
@@ -86,8 +86,8 @@ public class TestCitizenService {
 		} catch(IllegalArgumentException e) {
 			fail();
 		}
-		
-		
+
+	//	System.out.println("citizen:" + citizenRepository.findCitizenByCardID(cardID).getFullName());
 		assertNotNull(citizen);
 		assertEquals(fullname, citizen.getFullName());
 		assertEquals(username, citizen.getUsername());
@@ -255,7 +255,7 @@ public class TestCitizenService {
 		assertEquals(error,"Balance can't be empty");
 	}
 	@Test
-	@Transactional
+
 	public void getCitizenById() {
 		String fullname = "Noshin Chowdhury";
 		String username = "KidA";
@@ -289,5 +289,6 @@ public class TestCitizenService {
 		assertEquals(balance,citizen.getBalance());
 		assertEquals(cardID, citizen.getCardID());
 	}
+
 	
 }

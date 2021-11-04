@@ -1,6 +1,12 @@
 package ca.mcgill.ecse321.library.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
+
+import org.springframework.transaction.annotation.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +67,8 @@ public class CitizenService {
 		aCitizen.setCardID(cardID);
 	
 		citizenRepository.save(aCitizen);
+
+		
 		//System.out.println("test in service: "+ aCitizen.getCardID());
 		return aCitizen;
 	}
@@ -72,6 +80,7 @@ public class CitizenService {
 	
 	@Transactional
 	public List<Citizen> getAllCitizen(){
+		//System.out.println("newcitizen:"+citizenRepository.findAll());
 		return (List<Citizen>) citizenRepository.findAll();
 	}
 	
@@ -158,5 +167,11 @@ public class CitizenService {
 		return aCitizen;
 	}
 	
-	
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
+	}
 }
