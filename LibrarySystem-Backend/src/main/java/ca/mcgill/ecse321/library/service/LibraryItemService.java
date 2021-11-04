@@ -22,18 +22,18 @@ public class LibraryItemService {
 		String error = "";
 		
 		if (barcode == null || barcode.equals("")) {
-			error += "Barcode can't be empty. ";
+			error += "Barcode cannot be empty. ";
 		}
 		if (type == null || type.equals("")) {
-			error += "Item type can't be empty. ";
+			error += "Item type cannot be empty. ";
 		}
 		if (title == null || title.isBlank()) {
-			error += "Title can't be empty. ";
+			error += "Title cannot be empty. ";
 		}
-		if (isReservable == null) {
+		if (isReservable == null || isReservable.equals("")) {
 			error += "Must specify if the library item is reservable. ";
 		}
-		if (loanPeriod == null) {
+		if (loanPeriod == null || loanPeriod.equals("")) {
 			error += "Must specify the loan period of library item. ";
 		}else if (loanPeriod < 0) {
 			error += "Loan period must be greater or equal to 0. ";
@@ -75,7 +75,7 @@ public class LibraryItemService {
 	@Transactional
 	public LibraryItem updateLibraryItemType(LibraryItem li, LibraryItem.ItemType type) {
 		if (type == null || type.equals("")) {
-			throw new IllegalArgumentException("Item type can't be empty.");
+			throw new IllegalArgumentException("Item type cannot be empty.");
 		}
 		libraryItemRepository.delete(li);
 		li.setType(type);
@@ -86,7 +86,7 @@ public class LibraryItemService {
 	@Transactional
 	public LibraryItem updateLibraryItemTitle(LibraryItem li, String title) {
 		if (title == null || title.isBlank()) {
-			throw new IllegalArgumentException("Title can't be empty.");
+			throw new IllegalArgumentException("Title cannot be empty.");
 		}
 		libraryItemRepository.delete(li);
 		li.setTitle(title);
@@ -124,10 +124,6 @@ public class LibraryItemService {
 		libraryItemRepository.save(li);
 		return li;
 	}
-	
-	
-	
-	
 	
 	
 	@Transactional
