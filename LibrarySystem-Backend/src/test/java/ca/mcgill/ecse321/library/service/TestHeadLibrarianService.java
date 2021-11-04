@@ -226,7 +226,7 @@ public class TestHeadLibrarianService {
 		assertNotNull(HeadLibrarian);
 		assertEquals(newname, HeadLibrarian.getFullName());
 		
-		//System.out.println(service.getHeadLibrarianByID(cardID).getFullName());
+		
 			
 	}
 	

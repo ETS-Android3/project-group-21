@@ -16,7 +16,7 @@ import ca.mcgill.ecse321.library.models.*;
 @Service
 public class HeadLibrarianService {
 	@Autowired
-	private ca.mcgill.ecse321.library.dao.HeadLibrarianRepository headLibrarianRepository;
+	ca.mcgill.ecse321.library.dao.HeadLibrarianRepository headLibrarianRepository;
 	
 	@Transactional
 	public HeadLibrarian createHeadlibrarian (String fullname, String userName, String password, String address, Long cardID) {
@@ -90,9 +90,12 @@ public class HeadLibrarianService {
 		if(newpassword == null || newpassword.equals("")) {
 			throw new IllegalArgumentException("password can't be empty");
 		}
+		
 		headLibrarianRepository.delete(hl);
+		
 		hl.setPassword(newpassword);
 		headLibrarianRepository.save(hl);
+		
 		return hl;
 	}
 	
@@ -106,4 +109,6 @@ public class HeadLibrarianService {
 		headLibrarianRepository.save(hl);
 		return hl;
 	}
+	
+
 }

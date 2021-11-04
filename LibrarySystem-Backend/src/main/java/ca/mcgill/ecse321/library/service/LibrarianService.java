@@ -13,7 +13,7 @@ import ca.mcgill.ecse321.library.models.*;
 @Service
 public class LibrarianService {
 	@Autowired
-	private ca.mcgill.ecse321.library.dao.LibrarianRepository librarianRepository;
+	ca.mcgill.ecse321.library.dao.LibrarianRepository librarianRepository;
 	
 	@Transactional
 	public Librarian createLibrarian (String fullname, String userName, String password, String address, Long cardID) {
