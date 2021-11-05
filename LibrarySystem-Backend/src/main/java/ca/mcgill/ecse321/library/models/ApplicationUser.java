@@ -9,14 +9,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "\"user\"")
-public abstract class User
+public abstract class ApplicationUser
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //User Attributes
+  //ApplicationUser Attributes
   private String fullName;
   private Long cardID;
   private String address;
@@ -28,7 +28,7 @@ public abstract class User
   // CONSTRUCTOR
   //------------------------
   
-  public User() {
+  public ApplicationUser() {
 	  
   }
 
@@ -89,7 +89,7 @@ public abstract class User
   }
   
 //  /* Code from template attribute_GetUnique */
-//  public static User getWithUsername(String aUsername)
+//  public static ApplicationUser getWithUsername(String aUsername)
 //  {
 //    return usersByUsername.get(aUsername);
 //  }

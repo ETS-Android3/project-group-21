@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "headlibrarian")
-public class HeadLibrarian extends User
+public class HeadLibrarian extends ApplicationUser
 {
 
   //------------------------

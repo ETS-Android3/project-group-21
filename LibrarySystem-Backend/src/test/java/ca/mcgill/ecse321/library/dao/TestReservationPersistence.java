@@ -66,13 +66,13 @@ public class TestReservationPersistence {
 		Citizen c = new Citizen();
 		c.setCardID(456L);
 		citizenRepository.save(c);
-//		long userId = c.getCardID();
+//		long ApplicationUserId = c.getCardID();
 
 		// initialize a reservation and associate the library item and citizen to it
 		Long reservationId = 123L;
 		Reservation r = new Reservation();
 		r.setLibraryItem(li);
-		r.setUser(c);	
+		r.setApplicationUser(c);	
 		r.setReservationID(reservationId);
 		reservationRepository.save(r);// By saving, a unique reservation ID is assigned to the reservation (no need to set it ourself)
 		
@@ -84,7 +84,7 @@ public class TestReservationPersistence {
 		assertNotNull(r);
 		assertEquals(reservationId, r.getReservationID());
 		//assertEquals(barcode, r.getLibraryItem().getBarcode());
-		//assertEquals(userId, r.getUser().getCardID());
+		//assertEquals(ApplicationUserId, r.getApplicationUser().getCardID());
 	}
 
 }

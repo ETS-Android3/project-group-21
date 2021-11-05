@@ -20,7 +20,7 @@ import ca.mcgill.ecse321.library.dao.ReservationRepository;
 import ca.mcgill.ecse321.library.models.Citizen;
 import ca.mcgill.ecse321.library.models.LibraryItem;
 import ca.mcgill.ecse321.library.models.Reservation;
-import ca.mcgill.ecse321.library.models.User;
+import ca.mcgill.ecse321.library.models.ApplicationUser;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -35,7 +35,7 @@ public class TestReservationService {
 	private static final Long rId = 1230l;
 	private static final Long nonExistingRId = 111111l;
 	private static final LibraryItem li = new LibraryItem();
-	private static final User user = new Citizen();
+	private static final ApplicationUser ApplicationUser = new Citizen();
 	
 	@BeforeEach
 	public void setMockOutput() {
@@ -45,11 +45,11 @@ public class TestReservationService {
 				Reservation r = new Reservation();
 				
 //				li.setBarcode(2021l);
-//				user.setCardID(1104L);
+//				ApplicationUser.setCardID(1104L);
 				
 				r.setLibraryItem(li);
 				r.setReservationID(rId);
-				r.setUser(user);
+				r.setApplicationUser(ApplicationUser);
 				
 				return r;
 			}
@@ -67,11 +67,11 @@ public class TestReservationService {
 		
 		Long reservationID = 1230l;
 		LibraryItem li = new LibraryItem();
-		User user = new Citizen();
+		ApplicationUser ApplicationUser = new Citizen();
 		
 		Reservation r = null;
 		try {
-			r = reservationService.createReservation(reservationID, user, li);
+			r = reservationService.createReservation(reservationID, ApplicationUser, li);
 		}catch(IllegalArgumentException e) {
 			fail();
 		}
@@ -81,7 +81,7 @@ public class TestReservationService {
 		assertNotNull(r);
 		assertEquals(reservationID, r.getReservationID());
 		assertEquals(li, r.getLibraryItem());
-		assertEquals(user, r.getUser());
+		assertEquals(ApplicationUser, r.getApplicationUser());
 }
 	
 	@Test
@@ -92,17 +92,17 @@ public class TestReservationService {
 		
 		Long reservationID = null;
 		LibraryItem li = null;
-		User user = null;
+		ApplicationUser ApplicationUser = null;
 		
 		Reservation r = null;
 		try {
-			r = reservationService.createReservation(reservationID, user, li);
+			r = reservationService.createReservation(reservationID, ApplicationUser, li);
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		
 		assertNull(r);
-		assertEquals("Reservation ID cannot be empty. User cannot be empty. Library item cannot be empty. ", error);
+		assertEquals("Reservation ID cannot be empty. ApplicationApplicationUser cannot be empty. Library item cannot be empty. ", error);
 	}
 	
 	
@@ -118,8 +118,8 @@ public class TestReservationService {
 		Reservation r = null;
 		Long reservationID = 1230l;
 		LibraryItem li = new LibraryItem();
-		User user = new Citizen();
-		r = reservationService.createReservation(reservationID, user, li);
+		ApplicationUser ApplicationUser = new Citizen();
+		r = reservationService.createReservation(reservationID, ApplicationUser, li);
 		
 		assertNotNull(r);
 		

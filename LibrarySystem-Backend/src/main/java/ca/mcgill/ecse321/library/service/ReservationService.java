@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.library.dao.ReservationRepository;
 import ca.mcgill.ecse321.library.models.LibraryItem;
 import ca.mcgill.ecse321.library.models.Reservation;
-import ca.mcgill.ecse321.library.models.User;
+import ca.mcgill.ecse321.library.models.ApplicationUser;
 
 @Service
 public class ReservationService {
@@ -18,14 +18,14 @@ public class ReservationService {
 	ReservationRepository reservationRepository;
 	
 	@Transactional
-	public Reservation createReservation(Long reservationID, User user, LibraryItem lt) {
+	public Reservation createReservation(Long reservationID, ApplicationUser ApplicationUser, LibraryItem lt) {
 		String error = "";
 		
 		if(reservationID == null || reservationID.equals("")) {
 			error += "Reservation ID cannot be empty. ";
 		}
-		if(user == null || user.equals("")) {
-			error += "User cannot be empty. ";
+		if(ApplicationUser == null || ApplicationUser.equals("")) {
+			error += "ApplicationApplicationUser cannot be empty. ";
 		}
 		if(lt == null || lt.equals("")) {
 			error += "Library item cannot be empty. ";
@@ -38,7 +38,7 @@ public class ReservationService {
 		Reservation r = new Reservation();
 		r.setLibraryItem(lt);
 		r.setReservationID(reservationID);
-		r.setUser(user);
+		r.setApplicationUser(ApplicationUser);
 		
 		reservationRepository.save(r);
 		

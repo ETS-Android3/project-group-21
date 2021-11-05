@@ -29,7 +29,7 @@ public class Shift
   private Long shiftCode;
 
   //Shift Associations
-  private User user; // can only be either Librarian or HeadLibrarian
+  private ApplicationUser ApplicationUser; // can only be either Librarian or HeadLibrarian
 
   //------------------------
   // CONSTRUCTOR
@@ -88,12 +88,12 @@ public class Shift
   }
   
   @ManyToOne
-  public User getUser () {
-	  return this.user;
+  public ApplicationUser getApplicationUser () {
+	  return this.ApplicationUser;
   }
   
-  public void setUser(User aUser) {
-	  this.user = aUser;
+  public void setApplicationUser(ApplicationUser aApplicationUser) {
+	  this.ApplicationUser = aApplicationUser;
   }
  
 //  @ManyToOne

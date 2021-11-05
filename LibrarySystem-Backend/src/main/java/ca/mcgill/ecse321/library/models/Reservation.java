@@ -16,7 +16,7 @@ public class Reservation
   private Long reservationID;
 
   //Reservation Associations
-  private User user;
+  private ApplicationUser ApplicationUser;
   private LibraryItem libraryItem;
 
   //------------------------
@@ -45,11 +45,11 @@ public class Reservation
   
 
   
-  @ManyToOne//(optional=false)  // Multiple(5) Reservation is associated with one User; A Reservation cannot exist without User
-//  @JoinColumn(name = "user_cardid", referencedColumnName = "cardid")
-  public User getUser()
+  @ManyToOne//(optional=false)  // Multiple(5) Reservation is associated with one ApplicationApplicationUser; A Reservation cannot exist without ApplicationApplicationUser
+//  @JoinColumn(name = "ApplicationUser_cardid", referencedColumnName = "cardid")
+  public ApplicationUser getApplicationUser()
   {
-    return user;
+    return ApplicationUser;
   }
 
   @OneToOne//(optional=false) // One Reservation is associated with one LibraryItem; A Reservation cannot exist without LibraryItem  
@@ -59,9 +59,9 @@ public class Reservation
     return libraryItem;
   }
 
-  public void setUser(User aUser)
+  public void setApplicationUser(ApplicationUser aApplicationUser)
   {
-    this.user = aUser;
+    this.ApplicationUser = aApplicationUser;
   }
 
   public void setLibraryItem(LibraryItem aNewLibraryItem)

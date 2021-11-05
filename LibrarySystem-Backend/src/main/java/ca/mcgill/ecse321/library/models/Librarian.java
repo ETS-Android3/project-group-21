@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "librarian")
-public class Librarian extends User
+public class Librarian extends ApplicationUser
 {
 
   //------------------------

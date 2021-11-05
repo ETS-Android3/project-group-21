@@ -2,7 +2,9 @@ package ca.mcgill.ecse321.library.dto;
 
 import ca.mcgill.ecse321.library.models.Shift;
 
-public class LibraianDto {
+
+	
+public class ApplicationUserDto {
 	private String fullName;
 	private String address;
 	private String username;
@@ -10,15 +12,16 @@ public class LibraianDto {
 	private Long ID;
 	private Shift shift;
 	
-	public LibraianDto() {
-		//empty
-	}
-	public LibraianDto(Long ID) {
+//	public ApplicationUserDto() {
+//		//empty
+//	}
+	
+	public ApplicationUserDto(Long ID) {
 		//initial default value of info other then key info
-		this(ID,"libraian","N/A","bookworm","password",null);
+		this(ID,"username","N/A","bookworm","password",null);
 	}
 	
-	public LibraianDto(Long ID,String name,String address,String username,String password,
+	public ApplicationUserDto(Long ID,String name,String address,String username,String password,
 			Shift shift) {
 		this.ID = ID;
 		this.fullName = name;
@@ -53,3 +56,4 @@ public class LibraianDto {
 		return this.shift;
 	}
 }
+

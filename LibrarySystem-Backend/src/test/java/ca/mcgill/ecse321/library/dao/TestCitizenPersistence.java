@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.library.models.Citizen;
-import ca.mcgill.ecse321.library.models.User;
+import ca.mcgill.ecse321.library.models.ApplicationUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,12 +30,12 @@ public class TestCitizenPersistence{
 	
 	@Test
 	@Transactional
-	public void testPersistAndLoadUser() {
+	public void testPersistAndLoadApplicationUser() {
 		Citizen aCitizen = new Citizen();
 		String name = "Noshin Chowdhury";
 
 		String address = "YoWorld";
-		String username = "KidA";
+		String ApplicationUsername = "KidA";
 		String password = "KidArocks12138";
 		Boolean onlineAccountActivated = true;
 		Boolean isLocal = false;
@@ -45,7 +45,7 @@ public class TestCitizenPersistence{
 		aCitizen.setFullName(name);
 		aCitizen.setCardID(cardID);
 		aCitizen.setAddress(address);
-		aCitizen.setUsername(username);
+		aCitizen.setUsername(ApplicationUsername);
 		aCitizen.setPassword(password);
 		aCitizen.setOnlineAccountActivated(onlineAccountActivated);
 		aCitizen.setIsLocal(isLocal);
