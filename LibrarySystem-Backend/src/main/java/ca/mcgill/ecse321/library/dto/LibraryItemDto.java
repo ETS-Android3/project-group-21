@@ -1,22 +1,10 @@
 package ca.mcgill.ecse321.library.dto;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import ca.mcgill.ecse321.library.models.LibraryItem.ItemType;
 
 public class LibraryItemDto {
-	
-	  //------------------------
-	  // ENUMERATIONS
-	  //------------------------
 
-	  public enum ItemType { Book, Music, Movie, Newspaper, Archive }
-
-	  //------------------------
-	  // MEMBER VARIABLES
-	  //------------------------
+//	  public enum ItemType { Book, Music, Movie, Newspaper, Archive }
 
 	  //LibraryItem Attributes
 	  private ItemType type;
@@ -26,47 +14,20 @@ public class LibraryItemDto {
 	  private boolean isReserved;
 	  private int loanPeriod;
 
-
-	  //------------------------
-	  // CONSTRUCTOR
-	  //------------------------
 	  
-	  public LibraryItemDto() {
-		  
+	  public LibraryItemDto(Long barcode) {
+		  this(barcode, ItemType.Book, "title", true, false, 21);
+	  }
+	  
+	  public LibraryItemDto(Long barcode, ItemType type, String title, Boolean isReservable, Boolean isReserved, Integer loanPeriod) {
+		  this.barcode = barcode;
+		  this.title = title;
+		  this.type = type; 
+		  this.isReservable = isReservable;
+		  this.isReserved = isReserved;
+		  this.loanPeriod = loanPeriod;
 	  }
 
-	  //------------------------
-	  // INTERFACE
-	  //------------------------
-
-	  public void setType(ItemType aType)
-	  {
-	    this.type = aType;
-	  }
-
-	  public void setBarcode(Long aBarcode){
-		  this.barcode = aBarcode;
-	  }
-
-	  public void setTitle(String aTitle)
-	  {
-	    this.title = aTitle;
-	  }
-
-	  public void setIsReservable(boolean aIsReservable)
-	  {
-	    this.isReservable = aIsReservable;
-	  }
-
-	  public void setIsReserved(boolean aIsReserved)
-	  {
-	    this.isReserved = aIsReserved;
-	  }
-
-	  public void setLoanPeriod(int aLoanPeriod)
-	  {
-	    this.loanPeriod = aLoanPeriod;
-	  }
 
 	  public ItemType getType()
 	  {

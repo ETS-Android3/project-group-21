@@ -17,7 +17,7 @@ public class LibraryItemService {
 	
 	@Transactional
 	public LibraryItem createLibraryItem(Long barcode, LibraryItem.ItemType type, String title, 
-			Boolean isReservable, Integer loanPeriod) {
+			Boolean isReservable, Boolean isReserved, Integer loanPeriod) {
 		
 		String error = "";
 		
@@ -32,6 +32,9 @@ public class LibraryItemService {
 		}
 		if (isReservable == null || isReservable.equals("")) {
 			error += "Must specify if the library item is reservable. ";
+		}
+		if (isReservable == null || isReservable.equals("")) {
+			error += "Must specify if the library item is reserved. ";
 		}
 		if (loanPeriod == null || loanPeriod.equals("")) {
 			error += "Must specify the loan period of library item. ";

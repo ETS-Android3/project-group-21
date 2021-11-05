@@ -31,6 +31,7 @@ public class TestLibraryItemService {
 	private static final LibraryItem.ItemType type = LibraryItem.ItemType.Book;
 	private static final String title = "Dune";
 	private static final Boolean isReservable = true;
+	private static final Boolean isReserved = false;
 	private static final Integer loanPeriod = 21;
 	
 	private static final Long nonExistingBarcode = 555l;
@@ -46,6 +47,7 @@ public class TestLibraryItemService {
 				li.setType(type);
 				li.setTitle(title);
 				li.setIsReservable(isReservable);
+				li.setIsReserved(isReserved);
 				li.setIsReserved(false);
 				li.setLoanPeriod(loanPeriod);
 				
@@ -71,7 +73,7 @@ public class TestLibraryItemService {
 		
 		LibraryItem li = null;
 		try {
-			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
+			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod);
 		}catch(IllegalArgumentException e) {
 			fail();
 		}
@@ -83,6 +85,7 @@ public class TestLibraryItemService {
 		assertEquals(type, li.getType());
 		assertEquals(title, li.getTitle());
 		assertEquals(isReservable, li.getIsReservable());
+		assertEquals(isReserved, li.getIsReserved());
 		assertEquals(loanPeriod, li.getLoanPeriod());	
 	}
 	
@@ -101,13 +104,13 @@ public class TestLibraryItemService {
 		
 		LibraryItem li = null;
 		try {
-			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
+			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod);
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 				
 		assertNull(li);
-		assertEquals("Barcode cannot be empty. Item type cannot be empty. Title cannot be empty. Must specify if the library item is reservable. Must specify the loan period of library item. ", error);
+		assertEquals("Barcode cannot be empty. Item type cannot be empty. Title cannot be empty. Must specify if the library item is reservable. Must specify if the library item is reserved. Must specify the loan period of library item. ", error);
 	}
 	
 	@Test
@@ -120,11 +123,12 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = -5;
 		
 		LibraryItem li = null;
 		try {
-			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
+			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod);
 		}catch(IllegalArgumentException e) {
 			error += e.getMessage();
 		}
@@ -143,11 +147,12 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 0;
 		
 		LibraryItem li = null;
 		try {
-			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
+			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod);
 		}catch(IllegalArgumentException e) {
 			error += e.getMessage();
 		}
@@ -167,11 +172,12 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = false;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
 		LibraryItem li = null;
 		try {
-			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
+			li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod);
 		}catch(IllegalArgumentException e) {
 			error += e.getMessage();
 		}
@@ -195,9 +201,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod);
+		li = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod);
 		
 		assertNotNull(li);
 		
@@ -242,9 +249,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type1 = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type1, title, isReservable, loanPeriod);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type1, title, isReservable, isReserved, loanPeriod);
 //		LibraryItem test = libraryItemService.getLibraryItem(barcode);
 //		System.out.println(test);
 		LibraryItem updated = null;
@@ -270,9 +278,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type1 = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type1, title, isReservable, loanPeriod);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type1, title, isReservable, isReserved, loanPeriod);
 		LibraryItem updated = null;
 		LibraryItem.ItemType type2 = null;
 
@@ -298,9 +307,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title1 = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title1, isReservable, loanPeriod);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title1, isReservable, isReserved, loanPeriod);
 		LibraryItem updated = null;
 		String title2 = "Dune Book";
 
@@ -324,9 +334,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title1 = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title1, isReservable, loanPeriod);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title1, isReservable, isReserved, loanPeriod);
 		LibraryItem updated = null;
 		String title2 = "";
 
@@ -350,9 +361,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable1 = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable1, loanPeriod);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable1, isReserved, loanPeriod);
 		LibraryItem updated = null;
 		Boolean isReservable2 = false;
 //		libraryItemService.updateLibraryItemLoanPeriod(original,0);
@@ -376,9 +388,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable1 = true;
+		Boolean isReserved = false;
 		Integer loanPeriod = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable1, loanPeriod);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable1, isReserved, loanPeriod);
 		LibraryItem updated = null;
 		Boolean isReservable2 = null;
 
@@ -403,9 +416,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod1 = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod1);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod1);
 		LibraryItem updated = null;
 		Integer loanPeriod2 = 21;
 
@@ -429,9 +443,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod1 = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod1);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod1);
 		LibraryItem updated = null;
 		Integer loanPeriod2 = null;
 
@@ -454,10 +469,11 @@ public class TestLibraryItemService {
 		Long barcode = 111l;
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
-		Boolean isReservable = true;
+		Boolean isReservable = true;		
+		Boolean isReserved = false;
 		Integer loanPeriod1 = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod1);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod1);
 		LibraryItem updated = null;
 		Integer loanPeriod2 = -5;
 
@@ -481,9 +497,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = true;
+		Boolean isReserved = false;
 		Integer loanPeriod1 = 7;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod1);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod1);
 		LibraryItem updated = null;
 		Integer loanPeriod2 = 0;
 
@@ -507,9 +524,10 @@ public class TestLibraryItemService {
 		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
 		String title = "Dune Movie";
 		Boolean isReservable = false;
+		Boolean isReserved = false;
 		Integer loanPeriod1 = 0;
 		
-		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, loanPeriod1);
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod1);
 		LibraryItem updated = null;
 		Integer loanPeriod2 = 7;
 
