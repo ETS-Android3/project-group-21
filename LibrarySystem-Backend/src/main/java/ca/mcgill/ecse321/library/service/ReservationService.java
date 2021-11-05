@@ -17,8 +17,6 @@ public class ReservationService {
 	@Autowired
 	ReservationRepository reservationRepository;
 	
-	@Autowired
-	
 	@Transactional
 	public Reservation createReservation(Long reservationID, User user, LibraryItem lt) {
 		String error = "";
