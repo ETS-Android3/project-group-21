@@ -34,7 +34,7 @@ public class ShiftService {
         }
 
         if (endTime != null && startTime != null && endTime.before(startTime)) {
-	        throw new IllegalArgumentException ("Shift end time cannot be before event start time");
+	        throw new IllegalArgumentException ("Shift end time cannot be before its start time");
 	    }
 
         Shift aShift=new Shift();
@@ -60,7 +60,7 @@ public class ShiftService {
     @Transactional
 	public Shift deleteShift(Shift shift) {
 		if(shift == null) {
-			throw new IllegalArgumentException("Input shift cannot be null. ");
+			throw new IllegalArgumentException("Input shift cannot be null");
 		}
 		shiftRepository.delete(shift);
 		shift = null;
@@ -70,7 +70,17 @@ public class ShiftService {
     @Transactional
     public Shift updateShiftStartTime (Shift aShift, Time startTime){
         if (aShift == null){
-            throw new IllegalArgumentException("Input shift cannot be null. ");
+            throw new IllegalArgumentException("Input shift cannot be null");
+        }
+
+        if (startTime == null){
+            throw new IllegalArgumentException ("Shift must have a starting time");
+        }
+
+        Time endTime = aShift.getEndTime();
+
+        if (startTime.after(endTime)){
+            throw new IllegalArgumentException ("Shift end time cannot be before its start time");
         }
 
         shiftRepository.delete(aShift);
@@ -82,13 +92,18 @@ public class ShiftService {
     @Transactional
     public Shift updateShiftEndTime (Shift aShift, Time endTime){
         if (aShift == null){
-            throw new IllegalArgumentException("Input shift cannot be null. ");
+            throw new IllegalArgumentException("Input shift cannot be null");
         }
+
+        if (endTime == null){
+            throw new IllegalArgumentException ("Shift must have a ending time");
+        }
+
 
         Time startTime=aShift.getStartTime();
 
         if (endTime != null && startTime != null && endTime.before(startTime)) {
-	        throw new IllegalArgumentException ("Shift end time cannot be before event start time");
+	        throw new IllegalArgumentException ("Shift end time cannot be before its start time");
 	    }
 
         shiftRepository.delete(aShift);
@@ -100,7 +115,11 @@ public class ShiftService {
     @Transactional
     public Shift updateShiftDay (Shift aShift, DayOfWeek day){
         if (aShift == null){
-            throw new IllegalArgumentException("Input shift cannot be null. ");
+            throw new IllegalArgumentException("Input shift cannot be null");
+        }
+
+        if (day == null){
+            throw new IllegalArgumentException ("Shift must be on a day of the week");
         }
 
         shiftRepository.delete(aShift);
