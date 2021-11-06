@@ -29,5 +29,35 @@ Here is the [Use Case Diagram](https://github.com/McGill-ECSE321-Fall2021/projec
 # Requirements:
 Here are the 15 most important [requirements](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Requirements)
 
+# D1 report
+Here is the [D1 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-1-report)
+
+# Deliverable 2
+In this deliverable, we are required to implement the Dto package, the corresponding service test, the controller and the integration test of the application.
+
+## Roles and Time Spend
+| Name              | Role        | Time in hours |
+| :---              |    :---:    |          ---: |
+| Dania Pennimpede  | Software Developer, Testing, Documentation       | 0 hrs        |
+| Joris Ah-Kane     | Software Developer, Testing, Documentation       | 0 hrs        |
+| Chun Li           | Software Developer, Testing, Documentation, Project manager     | 0 hrs        |
+| Yujin Li          | Software Developer, Testing, Documentation       | 0 hrs        |
+| Kaifan Zheng      | Software Developer, Testing, Documentation       | 0 hrs           |
+
+# Changes
+Here are the [changes](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#changes) made before Deliverable 2.
+
+# Testing Approaches
+Testing Approaches that we used can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#testing-approaches)
+
+# Integration Testing result
+Integration testing result for controllers can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#integration-testing-result)
+
+# Software Quality Assurance Plan
+Software Quality Assurance Plan and the coverage result can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#test-coverage-criteria-software-quality-assurance-plan--result)
+
+# D2 report
+Here is the [D2 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report)
+
 # More
 For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
