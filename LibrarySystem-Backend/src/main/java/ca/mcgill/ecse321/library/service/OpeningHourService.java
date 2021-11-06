@@ -22,7 +22,7 @@ public class OpeningHourService {
 		
 		String error = "";
 		
-		if (day == null || day.equals("")) {
+		if (day == null) {
 			error = error + "Opening Hour day cannot be empty!";
 		}
 		if (startTime == null) {
@@ -75,7 +75,7 @@ public class OpeningHourService {
 	
 	@Transactional
 	public OpeningHour updateOpeningHourDayOfWeek(OpeningHour o, DayOfWeek day) {
-		if (day == null || day.equals("")) {
+		if (day == null) {
 			throw new IllegalArgumentException("Opening Hour day cannot be empty!");
 		}
 		openingHourRepository.delete(o);
@@ -96,10 +96,15 @@ public class OpeningHourService {
 	}
 	
 	@Transactional
-	public OpeningHour updateOpeningHourEndTime(OpeningHour o, Time endTime) {
+	public OpeningHour updateOpeningHourEndTime(OpeningHour o, Time startTime, Time endTime) {
 		if (endTime == null) {
 			throw new IllegalArgumentException("Opening Hour end time cannot be empty!");
 		}
+		
+		if (endTime != null && startTime != null && endTime.before(startTime)) {
+			throw new IllegalArgumentException("Opening Hour end time cannot be before event start time!");
+	    }
+		
 		
 		openingHourRepository.delete(o);
 		o.setEndTime(endTime);
