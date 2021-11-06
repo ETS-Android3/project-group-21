@@ -66,6 +66,7 @@ public class TestHeadLibrarianService {
 	
 	@Test
 	public void testCreatHeadLibrarian() {
+		assertEquals(0, service.getAllHeadLibrarian().size());
 
 		String fullname = "Tony Stark";
 		String username = "Ironman";
@@ -93,6 +94,7 @@ public class TestHeadLibrarianService {
 	
 	@Test
 	public void testCreatHeadLibrarianWithNoFullname() {
+		assertEquals(0, service.getAllHeadLibrarian().size());
 
 		String fullname = null;
 		String username = "Ironman";
@@ -115,7 +117,7 @@ public class TestHeadLibrarianService {
 	
 	@Test
 	public void testCreatHeadLibrarianWithNoUsername() {
-
+		assertEquals(0, service.getAllHeadLibrarian().size());
 		String fullname = "Tony Stark";
 		String username = null;
 		String password = "abc";
@@ -137,6 +139,7 @@ public class TestHeadLibrarianService {
 	
 	@Test
 	public void testCreatHeadLibrarianWithNoPassword() {
+		assertEquals(0, service.getAllHeadLibrarian().size());
 
 		String fullname = "Tony Stark";
 		String username = "Ironman";
@@ -159,6 +162,7 @@ public class TestHeadLibrarianService {
 	
 	@Test
 	public void testCreatHeadLibrarianWithNoAddress() {
+		assertEquals(0, service.getAllHeadLibrarian().size());
 
 		String fullname = "Tony Stark";
 		String username = "Ironman";
@@ -422,7 +426,7 @@ public class TestHeadLibrarianService {
 	}
 
 	@Test
-	public void testGetNonExistingPerson() {
+	public void testGetNonExistingHeadLibrarian() {
 		assertNull(service.getHeadLibrarianByID(wrongID));
 	}
 

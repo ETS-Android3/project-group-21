@@ -10,7 +10,7 @@ public class ApplicationUserDto {
 	private String username;
 	private String password;
 	private Long ID;
-	private Shift shift;
+
 	
 //	public ApplicationUserDto() {
 //		//empty
@@ -18,17 +18,16 @@ public class ApplicationUserDto {
 	
 	public ApplicationUserDto(Long ID) {
 		//initial default value of info other then key info
-		this(ID,"username","N/A","bookworm","password",null);
+		this(ID,"username","N/A","bookworm","password");
 	}
 	
-	public ApplicationUserDto(Long ID,String name,String address,String username,String password,
-			Shift shift) {
+	public ApplicationUserDto(Long ID,String name,String address,String username,String password) {
 		this.ID = ID;
 		this.fullName = name;
 		this.address = address;
 		this.username = username;
 		this.password = password;
-		this.shift = shift;
+
 	}
 	
 	public String getName() {
@@ -52,8 +51,5 @@ public class ApplicationUserDto {
 		return this.ID;
 	}
 	
-	public Shift getShift() {
-		return this.shift;
-	}
 }
 

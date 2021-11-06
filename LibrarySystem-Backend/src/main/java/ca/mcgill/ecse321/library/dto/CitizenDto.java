@@ -19,7 +19,7 @@ public class CitizenDto extends ApplicationUserDto{
 //		this.username = username;
 //		this.password = password;
 //		this.onlineAccountActivated = onlineAccountActivated;
-		super(ID, name, address, username, password,  null);
+		super(ID, name, address, username, password);
 		this.isLocal = isLocal;
 		this.balance = balance;
 		this.onlineAccountActivated = onlineAccountActivated;

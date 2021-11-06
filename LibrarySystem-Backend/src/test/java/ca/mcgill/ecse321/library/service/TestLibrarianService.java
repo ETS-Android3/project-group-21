@@ -421,13 +421,14 @@ public class TestLibrarianService {
 			
 	}
 	
+	
 	@Test
-	public void testGetExistingHeadLibrarian() {
+	public void testGetExistingLibrarian() {
 		assertEquals(cardID, service.getLibrarianByID(cardID).getCardID());
 	}
 
 	@Test
-	public void testGetNonExistingPerson() {
+	public void testGetNonExistingLibrarian() {
 		assertNull(service.getLibrarianByID(wrongID));
 	}
 }

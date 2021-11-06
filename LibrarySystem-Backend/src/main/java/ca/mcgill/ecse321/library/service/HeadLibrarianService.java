@@ -65,6 +65,11 @@ public class HeadLibrarianService {
 	}
 	
 	@Transactional
+	public List<HeadLibrarian> getAllHeadLibrarian(){
+		return (List<HeadLibrarian>) headLibrarianRepository.findAll();
+	}
+	
+	@Transactional
 	public HeadLibrarian editHeadLibrarianFullName(HeadLibrarian hl, String newname) {
 		if(newname == null || newname.equals("")) {
 			throw new IllegalArgumentException("fullname can't be empty");
