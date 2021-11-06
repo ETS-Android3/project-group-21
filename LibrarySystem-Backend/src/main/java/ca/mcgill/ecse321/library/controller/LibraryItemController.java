@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,16 +54,18 @@ public class LibraryItemController {
 	}
 
 	
-	@GetMapping(value = { "/libraryItems/", "/libraryItems/" })
+	@GetMapping(value = { "/libraryItems/{barcode}", "/libraryItems/{barcode}/" })
+	public LibraryItemDto getLibraryItemByBarcode(@PathVariable("barcode") Long barcode) throws IllegalArgumentException {
+		return convertToDto(libraryItemService.getLibraryItem(barcode));
+	}
+	
+	
+	@GetMapping(value = { "/libraryItems", "/libraryItems/" })
 	public List<LibraryItemDto> getAllLibraryItems() {
 		List<LibraryItemDto> libraryItemDtos = new ArrayList<>();
 		for (LibraryItem libraryItem : libraryItemService.getAllLibraryItem()) {
 			libraryItemDtos.add(convertToDto(libraryItem));
 		}
 		return libraryItemDtos;
-	}
-	
-	
-	
-	
+	}	
 }
