@@ -17,12 +17,12 @@ public class ShiftDto {
         //empty constructor
     }
     
-    public ShiftDto (DayOfWeek day,Long shiftCode){
+    public ShiftDto (Long shiftCode, DayOfWeek day){
         //most common shift is hopefully just a regular 8 to 5
-        this(Time.valueOf("08:00:00"), Time.valueOf("17:00:00"),day,shiftCode);
+        this(shiftCode, Time.valueOf("08:00:00"), Time.valueOf("17:00:00"),day);
     }
 
-    public ShiftDto(Time valueOf, Time valueOf2, DayOfWeek day, Long shiftCode2) {
+    public ShiftDto(Long shiftCode, Time valueOf, Time valueOf2, DayOfWeek day) {
         this.day = day;
 		this.startTime = startTime;
 		this.endTime = endTime;

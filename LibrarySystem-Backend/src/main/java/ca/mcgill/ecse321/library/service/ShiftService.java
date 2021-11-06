@@ -19,7 +19,7 @@ public class ShiftService {
     ShiftRepository shiftRepository;
 
     @Transactional
-    public Shift createShift(Time startTime, Time endTime, DayOfWeek day, Long shiftCode){
+    public Shift createShift(Long shiftCode, Time startTime, Time endTime, DayOfWeek day){
 
         if (startTime == null) {
             throw new IllegalArgumentException ("Shift must have a starting time");
