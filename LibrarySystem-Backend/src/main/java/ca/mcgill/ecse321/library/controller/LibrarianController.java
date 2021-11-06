@@ -24,14 +24,14 @@ public class LibrarianController {
 	private LibrarianService librarianService;
 	
 	
-	@PostMapping(value= {"/librarian/{cardID}","/librarian/{cardID}/"})
+	@PostMapping(value= {"/librarians/{cardID}","/librarians/{cardID}/"})
 	public LibrarianDto createLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String Address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
 		Librarian h = librarianService.createLibrarian(name, username, password, Address, cardID);
 		return convertToDto(h);
 	}
 	
-	@GetMapping(value = { "/librarian","/librarian/"})
+	@GetMapping(value = { "/librarians","/librarians/"})
 	public List<LibrarianDto> getAllLibrarian(){
 		List<LibrarianDto> LibrarianDtos = new ArrayList<>();
 		for (Librarian hl: librarianService.getAllLibrarian()) {
@@ -40,7 +40,7 @@ public class LibrarianController {
 		return LibrarianDtos;
 	}
 	
-	@GetMapping(value = { "/librarian","/librarian/"})
+	@GetMapping(value = { "/librarians/{cardID}","/librarians/{cardID}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("cardID") Long cardID) throws IllegalArgumentException{
 		return convertToDto(librarianService.getLibrarianByID(cardID));
 	}

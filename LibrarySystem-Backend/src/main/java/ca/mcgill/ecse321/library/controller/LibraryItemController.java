@@ -54,7 +54,7 @@ public class LibraryItemController {
 	}
 
 	
-	@GetMapping(value = { "/libraryItems", "/libraryItems/" })
+	@GetMapping(value = { "/libraryItems/", "/libraryItems/" })
 	public List<LibraryItemDto> getAllLibraryItems() {
 		List<LibraryItemDto> libraryItemDtos = new ArrayList<>();
 		for (LibraryItem libraryItem : libraryItemService.getAllLibraryItem()) {

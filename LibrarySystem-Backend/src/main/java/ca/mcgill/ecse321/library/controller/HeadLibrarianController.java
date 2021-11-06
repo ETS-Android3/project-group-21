@@ -23,24 +23,27 @@ public class HeadLibrarianController {
 	@Autowired
 	private HeadLibrarianService headLibrarianService;
 	
+
 	
-	@PostMapping(value= {"/headlibrarian/{cardID}","/headlibrarian/{cardID}/"})
+	
+	@PostMapping(value= {"/headlibrarians/{cardID}","/headlibrarians/{cardID}/"})
 	public HeadLibrarianDto createHeadLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String Address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
 		HeadLibrarian h = headLibrarianService.createHeadlibrarian(name, username, password, Address, cardID);
 		return convertToDto(h);
 	}
 	
-	@GetMapping(value = { "/headlibrarian","/headlibrarian/"})
-	public List<HeadLibrarianDto> getAllHeadLibrarian(){
+	@GetMapping(value = { "/headlibrarians", "/headlibrarians/" })
+	public List<HeadLibrarianDto> getAllHeadLibrarians(){
 		List<HeadLibrarianDto> headLibrarianDtos = new ArrayList<>();
 		for (HeadLibrarian hl: headLibrarianService.getAllHeadLibrarian()) {
 			headLibrarianDtos.add(convertToDto(hl));
 		}
 		return headLibrarianDtos;
 	}
+
 	
-	@GetMapping(value = { "/headlibrarian","/headlibrarian/"})
+	@GetMapping(value = { "/headlibrarians/{cardID}","/headlibrarians/{cardID}/"})
 	public HeadLibrarianDto getHeadLibrarianById(@PathVariable("cardID") Long cardID) throws IllegalArgumentException{
 		return convertToDto(headLibrarianService.getHeadLibrarianByID(cardID));
 	}
