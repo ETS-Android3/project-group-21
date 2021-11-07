@@ -254,41 +254,6 @@ public class TestCitizenService {
 		assertNull(citizen);
 		assertEquals(error,"Balance can't be empty");
 	}
-	@Test
-
-	public void getCitizenById() {
-		String fullname = "Noshin Chowdhury";
-		String username = "KidA";
-		String password = "noshinKidA";
-		String address = "1650, YoWorld";
-		Boolean onlineAccountActive = true;
-		Boolean isLocal = false;
-		Double balance = 520.0;
-		Long cardID = 123L;
-		
-		Citizen citizen = null;
-		try {
-			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
-		} catch(IllegalArgumentException e) {
-			fail();
-		}
-	
-
-		citizen = null;
-		
-		citizen = service.getCitizenByID(cardID);
-
-		
-		assertNotNull(citizen);
-		assertEquals(fullname, citizen.getFullName());
-		assertEquals(username, citizen.getUsername());
-		assertEquals(password, citizen.getPassword());
-		assertEquals(address, citizen.getAddress());
-		assertEquals(onlineAccountActive, citizen.getOnlineAccountActivated());
-		assertEquals(isLocal, citizen.getIsLocal());
-		assertEquals(balance,citizen.getBalance());
-		assertEquals(cardID, citizen.getCardID());
-	}
 
 	
 }
