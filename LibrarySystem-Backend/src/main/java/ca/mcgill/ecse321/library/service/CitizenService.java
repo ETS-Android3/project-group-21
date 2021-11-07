@@ -128,7 +128,7 @@ public class CitizenService {
 	}
 	
 	@Transactional
-	public Citizen editCitizenAdress(Citizen aCitizen, String address) {
+	public Citizen editCitizenAddress(Citizen aCitizen, String address) {
 		if(address == null || address.equals("") || address.equals("undefined")) {
 			throw new IllegalArgumentException("address can't be empty");
 		}
