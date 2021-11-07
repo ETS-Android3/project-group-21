@@ -45,7 +45,7 @@ public class ShiftController {
 		return shiftdtos;
 	}
 
-    @GetMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/"}})
+    @GetMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/"})
 	public ShiftDto getLibrarianById(@PathVariable("shiftCode") Long shiftCode) throws IllegalArgumentException{
 		return convertToDto(shiftService.getShift(shiftCode));
 	}
