@@ -18,6 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import ca.mcgill.ecse321.library.dao.ShiftRepository;
 import ca.mcgill.ecse321.library.models.ApplicationUser;
+import ca.mcgill.ecse321.library.models.Citizen;
+import ca.mcgill.ecse321.library.models.HeadLibrarian;
 import ca.mcgill.ecse321.library.models.Librarian;
 import ca.mcgill.ecse321.library.models.Shift;
 import ca.mcgill.ecse321.library.models.Shift.DayOfWeek;
@@ -36,6 +38,8 @@ public class TestShiftService {
 	private static final Time startTime = Time.valueOf("08:00:00");
 	private static final Time endTime = Time.valueOf("17:00:00");
     private static final Long shiftCode = 123L;
+	private static final ApplicationUser librarian_user = new Librarian();
+	private static final ApplicationUser headlib_user = new HeadLibrarian();
     private static final Long wrongShiftCode = 420L;
 
     @BeforeEach
@@ -47,6 +51,7 @@ public class TestShiftService {
 				aShift.setStartTime(startTime);
 				aShift.setEndTime(endTime);
                 aShift.setDay(day1);
+				aShift.setApplicationUser(librarian_user);
 				return aShift;
 			}
 			else {
@@ -161,6 +166,46 @@ public class TestShiftService {
 
         assertNull(aShift);
         assertEquals(error, "Shift end time cannot be before its start time");
+    }
+
+	@Test
+	public void testCreateShiftNullUser() {
+        Long shiftCode = 123L;
+        LocalTime startTime = LocalTime.parse("09:00");
+		LocalTime endTime = LocalTime.parse("10:00");
+        DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = null;
+
+        Shift aShift = null;
+        String error = "";
+        try {
+            aShift = service.createShift(shiftCode,Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(aShift);
+        assertEquals(error, "ApplicationUser cannot be empty");
+    }
+
+	@Test
+	public void testCreateShiftWrongUser() {
+        Long shiftCode = 123L;
+        LocalTime startTime = LocalTime.parse("09:00");
+		LocalTime endTime = LocalTime.parse("10:00");
+        DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Citizen();
+
+        Shift aShift = null;
+        String error = "";
+        try {
+            aShift = service.createShift(shiftCode,Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(aShift);
+        assertEquals(error, "Shifts can only be assigned to Librarians or the Headlibrarian");
     }
 
     //-------------------------------------------------------------------------------------------
@@ -466,5 +511,75 @@ public class TestShiftService {
 		
 		assertNull(S2);
 		assertEquals(error, "Shift end time cannot be before its start time");
+	}
+
+	//-------------------------------------ASSOCIATED EMPLOYEE------------------------------------
+
+	@Test
+	public void testUpdateShiftEmployee(){
+		Long shiftCode = 123L;
+		Time startTime = Time.valueOf("06:00:00");
+		Time endTime = Time.valueOf("12:30:00");
+        DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
+
+        Shift S1 = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
+        Shift S2 = null;
+		ApplicationUser applicationUser2 = new HeadLibrarian();
+		
+		try {
+			S2 = service.updateShiftEmployee(S1, applicationUser2);
+		} catch(IllegalArgumentException e) {
+            fail();
+		}
+		
+		assertNotNull(S2);
+		assertEquals(applicationUser2, S2.getApplicationUser());
+	}
+
+	@Test
+	public void testUpdateShiftEmployeeNullUser(){
+		Long shiftCode = 123L;
+		Time startTime = Time.valueOf("06:00:00");
+		Time endTime = Time.valueOf("12:30:00");
+        DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
+
+        Shift S1 = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
+        Shift S2 = null;
+		ApplicationUser applicationUser2 = null;
+		String error = "";
+
+		try {
+			S2 = service.updateShiftEmployee(S1, applicationUser2);
+		} catch(IllegalArgumentException e) {
+            error = e.getMessage();
+		}
+		
+		assertNull(S2);
+		assertEquals(error, "ApplicationUser cannot be empty");
+	}
+
+	@Test
+	public void testUpdateShiftEmployeeWrongUser(){
+		Long shiftCode = 123L;
+		Time startTime = Time.valueOf("06:00:00");
+		Time endTime = Time.valueOf("12:30:00");
+        DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
+
+        Shift S1 = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
+        Shift S2 = null;
+		ApplicationUser applicationUser2 = new Citizen();
+		String error = "";
+
+		try {
+			S2 = service.updateShiftEmployee(S1, applicationUser2);
+		} catch(IllegalArgumentException e) {
+            error = e.getMessage();
+		}
+		
+		assertNull(S2);
+		assertEquals(error, "Shifts can only be assigned to Librarians or the Headlibrarian");
 	}
 }

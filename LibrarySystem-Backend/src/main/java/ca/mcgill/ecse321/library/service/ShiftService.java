@@ -40,15 +40,15 @@ public class ShiftService {
 	    }
 
         if (user == null){
-            throw new IllegalArgumentException ("ApplicationUser cannot be empty.");
+            throw new IllegalArgumentException ("ApplicationUser cannot be empty");
         }
        
-        /*
-        if (user instanceof Librarian || user instanceof HeadLibrarian){
+        
+        if (!(user instanceof Librarian || user instanceof HeadLibrarian)){
             throw new IllegalArgumentException ("Shifts can only be assigned to Librarians or the Headlibrarian");
         }
-        */
         
+
         Shift aShift=new Shift();
         aShift.setStartTime(startTime);
         aShift.setEndTime(endTime);
@@ -137,6 +137,27 @@ public class ShiftService {
 
         shiftRepository.delete(aShift);
         aShift.setDay(day);
+        shiftRepository.save(aShift);
+        return aShift;
+    }
+
+    @Transactional
+    public Shift updateShiftEmployee (Shift aShift, ApplicationUser user){
+        if (aShift == null){
+            throw new IllegalArgumentException("Input shift cannot be null");
+        }
+
+        if (user == null){
+            throw new IllegalArgumentException ("ApplicationUser cannot be empty");
+        }
+       
+        
+        if (!(user instanceof Librarian || user instanceof HeadLibrarian)){
+            throw new IllegalArgumentException ("Shifts can only be assigned to Librarians or the Headlibrarian");
+        }
+
+        shiftRepository.delete(aShift);
+        aShift.setApplicationUser(user);
         shiftRepository.save(aShift);
         return aShift;
     }
