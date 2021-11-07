@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.library.dao.ShiftRepository;
 import ca.mcgill.ecse321.library.models.Shift;
 import ca.mcgill.ecse321.library.models.Shift.DayOfWeek;
-//should only need to import the shift class to get the days of the week enum class
+import ca.mcgill.ecse321.library.models.ApplicationUser;
+import ca.mcgill.ecse321.library.models.HeadLibrarian;
+import ca.mcgill.ecse321.library.models.Librarian;
 
 @Service
 public class ShiftService {
@@ -19,7 +21,7 @@ public class ShiftService {
     ShiftRepository shiftRepository;
 
     @Transactional
-    public Shift createShift(Long shiftCode, Time startTime, Time endTime, DayOfWeek day){
+    public Shift createShift(Long shiftCode, Time startTime, Time endTime, DayOfWeek day, ApplicationUser user){
 
         if (startTime == null) {
             throw new IllegalArgumentException ("Shift must have a starting time");
@@ -37,11 +39,22 @@ public class ShiftService {
 	        throw new IllegalArgumentException ("Shift end time cannot be before its start time");
 	    }
 
+        if (user == null){
+            throw new IllegalArgumentException ("ApplicationUser cannot be empty.");
+        }
+       
+        /*
+        if (user instanceof Librarian || user instanceof HeadLibrarian){
+            throw new IllegalArgumentException ("Shifts can only be assigned to Librarians or the Headlibrarian");
+        }
+        */
+        
         Shift aShift=new Shift();
         aShift.setStartTime(startTime);
         aShift.setEndTime(endTime);
         aShift.setDay(day);
         aShift.setShiftCode(shiftCode);
+        aShift.setApplicationUser(user);
 
         shiftRepository.save(aShift);
         return aShift;

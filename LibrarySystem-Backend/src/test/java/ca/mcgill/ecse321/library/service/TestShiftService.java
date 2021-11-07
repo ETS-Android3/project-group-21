@@ -17,6 +17,8 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import ca.mcgill.ecse321.library.dao.ShiftRepository;
+import ca.mcgill.ecse321.library.models.ApplicationUser;
+import ca.mcgill.ecse321.library.models.Librarian;
 import ca.mcgill.ecse321.library.models.Shift;
 import ca.mcgill.ecse321.library.models.Shift.DayOfWeek;
 
@@ -64,10 +66,11 @@ public class TestShiftService {
 		Time startTime = Time.valueOf("06:00:00");
 		Time endTime = Time.valueOf("12:30:00");
         DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
 
         Shift aShift = null;
         try {
-            aShift = service.createShift(shiftCode, startTime, endTime, day);
+            aShift = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
         } catch (IllegalArgumentException e){
             fail();
         }
@@ -86,11 +89,12 @@ public class TestShiftService {
 		Time startTime = null;
 		Time endTime = Time.valueOf("12:30:00");
         DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
 
         Shift aShift = null;
         String error = "";
         try {
-            aShift = service.createShift(shiftCode, startTime, endTime, day);
+            aShift = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
         } catch (IllegalArgumentException e){
             error = e.getMessage();
         }
@@ -105,11 +109,12 @@ public class TestShiftService {
 		Time startTime = Time.valueOf("06:00:00");
 		Time endTime = null;
         DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
 
         Shift aShift = null;
         String error = "";
         try {
-            aShift = service.createShift(shiftCode, startTime, endTime, day);
+            aShift = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
         } catch (IllegalArgumentException e){
             error = e.getMessage();
         }
@@ -124,11 +129,12 @@ public class TestShiftService {
 		Time startTime = Time.valueOf("06:00:00");
 		Time endTime = Time.valueOf("12:30:00");
         DayOfWeek day = null;
+		ApplicationUser applicationUser = new Librarian();
 
         Shift aShift = null;
         String error = "";
         try {
-            aShift = service.createShift(shiftCode, startTime, endTime, day);
+            aShift = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
         } catch (IllegalArgumentException e){
             error = e.getMessage();
         }
@@ -143,11 +149,12 @@ public class TestShiftService {
         LocalTime startTime = LocalTime.parse("10:00");
 		LocalTime endTime = LocalTime.parse("09:00");
         DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
 
         Shift aShift = null;
         String error = "";
         try {
-            aShift = service.createShift(shiftCode,Time.valueOf(startTime), Time.valueOf(endTime), day);
+            aShift = service.createShift(shiftCode,Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
         } catch (IllegalArgumentException e){
             error = e.getMessage();
         }
@@ -180,8 +187,9 @@ public class TestShiftService {
         LocalTime startTime = LocalTime.parse("10:00");
 		LocalTime endTime = LocalTime.parse("12:00");
         DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
 
-        Shift aShift = service.createShift(shiftCode,Time.valueOf(startTime), Time.valueOf(endTime), day);
+        Shift aShift = service.createShift(shiftCode,Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 
         assertNotNull(aShift);  //make sure the creation was successful
 
@@ -220,8 +228,10 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
-		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		ApplicationUser applicationUser = new Librarian();
+
+
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		DayOfWeek day2 = DayOfWeek.Saturday;
@@ -257,8 +267,10 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
+		ApplicationUser applicationUser = new Librarian();
+
 		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 
 		Shift S2 = null;
 		Shift.DayOfWeek day2 = null;
@@ -281,8 +293,9 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
-		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		ApplicationUser applicationUser = new Librarian();
+
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		Time startTime2 = Time.valueOf(LocalTime.parse("08:30"));
@@ -322,8 +335,9 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
+		ApplicationUser applicationUser = new Librarian();
 		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		Time startTime2 =  null;
@@ -344,8 +358,10 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
+		ApplicationUser applicationUser = new Librarian();
+
 		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		Time startTime2 =  Time.valueOf(LocalTime.parse("12:30"));
@@ -369,8 +385,10 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
+		ApplicationUser applicationUser = new Librarian();
+
 		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		Time endTime2 = Time.valueOf(LocalTime.parse("12:30"));
@@ -410,8 +428,9 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
-		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		ApplicationUser applicationUser = new Librarian();
+
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		Time endTime2 =  null;
@@ -432,8 +451,9 @@ public class TestShiftService {
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
         Long shiftCode = 123L;
-		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day);
+		ApplicationUser applicationUser = new Librarian();
+
+		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
 		Time endTime2 =  Time.valueOf(LocalTime.parse("08:30"));
