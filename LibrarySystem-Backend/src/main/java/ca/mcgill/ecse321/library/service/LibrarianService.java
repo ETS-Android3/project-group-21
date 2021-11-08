@@ -14,6 +14,16 @@ import ca.mcgill.ecse321.library.models.*;
 public class LibrarianService {
 	@Autowired
 	ca.mcgill.ecse321.library.dao.LibrarianRepository librarianRepository;
+
+	/*
+	 * @Author: Yujin li
+	 * create a Librarian
+	 * @param fullname
+	 * @param username
+	 * @param password
+	 * @param address
+	 * @param cardID
+	 */
 	
 	@Transactional
 	public Librarian createLibrarian (String fullname, String userName, String password, String address, Long cardID) {
@@ -45,24 +55,45 @@ public class LibrarianService {
 		librarianRepository.save(aLibrarian);
 		return aLibrarian;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * get Librarian with a provided ID
+	 * @param ID
+	 */
 	
 	@Transactional
 	public Librarian getLibrarianByID(Long ID) {
 		return librarianRepository.findLibrarianByCardID(ID);
 	}
-	
+
+	/*
+	 * @Author: Yujin li
+	 * get all Librarian
+	 */
 	@Transactional
 	public List<Librarian> getAllLibrarian(){
 		return (List<Librarian>) librarianRepository.findAll();
 	}
 
-
+	/*
+	 * @Author: Yujin li
+	 * delete a Librarian
+	 * @param aLibrarian
+	 */
 	@Transactional
 	public Librarian deleteLibrarian(Librarian hl) {
 		librarianRepository.delete(hl);
 		hl = null;
 		return hl;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * edit Librarian's full name
+	 * @param aLibrarian
+	 * @param fullname
+	 */
 	
 	@Transactional
 	public Librarian editLibrarianFullName(Librarian hl, String newname) {
@@ -74,6 +105,13 @@ public class LibrarianService {
 		librarianRepository.save(hl);
 		return hl;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * edit Librarian's username
+	 * @param aLibrarian
+	 * @param newname
+	 */
 	
 	@Transactional
 	public Librarian editLibrarianUserName(Librarian hl, String newname) {
@@ -85,7 +123,14 @@ public class LibrarianService {
 		librarianRepository.save(hl);
 		return hl;
 	}
-	
+
+
+	/*
+	 * @Author: Yujin li
+	 * edit Librarian's password
+	 * @param aLibrarian
+	 * @param newpassword
+	 */
 	@Transactional
 	public Librarian editLibrarianPassword(Librarian hl, String newpassword) {
 		if(newpassword == null || newpassword.equals("")) {
@@ -96,7 +141,13 @@ public class LibrarianService {
 		librarianRepository.save(hl);
 		return hl;
 	}
-	
+
+	/*
+	 * @Author: Yujin li
+	 * edit Librarian's address
+	 * @param aLibrarian
+	 * @param newaddress
+	 */
 	@Transactional
 	public Librarian editLibrarianAddress(Librarian hl, String newaddress) {
 		if(newaddress == null || newaddress.equals("")) {

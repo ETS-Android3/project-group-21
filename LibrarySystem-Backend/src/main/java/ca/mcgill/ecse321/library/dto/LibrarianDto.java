@@ -2,6 +2,9 @@ package ca.mcgill.ecse321.library.dto;
 
 import ca.mcgill.ecse321.library.models.Shift;
 
+/*
+ * @Author: Yujin li
+ */
 public class LibrarianDto extends ApplicationUserDto{
 	
 	public LibrarianDto(Long cardID) {

@@ -22,15 +22,27 @@ public class LibrarianController {
 	
 	@Autowired
 	private LibrarianService librarianService;
-	
-	
+
+	/*
+	 * @Author: Yujin li
+	 * create a Librarian
+	 * @param fullname
+	 * @param username
+	 * @param password
+	 * @param address
+	 * @param cardID
+	 */
 	@PostMapping(value= {"/librarians/{cardID}","/librarians/{cardID}/"})
 	public LibrarianDto createLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String Address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
 		Librarian h = librarianService.createLibrarian(name, username, password, Address, cardID);
 		return convertToDto(h);
 	}
-	
+
+	/*
+	 * @Author: Yujin li
+	 * get all Librarian
+	 */
 	@GetMapping(value = { "/librarians","/librarians/"})
 	public List<LibrarianDto> getAllLibrarian(){
 		List<LibrarianDto> LibrarianDtos = new ArrayList<>();
@@ -39,13 +51,22 @@ public class LibrarianController {
 		}
 		return LibrarianDtos;
 	}
-	
+
+	/*
+	 * @Author: Yujin li
+	 * get Librarian with a provided ID
+	 * @param cardID
+	 */
 	@GetMapping(value = { "/librarians/{cardID}","/librarians/{cardID}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("cardID") Long cardID) throws IllegalArgumentException{
 		return convertToDto(librarianService.getLibrarianByID(cardID));
 	}
-	
-	
+
+	/*
+	 * @Author: Yujin li
+	 * helper method that convert DTO to librarian
+	 * @param aLibrarianDto
+	 */
 	private Librarian convertToDomainObject(LibrarianDto hDto) {
 		List<Librarian> allLibrarians = librarianService.getAllLibrarian();
 		for (Librarian Librarian : allLibrarians) {
@@ -56,6 +77,11 @@ public class LibrarianController {
 		return null;
 	}
 
+	/*
+	 * @Author: Yujin li
+	 * helper method that convert librarian to DTO
+	 * @param aLibrarian
+	 */
 	private LibrarianDto convertToDto(Librarian h) {
 		if (h == null) {
 			throw new IllegalArgumentException ("There is no such Librarian");

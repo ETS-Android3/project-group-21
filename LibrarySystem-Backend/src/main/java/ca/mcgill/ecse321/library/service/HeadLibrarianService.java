@@ -17,7 +17,16 @@ import ca.mcgill.ecse321.library.models.*;
 public class HeadLibrarianService {
 	@Autowired
 	ca.mcgill.ecse321.library.dao.HeadLibrarianRepository headLibrarianRepository;
-	
+
+	/*
+	 * @Author: Yujin li
+	 * create a HeadLibrarian
+	 * @param fullname
+	 * @param username
+	 * @param password
+	 * @param address
+	 * @param cardID
+	 */
 	@Transactional
 	public HeadLibrarian createHeadlibrarian (String fullname, String userName, String password, String address, Long cardID) {
 		if (fullname == null || fullname.equals("")) {
@@ -48,13 +57,24 @@ public class HeadLibrarianService {
 		headLibrarianRepository.save(aHeadLibrarian);
 		return aHeadLibrarian;
 	}
-	
+
+	/*
+	 * @Author: Yujin li
+	 * get HeadLibrarian with a provided ID
+	 * @param cardID
+	 */
 	@Transactional
 	public HeadLibrarian getHeadLibrarianByID(Long ID) {
 		return headLibrarianRepository.findHeadLibrarianByCardID(ID);
 	}
 	
-	//there is only 1 headlibrarian, do not have to implement getallheadlibrarian
+
+
+	/*
+	 * @Author: Yujin li
+	 * delete a HeadLibrarian
+	 * @param aHeadLibrarian
+	 */
 
 	@Transactional
 	public HeadLibrarian deleteHeadLibrarian(HeadLibrarian hl) {
@@ -63,11 +83,23 @@ public class HeadLibrarianService {
 		hl = null;
 		return hl;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * get all HeadLibrarian
+	 */
 	
 	@Transactional
 	public List<HeadLibrarian> getAllHeadLibrarian(){
 		return (List<HeadLibrarian>) headLibrarianRepository.findAll();
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * edit HeadLibrarian's full name
+	 * @param aHeadLibrarian
+	 * @param fullname
+	 */
 	
 	@Transactional
 	public HeadLibrarian editHeadLibrarianFullName(HeadLibrarian hl, String newname) {
@@ -79,6 +111,13 @@ public class HeadLibrarianService {
 		headLibrarianRepository.save(hl);
 		return hl;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * edit HeadLibrarian's username
+	 * @param aHeadLibrarian
+	 * @param username
+	 */
 	@Transactional
 	public HeadLibrarian editHeadLibrarianUserName(HeadLibrarian hl, String newname) {
 		if(newname == null || newname.equals("")) {
@@ -89,6 +128,13 @@ public class HeadLibrarianService {
 		headLibrarianRepository.save(hl);
 		return hl;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * edit HeadLibrarian's password
+	 * @param aHeadLibrarian
+	 * @param newpassword
+	 */
 	
 	@Transactional
 	public HeadLibrarian editHeadLibrarianPassword(HeadLibrarian hl, String newpassword) {
@@ -103,6 +149,13 @@ public class HeadLibrarianService {
 		
 		return hl;
 	}
+
+	/*
+	 * @Author: Yujin li
+	 * edit HeadLibrarian's address
+	 * @param aHeadLibrarian
+	 * @param newaddress
+	 */
 	
 	@Transactional
 	public HeadLibrarian editHeadLibrarianAddress(HeadLibrarian hl, String newaddress) {
