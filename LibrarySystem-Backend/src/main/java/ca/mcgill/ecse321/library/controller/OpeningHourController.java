@@ -26,6 +26,11 @@ public class OpeningHourController {
 	@Autowired
 	private OpeningHourService service;
 	
+	/*
+	 * @Author: Dania Pennimpede
+	 * Get all opening hour
+	 */
+	
 	@GetMapping(value = { "/openinghours", "/openinghours/"} )
 	public List<OpeningHourDto> getAllOpeningHours(){
 		List<OpeningHourDto> openinghourDtos = new ArrayList <>();
@@ -35,12 +40,20 @@ public class OpeningHourController {
 		return openinghourDtos;
 	}
 	
+	/*
+	 * @Author: Dania Pennimpede
+	 * Create opening Hour
+	 */
 	@PostMapping(value = {"/openinghours/{day}", "/openinghours/{day}/"})
 	public OpeningHourDto createOpeningHour(@PathVariable("day") DayOfWeek day, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime) throws IllegalArgumentException{
 		OpeningHour openinghour = service.createOpeningHour(day, Time.valueOf(startTime), Time.valueOf(endTime));
 		return convertToDto(openinghour);
 	}
 	
+	/*
+	 * @Author: Dania Pennimpede
+	 * Helper method that convert opening hour to DTO
+	 */
 	private OpeningHourDto convertToDto(OpeningHour o) {
 		if (o == null) {
 			throw new IllegalArgumentException("There is no such Opening Hour!");
