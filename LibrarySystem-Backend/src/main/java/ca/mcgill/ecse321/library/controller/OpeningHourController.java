@@ -8,11 +8,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import ca.mcgill.ecse321.library.dto.OpeningHourDto;
 import ca.mcgill.ecse321.library.models.OpeningHour;
@@ -24,7 +26,7 @@ import ca.mcgill.ecse321.library.service.OpeningHourService;
 public class OpeningHourController {
 	
 	@Autowired
-	private OpeningHourService service;
+	private OpeningHourService openinghourservice;
 	
 	/*
 	 * @Author: Dania Pennimpede
@@ -34,7 +36,7 @@ public class OpeningHourController {
 	@GetMapping(value = { "/openinghours", "/openinghours/"} )
 	public List<OpeningHourDto> getAllOpeningHours(){
 		List<OpeningHourDto> openinghourDtos = new ArrayList <>();
-		for (OpeningHour openinghour : service.getAllOpeningHour()) {
+		for (OpeningHour openinghour : openinghourservice.getAllOpeningHour()) {
 			openinghourDtos.add(convertToDto(openinghour));
 		}
 		return openinghourDtos;
@@ -46,7 +48,7 @@ public class OpeningHourController {
 	 */
 	@PostMapping(value = {"/openinghours/{day}", "/openinghours/{day}/"})
 	public OpeningHourDto createOpeningHour(@PathVariable("day") DayOfWeek day, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime) throws IllegalArgumentException{
-		OpeningHour openinghour = service.createOpeningHour(day, Time.valueOf(startTime), Time.valueOf(endTime));
+		OpeningHour openinghour = openinghourservice.createOpeningHour(day, Time.valueOf(startTime), Time.valueOf(endTime));
 		return convertToDto(openinghour);
 	}
 	
@@ -61,5 +63,24 @@ public class OpeningHourController {
 		OpeningHourDto openinghourDto = new OpeningHourDto(o.getDay(), o.getStartTime(), o.getEndTime());
 		return openinghourDto;
 	}
+	
+	/*
+	 * @Author: Dania Pennimpede
+	 * Get Opening Hour by day
+	 */
+	@GetMapping(value = { "/openinghours/{day}", "/openinghours/{day}/" })
+	public OpeningHourDto getOpeningHourByDay(@PathVariable("day") DayOfWeek day) throws IllegalArgumentException {
+		return convertToDto(openinghourservice.getOpeningHourByDay(day));
+	}
+	
+	/*
+	 * @Author: Dania Pennimpede
+	 * Delete opening hour
+	 */
+	@DeleteMapping(value = { "/openinghours/{day}", "/openinghours/{day}/" })
+	public void deleteOpeningHour(@PathVariable("day") DayOfWeek day) throws IllegalArgumentException {
+		OpeningHour openinghour = openinghourservice.getOpeningHourByDay(day);
+		openinghourservice.deleteOpeningHour(openinghour);
+	}	
 
 }
