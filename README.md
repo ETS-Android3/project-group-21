@@ -38,7 +38,7 @@ In this deliverable, we are required to implement the Dto package, the correspon
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
 | :---              |    :---:    |          ---: |
-| Dania Pennimpede  | Software Developer for OpeningHour, Corresponding Testing, Documentation       | 0 hrs        |
+| Dania Pennimpede  | Software Developer for OpeningHour, Corresponding Testing, Documentation       | 8 hrs        |
 | Joris Ah-Kane     | Software Developer for Shift, Testing, Corresponding Documentation       | 9 hrs        |
 | Chun Li           | Software Developer for LibraryItems and Reservation, Corresponding Testing, Couverage report, Integration testing, Documentation, Project manager     | 12 hrs        |
 | Yujin Li          | Software Developer for HeadLibrarian and Librarian, Corresponding Testing, Integration testing, Documentation, wiki page       | 10 hrs        |
