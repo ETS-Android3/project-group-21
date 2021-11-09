@@ -78,7 +78,6 @@ public class OpeningHourService {
 		if (day == null) {
 			throw new IllegalArgumentException("Opening Hour day cannot be empty!");
 		}
-		openingHourRepository.delete(o);
 		o.setDay(day);
 		openingHourRepository.save(o);
 		return o;
@@ -89,7 +88,6 @@ public class OpeningHourService {
 		if (startTime == null) {
 			throw new IllegalArgumentException("Opening Hour start time cannot be empty!");
 		}
-		openingHourRepository.delete(o);
 		o.setStartTime(startTime);
 		openingHourRepository.save(o);
 		return o;
@@ -106,7 +104,6 @@ public class OpeningHourService {
 	    }
 		
 		
-		openingHourRepository.delete(o);
 		o.setEndTime(endTime);
 		openingHourRepository.save(o);
 		return o;

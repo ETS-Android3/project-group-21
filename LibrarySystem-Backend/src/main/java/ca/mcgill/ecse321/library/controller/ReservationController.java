@@ -55,23 +55,58 @@ public class ReservationController {
 	 * @param applicationUserDto: a applicationUserDto associated to this reservation
 	 */
 	@PostMapping(value = { "/reservations/{reservationID}", "/reservations/{reservationID}/" })
-	public ReservationDto createReservation(@RequestParam("reservationID") Long reservationID, 
-			@RequestParam("libraryItem") LibraryItemDto libraryItemDto,
-			@RequestParam("applicationUser") ApplicationUser applicationUserDto)
+	public ReservationDto createReservation(@PathVariable("reservationID") Long reservationID, 
+			@RequestParam("barcode") Long barcode,
+			@RequestParam("cardID") Long cardID)
 	throws IllegalArgumentException {
-		LibraryItem li = libraryItemService.getLibraryItem(libraryItemDto.getBarcode());
 		
-		Citizen c = citizenService.getCitizenByID(applicationUserDto.getCardID());
-		Librarian l = librarianService.getLibrarianByID(applicationUserDto.getCardID());
-		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(applicationUserDto.getCardID());
-		ApplicationUser user = null;
-		if (c != null) user = c; 
-		if (l != null) user = l; 
-		if (hl != null) user = hl; 
 		
-		Reservation reservation = reservationService.createReservation(reservationID, user, li);
-		return convertToDto(reservation);
+		LibraryItem li = libraryItemService.getLibraryItem(barcode);
+		
+		Citizen c = citizenService.getCitizenByID(cardID);
+		Librarian l = librarianService.getLibrarianByID(cardID);
+		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(cardID);
+		//ApplicationUser user = null;
+		if (c != null) {
+			//user = c; 
+			Reservation reservation = reservationService.createReservation(reservationID, c, li);
+			return convertToDto(reservation);
+		}
+		else if (l != null) {
+			//user = l; 
+			Reservation reservation = reservationService.createReservation(reservationID, l, li);
+			System.out.println(l);
+			return convertToDto(reservation);
+		}
+		else {
+			//user = hl; 
+			Reservation reservation = reservationService.createReservation(reservationID, hl, li);
+			return convertToDto(reservation);
+		}
+		
+		//Reservation reservation = reservationService.createReservation(reservationID, user, li);
+		//return convertToDto(reservation);
 	}
+//	@PostMapping(value = { "/reservations/{reservationID}", "/reservations/{reservationID}/" })
+//	public ReservationDto createReservation(@RequestParam("reservationID") Long reservationID, 
+//			@RequestParam("libraryItem") LibraryItemDto libraryItemDto,
+//			@RequestParam("applicationUser") ApplicationUser applicationUserDto)
+//	throws IllegalArgumentException {
+//		
+//		
+//		LibraryItem li = libraryItemService.getLibraryItem(libraryItemDto.getBarcode());
+//		
+//		Citizen c = citizenService.getCitizenByID(applicationUserDto.getCardID());
+//		Librarian l = librarianService.getLibrarianByID(applicationUserDto.getCardID());
+//		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(applicationUserDto.getCardID());
+//		ApplicationUser user = null;
+//		if (c != null) user = c; 
+//		if (l != null) user = l; 
+//		if (hl != null) user = hl; 
+//		
+//		Reservation reservation = reservationService.createReservation(reservationID, user, li);
+//		return convertToDto(reservation);
+//	}
 
 	
 	/*

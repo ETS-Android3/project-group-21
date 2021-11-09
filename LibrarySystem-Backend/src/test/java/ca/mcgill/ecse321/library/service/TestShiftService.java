@@ -82,7 +82,6 @@ public class TestShiftService {
         } catch (IllegalArgumentException e){
             fail();
         }
-
         assertNotNull(aShift);
         assertEquals(shiftCode, aShift.getShiftCode());
         assertEquals(startTime, aShift.getStartTime());

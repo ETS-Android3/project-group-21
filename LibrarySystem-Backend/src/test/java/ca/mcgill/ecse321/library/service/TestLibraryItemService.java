@@ -77,9 +77,7 @@ public class TestLibraryItemService {
 		}catch(IllegalArgumentException e) {
 			fail();
 		}
-		
-		System.out.println(libraryItemService.getLibraryItem(barcode));
-		
+				
 		assertNotNull(li);
 		assertEquals(barcode, li.getBarcode());
 		assertEquals(type, li.getType());
@@ -548,8 +546,6 @@ public class TestLibraryItemService {
 	
 	@Test
 	public void testGetExistingLibraryItem() {
-		System.out.println("all : " + libraryItemService.libraryItemRepository.findAll());
-		System.out.println("specific : " + libraryItemService.getLibraryItem(barcode));
 		assertEquals(barcode, libraryItemService.getLibraryItem(barcode).getBarcode());
 	}
 	

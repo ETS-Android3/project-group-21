@@ -134,8 +134,6 @@ public class ShiftService {
         if (!(user instanceof Librarian || user instanceof HeadLibrarian)){
             throw new IllegalArgumentException ("Shifts can only be assigned to Librarians or the Headlibrarian");
         }
-        
-        shiftRepository.delete(aShift);
         aShift.setStartTime(startTime);
         aShift.setEndTime(endTime);
         aShift.setDay(day);

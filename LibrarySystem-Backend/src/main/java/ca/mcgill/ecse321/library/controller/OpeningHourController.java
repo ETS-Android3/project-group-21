@@ -47,7 +47,9 @@ public class OpeningHourController {
 	 * Create opening Hour
 	 */
 	@PostMapping(value = {"/openinghours/{day}", "/openinghours/{day}/"})
-	public OpeningHourDto createOpeningHour(@PathVariable("day") DayOfWeek day, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime) throws IllegalArgumentException{
+	public OpeningHourDto createOpeningHour(@PathVariable("day") DayOfWeek day, 
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, 
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime) throws IllegalArgumentException{
 		OpeningHour openinghour = openinghourservice.createOpeningHour(day, Time.valueOf(startTime), Time.valueOf(endTime));
 		return convertToDto(openinghour);
 	}

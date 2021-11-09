@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,22 +59,85 @@ public class ShiftController {
      * @Author: Joris Ah-Kane
      * Create a shift
      */
-
+    
     @PostMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/"} )
     public ShiftDto createShiftDto(@PathVariable("shiftCode") Long shiftCode, 
-    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, 
-    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime,
-    @RequestParam DayOfWeek day, @RequestParam("applicationUser") ApplicationUser applicationUserDto) throws IllegalArgumentException{
+    @RequestParam String startTime, @RequestParam String endTime,
+    @RequestParam String day, @RequestParam("cardID") Long cardID) throws IllegalArgumentException{
 
-		Librarian l = librarianService.getLibrarianByID(applicationUserDto.getCardID());
-		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(applicationUserDto.getCardID());
+    	// convert string to enum type DayOfWeek
+    	Shift.DayOfWeek dayOfWeek = null;
+    	if (day.equalsIgnoreCase("Monday")) {
+    		dayOfWeek = Shift.DayOfWeek.Monday;
+    	}else if (day.equalsIgnoreCase("Tuesday")) {
+    		dayOfWeek = Shift.DayOfWeek.Tuesday;
+    	}else if (day.equalsIgnoreCase("Wednesday")) {
+    		dayOfWeek = Shift.DayOfWeek.Wednesday;
+    	}else if (day.equalsIgnoreCase("Thursday")) {
+    		dayOfWeek = Shift.DayOfWeek.Thursday;
+    	}else if (day.equalsIgnoreCase("Friday")) {
+    		dayOfWeek = Shift.DayOfWeek.Friday;
+    	}else if (day.equalsIgnoreCase("Saturday")) {
+    		dayOfWeek = Shift.DayOfWeek.Saturday;
+    	}else if (day.equalsIgnoreCase("Sunday")) {
+    		dayOfWeek = Shift.DayOfWeek.Sunday;
+    	}
+    		
+		Librarian l = librarianService.getLibrarianByID(cardID);
+		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(cardID);
 		ApplicationUser user = null;		
 		if (l != null) user = l; 
 		if (hl != null) user = hl; 
         //keep the user null if the user is a citizen
 
-		Shift shift = shiftService.createShift(shiftCode,Time.valueOf(startTime),Time.valueOf(endTime), day, user);
+		Shift shift = shiftService.createShift(shiftCode,Time.valueOf(startTime),Time.valueOf(endTime), dayOfWeek, user);
 		return convertToDto(shift);
+	}
+
+//    @PostMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/"} )
+//    public ShiftDto createShiftDto(@PathVariable("shiftCode") Long shiftCode, 
+//    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, 
+//    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime,
+//    @RequestParam String day, @RequestParam("cardID") Long cardID) throws IllegalArgumentException{
+//
+//    	// convert string to enum type DayOfWeek
+//    	Shift.DayOfWeek dayOfWeek = null;
+//    	if (day.equalsIgnoreCase("Monday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Monday;
+//    	}else if (day.equalsIgnoreCase("Tuesday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Tuesday;
+//    	}else if (day.equalsIgnoreCase("Wednesday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Wednesday;
+//    	}else if (day.equalsIgnoreCase("Thursday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Thursday;
+//    	}else if (day.equalsIgnoreCase("Friday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Friday;
+//    	}else if (day.equalsIgnoreCase("Saturday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Saturday;
+//    	}else if (day.equalsIgnoreCase("Sunday")) {
+//    		dayOfWeek = Shift.DayOfWeek.Sunday;
+//    	}
+//    		
+//		Librarian l = librarianService.getLibrarianByID(cardID);
+//		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(cardID);
+//		ApplicationUser user = null;		
+//		if (l != null) user = l; 
+//		if (hl != null) user = hl; 
+//        //keep the user null if the user is a citizen
+//
+//		Shift shift = shiftService.createShift(shiftCode,Time.valueOf(startTime),Time.valueOf(endTime), dayOfWeek, user);
+//		return convertToDto(shift);
+//	}
+    
+    
+    /*
+     * @Author: Joris Ah-Kane
+     * Delete a shift
+     */
+    @DeleteMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/" })
+	public void deleteLibrarian(@PathVariable("shiftCode") Long shiftCode) throws IllegalArgumentException {
+		Shift shift = shiftService.getShift(shiftCode);
+		shiftService.deleteShift(shift);
 	}
 
 	/*

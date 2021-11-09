@@ -18,7 +18,7 @@ public class ReservationDto {
 	  public ReservationDto(Long reservationID, ApplicationUserDto applicationUserDto, LibraryItemDto liDto) {
 		  this.reservationID = reservationID;
 		  this.libraryItemDto = liDto;
-		  this.ApplicationUserDto = ApplicationUserDto;
+		  this.ApplicationUserDto = applicationUserDto;
 	  }
 	  
 

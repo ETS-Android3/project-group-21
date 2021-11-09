@@ -80,7 +80,6 @@ public class LibraryItemService {
 		if (type == null || type.equals("")) {
 			throw new IllegalArgumentException("Item type cannot be empty.");
 		}
-		libraryItemRepository.delete(li);
 		li.setType(type);
 		libraryItemRepository.save(li);
 		return li;
@@ -91,7 +90,6 @@ public class LibraryItemService {
 		if (title == null || title.isBlank()) {
 			throw new IllegalArgumentException("Title cannot be empty.");
 		}
-		libraryItemRepository.delete(li);
 		li.setTitle(title);
 		libraryItemRepository.save(li);
 		return li;
@@ -102,7 +100,6 @@ public class LibraryItemService {
 		if (isReservable == null) {
 			throw new IllegalArgumentException("Must specify if the library item is reservable.");
 		}
-		libraryItemRepository.delete(li);
 		li.setIsReservable(isReservable);;
 		libraryItemRepository.save(li);
 		return li;
@@ -122,7 +119,6 @@ public class LibraryItemService {
 		if (!li.getIsReservable() && loanPeriod > 0) {
 			throw new IllegalArgumentException("Loan period for non-reservable item must be equal to 0.");
 		}
-		libraryItemRepository.delete(li);
 		li.setLoanPeriod(loanPeriod);;
 		libraryItemRepository.save(li);
 		return li;

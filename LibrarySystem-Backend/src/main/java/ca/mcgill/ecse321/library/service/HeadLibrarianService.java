@@ -106,7 +106,6 @@ public class HeadLibrarianService {
 		if(newname == null || newname.equals("")) {
 			throw new IllegalArgumentException("fullname can't be empty");
 		}
-		headLibrarianRepository.delete(hl);
 		hl.setFullName(newname);
 		headLibrarianRepository.save(hl);
 		return hl;
@@ -123,7 +122,6 @@ public class HeadLibrarianService {
 		if(newname == null || newname.equals("")) {
 			throw new IllegalArgumentException("username can't be empty");
 		}
-		headLibrarianRepository.delete(hl);
 		hl.setUsername(newname);
 		headLibrarianRepository.save(hl);
 		return hl;
@@ -140,10 +138,7 @@ public class HeadLibrarianService {
 	public HeadLibrarian editHeadLibrarianPassword(HeadLibrarian hl, String newpassword) {
 		if(newpassword == null || newpassword.equals("")) {
 			throw new IllegalArgumentException("password can't be empty");
-		}
-		
-		headLibrarianRepository.delete(hl);
-		
+		}		
 		hl.setPassword(newpassword);
 		headLibrarianRepository.save(hl);
 		
@@ -162,7 +157,6 @@ public class HeadLibrarianService {
 		if(newaddress == null || newaddress.equals("")) {
 			throw new IllegalArgumentException("address can't be empty");
 		}
-		headLibrarianRepository.delete(hl);
 		hl.setAddress(newaddress);
 		headLibrarianRepository.save(hl);
 		return hl;

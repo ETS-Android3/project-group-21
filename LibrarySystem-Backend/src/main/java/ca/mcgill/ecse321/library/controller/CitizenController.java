@@ -5,6 +5,7 @@ import java.util.List;
 
 import ca.mcgill.ecse321.library.dao.CitizenRepository;
 import ca.mcgill.ecse321.library.dto.CitizenDto;
+import ca.mcgill.ecse321.library.dto.LibrarianDto;
 import ca.mcgill.ecse321.library.models.Citizen;
 import ca.mcgill.ecse321.library.models.Librarian;
 import ca.mcgill.ecse321.library.service.CitizenService;
@@ -48,6 +49,11 @@ public class CitizenController {
         }
         return citizenDtos;
     }
+    
+	@GetMapping(value = { "/citizens/{cardID}\", \"/citizens/{cardID}/"})
+	public CitizenDto getCitizenById(@PathVariable("cardID") Long cardID) throws IllegalArgumentException{
+		return convertToDto(citizenService.getCitizenByID(cardID));
+	}
 
     @GetMapping(value = {"/citizens/{username}/{password}","/citizens/{username}/{password}/"})
     public CitizenDto getCitizenByUsernameAndPassword(@PathVariable String username, @PathVariable String password){
