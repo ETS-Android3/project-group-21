@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,8 +46,17 @@ public class ReservationController {
 	@Autowired
 	private HeadLibrarianService headLibrarianService;
 	
+	
+	/*
+	 * @author Chun Li
+	 * Create a ReservationDto
+	 * @param reservationID: a long representing the unique ID of a reservation
+	 * @param libraryItemDto: a libraryItemDto associated to this reservation
+	 * @param applicationUserDto: a applicationUserDto associated to this reservation
+	 */
 	@PostMapping(value = { "/reservations/{reservationID}", "/reservations/{reservationID}/" })
-	public ReservationDto createReservation(@RequestParam("reservationID") Long reservationID, @RequestParam("libraryItem") LibraryItemDto libraryItemDto,
+	public ReservationDto createReservation(@RequestParam("reservationID") Long reservationID, 
+			@RequestParam("libraryItem") LibraryItemDto libraryItemDto,
 			@RequestParam("applicationUser") ApplicationUser applicationUserDto)
 	throws IllegalArgumentException {
 		LibraryItem li = libraryItemService.getLibraryItem(libraryItemDto.getBarcode());
@@ -64,12 +74,21 @@ public class ReservationController {
 	}
 
 	
+	/*
+	 * @author Chun Li
+	 * Get a ReservationDto by reservationID
+	 * @param reservationID
+	 */
 	@GetMapping(value = { "/reservations/{reservationID}", "/reservations/{reservationID}/" })
 	public ReservationDto getReservationByBarcode(@PathVariable("reservationID") Long reservationID) throws IllegalArgumentException {
 		return convertToDto(reservationService.getReservation(reservationID));
 	}
 	
-	
+	/*
+	 * @author Chun Li
+	 * Get all ReservationDtos
+	 * @param reservationID
+	 */	
 	@GetMapping(value = { "/reservations", "/reservations/" })
 	public List<ReservationDto> getAllReservations() {
 		List<ReservationDto> reservationDtos = new ArrayList<>();
@@ -77,6 +96,17 @@ public class ReservationController {
 			reservationDtos.add(convertToDto(reservation));
 		}
 		return reservationDtos;
+	}
+	
+	/*
+	 * @author Chun Li
+	 * Delete a ReservationDto by reservationID
+	 * @param reservationID
+	 */	
+	@DeleteMapping(value = { "/reservations/{reservationID}", "/reservations/{reservationID}/" })
+	public void deleteReservation(@PathVariable("reservationID") Long reservationID) throws IllegalArgumentException {
+		Reservation reservation = reservationService.getReservation(reservationID);
+		reservationService.deleteReservation(reservation);
 	}
 	
 	
@@ -90,24 +120,40 @@ public class ReservationController {
 		return null;
 	}
 	
-	private ReservationDto convertToDto (Reservation r) {
-		if (r == null) {
+	/*
+	 * @author Chun Li
+	 * Convert a domain object of Reservation to a ReservationDto
+	 * @param Reservation : a domain object
+	 */
+	private ReservationDto convertToDto (Reservation reservation) {
+		if (reservation == null) {
 			throw new IllegalArgumentException("There is no such a rbrary item");
 		}
-		ApplicationUserDto userDto = convertToDto(r.getApplicationUser());		
-		LibraryItemDto liDto = convertToDto(r.getLibraryItem());
-		ReservationDto rDto = new ReservationDto(r.getReservationID(), userDto, liDto);
+		ApplicationUserDto userDto = convertToDto(reservation.getApplicationUser());		
+		LibraryItemDto liDto = convertToDto(reservation.getLibraryItem());
+		ReservationDto rDto = new ReservationDto(reservation.getReservationID(), userDto, liDto);
 		return rDto;
 	}
 	
-	private LibraryItemDto convertToDto (LibraryItem li) {
-		if (li == null) {
+	/*
+	 * @author Chun Li
+	 * Convert a domain object of LibraryItem to a LibraryItemDto
+	 * @param LibraryItem : a domain object
+	 */
+	private LibraryItemDto convertToDto (LibraryItem libraryItem) {
+		if (libraryItem == null) {
 			throw new IllegalArgumentException("There is no such a library item");
 		}
-		LibraryItemDto libraryItemDto = new LibraryItemDto(li.getBarcode(), li.getType(), li.getTitle(), li.getIsReservable(), li.getIsReserved(), li.getLoanPeriod());
+		LibraryItemDto libraryItemDto = new LibraryItemDto(libraryItem.getBarcode(), libraryItem.getType(), 
+				libraryItem.getTitle(), libraryItem.getIsReservable(), libraryItem.getIsReserved(), libraryItem.getLoanPeriod());
 		return libraryItemDto;
 	}
 	
+	/*
+	 * @author Chun Li
+	 * Convert a domain object of ApplicationUser to a ApplicationUserDto
+	 * @param ApplicationUser : a domain object
+	 */
 	private ApplicationUserDto convertToDto (ApplicationUser user) {
 		if (user == null) {
 			throw new IllegalArgumentException("There is no such an application user");

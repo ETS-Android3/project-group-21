@@ -65,11 +65,6 @@ public class LibrarianController {
 		return convertToDto(librarianService.getLibrarianByID(cardID));
 	}
 
-	/*
-	 * @Author: Yujin li
-	 * helper method that convert DTO to librarian
-	 * @param aLibrarianDto
-	 */
 	
 	
 //	@PatchMapping(value = { "/librarians/{cardID}", "/librarians/{cardID}/" })
@@ -80,14 +75,22 @@ public class LibrarianController {
 //	}
 	
 	
+	/*
+	 * @Author: Yujin li
+	 * get Librarian with a provided ID
+	 * @param cardID
+	 */
 	@DeleteMapping(value = { "/librarians/{cardID}", "/librarians/{cardID}/" })
-	public void deleteAppointmentReminder(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
-
+	public void deleteLibrarian(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
 		Librarian librarian = librarianService.getLibrarianByID(cardID);
 		librarianService.deleteLibrarian(librarian);
 	}
 	
-	
+	/*
+	 * @Author: Yujin li
+	 * helper method that convert DTO to librarian
+	 * @param aLibrarianDto
+	 */
 	private Librarian convertToDomainObject(LibrarianDto hDto) {
 		List<Librarian> allLibrarians = librarianService.getAllLibrarian();
 		for (Librarian Librarian : allLibrarians) {

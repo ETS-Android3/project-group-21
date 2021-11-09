@@ -6,11 +6,13 @@ import java.util.List;
 import ca.mcgill.ecse321.library.dao.CitizenRepository;
 import ca.mcgill.ecse321.library.dto.CitizenDto;
 import ca.mcgill.ecse321.library.models.Citizen;
+import ca.mcgill.ecse321.library.models.Librarian;
 import ca.mcgill.ecse321.library.service.CitizenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,7 +67,11 @@ public class CitizenController {
         return citizenDto;
     }
 
-    
+	@DeleteMapping(value = { "/citizens/{cardID}\", \"/citizens/{cardID}/" })
+	public void deleteCitizen(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
+		Citizen citizen = citizenService.getCitizenByID(cardID);
+		citizenService.deletCitizen(citizen);
+	}
     
     
 //    @PutMapping("/citizens/{cardID}")

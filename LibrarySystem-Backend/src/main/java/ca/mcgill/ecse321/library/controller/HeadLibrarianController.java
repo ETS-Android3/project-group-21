@@ -66,24 +66,24 @@ public class HeadLibrarianController {
 		return convertToDto(headLibrarianService.getHeadLibrarianByID(cardID));
 	}
 
-
-
-
+	
 	/*
 	 * @Author: Yujin li
-	 * helper method that convert DTO to headlibrarian
-	 * @param aHeadLibrarianDto
+	 * delete HeadLibrarian with a provided ID
+	 * @param cardID
 	 */
-	
-	
 	@DeleteMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
-	public void deleteAppointmentReminder(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
+	public void deleteHeadLibrarian(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
 		HeadLibrarian headLibrarian = headLibrarianService.getHeadLibrarianByID(cardID);
 		headLibrarianService.deleteHeadLibrarian(headLibrarian);
 	}	
 	
 	
-	
+	/*
+	 * @Author: Yujin li
+	 * helper method that convert DTO to headlibrarian
+	 * @param aHeadLibrarianDto
+	 */
 	private HeadLibrarian convertToDomainObject(HeadLibrarianDto hDto) {
 		List<HeadLibrarian> allHeadLibrarians = headLibrarianService.getAllHeadLibrarian();
 		for (HeadLibrarian headlibrarian : allHeadLibrarians) {
