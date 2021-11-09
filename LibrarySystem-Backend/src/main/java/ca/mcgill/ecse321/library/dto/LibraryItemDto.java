@@ -14,6 +14,9 @@ public class LibraryItemDto {
 	  private boolean isReserved;
 	  private int loanPeriod;
 
+	  public LibraryItemDto() {
+		  
+	  }
 	  
 	  public LibraryItemDto(Long barcode) {
 		  this(barcode, ItemType.Book, "title", true, false, 21);

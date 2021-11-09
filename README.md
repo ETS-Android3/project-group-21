@@ -38,11 +38,11 @@ In this deliverable, we are required to implement the Dto package, the correspon
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
 | :---              |    :---:    |          ---: |
-| Dania Pennimpede  | Software Developer, Testing, Documentation       | 0 hrs        |
-| Joris Ah-Kane     | Software Developer, Testing, Documentation       | 0 hrs        |
-| Chun Li           | Software Developer, Testing, Documentation, Project manager     | 0 hrs        |
-| Yujin Li          | Software Developer, Testing, Documentation       | 0 hrs        |
-| Kaifan Zheng      | Software Developer, Testing, Documentation       | 0 hrs           |
+| Dania Pennimpede  | Software Developer for OpeningHour, Corresponding Testing, Documentation       | 0 hrs        |
+| Joris Ah-Kane     | Software Developer for Shift, Testing, Corresponding Documentation       | 0 hrs        |
+| Chun Li           | Software Developer for LibraryItems and Reservation, Corresponding Testing, Couverage report, Integration testing, Documentation, Project manager     | 12 hrs        |
+| Yujin Li          | Software Developer for HeadLibrarian and Librarian, Corresponding Testing, Integration testing, Documentation, wiki page       | 10 hrs        |
+| Kaifan Zheng      | Software Developer for Citizen, Corresponding Testing, Documentation       | 0 hrs           |
 
 # Changes
 Here are the [changes](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#changes) made before Deliverable 2.

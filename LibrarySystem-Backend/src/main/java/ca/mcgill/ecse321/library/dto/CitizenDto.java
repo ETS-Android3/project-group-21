@@ -6,6 +6,11 @@ public class CitizenDto extends ApplicationUserDto{
 	private Double balance;
 	private Boolean onlineAccountActivated;
 	
+	
+	public CitizenDto() {
+		
+	}
+	
 	public CitizenDto(Long ID) {
 		//initial default value of info other then key info
 		this(ID,"cizien","N/A","bookworm","password", false,0.0, false);

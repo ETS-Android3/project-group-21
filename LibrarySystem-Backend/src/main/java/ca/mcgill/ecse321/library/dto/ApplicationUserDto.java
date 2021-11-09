@@ -12,9 +12,9 @@ public class ApplicationUserDto {
 	private Long ID;
 
 	
-//	public ApplicationUserDto() {
-//		//empty
-//	}
+	public ApplicationUserDto() {
+
+	}
 	
 	public ApplicationUserDto(Long ID) {
 		//initial default value of info other then key info

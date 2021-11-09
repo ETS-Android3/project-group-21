@@ -9,7 +9,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.lenient;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,6 @@ import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.library.dao.CitizenRepository;
 import ca.mcgill.ecse321.library.models.Citizen;
-
 
 @ExtendWith(MockitoExtension.class)
 public class TestCitizenService {

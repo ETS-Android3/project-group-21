@@ -11,6 +11,10 @@ public class OpeningHourDto {
 	  private Time endTime;
 	  private DayOfWeek day;
 	  
+	  /*
+	   * @Author: Dania Pennimpede
+	   * Create different opening hour dto methods using different inputs
+	   */
 	  public OpeningHourDto() {
 		  
 	  }
@@ -26,14 +30,27 @@ public class OpeningHourDto {
 		  
 	  }
 	  
-	public DayOfWeek getDay() {
+	  /*
+	   * @Author: Dania Pennimpede
+	   * Get the day of the opening hour
+	   */
+	  
+	  public DayOfWeek getDay() {
 		  return day;
 	  }
 	  
+	  /*
+	   * @Author: Dania Pennimpede
+	   * Get the start time of the opening hour
+	   */
 	  public Time getStartTime() {
 		  return startTime;
 	  }
 	  
+	  /*
+	   * @Author: Dania Pennimpede
+	   * Get the end time of the opening hour
+	   */
 	  public Time getEndTime() {
 		  return endTime;
 	  }
