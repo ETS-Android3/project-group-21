@@ -133,6 +133,40 @@ public class LibraryItemController {
 		libraryItemService.updateLibraryItemTitle(libraryItem, title);
 		return convertToDto(libraryItem);
 	}
+
+	@PatchMapping(value = { "/libraryitems/{barcode}/{isReservable}", "/libraryitems/{barcode}/{isReservable}/" })
+	public LibraryItemDto editLibraryItemisReservable(@PathVariable("barcode") Long barcode, @PathVariable("isReservable") boolean isReservable) throws IllegalArgumentException {
+		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
+		libraryItemService.updateLibraryItemIsReservable(libraryItem, isReservable);
+		return convertToDto(libraryItem);
+	}
+
+	@PatchMapping(value = { "/libraryitems/{barcode}/{type}", "/libraryitems/{barcode}/{type}/" })
+	public LibraryItemDto editLibraryItemType(@PathVariable("barcode") Long barcode, @PathVariable("type") String type) throws IllegalArgumentException {
+		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
+		LibraryItem.ItemType itemType = null;
+		if (type.equalsIgnoreCase("book")){
+			itemType = LibraryItem.ItemType.Book;
+		}else if (type.equalsIgnoreCase("movie")){
+			itemType = LibraryItem.ItemType.Movie;
+		}else if (type.equalsIgnoreCase("music")){
+			itemType = LibraryItem.ItemType.Music;
+		}else if (type.equalsIgnoreCase("archive")){
+			itemType = LibraryItem.ItemType.Archive;
+		}else if (type.equalsIgnoreCase("newspaper")){
+			itemType = LibraryItem.ItemType.Newspaper;
+		}
+		libraryItemService.updateLibraryItemType(libraryItem,itemType);
+		
+		return convertToDto(libraryItem);
+	}
+	
+	@PatchMapping(value = { "/libraryitems/{barcode}/{loanPeriod}", "/libraryitems/{barcode}/{loanPeriod}/" })
+	public LibraryItemDto editLibraryItemLoanPeriod(@PathVariable("barcode") Long barcode, @PathVariable("loanPeriod") Integer loanPeriod) throws IllegalArgumentException {
+		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
+		libraryItemService.updateLibraryItemLoanPeriod(libraryItem, loanPeriod);
+		return convertToDto(libraryItem);
+	}
 	
 	
 	
