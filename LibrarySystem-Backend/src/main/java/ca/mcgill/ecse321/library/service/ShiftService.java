@@ -80,72 +80,28 @@ public class ShiftService {
 		return shift;
 	}
 
+    //update all the parameters in one shot because it is more logical to implement with in interface afterwards
     @Transactional
-    public Shift updateShiftStartTime (Shift aShift, Time startTime){
+    public Shift updateShift(Shift aShift, Time startTime, Time endTime, DayOfWeek day, ApplicationUser user){
         if (aShift == null){
             throw new IllegalArgumentException("Input shift cannot be null");
         }
 
-        if (startTime == null){
+        if (startTime == null) {
             throw new IllegalArgumentException ("Shift must have a starting time");
         }
 
-        Time endTime = aShift.getEndTime();
-
-        if (startTime.after(endTime)){
-            throw new IllegalArgumentException ("Shift end time cannot be before its start time");
-        }
-
-        shiftRepository.delete(aShift);
-        aShift.setStartTime(startTime);
-        shiftRepository.save(aShift);
-        return aShift;
-    }
-
-    @Transactional
-    public Shift updateShiftEndTime (Shift aShift, Time endTime){
-        if (aShift == null){
-            throw new IllegalArgumentException("Input shift cannot be null");
-        }
-
-        if (endTime == null){
+        if (endTime == null) {
             throw new IllegalArgumentException ("Shift must have a ending time");
         }
 
-
-        Time startTime=aShift.getStartTime();
+        if (day == null) {
+            throw new IllegalArgumentException ("Shift must be on a day of the week");
+        }
 
         if (endTime != null && startTime != null && endTime.before(startTime)) {
 	        throw new IllegalArgumentException ("Shift end time cannot be before its start time");
 	    }
-
-        shiftRepository.delete(aShift);
-        aShift.setEndTime(endTime);
-        shiftRepository.save(aShift);
-        return aShift;
-    }
-    
-    @Transactional
-    public Shift updateShiftDay (Shift aShift, DayOfWeek day){
-        if (aShift == null){
-            throw new IllegalArgumentException("Input shift cannot be null");
-        }
-
-        if (day == null){
-            throw new IllegalArgumentException ("Shift must be on a day of the week");
-        }
-
-        shiftRepository.delete(aShift);
-        aShift.setDay(day);
-        shiftRepository.save(aShift);
-        return aShift;
-    }
-
-    @Transactional
-    public Shift updateShiftEmployee (Shift aShift, ApplicationUser user){
-        if (aShift == null){
-            throw new IllegalArgumentException("Input shift cannot be null");
-        }
 
         if (user == null){
             throw new IllegalArgumentException ("ApplicationUser cannot be empty");
@@ -155,8 +111,13 @@ public class ShiftService {
         if (!(user instanceof Librarian || user instanceof HeadLibrarian)){
             throw new IllegalArgumentException ("Shifts can only be assigned to Librarians or the Headlibrarian");
         }
-
+        
         shiftRepository.delete(aShift);
+        aShift.setStartTime(startTime);
+        aShift.setEndTime(endTime);
+        aShift.setDay(day);
+        //aShift.setShiftCode(shiftCode);
+        //if we want to update a shift then the shift code is the only onstant normally
         aShift.setApplicationUser(user);
         shiftRepository.save(aShift);
         return aShift;

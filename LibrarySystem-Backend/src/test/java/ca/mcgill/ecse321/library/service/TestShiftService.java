@@ -265,9 +265,9 @@ public class TestShiftService {
     //--------------------------------------TEST UPDATE------------------------------------------
     //-------------------------------------------------------------------------------------------
 
-    //---------------------------------------DAY UPDATE------------------------------------------
+	//----------------------------------SHIFT UPDATE SUCCESS--------------------------------------
     @Test
-	public void testUpdateShiftDay() {
+	public void testUpdateShift() {
 		
 		DayOfWeek day = DayOfWeek.Tuesday;
 		LocalTime startTime = LocalTime.parse("09:00");
@@ -279,34 +279,50 @@ public class TestShiftService {
 		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
 		
 		Shift S2 = null;
+		Time startTime2 =  Time.valueOf(LocalTime.parse("06:30"));
+		Time endTime2 =  Time.valueOf(LocalTime.parse("11:30"));
 		DayOfWeek day2 = DayOfWeek.Saturday;
+		ApplicationUser applicationUser2 = new HeadLibrarian();
 		
 		try {
-			S2 = service.updateShiftDay(S1, day2);
+			S2 = service.updateShift(S1, startTime2, endTime2, day2, applicationUser2);
 		} catch(IllegalArgumentException e) {
 		 	fail();
 		}
 		
 		assertNotNull(S2);
+		assertEquals(startTime2,S2.getStartTime());
+		assertEquals(endTime2, S2.getEndTime());
 		assertEquals(day2, S2.getDay());
+		assertEquals(applicationUser2, S2.getApplicationUser());
+		assertEquals(shiftCode,S2.getShiftCode()); //Unchanged
 	}
 
-    public void testUpdateShiftDayNullShift(){
-		Shift S1 = null;
+	//----------------------------------NULL SHIFT UPDATE FAIL---------------------------------------
 
+	@Test
+	public void testUpdateShiftNoShift(){
+		Shift S1 = null;
+		
 		Shift S2 = null;
-		Shift.DayOfWeek day2 = null;
+		Time startTime2 =  Time.valueOf(LocalTime.parse("06:30"));
+		Time endTime2 =  Time.valueOf(LocalTime.parse("11:30"));
+		DayOfWeek day2 = DayOfWeek.Saturday;
+		ApplicationUser applicationUser2 = new HeadLibrarian();
+		
 		String error = "";
 		try {
-			S2 = service.updateShiftDay(S1, day2);
+			S2 = service.updateShift(S1, startTime2, endTime2, day2, applicationUser2);
 		} catch(IllegalArgumentException e) {
-            error = e.getMessage();
+			error = e.getMessage();
 		}
-		//we expect a fail
 		assertNull(S2);
 		assertEquals(error, "Input shift cannot be null");
-    }
     
+	}
+	//---------------------------------------DAY UPDATE FAIL---------------------------------------
+
+	@Test
     public void testUpdateShiftDayNullDay(){
         DayOfWeek day = DayOfWeek.Tuesday;
 		LocalTime startTime = LocalTime.parse("09:00");
@@ -321,7 +337,7 @@ public class TestShiftService {
 		Shift.DayOfWeek day2 = null;
 		String error = "";
 		try {
-			S2 = service.updateShiftDay(S1, day2);
+			S2 = service.updateShift(S1, Time.valueOf(startTime), Time.valueOf(endTime), day2, applicationUser);
 		} catch(IllegalArgumentException e) {
             error = e.getMessage();
 		}
@@ -330,51 +346,10 @@ public class TestShiftService {
 		assertEquals(error, "Shift must be on a day of the week");
     }
 
-    //--------------------------------------START TIME UPDATE--------------------------------------
-    @Test
-	public void testUpdateShiftStartTime() {
-		
-		DayOfWeek day = DayOfWeek.Tuesday;
-		LocalTime startTime = LocalTime.parse("09:00");
-		LocalTime endTime = LocalTime.parse("10:30");
-        Long shiftCode = 123L;
-		ApplicationUser applicationUser = new Librarian();
-
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
-		
-		Shift S2 = null;
-		Time startTime2 = Time.valueOf(LocalTime.parse("08:30"));
-		
-		try {
-			S2 = service.updateShiftStartTime(S1, startTime2);
-		} catch(IllegalArgumentException e) {
-            fail();
-		}
-		
-		assertNotNull(S2);
-		assertEquals(startTime2, S2.getStartTime());
-	}
+    //------------------------------START AND END TIMES UPDATE FAILS--------------------------------------
 
     @Test
-	public void testUpdateShiftStartTimeNullShift() {
-	
-		Shift S1 = null;
-
-		Shift S2 = null;
-		Time startTime2 = Time.valueOf(LocalTime.parse("08:30"));
-		String error = "";
-		try {
-			S2 = service.updateShiftStartTime(S1, startTime2);
-		} catch(IllegalArgumentException e) {
-            error = e.getMessage();
-		}
-		
-		assertNull(S2);
-		assertEquals(error, "Input shift cannot be null");
-	}
-
-    @Test
-	public void testUpdateShiftStartTimeNullTime() {
+	public void testUpdateShiftNullStartTime() {
 		
 		DayOfWeek day = DayOfWeek.Tuesday;
 		LocalTime startTime = LocalTime.parse("09:00");
@@ -388,7 +363,7 @@ public class TestShiftService {
 		Time startTime2 =  null;
 		String error = "";
 		try {
-			S2 = service.updateShiftStartTime(S1, startTime2);
+			S2= service.updateShift(S1, startTime2, Time.valueOf(endTime), day, applicationUser);
 		} catch(IllegalArgumentException e) {
             error = e.getMessage();
 		}
@@ -398,76 +373,7 @@ public class TestShiftService {
 	}
 
     @Test
-	public void testUpdateShiftStartTimeWrongTime() {
-		DayOfWeek day = DayOfWeek.Tuesday;
-		LocalTime startTime = LocalTime.parse("09:00");
-		LocalTime endTime = LocalTime.parse("10:30");
-        Long shiftCode = 123L;
-		ApplicationUser applicationUser = new Librarian();
-
-		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
-		
-		Shift S2 = null;
-		Time startTime2 =  Time.valueOf(LocalTime.parse("12:30"));
-		String error = "";
-		try {
-			S2 = service.updateShiftStartTime(S1, startTime2);
-		} catch(IllegalArgumentException e) {
-            error = e.getMessage();
-		}
-		
-		assertNull(S2);
-		assertEquals(error, "Shift end time cannot be before its start time");
-	}
-
-    //---------------------------------------END TIME UPDATE----------------------------------------
-
-    @Test
-	public void testUpdateShiftEndTime() {
-		
-		DayOfWeek day = DayOfWeek.Tuesday;
-		LocalTime startTime = LocalTime.parse("09:00");
-		LocalTime endTime = LocalTime.parse("10:30");
-        Long shiftCode = 123L;
-		ApplicationUser applicationUser = new Librarian();
-
-		
-		Shift S1 = service.createShift(shiftCode, Time.valueOf(startTime), Time.valueOf(endTime), day, applicationUser);
-		
-		Shift S2 = null;
-		Time endTime2 = Time.valueOf(LocalTime.parse("12:30"));
-		
-		try {
-			S2 = service.updateShiftEndTime(S1, endTime2);
-		} catch(IllegalArgumentException e) {
-            fail();
-		}
-		
-		assertNotNull(S2);
-		assertEquals(endTime2, S2.getEndTime());
-	}
-
-    @Test
-	public void testUpdateShiftEndTimeNullShift() {
-	
-		Shift S1 = null;
-
-		Shift S2 = null;
-		Time endTime2 = Time.valueOf(LocalTime.parse("12:30"));
-		String error = "";
-		try {
-			S2 = service.updateShiftEndTime(S1, endTime2);
-		} catch(IllegalArgumentException e) {
-            error = e.getMessage();
-		}
-		
-		assertNull(S2);
-		assertEquals(error, "Input shift cannot be null");
-	}
-
-    @Test
-	public void testUpdateShiftEndTimeNullTime() {
+	public void testUpdateShiftNullEndTime() {
 		
 		DayOfWeek day = DayOfWeek.Tuesday;
 		LocalTime startTime = LocalTime.parse("09:00");
@@ -481,7 +387,7 @@ public class TestShiftService {
 		Time endTime2 =  null;
 		String error = "";
 		try {
-			S2 = service.updateShiftEndTime(S1, endTime2);
+			S2= service.updateShift(S1, Time.valueOf(startTime), endTime2, day, applicationUser);
 		} catch(IllegalArgumentException e) {
             error = e.getMessage();
 		}
@@ -491,7 +397,7 @@ public class TestShiftService {
 	}
 
     @Test
-	public void testUpdateShiftEndTimeWrongTime() {
+	public void testUpdateShiftWrongTime() {
 		DayOfWeek day = DayOfWeek.Tuesday;
 		LocalTime startTime = LocalTime.parse("09:00");
 		LocalTime endTime = LocalTime.parse("10:30");
@@ -504,7 +410,7 @@ public class TestShiftService {
 		Time endTime2 =  Time.valueOf(LocalTime.parse("08:30"));
 		String error = "";
 		try {
-			S2 = service.updateShiftEndTime(S1, endTime2);
+			S2= service.updateShift(S1, Time.valueOf(startTime), endTime2, day, applicationUser);
 		} catch(IllegalArgumentException e) {
             error = e.getMessage();
 		}
@@ -513,55 +419,10 @@ public class TestShiftService {
 		assertEquals(error, "Shift end time cannot be before its start time");
 	}
 
-	//-------------------------------------ASSOCIATED EMPLOYEE------------------------------------
-
+	//----------------------------ASSOCIATED EMPLOYEE UPDATE FAILS------------------------------------
+	
 	@Test
-	public void testUpdateShiftEmployee(){
-		Long shiftCode = 123L;
-		Time startTime = Time.valueOf("06:00:00");
-		Time endTime = Time.valueOf("12:30:00");
-        DayOfWeek day = DayOfWeek.Monday;
-		ApplicationUser applicationUser = new Librarian();
-
-        Shift S1 = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
-        Shift S2 = null;
-		ApplicationUser applicationUser2 = new HeadLibrarian();
-		
-		try {
-			S2 = service.updateShiftEmployee(S1, applicationUser2);
-		} catch(IllegalArgumentException e) {
-            fail();
-		}
-		
-		assertNotNull(S2);
-		assertEquals(applicationUser2, S2.getApplicationUser());
-	}
-
-	@Test
-	public void testUpdateShiftEmployeeNullUser(){
-		Long shiftCode = 123L;
-		Time startTime = Time.valueOf("06:00:00");
-		Time endTime = Time.valueOf("12:30:00");
-        DayOfWeek day = DayOfWeek.Monday;
-		ApplicationUser applicationUser = new Librarian();
-
-        Shift S1 = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
-        Shift S2 = null;
-		ApplicationUser applicationUser2 = null;
-		String error = "";
-
-		try {
-			S2 = service.updateShiftEmployee(S1, applicationUser2);
-		} catch(IllegalArgumentException e) {
-            error = e.getMessage();
-		}
-		
-		assertNull(S2);
-		assertEquals(error, "ApplicationUser cannot be empty");
-	}
-
-	@Test
-	public void testUpdateShiftEmployeeWrongUser(){
+	public void testUpdateShiftWrongUser(){
 		Long shiftCode = 123L;
 		Time startTime = Time.valueOf("06:00:00");
 		Time endTime = Time.valueOf("12:30:00");
@@ -574,12 +435,35 @@ public class TestShiftService {
 		String error = "";
 
 		try {
-			S2 = service.updateShiftEmployee(S1, applicationUser2);
+			S2= service.updateShift(S1, startTime, endTime, day, applicationUser2);
 		} catch(IllegalArgumentException e) {
             error = e.getMessage();
 		}
 		
 		assertNull(S2);
 		assertEquals(error, "Shifts can only be assigned to Librarians or the Headlibrarian");
+	}
+
+	@Test
+	public void testUpdateShiftNullUser(){
+		Long shiftCode = 123L;
+		Time startTime = Time.valueOf("06:00:00");
+		Time endTime = Time.valueOf("12:30:00");
+        DayOfWeek day = DayOfWeek.Monday;
+		ApplicationUser applicationUser = new Librarian();
+
+        Shift S1 = service.createShift(shiftCode, startTime, endTime, day, applicationUser);
+        Shift S2 = null;
+		ApplicationUser applicationUser2 = null;
+		String error = "";
+
+		try {
+			S2= service.updateShift(S1, startTime, endTime, day, applicationUser2);
+		} catch(IllegalArgumentException e) {
+            error = e.getMessage();
+		}
+		
+		assertNull(S2);
+		assertEquals(error, "ApplicationUser cannot be empty");
 	}
 }
