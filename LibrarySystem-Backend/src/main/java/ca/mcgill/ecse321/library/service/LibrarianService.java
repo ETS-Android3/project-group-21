@@ -12,8 +12,6 @@ import ca.mcgill.ecse321.library.models.*;
 
 @Service
 public class LibrarianService {
-	@Autowired
-	ca.mcgill.ecse321.library.dao.LibrarianRepository librarianRepository;
 
 	/*
 	 * @Author: Yujin li
@@ -24,6 +22,8 @@ public class LibrarianService {
 	 * @param address
 	 * @param cardID
 	 */
+	@Autowired
+	LibrarianRepository librarianRepository;
 	
 	@Transactional
 	public Librarian createLibrarian (String fullname, String userName, String password, String address, Long cardID) {

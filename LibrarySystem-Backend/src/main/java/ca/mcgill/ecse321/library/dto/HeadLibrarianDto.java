@@ -7,6 +7,10 @@ import ca.mcgill.ecse321.library.models.Shift;
  */
 public class HeadLibrarianDto extends ApplicationUserDto{
 	
+	public HeadLibrarianDto() {
+		
+	}
+	
 	public HeadLibrarianDto(Long cardID) {
 		this(cardID,"head librarian","N/A","bookworm","password");
 	}

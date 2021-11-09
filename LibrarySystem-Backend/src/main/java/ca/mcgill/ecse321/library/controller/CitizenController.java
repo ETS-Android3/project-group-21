@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.library.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.mcgill.ecse321.library.dao.CitizenRepository;
 import ca.mcgill.ecse321.library.dto.CitizenDto;
 import ca.mcgill.ecse321.library.models.Citizen;
 import ca.mcgill.ecse321.library.service.CitizenService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +36,8 @@ public class CitizenController {
                 citizen.getOnlineAccountActivated());
         return citizenDto;
     }
-    //----------------------------
+
+
     @GetMapping(value = {"/citizens","/citizens/"})
     public List<CitizenDto> getCitizens(){
         List<CitizenDto> citizenDtos = new ArrayList<>();
@@ -51,16 +55,29 @@ public class CitizenController {
         return convertToDto(citizenService.getCitizenByUsernameAndPassword(username,password));
     }
 
-    @PostMapping(value = {"/add/car", "/add/car/"})
-    public CitizenDto createCitizen(@RequestParam String username, @RequestParam String password,@RequestParam String fullname,@RequestParam String address, @RequestParam Boolean onlineAccountActicated,
-                                    @RequestParam Boolean isLocal,@RequestParam Double balance,@RequestParam Long cardID){
-        Citizen aCitizen = citizenService.creatCitizen(fullname,username,password,address,onlineAccountActicated,
+    @PostMapping(value = {"/citizens/{cardID}", "/citizens/{cardID}/"})
+    public CitizenDto createCitizen(@PathVariable Long cardID, @RequestParam String username, @RequestParam String password,@RequestParam String fullname,
+    		@RequestParam String address, @RequestParam Boolean onlineAccountActivated,
+            @RequestParam Boolean isLocal,@RequestParam Double balance){
+        Citizen aCitizen = citizenService.creatCitizen(fullname,username,password,address,onlineAccountActivated,
                 isLocal,balance, cardID);
         CitizenDto citizenDto = convertToDto(aCitizen);
         return citizenDto;
     }
 
-    @PatchMapping(value = {"/edit/citizen/{fullName}","/edit/citizen/{fullName}/"})
+    
+    
+    
+//    @PutMapping("/citizens/{cardID}")
+//    public ResponseEntity<?> saveCitizen(@RequestBody Citizen citizen,
+//      @PathVariable("cardID") String cardID) {
+//        CitizenRepository citizenRepository;
+//        Long id = Long.parseLong(cardID);
+//		citizenRepository.save(citizen);
+//        return ResponseEntity.ok("resource saved");
+//    }
+    
+    @PatchMapping(value = {"/citizens/{fullName}","/citizens/{fullName}/"})
     public ResponseEntity<?> editCitizenFullName(@PathVariable("cardID") Long cardID, @RequestParam String fullName){
         Citizen citizen = null;
         try{
@@ -71,7 +88,7 @@ public class CitizenController {
         }
         return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
     }
-    @PatchMapping(value = {"/edit/citizen/{userName}","/edit/citizen/{userName}/"})
+    @PatchMapping(value = {"/citizens/{userName}","/citizens/{userName}/"})
     public ResponseEntity<?> editCitizenUserName(@PathVariable("cardID") Long cardID, @RequestParam String userName){
         Citizen citizen = null;
         try{
@@ -83,7 +100,8 @@ public class CitizenController {
         return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = {"/edit/citizen/{password}","/edit/citizen/{password}/"})
+    
+    @PatchMapping(value = {"/citizens/{password}","/citizens/{password}/"})
     public ResponseEntity<?> editCitizenPassword(@PathVariable("cardID") Long cardID, @RequestParam String password){
         Citizen citizen = null;
         try{
@@ -95,7 +113,7 @@ public class CitizenController {
         return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = {"/edit/citizen/{address}","/edit/citizen/{address}/"})
+    @PatchMapping(value = {"/citizens/{address}","/citizens/{address}/"})
     public ResponseEntity<?> editCitizenAddress(@PathVariable("cardID") Long cardID, @RequestParam String address){
         Citizen citizen = null;
         try{
@@ -107,7 +125,7 @@ public class CitizenController {
         return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = {"/edit/citizen/{onlineAccountActivated}","/edit/citizen/{onlineAccountActivated}/"})
+    @PatchMapping(value = {"/citizens/{onlineAccountActivated}","/citizens/{onlineAccountActivated}/"})
     public ResponseEntity<?> editCitizenOnlineAccountActivated(@PathVariable("cardID") Long cardID, @RequestParam Boolean onlineAccountActivated){
         Citizen citizen = null;
         try{
@@ -119,7 +137,7 @@ public class CitizenController {
         return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = {"/edit/citizen/{isLocal}","/edit/citizen/{isLocal}/"})
+    @PatchMapping(value = {"/citizens/{isLocal}","/citizens/{isLocal}/"})
     public ResponseEntity<?> editCitizenisLocal(@PathVariable("cardID") Long cardID, @RequestParam Boolean isLocal){
         Citizen citizen = null;
         try{
@@ -131,7 +149,7 @@ public class CitizenController {
         return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = {"/edit/citizen/{balance}","/edit/citizen/{balance}/"})
+    @PatchMapping(value = {"/citizens/{balance}","/citizens/{balance}/"})
     public ResponseEntity<?> editCitizenBalance(@PathVariable("cardID") Long cardID, @RequestParam Double balance){
         Citizen citizen = null;
         try{

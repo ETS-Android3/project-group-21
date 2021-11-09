@@ -7,6 +7,10 @@ import ca.mcgill.ecse321.library.models.Shift;
  */
 public class LibrarianDto extends ApplicationUserDto{
 	
+	public LibrarianDto() {
+		
+	}
+	
 	public LibrarianDto(Long cardID) {
 		this(cardID,"librarian","N/A","bookworm","password");
 	}

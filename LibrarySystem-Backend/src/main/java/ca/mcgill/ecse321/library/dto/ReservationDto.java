@@ -7,6 +7,10 @@ public class ReservationDto {
 	  private ApplicationUserDto ApplicationUserDto;
 	  private LibraryItemDto libraryItemDto;
 
+	  public ReservationDto() {
+		  
+	  }
+	  
 	  public ReservationDto(Long reservationID) {
 		  this(reservationID, null, null);
 	  }

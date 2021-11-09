@@ -45,7 +45,7 @@ public class LibraryItemController {
 	
 	
 	@PostMapping(value = { "/libraryItems/{barcode}", "/libraryItems/{barcode}/" })
-	public LibraryItemDto createLibraryItem(@RequestParam("barcode") Long barcode, @RequestParam("type") LibraryItem.ItemType type,
+	public LibraryItemDto createLibraryItem(@PathVariable("barcode") Long barcode, @RequestParam("type") LibraryItem.ItemType type,
 			@RequestParam("title") String title, @RequestParam("isReservable") Boolean isReservable, 
 			@RequestParam("isReserved") Boolean isReserved, @RequestParam("loanPeriod") Integer loanPeriod)
 	throws IllegalArgumentException {

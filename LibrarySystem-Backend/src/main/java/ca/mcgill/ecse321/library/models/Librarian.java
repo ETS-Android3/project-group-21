@@ -7,7 +7,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "librarian")
+//@Table(name = "librarian")
 public class Librarian extends ApplicationUser
 {
 

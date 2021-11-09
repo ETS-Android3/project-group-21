@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,6 @@ public class HeadLibrarianController {
 	private HeadLibrarianService headLibrarianService;
 
 
-
 	/*
 	 * @Author: Yujin li
 	 * create a HeadLibrarian
@@ -34,6 +34,7 @@ public class HeadLibrarianController {
 	 * @param address
 	 * @param cardID
 	 */
+
 	@PostMapping(value= {"/headlibrarians/{cardID}","/headlibrarians/{cardID}/"})
 	public HeadLibrarianDto createHeadLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String Address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
@@ -73,6 +74,16 @@ public class HeadLibrarianController {
 	 * helper method that convert DTO to headlibrarian
 	 * @param aHeadLibrarianDto
 	 */
+	
+	
+	@DeleteMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
+	public void deleteAppointmentReminder(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
+		HeadLibrarian headLibrarian = headLibrarianService.getHeadLibrarianByID(cardID);
+		headLibrarianService.deleteHeadLibrarian(headLibrarian);
+	}	
+	
+	
+	
 	private HeadLibrarian convertToDomainObject(HeadLibrarianDto hDto) {
 		List<HeadLibrarian> allHeadLibrarians = headLibrarianService.getAllHeadLibrarian();
 		for (HeadLibrarian headlibrarian : allHeadLibrarians) {

@@ -8,7 +8,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "\"user\"")
+//@Table(name = "\"applicationUser\"")
 public abstract class ApplicationUser
 {
 

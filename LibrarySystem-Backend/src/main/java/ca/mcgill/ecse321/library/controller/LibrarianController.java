@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +33,12 @@ public class LibrarianController {
 	 * @param address
 	 * @param cardID
 	 */
-	@PostMapping(value= {"/librarians/{cardID}","/librarians/{cardID}/"})
-	public LibrarianDto createLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String Address, 
+
+	@PostMapping(value= {"/librarians/{cardID}","/librarians/{cardID/"})
+	public LibrarianDto createLibrarian(@PathVariable ("cardID") Long cardID, @RequestParam String fullname, @RequestParam String Address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
-		Librarian h = librarianService.createLibrarian(name, username, password, Address, cardID);
+		//Long id = Long.parseLong(cardID);
+		Librarian h = librarianService.createLibrarian(fullname, username, password, Address, cardID);
 		return convertToDto(h);
 	}
 
@@ -67,6 +70,24 @@ public class LibrarianController {
 	 * helper method that convert DTO to librarian
 	 * @param aLibrarianDto
 	 */
+	
+	
+//	@PatchMapping(value = { "/librarians/{cardID}", "/librarians/{cardID}/" })
+//	public void editLibrarianName(@PathVariable("cardID") Long cardID, @RequestParam String name)
+//			throws IllegalArgumentException {
+//		Librarian librarian = librarianService.getLibrarianByID(cardID);
+//		librarianService.editLibrarianFullName(librarian, name);
+//	}
+	
+	
+	@DeleteMapping(value = { "/librarians/{cardID}", "/librarians/{cardID}/" })
+	public void deleteAppointmentReminder(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
+
+		Librarian librarian = librarianService.getLibrarianByID(cardID);
+		librarianService.deleteLibrarian(librarian);
+	}
+	
+	
 	private Librarian convertToDomainObject(LibrarianDto hDto) {
 		List<Librarian> allLibrarians = librarianService.getAllLibrarian();
 		for (Librarian Librarian : allLibrarians) {
