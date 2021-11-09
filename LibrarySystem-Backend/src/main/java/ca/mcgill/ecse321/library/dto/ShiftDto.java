@@ -15,6 +15,11 @@ public class ShiftDto {
     private Long shiftCode;
     private ApplicationUserDto ApplicationUserDto;
 
+    /*
+     * @Author: Joris Ah-Kane
+     * three constructors, blank, default parameters, and custom parameters
+     */
+
     public ShiftDto (){
         //empty constructor
     }
@@ -24,7 +29,7 @@ public class ShiftDto {
         this(shiftCode, Time.valueOf("08:00:00"), Time.valueOf("17:00:00"), null, null);
     }
 
-    public ShiftDto(Long shiftCode, Time valueOf, Time valueOf2, DayOfWeek day, ApplicationUserDto user) {
+    public ShiftDto(Long shiftCode, Time startTime, Time endTime, DayOfWeek day, ApplicationUserDto user) {
         this.day = day;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -32,6 +37,11 @@ public class ShiftDto {
         this.ApplicationUserDto = user;
     }
  
+    /*
+     * @Author: Joris Ah-Kane
+     * All getter methods
+     */
+
     public Time getStartTime() {
         return startTime;
     }

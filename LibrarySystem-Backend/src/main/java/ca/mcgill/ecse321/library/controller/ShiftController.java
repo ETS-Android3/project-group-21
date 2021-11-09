@@ -25,7 +25,7 @@ import ca.mcgill.ecse321.library.service.ShiftService;
 @CrossOrigin(origins = "*")
 @RestController
 public class ShiftController {
-    
+
     @Autowired
     private ShiftService shiftService;
 	
@@ -35,6 +35,10 @@ public class ShiftController {
 	@Autowired
 	private HeadLibrarianService headLibrarianService;
 	
+	/*
+     * @Author: Joris Ah-Kane
+     * Get all shifts, either by shiftcode or simply getting them all
+     */
 
     @GetMapping(value = { "/shifts", "/shifts/"} )
 	public List<ShiftDto> getAllShifts(){
@@ -49,6 +53,11 @@ public class ShiftController {
 	public ShiftDto getLibrarianById(@PathVariable("shiftCode") Long shiftCode) throws IllegalArgumentException{
 		return convertToDto(shiftService.getShift(shiftCode));
 	}
+
+	/*
+     * @Author: Joris Ah-Kane
+     * Create a shift
+     */
 
     @PostMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/"} )
     public ShiftDto createShiftDto(@PathVariable("shiftCode") Long shiftCode, 
@@ -67,6 +76,10 @@ public class ShiftController {
 		return convertToDto(shift);
 	}
 
+	/*
+     * @Author: Joris Ah-Kane
+     * Helper methods
+     */
 
     private ShiftDto convertToDto(Shift s){
         if(s == null) {

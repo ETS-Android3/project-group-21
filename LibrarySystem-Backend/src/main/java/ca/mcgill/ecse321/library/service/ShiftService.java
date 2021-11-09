@@ -20,9 +20,15 @@ public class ShiftService {
     @Autowired
     ShiftRepository shiftRepository;
 
+    /*
+     * @Author: Joris Ah-Kane
+     * Create a new shift 
+     */
+
     @Transactional
     public Shift createShift(Long shiftCode, Time startTime, Time endTime, DayOfWeek day, ApplicationUser user){
 
+        //Make sure every argument is valid
         if (startTime == null) {
             throw new IllegalArgumentException ("Shift must have a starting time");
         }
@@ -60,6 +66,11 @@ public class ShiftService {
         return aShift;
     }
 
+    /*
+     * @Author: Joris Ah-Kane
+     * Retreive one or many shifts
+     */
+
     @Transactional
     public Shift getShift(Long shiftCode){
         return shiftRepository.findShiftByShiftCode(shiftCode);
@@ -69,6 +80,11 @@ public class ShiftService {
     public List<Shift> getAllShifts(){
         return (List<Shift>) shiftRepository.findAll();
     } 
+
+    /*
+     * @Author: Joris Ah-Kane
+     * remove a particular shift
+     */
 
     @Transactional
 	public Shift deleteShift(Shift shift) {
@@ -80,9 +96,16 @@ public class ShiftService {
 		return shift;
 	}
 
+    /*
+     * @Author: Joris Ah-Kane
+     * Update a shift with changing all parameters besides the code because that is how we reference it
+     */
+
     //update all the parameters in one shot because it is more logical to implement with in interface afterwards
     @Transactional
     public Shift updateShift(Shift aShift, Time startTime, Time endTime, DayOfWeek day, ApplicationUser user){
+
+        //make sure every argument is valid
         if (aShift == null){
             throw new IllegalArgumentException("Input shift cannot be null");
         }
@@ -122,6 +145,4 @@ public class ShiftService {
         shiftRepository.save(aShift);
         return aShift;
     }
-
-    //The Shift Code isn't something that should be editted
 }

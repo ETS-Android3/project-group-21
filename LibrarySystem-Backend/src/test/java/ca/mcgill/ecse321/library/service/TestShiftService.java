@@ -24,6 +24,9 @@ import ca.mcgill.ecse321.library.models.Librarian;
 import ca.mcgill.ecse321.library.models.Shift;
 import ca.mcgill.ecse321.library.models.Shift.DayOfWeek;
 
+/*
+ * @Author: Joris Ah-Kane
+ */
 
 @ExtendWith(MockitoExtension.class)
 public class TestShiftService {
