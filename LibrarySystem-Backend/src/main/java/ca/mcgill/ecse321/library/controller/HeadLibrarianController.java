@@ -36,8 +36,9 @@ public class HeadLibrarianController {
 	 * @param cardID
 	 */
 
-	@PostMapping(value= {"/headlibrarians/{cardID}","/headlibrarians/{cardID}/"})
-	public HeadLibrarianDto createHeadLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String address, 
+	@PostMapping(value= {"/headlibrarian/{cardID}","/headlibrarian/{cardID}/"})
+	public HeadLibrarianDto createHeadLibrarian(@PathVariable("cardID") Long cardID, 
+			@RequestParam String name, @RequestParam String address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
 		HeadLibrarian h = headLibrarianService.createHeadlibrarian(name, username, password, address, cardID);
 		return convertToDto(h);
@@ -48,7 +49,7 @@ public class HeadLibrarianController {
 	 * @Author: Yujin li
 	 * get all HeadLibrarian
 	 */
-	@GetMapping(value = { "/headlibrarians", "/headlibrarians/" })
+	@GetMapping(value = { "/headlibrarian", "/headlibrarian/" })
 	public List<HeadLibrarianDto> getAllHeadLibrarians(){
 		List<HeadLibrarianDto> headLibrarianDtos = new ArrayList<>();
 		for (HeadLibrarian hl: headLibrarianService.getAllHeadLibrarian()) {
@@ -62,7 +63,7 @@ public class HeadLibrarianController {
 	 * get HeadLibrarian with a provided ID
 	 * @param cardID
 	 */
-	@GetMapping(value = { "/headlibrarians/{cardID}","/headlibrarians/{cardID}/"})
+	@GetMapping(value = { "/headlibrarian/{cardID}","/headlibrarian/{cardID}/"})
 	public HeadLibrarianDto getHeadLibrarianById(@PathVariable("cardID") Long cardID) throws IllegalArgumentException{
 		return convertToDto(headLibrarianService.getHeadLibrarianByID(cardID));
 	}
@@ -73,7 +74,7 @@ public class HeadLibrarianController {
 	 * delete HeadLibrarian with a provided ID
 	 * @param cardID
 	 */
-	@DeleteMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
+	@DeleteMapping(value = { "/headlibrarian/{cardID}", "/headlibrarian/{cardID}/" })
 	public void deleteHeadLibrarian(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
 		HeadLibrarian headLibrarian = headLibrarianService.getHeadLibrarianByID(cardID);
 		headLibrarianService.deleteHeadLibrarian(headLibrarian);
@@ -88,7 +89,7 @@ public class HeadLibrarianController {
 	 * @param password
 	 * @param address
 	 */
-	@PatchMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
+	@PatchMapping(value = { "/headlibrarian/{cardID}", "/headlibrarian/{cardID}/" })
 	public HeadLibrarianDto editHeadLibrarian(@PathVariable("cardID") Long cardID, 
 			@RequestParam(required=false) String name, @RequestParam (required=false) String address,
 			@RequestParam (required=false) String username,@RequestParam (required=false) String password) throws IllegalArgumentException {

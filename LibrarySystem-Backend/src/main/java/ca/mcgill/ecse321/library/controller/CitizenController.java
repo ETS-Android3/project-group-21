@@ -50,7 +50,7 @@ public class CitizenController {
         return citizenDtos;
     }
     
-	@GetMapping(value = { "/citizens/{cardID}\", \"/citizens/{cardID}/"})
+	@GetMapping(value = { "/citizens/{cardID}", "/citizens/{cardID}/"})
 	public CitizenDto getCitizenById(@PathVariable("cardID") Long cardID) throws IllegalArgumentException{
 		return convertToDto(citizenService.getCitizenByID(cardID));
 	}
@@ -64,7 +64,8 @@ public class CitizenController {
     }
 
     @PostMapping(value = {"/citizens/{cardID}", "/citizens/{cardID}/"})
-    public CitizenDto createCitizen(@PathVariable Long cardID, @RequestParam String username, @RequestParam String password,@RequestParam String fullname,
+    public CitizenDto createCitizen(@PathVariable Long cardID, @RequestParam String username, 
+    		@RequestParam String password,@RequestParam String fullname,
     		@RequestParam String address, @RequestParam Boolean onlineAccountActivated,
             @RequestParam Boolean isLocal,@RequestParam Double balance){
         Citizen aCitizen = citizenService.creatCitizen(fullname,username,password,address,onlineAccountActivated,
@@ -73,7 +74,7 @@ public class CitizenController {
         return citizenDto;
     }
 
-	@DeleteMapping(value = { "/citizens/{cardID}\", \"/citizens/{cardID}/" })
+	@DeleteMapping(value = { "/citizens/{cardID}", "/citizens/{cardID}/" })
 	public void deleteCitizen(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
 		Citizen citizen = citizenService.getCitizenByID(cardID);
 		citizenService.deletCitizen(citizen);

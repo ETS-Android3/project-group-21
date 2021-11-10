@@ -34,7 +34,7 @@ public class ApplicationUserDto {
 		return this.fullName;
 	}
 	
-	public String getAdress() {
+	public String getAddress() {
 		return this.address;
 	}
 	

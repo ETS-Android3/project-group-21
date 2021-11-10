@@ -48,10 +48,26 @@ public class OpeningHourController {
 	 * Create opening Hour
 	 */
 	@PostMapping(value = {"/openinghours/{day}", "/openinghours/{day}/"})
-	public OpeningHourDto createOpeningHour(@PathVariable("day") DayOfWeek day, 
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime, 
-			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime) throws IllegalArgumentException{
-		OpeningHour openinghour = openinghourservice.createOpeningHour(day, Time.valueOf(startTime), Time.valueOf(endTime));
+	public OpeningHourDto createOpeningHour(@PathVariable("day") String day, 
+			@RequestParam String startTime, @RequestParam String endTime) throws IllegalArgumentException{
+		
+		OpeningHour.DayOfWeek dayOfWeek = null;
+    	if (day.equalsIgnoreCase("Monday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Monday;
+    	}else if (day.equalsIgnoreCase("Tuesday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Tuesday;
+    	}else if (day.equalsIgnoreCase("Wednesday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Wednesday;
+    	}else if (day.equalsIgnoreCase("Thursday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Thursday;
+    	}else if (day.equalsIgnoreCase("Friday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Friday;
+    	}else if (day.equalsIgnoreCase("Saturday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Saturday;
+    	}else if (day.equalsIgnoreCase("Sunday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Sunday;
+    	}		
+		OpeningHour openinghour = openinghourservice.createOpeningHour(dayOfWeek, Time.valueOf(startTime), Time.valueOf(endTime));
 		return convertToDto(openinghour);
 	}
 	
@@ -113,7 +129,7 @@ public class OpeningHourController {
 		if (startTime != null) {
 			openinghourservice.updateOpeningHourStartTime(openinghour, Time.valueOf(startTime));
 		}
-		if (startTime != null) {
+		if (endTime != null) {
 			openinghourservice.updateOpeningHourEndTime(openinghour, Time.valueOf(startTime), Time.valueOf(endTime));
 		}
 		return convertToDto(openinghour);

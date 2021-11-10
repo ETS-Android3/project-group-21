@@ -109,7 +109,7 @@ public class LibrarianController {
 			librarianService.editLibrarianAddress(librarian, address);
 		}
 		if (username != null) {
-			librarianService.editLibrarianUserName(librarian, name);
+			librarianService.editLibrarianUserName(librarian, username);
 		}
 		if (password != null) {
 			librarianService.editLibrarianPassword(librarian, password);
