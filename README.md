@@ -40,9 +40,9 @@ In this deliverable, we are required to implement the Dto package, the correspon
 | :---              |    :---:    |          ---: |
 | Dania Pennimpede  | Software Developer for OpeningHour, Corresponding Testing, Documentation       | 8 hrs        |
 | Joris Ah-Kane     | Software Developer for Shift, Testing, Corresponding Documentation       | 9 hrs        |
-| Chun Li           | Software Developer for LibraryItems and Reservation, Corresponding Testing, Couverage report, Integration testing, Documentation, Project manager     | 12 hrs        |
-| Yujin Li          | Software Developer for HeadLibrarian and Librarian, Corresponding Testing, Integration testing, Documentation, wiki page       | 10 hrs        |
-| Kaifan Zheng      | Software Developer for Citizen, Corresponding Testing, Documentation       | 0 hrs           |
+| Chun Li           | Software Developer for LibraryItems and Reservation, Corresponding Testing, Couverage report, Integration testing, Documentation, Project manager     | 14 hrs        |
+| Yujin Li          | Software Developer for HeadLibrarian and Librarian, Corresponding Testing, Integration testing, Documentation, wiki page       | 12 hrs        |
+| Kaifan Zheng      | Software Developer for Citizen, Corresponding Testing, Documentation       | 8 hrs           |
 
 # Changes
 Here are the [changes](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#changes) made before Deliverable 2.
@@ -51,10 +51,10 @@ Here are the [changes](https://github.com/McGill-ECSE321-Fall2021/project-group-
 Testing Approaches that we used can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#testing-approaches)
 
 # Integration Testing result
-Integration testing result for controllers can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#integration-testing-result)
+Integration testing result for controllers can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Integration-Test-Result)
 
 # Software Quality Assurance Plan
-Software Quality Assurance Plan and the coverage result can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report#test-coverage-criteria-software-quality-assurance-plan--result)
+Software Quality Assurance Plan and the coverage result can be found [here](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Test-Coverage-Criteria-(Software-Quality-Assurance-Plan)-&-Result)
 
 # D2 report
 Here is the [D2 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report)
