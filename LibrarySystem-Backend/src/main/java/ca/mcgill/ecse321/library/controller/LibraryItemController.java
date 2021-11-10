@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.library.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -127,52 +130,43 @@ public class LibraryItemController {
 		libraryItemService.deleteLibraryItem(libraryItem);
 	}
 	
-	@PatchMapping(value = { "/libraryitems/{barcode}/{title}", "/libraryitems/{barcode}/{title}/" })
-	public LibraryItemDto editLibraryItemTitle(@PathVariable("barcode") Long barcode, @PathVariable("title") String title) throws IllegalArgumentException {
+	@PatchMapping(value = { "/libraryitems/{barcode}", "/libraryitems/{barcode}/" })
+	public LibraryItemDto editLibraryItemTitle(@PathVariable("barcode") Long barcode, 
+			@RequestParam(required=false) String type, @RequestParam (required=false) String title,
+			@RequestParam (required=false) Boolean isReservable,@RequestParam (required=false) Boolean isReserved,
+			@RequestParam(required=false) Integer loanPeriod) throws IllegalArgumentException {
 		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
-		libraryItemService.updateLibraryItemTitle(libraryItem, title);
-		return convertToDto(libraryItem);
-	}
-
-	@PatchMapping(value = { "/libraryitems/{barcode}/{isReservable}", "/libraryitems/{barcode}/{isReservable}/" })
-	public LibraryItemDto editLibraryItemisReservable(@PathVariable("barcode") Long barcode, @PathVariable("isReservable") boolean isReservable) throws IllegalArgumentException {
-		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
-		libraryItemService.updateLibraryItemIsReservable(libraryItem, isReservable);
-		return convertToDto(libraryItem);
-	}
-
-	@PatchMapping(value = { "/libraryitems/{barcode}/{type}", "/libraryitems/{barcode}/{type}/" })
-	public LibraryItemDto editLibraryItemType(@PathVariable("barcode") Long barcode, @PathVariable("type") String type) throws IllegalArgumentException {
-		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
-		LibraryItem.ItemType itemType = null;
-		if (type.equalsIgnoreCase("book")){
-			itemType = LibraryItem.ItemType.Book;
-		}else if (type.equalsIgnoreCase("movie")){
-			itemType = LibraryItem.ItemType.Movie;
-		}else if (type.equalsIgnoreCase("music")){
-			itemType = LibraryItem.ItemType.Music;
-		}else if (type.equalsIgnoreCase("archive")){
-			itemType = LibraryItem.ItemType.Archive;
-		}else if (type.equalsIgnoreCase("newspaper")){
-			itemType = LibraryItem.ItemType.Newspaper;
+		if (type != null) {
+			LibraryItem.ItemType itemType = null;
+			if (type.equalsIgnoreCase("book")){
+				itemType = LibraryItem.ItemType.Book;
+			}else if (type.equalsIgnoreCase("movie")){
+				itemType = LibraryItem.ItemType.Movie;
+			}else if (type.equalsIgnoreCase("music")){
+				itemType = LibraryItem.ItemType.Music;
+			}else if (type.equalsIgnoreCase("archive")){
+				itemType = LibraryItem.ItemType.Archive;
+			}else if (type.equalsIgnoreCase("newspaper")){
+				itemType = LibraryItem.ItemType.Newspaper;
+			}
+			libraryItemService.updateLibraryItemType(libraryItem, itemType);
+			
 		}
-		libraryItemService.updateLibraryItemType(libraryItem,itemType);
-		
+		if (title != null) {
+		libraryItemService.updateLibraryItemTitle(libraryItem, title);
+		}
+		if (isReservable != null) {
+			libraryItemService.updateLibraryItemIsReservable(libraryItem, isReservable);
+		}
+		if (isReserved != null) {
+			libraryItemService.updateLibraryItemIsReserved(libraryItem, isReservable);
+		}
+		if (loanPeriod != null) {
+			libraryItemService.updateLibraryItemLoanPeriod(libraryItem, loanPeriod);
+		}
 		return convertToDto(libraryItem);
 	}
-	
-	@PatchMapping(value = { "/libraryitems/{barcode}/{loanPeriod}", "/libraryitems/{barcode}/{loanPeriod}/" })
-	public LibraryItemDto editLibraryItemLoanPeriod(@PathVariable("barcode") Long barcode, @PathVariable("loanPeriod") Integer loanPeriod) throws IllegalArgumentException {
-		LibraryItem libraryItem = libraryItemService.getLibraryItem(barcode);
-		libraryItemService.updateLibraryItemLoanPeriod(libraryItem, loanPeriod);
-		return convertToDto(libraryItem);
-	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
