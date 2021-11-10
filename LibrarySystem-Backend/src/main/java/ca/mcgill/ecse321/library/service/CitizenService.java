@@ -73,10 +73,10 @@ public class CitizenService {
 		return aCitizen;
 	}
 	
-	@Transactional
-	public Citizen getCitizenByUsernameAndPassword(String userName, String password) {
-		return citizenRepository.findCitizenByUsernameAndPassword(userName, password);
-	}
+//	@Transactional
+//	public Citizen getCitizenByUsernameAndPassword(String userName, String password) {
+//		return citizenRepository.findCitizenByUsernameAndPassword(userName, password);
+//	}
 	
 	@Transactional
 	public List<Citizen> getAllCitizen(){

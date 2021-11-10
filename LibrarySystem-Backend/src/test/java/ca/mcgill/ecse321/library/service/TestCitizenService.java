@@ -38,6 +38,7 @@ public class TestCitizenService {
 	private static final Boolean isLocal = false;
 	private static final Double balance = 520.0;
 	private static final Long cardID = 123L;
+	private static final Long wrongID = 909l;
 	
 	@BeforeEach
 	public void setMockOutput() {
@@ -95,6 +96,29 @@ public class TestCitizenService {
 		assertEquals(isLocal, citizen.getIsLocal());
 		assertEquals(balance,citizen.getBalance());
 		assertEquals(cardID, citizen.getCardID());
+	}
+	
+	@Test
+	public void testCreateCitizenWithNoCardID() {
+		String fullname = "aa";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.0;
+		Long cardID = null;
+		
+		Citizen citizen = null;
+		String error = "";
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertNull(citizen);
+		assertEquals(error,"CardID can't be empty");
 	}
 	
 	@Test
@@ -465,6 +489,16 @@ public class TestCitizenService {
 		}
 		assertNotNull(citizen);
 		assertEquals(newbalance, citizen.getBalance());
+	}
+	
+	@Test
+	public void testGetExistingCitizen() {
+		assertEquals(cardID, service.getCitizenByID(cardID).getCardID());
+	}
+	
+	@Test
+	public void testGetNonExistingCitizen() {
+		assertNull(service.getCitizenByID(wrongID));
 	}
 	
 }

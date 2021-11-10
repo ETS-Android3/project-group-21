@@ -55,13 +55,13 @@ public class CitizenController {
 		return convertToDto(citizenService.getCitizenByID(cardID));
 	}
 
-    @GetMapping(value = {"/citizens/{username}/{password}","/citizens/{username}/{password}/"})
-    public CitizenDto getCitizenByUsernameAndPassword(@PathVariable String username, @PathVariable String password){
-        if(username==null || password==null){
-            throw new IllegalArgumentException("no citizen with such username and password");
-        }
-        return convertToDto(citizenService.getCitizenByUsernameAndPassword(username,password));
-    }
+//    @GetMapping(value = {"/citizens/{username}/{password}","/citizens/{username}/{password}/"})
+//    public CitizenDto getCitizenByUsernameAndPassword(@PathVariable String username, @PathVariable String password){
+//        if(username==null || password==null){
+//            throw new IllegalArgumentException("no citizen with such username and password");
+//        }
+//        return convertToDto(citizenService.getCitizenByUsernameAndPassword(username,password));
+//    }
 
     @PostMapping(value = {"/citizens/{cardID}", "/citizens/{cardID}/"})
     public CitizenDto createCitizen(@PathVariable Long cardID, @RequestParam String username, 
