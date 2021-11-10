@@ -97,7 +97,7 @@ public class LibrarianController {
 	 * @param password
 	 * @param address
 	 */
-	@PatchMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
+	@PatchMapping(value = { "/librarians/{cardID}", "/librarians/{cardID}/" })
 	public LibrarianDto editLibrarian(@PathVariable("cardID") Long cardID, 
 			@RequestParam(required=false) String name, @RequestParam (required=false) String address,
 			@RequestParam (required=false) String username,@RequestParam (required=false) String password) throws IllegalArgumentException {
