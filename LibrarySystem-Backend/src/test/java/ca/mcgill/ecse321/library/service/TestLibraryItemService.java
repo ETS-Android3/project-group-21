@@ -350,6 +350,58 @@ public class TestLibraryItemService {
 	}
 	
 	
+	@Test
+	public void testUpdateLibraryItemIsReserved() {
+//		assertEquals(0, libraryItemService.getAllLibraryItem().size());
+
+		Long barcode = 111l;
+		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
+		String title = "Dune Movie";
+		Boolean isReservable = true;
+		Boolean isReserved1 = false;
+		Integer loanPeriod = 7;
+		
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved1, loanPeriod);
+		LibraryItem updated = null;
+		Boolean isReserved2 = true;
+//		libraryItemService.updateLibraryItemLoanPeriod(original,0);
+		try {
+			updated = libraryItemService.updateLibraryItemIsReserved(original, isReserved2);
+		}catch(IllegalArgumentException e) {
+			fail();
+		}
+		
+		assertNotNull(updated);
+		assertEquals(isReserved2, updated.getIsReserved());
+	}
+	
+	@Test
+	public void testUpdateLibraryItemIsReservedFail() {
+//		assertEquals(0, libraryItemService.getAllLibraryItem().size());
+
+		String error = "";
+
+		Long barcode = 111l;
+		LibraryItem.ItemType type = LibraryItem.ItemType.Movie;
+		String title = "Dune Movie";
+		Boolean isReservable = true;
+		Boolean isReserved1 = false;
+		Integer loanPeriod = 7;
+		
+		LibraryItem original = libraryItemService.createLibraryItem(barcode, type, title, isReservable, isReserved1, loanPeriod);
+		LibraryItem updated = null;
+		Boolean isReserved2 = null;
+//		libraryItemService.updateLibraryItemLoanPeriod(original,0);
+		try {
+			updated = libraryItemService.updateLibraryItemIsReserved(original, isReserved2);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertNull(updated);
+		assertEquals("Must specify if the library item is reserved.", error);
+	}
+	
 	
 	@Test
 	public void testUpdateLibraryItemIsReservable() {
