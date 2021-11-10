@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,6 +85,37 @@ public class LibrarianController {
 	public void deleteLibrarian(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
 		Librarian librarian = librarianService.getLibrarianByID(cardID);
 		librarianService.deleteLibrarian(librarian);
+	}
+	
+	
+	/*
+	 * @Author: Yujin li
+	 * edit partial librarian information with provided information
+	 * @param cardID
+	 * @param fullname
+	 * @param username
+	 * @param password
+	 * @param address
+	 */
+	@PatchMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
+	public LibrarianDto editLibrarian(@PathVariable("cardID") Long cardID, 
+			@RequestParam(required=false) String name, @RequestParam (required=false) String address,
+			@RequestParam (required=false) String username,@RequestParam (required=false) String password) throws IllegalArgumentException {
+		Librarian librarian = librarianService.getLibrarianByID(cardID);
+		if (name != null) {
+			librarianService.editLibrarianFullName(librarian, name);	
+		}
+		if (address != null) {
+			librarianService.editLibrarianAddress(librarian, address);
+		}
+		if (username != null) {
+			librarianService.editLibrarianUserName(librarian, name);
+		}
+		if (password != null) {
+			librarianService.editLibrarianPassword(librarian, password);
+		}
+
+		return convertToDto(librarian);
 	}
 	
 	/*

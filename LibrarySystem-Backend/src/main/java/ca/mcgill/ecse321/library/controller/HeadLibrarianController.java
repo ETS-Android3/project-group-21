@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +37,9 @@ public class HeadLibrarianController {
 	 */
 
 	@PostMapping(value= {"/headlibrarians/{cardID}","/headlibrarians/{cardID}/"})
-	public HeadLibrarianDto createHeadLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String Address, 
+	public HeadLibrarianDto createHeadLibrarian(@PathVariable("cardID") Long cardID, @RequestParam String name, @RequestParam String address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
-		HeadLibrarian h = headLibrarianService.createHeadlibrarian(name, username, password, Address, cardID);
+		HeadLibrarian h = headLibrarianService.createHeadlibrarian(name, username, password, address, cardID);
 		return convertToDto(h);
 	}
 
@@ -77,6 +78,36 @@ public class HeadLibrarianController {
 		HeadLibrarian headLibrarian = headLibrarianService.getHeadLibrarianByID(cardID);
 		headLibrarianService.deleteHeadLibrarian(headLibrarian);
 	}	
+	
+	/*
+	 * @Author: Yujin li
+	 * edit partial headlibrarian information with provided information
+	 * @param cardID
+	 * @param fullname
+	 * @param username
+	 * @param password
+	 * @param address
+	 */
+	@PatchMapping(value = { "/headlibrarians/{cardID}", "/headlibrarians/{cardID}/" })
+	public HeadLibrarianDto editHeadLibrarian(@PathVariable("cardID") Long cardID, 
+			@RequestParam(required=false) String name, @RequestParam (required=false) String address,
+			@RequestParam (required=false) String username,@RequestParam (required=false) String password) throws IllegalArgumentException {
+		HeadLibrarian headLibrarian = headLibrarianService.getHeadLibrarianByID(cardID);
+		if (name != null) {
+			headLibrarianService.editHeadLibrarianFullName(headLibrarian, name);	
+		}
+		if (address != null) {
+			headLibrarianService.editHeadLibrarianAddress(headLibrarian, address);
+		}
+		if (username != null) {
+			headLibrarianService.editHeadLibrarianUserName(headLibrarian, name);
+		}
+		if (password != null) {
+			headLibrarianService.editHeadLibrarianPassword(headLibrarian, password);
+		}
+
+		return convertToDto(headLibrarian);
+	}
 	
 	
 	/*
