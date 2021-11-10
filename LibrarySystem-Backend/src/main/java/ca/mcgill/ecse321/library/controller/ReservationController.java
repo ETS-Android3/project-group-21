@@ -27,6 +27,12 @@ import ca.mcgill.ecse321.library.service.LibrarianService;
 import ca.mcgill.ecse321.library.service.LibraryItemService;
 import ca.mcgill.ecse321.library.service.ReservationService;
 
+
+/**
+ * No edit method for this class because our designed system does not allow anyone to modify a reservation
+ * The only way to change a reservation is to cancel the existing one and make a new one
+ */
+
 @CrossOrigin(origins = "*")
 @RestController
 public class ReservationController {

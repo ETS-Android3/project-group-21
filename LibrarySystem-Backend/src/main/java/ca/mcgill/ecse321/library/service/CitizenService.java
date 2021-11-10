@@ -148,7 +148,7 @@ public class CitizenService {
 	}
 	
 	@Transactional
-	public Citizen editisLocal(Citizen aCitizen, Boolean isLocal) {
+	public Citizen editCitizenIsLocal(Citizen aCitizen, Boolean isLocal) {
 		if(isLocal == null) {
 			throw new IllegalArgumentException("status of local can't be empty");
 		}
@@ -158,7 +158,7 @@ public class CitizenService {
 	}
 	
 	@Transactional
-	public Citizen editBalance(Citizen aCitizen, Double balance) {
+	public Citizen editCitizenBalance(Citizen aCitizen, Double balance) {
 		if(balance == null) {
 			throw new IllegalArgumentException("balance can't be empty");
 		}

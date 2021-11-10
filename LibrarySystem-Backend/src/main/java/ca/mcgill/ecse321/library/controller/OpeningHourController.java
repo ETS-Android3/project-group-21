@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,6 +84,39 @@ public class OpeningHourController {
 	public void deleteOpeningHour(@PathVariable("day") DayOfWeek day) throws IllegalArgumentException {
 		OpeningHour openinghour = openinghourservice.getOpeningHourByDay(day);
 		openinghourservice.deleteOpeningHour(openinghour);
-	}	
+	}
+	
+	
+	
+	@PatchMapping(value = { "/openinghours/{day}", "/openinghours/{day}/" })
+	public OpeningHourDto editOpeningHour(@PathVariable("day") String day, 
+			@RequestParam(required=false) String startTime, @RequestParam (required=false) String endTime) throws IllegalArgumentException {
+		
+		OpeningHour.DayOfWeek dayOfWeek = null;
+    	if (day.equalsIgnoreCase("Monday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Monday;
+    	}else if (day.equalsIgnoreCase("Tuesday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Tuesday;
+    	}else if (day.equalsIgnoreCase("Wednesday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Wednesday;
+    	}else if (day.equalsIgnoreCase("Thursday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Thursday;
+    	}else if (day.equalsIgnoreCase("Friday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Friday;
+    	}else if (day.equalsIgnoreCase("Saturday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Saturday;
+    	}else if (day.equalsIgnoreCase("Sunday")) {
+    		dayOfWeek = OpeningHour.DayOfWeek.Sunday;
+    	}
+		OpeningHour openinghour = openinghourservice.getOpeningHourByDay(dayOfWeek);	
+		
+		if (startTime != null) {
+			openinghourservice.updateOpeningHourStartTime(openinghour, Time.valueOf(startTime));
+		}
+		if (startTime != null) {
+			openinghourservice.updateOpeningHourEndTime(openinghour, Time.valueOf(startTime), Time.valueOf(endTime));
+		}
+		return convertToDto(openinghour);
+	}
 
 }

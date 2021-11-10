@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -138,6 +139,40 @@ public class ShiftController {
 	public void deleteLibrarian(@PathVariable("shiftCode") Long shiftCode) throws IllegalArgumentException {
 		Shift shift = shiftService.getShift(shiftCode);
 		shiftService.deleteShift(shift);
+	}
+    
+    
+    @PatchMapping(value = { "/shifts/{shiftCode}", "/shifts/{shiftCode}/" })
+	public ShiftDto editShift(@PathVariable ("shiftCode") Long shiftCode, 
+			@PathVariable ("startTime") String startTime, @PathVariable ("endTime") String endTime,
+			@PathVariable ("day") String day, @PathVariable ("cardID") Long cardID)throws IllegalArgumentException{
+		
+    	Librarian l = librarianService.getLibrarianByID(cardID);
+		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(cardID);
+		ApplicationUser user = null;		
+		if (l != null) user = l; 
+		if (hl != null) user = hl; 
+		
+		Shift.DayOfWeek dayOfWeek = null;
+    	if (day.equalsIgnoreCase("Monday")) {
+    		dayOfWeek = Shift.DayOfWeek.Monday;
+    	}else if (day.equalsIgnoreCase("Tuesday")) {
+    		dayOfWeek = Shift.DayOfWeek.Tuesday;
+    	}else if (day.equalsIgnoreCase("Wednesday")) {
+    		dayOfWeek = Shift.DayOfWeek.Wednesday;
+    	}else if (day.equalsIgnoreCase("Thursday")) {
+    		dayOfWeek = Shift.DayOfWeek.Thursday;
+    	}else if (day.equalsIgnoreCase("Friday")) {
+    		dayOfWeek = Shift.DayOfWeek.Friday;
+    	}else if (day.equalsIgnoreCase("Saturday")) {
+    		dayOfWeek = Shift.DayOfWeek.Saturday;
+    	}else if (day.equalsIgnoreCase("Sunday")) {
+    		dayOfWeek = Shift.DayOfWeek.Sunday;
+    	}
+		
+    	Shift shift = shiftService.getShift(shiftCode);
+		shiftService.updateShift(shift, Time.valueOf(startTime), Time.valueOf(endTime), dayOfWeek, user);
+		return convertToDto(shift);
 	}
 
 	/*

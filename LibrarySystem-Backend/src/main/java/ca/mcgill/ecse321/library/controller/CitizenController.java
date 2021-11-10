@@ -80,96 +80,36 @@ public class CitizenController {
 	}
     
     
-//    @PutMapping("/citizens/{cardID}")
-//    public ResponseEntity<?> saveCitizen(@RequestBody Citizen citizen,
-//      @PathVariable("cardID") String cardID) {
-//        CitizenRepository citizenRepository;
-//        Long id = Long.parseLong(cardID);
-//		citizenRepository.save(citizen);
-//        return ResponseEntity.ok("resource saved");
-//    }
-    
-    @PatchMapping(value = {"/citizens/{fullName}","/citizens/{fullName}/"})
-    public ResponseEntity<?> editCitizenFullName(@PathVariable("cardID") Long cardID, @RequestParam String fullName){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editCitizenFullname(citizen,fullName);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
-    @PatchMapping(value = {"/citizens/{userName}","/citizens/{userName}/"})
-    public ResponseEntity<?> editCitizenUserName(@PathVariable("cardID") Long cardID, @RequestParam String userName){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editCitizenUsername(citizen,userName);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
-
-    
-    @PatchMapping(value = {"/citizens/{password}","/citizens/{password}/"})
-    public ResponseEntity<?> editCitizenPassword(@PathVariable("cardID") Long cardID, @RequestParam String password){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editCitizenPassword(citizen,password);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
-
-    @PatchMapping(value = {"/citizens/{address}","/citizens/{address}/"})
-    public ResponseEntity<?> editCitizenAddress(@PathVariable("cardID") Long cardID, @RequestParam String address){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editCitizenAddress(citizen,address);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
-
-    @PatchMapping(value = {"/citizens/{onlineAccountActivated}","/citizens/{onlineAccountActivated}/"})
-    public ResponseEntity<?> editCitizenOnlineAccountActivated(@PathVariable("cardID") Long cardID, @RequestParam Boolean onlineAccountActivated){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editCitizenOnlineAccountActivated(citizen,onlineAccountActivated);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
-
-    @PatchMapping(value = {"/citizens/{isLocal}","/citizens/{isLocal}/"})
-    public ResponseEntity<?> editCitizenisLocal(@PathVariable("cardID") Long cardID, @RequestParam Boolean isLocal){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editisLocal(citizen,isLocal);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
-
-    @PatchMapping(value = {"/citizens/{balance}","/citizens/{balance}/"})
-    public ResponseEntity<?> editCitizenBalance(@PathVariable("cardID") Long cardID, @RequestParam Double balance){
-        Citizen citizen = null;
-        try{
-            citizen = citizenService.getCitizenByID(cardID);
-            citizen = citizenService.editBalance(citizen,balance);
-        } catch(IllegalArgumentException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(convertToDto(citizen),HttpStatus.CREATED);
-    }
+	@PatchMapping(value = { "/citizens/{cardID}", "/citizens/{cardID}/" })
+	public CitizenDto editCitizen(@PathVariable("cardID") Long cardID, 
+			@RequestParam(required=false) String username, @RequestParam (required=false) String password,
+			@RequestParam(required=false) String fullname,
+			@RequestParam (required=false) String address, @RequestParam (required=false) Boolean onlineAccountActivated,
+			@RequestParam(required=false) Boolean isLocal, @RequestParam(required=false) Double balance) throws IllegalArgumentException {
+	
+		Citizen citizen = citizenService.getCitizenByID(cardID);
+		
+		if (username != null) {
+			citizenService.editCitizenUsername(citizen, username);
+		}
+		if (password != null) {
+			citizenService.editCitizenPassword(citizen, password);
+		}
+		if (fullname != null) {
+			citizenService.editCitizenFullname(citizen, fullname);
+		}
+		if (address != null) {
+			citizenService.editCitizenAddress(citizen, address);
+		}
+		if (onlineAccountActivated != null) {
+			citizenService.editCitizenOnlineAccountActivated(citizen, onlineAccountActivated);
+		}
+		if (isLocal != null) {
+			citizenService.editCitizenIsLocal(citizen, isLocal);
+		}	
+		if (balance != null) {
+			citizenService.editCitizenBalance(citizen, balance);
+		}
+		return convertToDto(citizen);
+	}
 }
