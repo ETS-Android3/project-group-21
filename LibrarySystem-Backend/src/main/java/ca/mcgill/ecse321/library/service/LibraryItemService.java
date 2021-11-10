@@ -106,6 +106,16 @@ public class LibraryItemService {
 	}
 	
 	@Transactional
+	public LibraryItem updateLibraryItemIsReserved(LibraryItem li, Boolean isReserved) {
+		if (isReserved == null) {
+			throw new IllegalArgumentException("Must specify if the library item is reserved.");
+		}
+		li.setIsReserved(isReserved);;
+		libraryItemRepository.save(li);
+		return li;
+	}
+	
+	@Transactional
 	public LibraryItem updateLibraryItemLoanPeriod(LibraryItem li, Integer loanPeriod) {
 		if (loanPeriod == null) {
 			throw new IllegalArgumentException("Must specify the loan period of library item.");
