@@ -77,7 +77,7 @@ public class CitizenController {
 	@DeleteMapping(value = { "/citizens/{cardID}", "/citizens/{cardID}/" })
 	public void deleteCitizen(@PathVariable("cardID") Long cardID) throws IllegalArgumentException {
 		Citizen citizen = citizenService.getCitizenByID(cardID);
-		citizenService.deletCitizen(citizen);
+		citizenService.deleteCitizen(citizen);
 	}
     
     

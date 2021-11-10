@@ -143,7 +143,7 @@ public class TestCitizenService {
 	}
 	
 	@Test
-	public void testCreateCitizenWithPassword() {
+	public void testCreateCitizenWithNoPassword() {
 		String fullname = "Noshin Chowdhury";
 		String username = "KidA";
 		String password = null;
@@ -252,6 +252,219 @@ public class TestCitizenService {
 		assertNull(citizen);
 		assertEquals(error,"Balance can't be empty");
 	}
+	
+	@Test
+	public void testDeleteCitizen() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		try {
+			citizen=service.deleteCitizen(citizen);
+			} catch(IllegalArgumentException e) {
+				fail();
+			}
+		assertNull(citizen);
+	}
 
+	@Test
+	public void testUpdateCitizenFullname() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		String newname="Kaifan Zheng";
+		try {
+		citizen=service.editCitizenFullname(citizen, newname);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newname, citizen.getFullName());
+	}
+	
+	@Test
+	public void testUpdateCitizenUsername() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		String newusername="KidB";
+		try {
+		citizen=service.editCitizenUsername(citizen, newusername);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newusername, citizen.getUsername());
+	}
+	
+	@Test
+	public void testUpdateCitizenPassword() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		String newpassword="noshinKidB";
+		try {
+		citizen=service.editCitizenPassword(citizen, newpassword);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newpassword, citizen.getPassword());
+	}
+	
+	@Test
+	public void testUpdateCitizenAddress() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		String newaddress="1234, Yo";
+		try {
+		citizen=service.editCitizenAddress(citizen, newaddress);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newaddress, citizen.getAddress());
+	}
+	
+	@Test
+	public void testUpdateCitizenonlineAccountActive() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		boolean newstatus = false;
+		try {
+		citizen=service.editCitizenOnlineAccountActivated(citizen, newstatus);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newstatus, citizen.getOnlineAccountActivated());
+	}
+	
+	@Test
+	public void testUpdateCitizenisLocal() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		boolean newstatus = true;
+		try {
+		citizen=service.editCitizenIsLocal(citizen, newstatus);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newstatus, citizen.getIsLocal());
+	}
+	
+	@Test
+	public void testUpdateCitizenBalance() {
+		String fullname = "Noshin Chowdhury";
+		String username = "KidA";
+		String password = "noshinKidA";
+		String address = "1650, YoWorld";
+		Boolean onlineAccountActive = true;
+		Boolean isLocal = false;
+		Double balance = 520.;
+		Long cardID = 123L;
+		
+		Citizen citizen = null;
+		try {
+			citizen = service.creatCitizen(fullname, username, password, address, onlineAccountActive, isLocal, balance,cardID);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		Double newbalance = 521.;
+		try {
+		citizen=service.editCitizenBalance(citizen, newbalance);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(citizen);
+		assertEquals(newbalance, citizen.getBalance());
+	}
 	
 }

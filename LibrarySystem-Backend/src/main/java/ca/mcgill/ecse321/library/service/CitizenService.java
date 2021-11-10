@@ -85,7 +85,7 @@ public class CitizenService {
 	}
 	
 	@Transactional
-	public Citizen deletCitizen(Citizen citizen) {
+	public Citizen deleteCitizen(Citizen citizen) {
 		citizenRepository.delete(citizen);
 		citizen  = null;
 		return citizen;
