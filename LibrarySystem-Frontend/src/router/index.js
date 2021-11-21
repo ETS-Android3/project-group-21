@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import LibrarySystem from '@/components/LibrarySystem'
+import Citizen from '@/components/Citizen'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/app',
-      name: 'LibrarySystem',
-      component: LibrarySystem
+      path: '/citizen',
+      name: 'Citizen',
+      component: Citizen
     }
   ]
 })
