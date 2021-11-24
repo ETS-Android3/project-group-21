@@ -1,10 +1,10 @@
 
 <!--This is a template from the tutorial, plz do not just copy paste it for the other vue -->
 <template>
-    <div id="Citizen">
+    <div id="citizen">
         <h2>Citizen</h2>
         <table>
-           <tr v-for="citizen in citizens">
+           <tr v-for="citizen in citizens" :key="citizen.ID">
               <td>{{citizen.ID}}</td>
               <td>{{citizen.fullname}}</td>
               <td>{{citizen.address}}</td>
@@ -13,7 +13,6 @@
               <td>{{citizen.isLocal}}</td>
               <td>{{citizen.balance}}</td>
               <td>{{citizen.onlineAccountActivated}}</td>
-
            </tr>
         </table>
         <table>
@@ -29,10 +28,12 @@
         <span v-if="errorCitizen" style="color:red">Error: {{errorCitizen}} </span>
     </div>
 </template>
-<script src="./Citizen.js">
-</script>
+
+<script src="./CitizenBehaviour.js">
+</script>]
+
 <style>
-    #librarysystem{
+    #citizen {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         color: #2c3e50;
         background: #f2ece8;
