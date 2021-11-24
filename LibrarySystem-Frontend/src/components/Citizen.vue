@@ -18,10 +18,15 @@
         <table>
         <tr>
           <td>
-            <input type="text" v-model="newCitizen" placeholder="Citizen Name">
-          </td>
+            <input type="text" v-model="ID" placeholder="User ID">
+            <input type="text" v-model="fullname" placeholder="Citizen Name">
+            <input type="text" v-model="address" placeholder="Address">
+            <input type="text" v-model="username" placeholder="Username">
+            <input type="text" v-model="password" placeholder="Password">
+            <input type="text" v-model="isLocal" placeholder="Enter true if the user is local">
+       </td>
           <td>
-            <button v-bind:disabled="!newCitizen" @click="createCitizen(newCitizen)">Create Citizen</button>
+            <button v-bind:disabled="!ID" @click="createCitizen(ID,fullname,address,username,password,isLocal)">Create Citizen</button>
           </td>
         </tr>
         </table>

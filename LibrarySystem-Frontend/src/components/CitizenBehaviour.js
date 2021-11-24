@@ -12,6 +12,7 @@ var AXIOS = axios.create({
 function CitizenDto(ID, fullname, address, username, password, isLocal, balance, onlineAccountActivated){
   this.ID=ID
   this.fullname=fullname
+  this.address=address
   this.username=username
   this.password=password
   this.isLocal=isLocal
@@ -46,7 +47,7 @@ export default {
     this.citizens = [c1,c2]
   },
   methods: {
-    createCitizen: function (ID, fullname, address, username, password, isLocal, balance, onlineAccountActivated) {
+    createCitizen: function (ID, fullname, address, username, password, isLocal) {
 
       AXIOS.post('/citizens/'.concat(ID),{},
         {params:{
@@ -54,11 +55,10 @@ export default {
             password: password,
             fullname: fullname,
             address: address,
-            onlineAccountActivated:onlineAccountActivated,
             isLocal:isLocal,
-            balance:balance}})
+          }})
         .then(response => {
-          //this.citizens.push(response.data)
+          this.citizens.push(response.data)
           this.ID=''
           this.username=''
           this.password=''
@@ -76,7 +76,7 @@ export default {
         })
 
       //create a new citizen and add it to the list of citizen
-      var c = new CitizenDto(125, fullname, 'MCGILL', 'ABC', 'CDF',true, 250, true)
+      var c = new CitizenDto(ID, fullname, address, username, password, isLocal, 0, true)
       this.citizens.push(c)
       //Reset the name field for new citizen
       this.newCitizen = ''
