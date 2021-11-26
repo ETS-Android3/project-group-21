@@ -4,6 +4,9 @@ import Hello from '@/components/Hello'
 import Citizen from '@/components/Citizen'
 import Reservation from '@/components/Reservation'
 import LibraryItem from '@/components/LibraryItem'
+import HeadLibrarian from '@/components/HeadLibrarian'
+import Librarian from '@/components/Librarian'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -28,6 +31,21 @@ export default new Router({
       path: '/libraryitem',
       name: 'LibraryItem',
       component: LibraryItem
+    },
+    {
+      path: '/headlibrarian',
+      name: 'HeadLibrarian',
+      component: HeadLibrarian
+    },
+    {
+      path: '/librarian',
+      name: 'Librarian',
+      component: Librarian
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })
