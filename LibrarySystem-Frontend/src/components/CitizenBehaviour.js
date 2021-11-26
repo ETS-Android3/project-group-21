@@ -9,6 +9,7 @@ var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
+
 function CitizenDto(ID, fullname, address, username, password, isLocal, balance, onlineAccountActivated){
   this.ID=ID
   this.fullname=fullname
@@ -41,14 +42,13 @@ export default {
         this.errorCitizen = e
       })
     //Test data
-    const c1 = new CitizenDto(123,'Noshin', 'NewYork','kida','pass',true,13,true)
+    const c1 = new CitizenDto(123,'Noshin', 'NewYork','kida','pass',true,0,true)
     const c2 = new CitizenDto(124,'Bob', 'York','kidb','pass1',true,13,true)
     // Sample initial content
     this.citizens = [c1,c2]
   },
   methods: {
     createCitizen: function (ID, fullname, address, username, password, isLocal) {
-
       AXIOS.post('/citizens/'.concat(ID),{},
         {params:{
             username: username,
@@ -59,20 +59,21 @@ export default {
           }})
         .then(response => {
           this.citizens.push(response.data)
-          this.ID=''
-          this.username=''
-          this.password=''
-          this.fullname=''
-          this.address=''
-          this.onlineAccountActivated=''
-          this.isLocal=''
-          this.balance=''
+          // this.ID=''
+          // this.username=''
+          // this.password=''
+          // this.fullname=''
+          // this.address=''
+          // this.onlineAccountActivated=''
+          // this.isLocal=''
+          // this.balance=''
+          this.newCitizen=''
           this.errorCitizen=''
         })
         .catch(e => {
-          var errorMsg = e
-          console.log(errorMsg.message)
-          this.errorCitizen = errorMsg
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorPerson = errorMsg
         })
 
       //create a new citizen and add it to the list of citizen
