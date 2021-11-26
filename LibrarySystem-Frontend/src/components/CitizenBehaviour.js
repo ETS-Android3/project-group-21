@@ -73,7 +73,7 @@ export default {
         .catch(e => {
           var errorMsg = e.response.data.message
           console.log(errorMsg)
-          this.errorPerson = errorMsg
+          this.errorCitizen = errorMsg
         })
 
       //create a new citizen and add it to the list of citizen
