@@ -30,7 +30,7 @@ public class TestCitizenPersistence{
 	
 	@Test
 	@Transactional
-	public void testPersistAndLoadApplicationUser() {
+	public void testPersistAndLoadCitizen() {
 		Citizen aCitizen = new Citizen();
 		String name = "Noshin Chowdhury";
 
@@ -40,7 +40,7 @@ public class TestCitizenPersistence{
 		Boolean onlineAccountActivated = true;
 		Boolean isLocal = false;
 		Double balance = 121.38;
-		Long cardID = 123L;
+		Long cardID = 1234L;
 		
 		aCitizen.setFullName(name);
 		aCitizen.setCardID(cardID);

@@ -51,7 +51,7 @@ public class TestLibrarianPersistence {
 //        s2.setHeadLibrarian(null);
 //        shiftRepository.save(s2);
 //        long sCode=s2.getShiftCode();
-		Long cardID = 123L;
+		Long cardID = 12345L;
 //        List sl = new ArrayList<Shift>();
 //        sl.add(s2);
 
