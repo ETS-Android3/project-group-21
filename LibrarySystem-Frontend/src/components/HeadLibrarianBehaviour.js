@@ -36,7 +36,7 @@ export default {
   },
   created: function() {
     //Initializing headlibrarians from backend
-    AXIOS.get('/headlibrarians')
+    AXIOS.get('/headlibrarian')
       .then(response => {
         //JSON responses are automatically parsed
         this.headlibrarians = response.data
@@ -52,11 +52,11 @@ export default {
   },
   methods: {
     createHeadLibrarian: function (cardID, fullname, address, username, password) {
-      AXIOS.post('/headlibrarians/'.concat(cardID),{},
+      AXIOS.post('/headlibrarian/'.concat(cardID),{},
         {params:{
             username: username,
             password: password,
-            fullname: fullname,
+            name: fullname,
             address: address
 
           }})
