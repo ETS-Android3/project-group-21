@@ -14,7 +14,7 @@
             </tr>
         </table>
 
-        <form>
+        <table>
             <tr>
                 <th><label>Reservation ID:</label></th>
                 <td><input type="text" v-model="reservationID" placeholder="Reservation ID"></td>
@@ -28,9 +28,10 @@
                 <td><input type="text" v-model="barcode" placeholder="Library item barcode"></td>
             </tr>
             <tr>
-                <button v-bind:disabled="!reservationID" @click="createReservation(reservationID, barcode, cardID)">Reserve</button>
+                <button v-bind:disabled="(!reservationID || !cardID || !barcode)" 
+                @click="createReservation(reservationID, barcode, cardID)">Reserve</button>
             </tr>
-        </form>
+        </table>
 
         <span v-if="errorReservation" style="color:red">Error: {{errorReservation}} </span>
     </div>

@@ -2,13 +2,25 @@ import axios from 'axios'
 
 var config = require('../../config')
 
-var frontendUrl= 'http://' + config.dev.host + ':' + config.dev.port
-var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+//var frontendUrl= 'http://' + config.dev.host + ':' + config.dev.port
+//var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
 
 var AXIOS = axios.create({
   baseURL: backendUrl,
-  headers: { 'Access-Control-Allow-Origin': frontendUrl}
+  //headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
+
+var backendConfigurer = function(){
+  switch(process.env.NODE_ENV){
+      case 'development':
+          return 'http://' + config.dev.backendHost + ':' + config.dev.backendPort;
+      case 'production':
+          return 'https://' + config.build.backendHost + ':' + config.build.backendPort ;
+  }
+};
+
+var backendUrl = backendConfigurer();
+
 
 function ReservationDto(reservationID, barcode, cardID){
     this.reservationID = reservationID
@@ -20,6 +32,9 @@ export default {
     name: 'reservation',
     data () {
       return {
+        reservationID:'',
+        cardID:'',
+        barcode:'',
         reservations: [],
         newReservation: '',
         errorReservation: '',
@@ -57,7 +72,7 @@ export default {
                 .catch(e => {
                   var errorMsg = e.response.data.message
                   console.log(errorMsg)
-                  this.errorPerson = errorMsg
+                  this.errorReservation = errorMsg
                 })
             // Create a new person and add it to the list of people
             var r = new ReservationDto(reservationID, barcode, cardID)
