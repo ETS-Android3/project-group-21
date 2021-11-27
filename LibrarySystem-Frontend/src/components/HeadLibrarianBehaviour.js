@@ -70,9 +70,9 @@ export default {
           this.errorHeadLibrarian = errorMsg
         })
 
-      //create a new hl and add it to the list of hl
-      var c = new HeadLibrarianDto(cardID, name, address, username, password)
-      this.headlibrarians.push(c)
+      // //create a new hl and add it to the list of hl
+      // var c = new HeadLibrarianDto(cardID, name, address, username, password)
+      // this.headlibrarians.push(c)
       //Reset the name field for new hl
       this.newHeadLibrarian = ''
     }
