@@ -26,9 +26,9 @@ export default {
   data(){
     return{
       ID: '',
-      fullname:'',
+      name:'',
       address:'',
-      username:'',
+      userName:'',
       password: '',
       isLocal:'',
       balance:'',
@@ -50,20 +50,22 @@ export default {
         this.errorCitizen = e
       })
     //Test data
-    const c1 = new CitizenDto(123,'Noshin', 'NewYork','kida','pass',true,0,true)
-    const c2 = new CitizenDto(124,'Bob', 'York','kidb','pass1',true,13,true)
+    //const c1 = new CitizenDto(123,'Noshin', 'NewYork','kida','pass',true,0,true)
+    //const c2 = new CitizenDto(124,'Bob', 'York','kidb','pass1',true,13,true)
     // Sample initial content
-    this.citizens = [c1,c2]
+    //this.citizens = [c1,c2]
   },
   methods: {
-    createCitizen: function (ID, fullname, address, username, password, isLocal) {
-      AXIOS.post('/citizens/'.concat(ID),{},
+    createCitizen: function (cardID, fullname, address, username, password, isLocal) {
+      AXIOS.post('/citizens/'.concat(cardID),{},
         {params:{
             username: username,
             password: password,
             fullname: fullname,
             address: address,
             isLocal:isLocal,
+            balance:0,
+            onlineAccountActivated:true
           }})
         .then(response => {
           this.citizens.push(response.data)
