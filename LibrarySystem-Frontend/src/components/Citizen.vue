@@ -11,37 +11,34 @@
           <th class="thstyle">password</th>
           <th class="thstyle">isLocal</th>
           <th class="thstyle">balance</th>
-          <th class="thstyle">onlineAccountActivated</th>
-        <tr class = "trstyle" v-for="citizen in citizens":key = "citizen.ID">
-          <td class="tdstyle">{{citizen.ID}}</td>
-          <td class="tdstyle">{{citizen.fullname}}</td>
+
+        <tr class = "trstyle" v-for="citizen in citizens":key = "citizen.id">
+          <td class="tdstyle">{{citizen.id}}</td>
+          <td class="tdstyle">{{citizen.name}}</td>
           <td class="tdstyle">{{citizen.address}}</td>
-          <td class="tdstyle">{{citizen.username}}</td>
+          <td class="tdstyle">{{citizen.userName}}</td>
           <td class="tdstyle">{{citizen.password}}</td>
           <td class="tdstyle">{{citizen.isLocal}}</td>
           <td class="tdstyle">{{citizen.balance}}</td>
-          <td class="tdstyle">{{citizen.onlineAccountActivated}}</td>
+
       </tr>
-      </table>>
+      </table>
       <br>
       <table align = "center">
         <tr> <input type="text" v-model="ID" placeholder="ID"></tr>
         <p style="line-height:0em;"> </p>
-        <tr> <input type="text" v-model="fullname" placeholder="user fullname"></tr>
+        <tr> <input type="text" v-model="name" placeholder="user fullname"></tr>
         <p style="line-height:0em;"> </p>
         <tr> <input type="text" v-model="address" placeholder="user address"></tr>
         <p style="line-height:0em;"> </p>
-        <tr> <input type="text" v-model="username" placeholder="username"></tr>
+        <tr> <input type="text" v-model="userName" placeholder="username"></tr>
         <p style="line-height:0em;"> </p>
         <tr> <input type="text" v-model="password" placeholder="password"></tr>
         <p style="line-height:0em;"> </p>
         <tr> <input type="text" v-model="isLocal" placeholder="is Local"></tr>
         <p style="line-height:0em;"> </p>
-        <tr> <input type="text" v-model="balance" placeholder="balance"></tr>
-        <p style="line-height:0em;"> </p>
-        <tr> <input type="text" v-model="onlineAccountActivated" placeholder="onlinevAccount Activated"></tr>
-        <p style="line-height:0em;"> </p>
-        <button class="btn btn-primary" v-bind:disabled="(!ID||!fullname||!address||!username||!password||!isLocal||!balance||!onlineAccountActivated)" @click="createCitizen(ID,fullname,address,username,password,isLocal,balance,onlineAccountActivated)">Create Cirizen</button>
+
+        <button class="btn btn-primary" v-bind:disabled="(!ID||!name||!address||!userName||!password||!isLocal)" @click="createCitizen(ID,name,address,userName,password,isLocal,balance,onlineAccountActivated)">Create Cirizen</button>
         &nbsp;
         <router-link to ="/login">
           <button class="btn btn-primary">Cancle</button>

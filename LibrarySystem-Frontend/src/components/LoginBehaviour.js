@@ -49,22 +49,22 @@ export default{
             })
 
             const loginVerification = (cardID, password) => {
-                for (const citizen in this.citizens){
+                for (const citizen of this.citizens){
                     if ( cardID.localeCompare(citizen.id)==0 && password.localeCompare(citizen.password)==0) {
                         this.$router.push('/reservation')
                     }
                 }
-                for (const librarian in this.librarians){
+                for (const librarian of this.librarians){
                     if (cardID.localeCompare(librarian.id) == 0 && password.localeCompare(librarian.password) == 0) {
                         this.$router.push('/reservation')
                     }
                 }
-                for (const aheadlibrarian in this.headlibrarian){
+                for (const aheadlibrarian of this.headlibrarian){
                     if (cardID.localeCompare(aheadlibrarian.id) == 0 && password.localeCompare(aheadlibrarian.password) == 0) {
                         this.$router.push('/reservation')
                     }
                 }
-            }            
+            }
             // function call
             loginVerification(cardID, password)
 
