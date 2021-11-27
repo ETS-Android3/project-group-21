@@ -44,11 +44,11 @@ export default {
       .catch(e => {
         this.errorHeadLibrarian = e
       })
-    //Test data
-    const c1 = new HeadLibrarianDto(123,'Noshin', 'NewYork','kida','pass')
-    const c2 = new HeadLibrarianDto(124,'Bob', 'York','kidb','pass1')
-    // Sample initial content
-    this.headlibrarians = [c1,c2]
+    // //Test data
+    // const c1 = new HeadLibrarianDto(123,'Noshin', 'NewYork','kida','pass')
+    // const c2 = new HeadLibrarianDto(124,'Bob', 'York','kidb','pass1')
+    // // Sample initial content
+    // this.headlibrarians = [c1,c2]
   },
   methods: {
     createHeadLibrarian: function (cardID, name, address, username, password) {

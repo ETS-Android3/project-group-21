@@ -17,10 +17,11 @@
             <p style="line-height:0em;"> &nbsp; </p>
             <input type="text" v-model="password" placeholder="Password">
             <br><br>
-            <button class="btn btn-primary" v-bind:disabled="(!cardID||!password)" @click="login(cardID,password)">Log in</button>
+            <button class="btn btn-primary" v-bind:disabled="(!cardID||!password)" 
+                @click="login(cardID, password)">Log in</button>
             &nbsp;
             <router-link to ="/">
-            <button class="btn btn-primary">Cancle</button>
+            <button class="btn btn-primary">Cancel</button>
             </router-link>
         </div>
     </div>

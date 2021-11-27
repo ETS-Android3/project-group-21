@@ -16,21 +16,26 @@ export default{
       return{
           cardID: '',
           password: '',
-
+          citizens: [],
+          headlibrarian: [],
+          librarians: [],
+          errorCitizen: '',
+          errorHeadLibrarian: '',
+          errorLibrarian:''
       }
     },
     methods: {
         login: function(cardID,password){
             AXIOS.get('/citizens')
             .then(response => {
-                this.events = response.data
+                this.citizens = response.data
             })
             .catch(e => {
                 this.errorCitizen = e
             })
-            AXIOS.get('/headlibrarians')
+            AXIOS.get('/headlibrarian')
             .then(response => {
-                this.headlibrarians = response.data
+                this.headlibrarian = response.data
             })
             .catch(e => {
                 this.errorHeadLibrarian = e
@@ -42,7 +47,26 @@ export default{
             .catch(e => {
                 this.errorlibrarian = e
             })
-            
+
+            const loginVerification = (cardID, password) => {
+                for (const citizen in this.citizens){
+                    if ( cardID.localeCompare(citizen.id)==0 && password.localeCompare(citizen.password)==0) {
+                        this.$router.push('/reservation')
+                    }
+                }
+                for (const librarian in this.librarians){
+                    if (cardID.localeCompare(librarian.id) == 0 && password.localeCompare(librarian.password) == 0) {
+                        this.$router.push('/reservation')
+                    }
+                }
+                for (const aheadlibrarian in this.headlibrarian){
+                    if (cardID.localeCompare(aheadlibrarian.id) == 0 && password.localeCompare(aheadlibrarian.password) == 0) {
+                        this.$router.push('/reservation')
+                    }
+                }
+            }            
+            // function call
+            loginVerification(cardID, password)
 
         }
     }
