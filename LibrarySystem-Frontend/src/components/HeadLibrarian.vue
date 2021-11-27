@@ -10,11 +10,11 @@
                 <th class="thstyle">address</th>
                 <th class="thstyle">username</th>
                 <th class="thstyle">password</th>
-            <tr class="trstyle" v-for="headlibrarian in headlibrarians" :key="headlibrarian.cardID">
-                <td class="tdstyle">{{headlibrarian.cardID}}</td>
-                <td class="tdstyle">{{headlibrarian.fullname}}</td>
+            <tr class="trstyle" v-for="headlibrarian in headlibrarians" :key="headlibrarian.id">
+                <td class="tdstyle">{{headlibrarian.id}}</td>
+                <td class="tdstyle">{{headlibrarian.name}}</td>
                 <td class="tdstyle">{{headlibrarian.address}}</td>
-                <td class="tdstyle">{{headlibrarian.username}}</td>
+                <td class="tdstyle">{{headlibrarian.userName}}</td>
                 <td class="tdstyle">{{headlibrarian.password}}</td>
             </tr>
         </table>
@@ -22,7 +22,7 @@
         <table align="center">
             <tr> <input type="text" v-model="cardID" placeholder="User ID"> </tr>
             <p style="line-height:0em;"> &nbsp; </p>
-            <tr> <input type="text" v-model="fullname" placeholder="Headlibrarian Name"> </tr>
+            <tr> <input type="text" v-model="name" placeholder="Headlibrarian Name"> </tr>
             <p style="line-height:0em;"> &nbsp; </p>
             <tr> <input type="text" v-model="address" placeholder="Address"></tr>
             <p style="line-height:0em;"> &nbsp; </p>
@@ -30,7 +30,8 @@
             <p style="line-height:0em;"> &nbsp; </p>
             <tr> <input type="text" v-model="password" placeholder="Password"></tr>
             <p style="line-height:0em;"> &nbsp; </p>
-            <button class="btn btn-primary" v-bind:disabled="(!cardID||!fullname||!address||!username||!password)" @click="createHeadLibrarian(cardID,fullname,address,username,password)">Create Headlibrarian</button>
+            <button class="btn btn-primary" v-bind:disabled="(!cardID||!name||!address||!username||!password)" 
+            @click="createHeadLibrarian(cardID,name,address,username,password)">Create Headlibrarian</button>
             &nbsp;
             <router-link to ="/login">
             <button class="btn btn-primary">Cancle</button>

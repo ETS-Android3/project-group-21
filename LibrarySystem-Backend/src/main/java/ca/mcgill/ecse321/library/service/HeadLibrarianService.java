@@ -28,12 +28,12 @@ public class HeadLibrarianService {
 	 * @param cardID
 	 */
 	@Transactional
-	public HeadLibrarian createHeadlibrarian (String fullname, String userName, String password, String address, Long cardID) {
+	public HeadLibrarian createHeadlibrarian (String fullname, String username, String password, String address, Long cardID) {
 		if (fullname == null || fullname.equals("")) {
 			throw new IllegalArgumentException ("Fullname can't be empty");
 		}
 		
-		if (userName == null || userName.equals("")) {
+		if (username == null || username.equals("")) {
 			throw new IllegalArgumentException ("Username can't be empty");
 		}
 		
@@ -48,7 +48,7 @@ public class HeadLibrarianService {
 		
 		HeadLibrarian aHeadLibrarian = new HeadLibrarian();
 		aHeadLibrarian.setFullName(fullname);
-		aHeadLibrarian.setUsername(userName);
+		aHeadLibrarian.setUsername(username);
 		aHeadLibrarian.setPassword(password);
 		aHeadLibrarian.setAddress(address);
 		aHeadLibrarian.setCardID(cardID);

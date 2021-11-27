@@ -4,13 +4,13 @@
         <table>
             <tr>
                 <td> Reservation ID </td>
-                <td> User ID </td>
-                <td> Library item barcode </td>
+                <td> User Name </td>
+                <td> Item Title </td>
             </tr>
             <tr v-for="reservation in reservations" :key="reservation.reservationID">
                 <td>{{reservation.reservationID}}</td>
-                <td>{{reservation.cardID}}</td>
-                <td>{{reservation.barcode}}</td>
+                <td>{{reservation.applicationUser.name}}</td>
+                <td>{{reservation.libraryItem.title}}</td>
             </tr>
         </table>
 

@@ -17,7 +17,7 @@ public abstract class ApplicationUser
   //------------------------
 
   //ApplicationUser Attributes
-  private String fullName;
+  private String fullname;
   private Long cardID;
   private String address;
   private String username;
@@ -38,7 +38,7 @@ public abstract class ApplicationUser
 
   public void setFullName(String aFullName)
   {
-    this.fullName = aFullName;
+    this.fullname = aFullName;
   }
   
   public void setCardID(Long aCardID)
@@ -68,7 +68,7 @@ public abstract class ApplicationUser
 
   public String getFullName()
   {
-    return this.fullName;
+    return this.fullname;
   }
 
   @Id

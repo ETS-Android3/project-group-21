@@ -38,14 +38,14 @@
             <td>Loan Period</td>
         </tr>
         <tr>
-            <td><input type="text" v-model="isReservable" placeholder="true if the item is reservable"/></td>
-            <td><input type="text" v-model="isReserved" placeholder="true if the item is reserved"></td>
+            <td><input type="text" v-model="isReservable" placeholder="true if reservable"/></td>
+            <td><input type="text" v-model="isReserved" placeholder="always false" disabled></td>
             <td><input type="text" v-model="loanPeriod" placeholder="Loan period"></td>
         </tr>
         <tr>
         <td></td>
-            <td><button v-bind:disabled="(!barcode || !title || !type || !isReservable || !isReserved || !loanPeriod)"
-            @click="createLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod)">Add Library Item</button></td>
+            <td><button v-bind:disabled="(!barcode || !title || !type || !isReservable || !loanPeriod)"
+            @click="createLibraryItem(barcode, type, title, isReservable, loanPeriod)">Add Library Item</button></td>
         </tr>
         </table>
         <p>

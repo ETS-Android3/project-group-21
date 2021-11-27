@@ -10,9 +10,9 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
 
-function HeadLibrarianDto(cardID, fullname, address, username, password){
+function HeadLibrarianDto(cardID, name, address, username, password){
   this.cardID=cardID
-  this.fullname=fullname
+  this.name=name
   this.address=address
   this.username=username
   this.password=password
@@ -24,7 +24,7 @@ export default {
   data(){
     return{
         cardID: '',
-        fullname:'',
+        name:'',
         address:'',
         username:'',
         password: '',
@@ -51,15 +51,14 @@ export default {
     this.headlibrarians = [c1,c2]
   },
   methods: {
-    createHeadLibrarian: function (cardID, fullname, address, username, password) {
+    createHeadLibrarian: function (cardID, name, address, username, password) {
       AXIOS.post('/headlibrarian/'.concat(cardID),{},
         {params:{
+            name: name,
+            address: address,
             username: username,
-            password: password,
-            name: fullname,
-            address: address
-
-          }})
+            password: password
+        }})
         .then(response => {
           this.headlibrarians.push(response.data)
           this.newHeadLibrarian=''
@@ -72,7 +71,7 @@ export default {
         })
 
       //create a new hl and add it to the list of hl
-      var c = new HeadLibrarianDto(cardID, fullname, address, username, password)
+      var c = new HeadLibrarianDto(cardID, name, address, username, password)
       this.headlibrarians.push(c)
       //Reset the name field for new hl
       this.newHeadLibrarian = ''
