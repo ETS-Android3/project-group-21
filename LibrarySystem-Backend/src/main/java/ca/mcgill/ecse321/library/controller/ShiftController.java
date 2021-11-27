@@ -20,6 +20,7 @@ import ca.mcgill.ecse321.library.dto.ApplicationUserDto;
 import ca.mcgill.ecse321.library.dto.ShiftDto;
 import ca.mcgill.ecse321.library.models.*;
 import ca.mcgill.ecse321.library.models.Shift.DayOfWeek;
+import ca.mcgill.ecse321.library.service.CitizenService;
 import ca.mcgill.ecse321.library.service.HeadLibrarianService;
 import ca.mcgill.ecse321.library.service.LibrarianService;
 import ca.mcgill.ecse321.library.service.ShiftService;
@@ -37,6 +38,8 @@ public class ShiftController {
 	@Autowired
 	private HeadLibrarianService headLibrarianService;
 	
+	@Autowired
+	private CitizenService citizenService;
 	/*
      * @Author: Joris Ah-Kane
      * Get all shifts, either by shiftcode or simply getting them all
@@ -84,9 +87,13 @@ public class ShiftController {
     		dayOfWeek = Shift.DayOfWeek.Sunday;
     	}
     		
+		
+		Citizen c = citizenService.getCitizenByID(cardID);
 		Librarian l = librarianService.getLibrarianByID(cardID);
 		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(cardID);
-		ApplicationUser user = null;		
+		ApplicationUser user = null;	
+		//this will at most be one of these types of users
+		if (c != null) user = c;
 		if (l != null) user = l; 
 		if (hl != null) user = hl; 
         //keep the user null if the user is a citizen
