@@ -17,6 +17,10 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <router-link to ="/login">
+            <button class="btn btn-primary">Enter System</button>
+    </router-link>
+
   </div>
 </template>
 
@@ -33,6 +37,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.btn-primary{
+    padding: 10px 20px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #42b983;
+}
 h1, h2 {
   font-weight: normal;
 }

@@ -11,10 +11,10 @@
                 <th class="thstyle">username</th>
                 <th class="thstyle">password</th>
             <tr class="trstyle" v-for="librarian in librarians" :key="librarian.cardID">
-                <td class="tdstyle">{{librarian.cardID}}</td>
-                <td class="tdstyle">{{librarian.fullname}}</td>
+                <td class="tdstyle">{{librarian.id}}</td>
+                <td class="tdstyle">{{librarian.name}}</td>
                 <td class="tdstyle">{{librarian.address}}</td>
-                <td class="tdstyle">{{librarian.username}}</td>
+                <td class="tdstyle">{{librarian.userName}}</td>
                 <td class="tdstyle">{{librarian.password}}</td>
             </tr>
         </table>
@@ -46,10 +46,17 @@
 </script>
 
 <style>
+.btn-primary:disabled{
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #42b983;
+}
 .btn-primary{
     padding: 10px 20px;
     font-size: 12px;
     border-radius: 10px;
+    background-color: #42b983;
 }
 .librarian {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

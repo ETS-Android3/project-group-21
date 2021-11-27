@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="register-href">
-            <router-link to="/citizen"> Citizen Register </router-link>
+            <router-link to="/citizen" class="link"> Citizen Register </router-link>
             <br>
-            <router-link to="/librarian"> Librarian Register </router-link>
+            <router-link to="/librarian" class="link"> Librarian Register </router-link>
             <br>
-            <router-link to="/headlibrarian"> HeadLibrarian Register </router-link>
+            <router-link to="/headlibrarian" class="link"> HeadLibrarian Register </router-link>
             
         </div>
         <div class="login-block">
@@ -30,10 +30,18 @@
 </script>
 
 <style scoped>
+.link{
+    color:#42b983
+}
+.link:hover{
+    color: #42b983;
+}
+
 .btn-primary{
   padding: 10px 20px;
   font-size: 12px;
   border-radius: 10px;
+background-color: #42b983;
 }
 
 .register-href {

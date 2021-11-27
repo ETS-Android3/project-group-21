@@ -47,10 +47,17 @@
 </script>
 
 <style>
+.btn-primary:disabled{
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #42b983;
+}
 .btn-primary{
     padding: 10px 20px;
     font-size: 12px;
     border-radius: 10px;
+    background-color: #42b983;
 }
 .headlibrarian {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

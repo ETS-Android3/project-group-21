@@ -24,7 +24,7 @@ export default {
   data(){
     return{
         cardID: '',
-        fullname:'',
+        name:'',
         address:'',
         username:'',
         password: '',
@@ -45,10 +45,10 @@ export default {
         this.errorLibrarian = e
       })
     //Test data
-    const c1 = new LibrarianDto(123,'Noshin', 'NewYork','kida','pass')
-    const c2 = new LibrarianDto(124,'Bob', 'York','kidb','pass1')
+    // const c1 = new LibrarianDto(123,'Noshin', 'NewYork','kida','pass')
+    // const c2 = new LibrarianDto(124,'Bob', 'York','kidb','pass1')
     // Sample initial content
-    this.librarians = [c1,c2]
+    // this.librarians = [c1,c2]
   },
   methods: {
     createLibrarian: function (cardID, fullname, address, username, password) {
@@ -72,8 +72,8 @@ export default {
         })
 
       //create a new hl and add it to the list of hl
-      var c = new LibrarianDto(cardID, fullname, address, username, password)
-      this.librarians.push(c)
+      // var c = new LibrarianDto(cardID, fullname, address, username, password)
+      // this.librarians.push(c)
       //Reset the name field for new hl
       this.newLibrarian = ''
     }
