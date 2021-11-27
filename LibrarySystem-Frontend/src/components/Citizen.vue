@@ -1,46 +1,92 @@
-
-<!--This is a template from the tutorial, plz do not just copy paste it for the other vue -->
 <template>
-    <div id="citizen">
-        <h2>Citizen</h2>
-        <table>
-           <tr v-for="citizen in citizens" :key="citizen.ID">
-              <td>{{citizen.ID}}</td>
-              <td>{{citizen.fullname}}</td>
-              <td>{{citizen.address}}</td>
-              <td>{{citizen.username}}</td>
-              <td>{{citizen.password}}</td>
-              <td>{{citizen.isLocal}}</td>
-              <td>{{citizen.balance}}</td>
-              <td>{{citizen.onlineAccountActivated}}</td>
-           </tr>
-        </table>
-        <table>
-        <tr>
-          <td>
-            <input type="text" v-model="ID" placeholder="User ID">
-            <input type="text" v-model="fullname" placeholder="Citizen Name">
-            <input type="text" v-model="address" placeholder="Address">
-            <input type="text" v-model="username" placeholder="Username">
-            <input type="text" v-model="password" placeholder="Password">
-            <input type="text" v-model="isLocal" placeholder="Enter true if the user is local">
-       </td>
-          <td>
-            <button v-bind:disabled="!ID" @click="createCitizen(ID,fullname,address,username,password,isLocal)">Create Citizen</button>
-          </td>
-        </tr>
-        </table>
-        <span v-if="errorCitizen" style="color:red">Error: {{errorCitizen}} </span>
+    <div class="citizen">
+      <h2>Citizen</h2>
+      <h5>Existing citizen(for testing purpose):</h5>
+      <table class = "tablestyle" align="center">
+        <tr class="trstyle">
+          <th class="thstyle">ID</th>
+          <th class="thstyle">fullname</th>
+          <th class="thstyle">address</th>
+          <th class="thstyle">username</th>
+          <th class="thstyle">password</th>
+          <th class="thstyle">isLocal</th>
+          <th class="thstyle">balance</th>
+          <th class="thstyle">onlineAccountActivated</th>
+        <tr class = "trstyle" v-for="citizen in citizens":key = "citizen.ID">
+          <td class="tdstyle">{{citizen.ID}}</td>
+          <td class="tdstyle">{{citizen.fullname}}</td>
+          <td class="tdstyle">{{citizen.address}}</td>
+          <td class="tdstyle">{{citizen.username}}</td>
+          <td class="tdstyle">{{citizen.password}}</td>
+          <td class="tdstyle">{{citizen.isLocal}}</td>
+          <td class="tdstyle">{{citizen.balance}}</td>
+          <td class="tdstyle">{{citizen.onlineAccountActivated}}</td>
+      </tr>
+      </table>>
+      <br>
+      <table align = "center">
+        <tr> <input type="text" v-model="ID" placeholder="ID"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="fullname" placeholder="user fullname"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="address" placeholder="user address"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="username" placeholder="username"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="password" placeholder="password"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="isLocal" placeholder="is Local"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="balance" placeholder="balance"></tr>
+        <p style="line-height:0em;"> </p>
+        <tr> <input type="text" v-model="onlineAccountActivated" placeholder="onlinevAccount Activated"></tr>
+        <p style="line-height:0em;"> </p>
+        <button class="btn btn-primary" v-bind:disabled="(!ID||!fullname||!address||!username||!password||!isLocal||!balance||!onlineAccountActivated)" @click="createCitizen(ID,fullname,address,username,password,isLocal,balance,onlineAccountActivated)">Create Cirizen</button>
+        &nbsp;
+        <router-link to ="/login">
+          <button class="btn btn-primary">Cancle</button>
+        </router-link>
+      </table>
+      <span v-if="errorCitizen" style="color:red">Error: {{errorCitizen}} </span>
+
+
     </div>
 </template>
-
 <script src="./CitizenBehaviour.js">
-</script>]
+</script>
 
 <style>
-    #citizen {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        color: #2c3e50;
-        background: #f2ece8;
-    }
+.btn-primary:disabled{
+  padding: 10px 20px;
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: #42b983;
+}
+.btn-primary{
+  padding: 10px 20px;
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: #42b983;
+}
+.librarian {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+  background: #f2ece8;
+
+}
+.tablestyle {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+}
+
+.tdstyle, .thstyle {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.trstyle:nth-child(even) {
+  background-color: #dddddd;
+}
 </style>

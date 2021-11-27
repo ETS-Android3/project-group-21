@@ -25,6 +25,14 @@ export default {
   name: 'citizen',
   data(){
     return{
+      ID: '',
+      fullname:'',
+      address:'',
+      username:'',
+      password: '',
+      isLocal:'',
+      balance:'',
+      onlineAccountActivated: '',
       citizens: [],
       newCitizen: '',
       errorCitizen: '',
@@ -77,8 +85,8 @@ export default {
         })
 
       //create a new citizen and add it to the list of citizen
-      var c = new CitizenDto(ID, fullname, address, username, password, isLocal, 0, true)
-      this.citizens.push(c)
+      //var c = new CitizenDto(ID, fullname, address, username, password, isLocal, 0, true)
+      //this.citizens.push(c)
       //Reset the name field for new citizen
       this.newCitizen = ''
     }
