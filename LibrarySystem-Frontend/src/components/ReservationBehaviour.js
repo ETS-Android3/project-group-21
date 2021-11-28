@@ -21,11 +21,22 @@ export default {
     data () {
       return {
         reservationID:'',
-        cardID:'',
-        barcode:'',
+
+        libraryItem: {
+          barcode: '',
+          title: ''
+        },
+
+        applicationUser: {
+          cardID: '',
+          name: ''
+        },
+
+        deleteReservationID:'',
         reservations: [],
         newReservation: '',
         errorReservation: '',
+        result:false,
         response: []
       }
     },
@@ -39,13 +50,25 @@ export default {
         .catch(e => {
         this.errorReservation = e
         })
-        // Test data
-        const r1 = new ReservationDto(1357, 2468, 12345)
-        const r2 = new ReservationDto(35791, 68462, 98765)
-        // Sample initial content
-        this.reservations = [r1, r2]
       },
+
     methods: {
+        deleteReservation: function (deleteReservationID) {
+          AXIOS.delete('/reservations/'.concat(deleteReservationID), {}, {})
+          .then(response => {
+            AXIOS.get('/reservations')
+              .then(response => {
+              //JSON responses are automatically parsed
+              this.reservations = response.data
+              })
+              .catch(e => {
+              this.errorReservation = e
+              })
+            })
+            .catch(e => {
+            this.errorReservation = e
+            })
+        },
         createReservation: function (reservationID, barcode, cardID) {
             AXIOS.post('/reservations/'.concat(reservationID),{},
                 {params:{
@@ -54,18 +77,15 @@ export default {
                 .then(response => {
                 this.reservations.push(response.data)
                 this.reservationID=''
-                this.barcode=''
-                this.cardID=''
+                this.libraryItem.barcode=''
+                this.applicationUser.cardID=''
                 })
                 .catch(e => {
                   var errorMsg = e.response.data.message
                   console.log(errorMsg)
                   this.errorReservation = errorMsg
                 })
-            // Create a new person and add it to the list of people
-            var r = new ReservationDto(reservationID, barcode, cardID)
-            this.reservations.push(r)
-            // Reset the name field for new people
+
             this.newReservation = ''
         }
     }
