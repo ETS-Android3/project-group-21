@@ -1,6 +1,6 @@
 <template>
     <div id="reservation">
-        <h2>Reserve Library Item</h2>
+        <h2>Reserve Library Item</h2><br>
         <table align="center">
             <tr>
                 <th><label>Reservation ID:</label></th>
@@ -26,9 +26,9 @@
 
         <span v-if="errorReservation" style="color:red">Error: {{errorReservation}} </span>
 
-        <br>
+        <br><br>
 
-        <h2>Cancel Reservation</h2>
+        <h2>Cancel Reservation</h2><br>
         <table align="center">
             <tr>
                 <th><label>Reservation ID:</label></th>
@@ -41,9 +41,9 @@
             </tr>
         </table>
 
-        <br>
+        <br><br>
 
-        <h2>Exisiting Reservations</h2>
+        <h2>Exisiting Reservations</h2><br>
         <table class="tablestyle" align="center">
             <tr class="trstyle">
                 <th class="trstyle"> Reservation ID </th>
@@ -57,6 +57,8 @@
             </tr>
         </table>
 
+        <br><br><br>
+
     </div>
     
 </template>
@@ -66,12 +68,23 @@
 </script>
 
 <style>
-    #reservation{
+#reservation{
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     background: #f2ece8;
-
     }
+.btn-primary:disabled{
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #42b983;
+}
+.btn-primary{
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #42b983;
+}
 .tablestyle {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -82,5 +95,8 @@
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+.trstyle:nth-child(even) {
+  background-color: #dddddd;
 }
 </style>
