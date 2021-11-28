@@ -67,9 +67,12 @@ export default {
               })
             })
             .catch(e => {
-            this.errorReservation = e
+              var errorMsg = e.response.data.message
+              console.log(errorMsg)
+              this.errorReservation = errorMsg
             })
         },
+        
         createReservation: function (reservationID, barcode, cardID) {
             AXIOS.post('/reservations/'.concat(reservationID),{},
                 {params:{
