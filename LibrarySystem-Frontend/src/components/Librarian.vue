@@ -6,7 +6,7 @@
         <table class="tablestyle" align="center">
             <tr class="trstyle">
                 <th class="thstyle">cardID</th>
-                <th class="thstyle">fullname</th>
+                <th class="thstyle">name</th>
                 <th class="thstyle">address</th>
                 <th class="thstyle">username</th>
                 <th class="thstyle">password</th>
@@ -22,7 +22,7 @@
         <table align="center">
             <tr> <input type="text" v-model="cardID" placeholder="User ID"> </tr>
             <p style="line-height:0em;"> &nbsp; </p>
-            <tr> <input type="text" v-model="fullname" placeholder="Librarian Name"> </tr>
+            <tr> <input type="text" v-model="name" placeholder="Librarian Name"> </tr>
             <p style="line-height:0em;"> &nbsp; </p>
             <tr> <input type="text" v-model="address" placeholder="Address"></tr>
             <p style="line-height:0em;"> &nbsp; </p>
@@ -30,11 +30,17 @@
             <p style="line-height:0em;"> &nbsp; </p>
             <tr> <input type="text" v-model="password" placeholder="Password"></tr>
             <p style="line-height:0em;"> &nbsp; </p>
-            <button class="btn btn-primary" v-bind:disabled="(!cardID||!fullname||!address||!username||!password)" @click="createLibrarian(cardID,fullname,address,username,password)">Create Librarian</button>
+            <button class="btn btn-primary" v-bind:disabled="(!cardID||!name||!address||!username||!password)" @click="createLibrarian(cardID,name,address,username,password)">Create Librarian</button>
             &nbsp;
             <router-link to ="/login">
             <button class="btn btn-primary">Cancle</button>
             </router-link>
+            &nbsp;
+            <button class="btn btn-primary" v-bind:disabled="!cardID" 
+            @click="updateLibrarian(cardID,name,address,username,password)">Update Librarian</button>
+            &nbsp;
+            <button class="btn btn-primary" v-bind:disabled="!cardID" 
+            @click="deleteLibrarian(cardID)">Delete Librarian</button>
         </table>
         <span v-if="errorLibrarian" style="color:red">Error: {{errorLibrarian}} </span>
        

@@ -28,7 +28,7 @@ public class LibrarianController {
 	/*
 	 * @Author: Yujin li
 	 * create a Librarian
-	 * @param fullname
+	 * @param name
 	 * @param username
 	 * @param password
 	 * @param address
@@ -36,10 +36,10 @@ public class LibrarianController {
 	 */
 
 	@PostMapping(value= {"/librarians/{cardID}","/librarians/{cardID/"})
-	public LibrarianDto createLibrarian(@PathVariable ("cardID") Long cardID, @RequestParam String fullname, @RequestParam String address, 
+	public LibrarianDto createLibrarian(@PathVariable ("cardID") Long cardID, @RequestParam String name, @RequestParam String address, 
 			@RequestParam String username, @RequestParam String password) throws IllegalArgumentException{
 		//Long id = Long.parseLong(cardID);
-		Librarian h = librarianService.createLibrarian(fullname, username, password, address, cardID);
+		Librarian h = librarianService.createLibrarian(name, username, password, address, cardID);
 		return convertToDto(h);
 	}
 
@@ -92,7 +92,7 @@ public class LibrarianController {
 	 * @Author: Yujin li
 	 * edit partial librarian information with provided information
 	 * @param cardID
-	 * @param fullname
+	 * @param name
 	 * @param username
 	 * @param password
 	 * @param address
