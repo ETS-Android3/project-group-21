@@ -1,5 +1,6 @@
 <template>
     <div id="reservation">
+        <br>
         <h2>Reserve Library Item</h2><br>
         <table align="center">
             <tr>
