@@ -34,7 +34,7 @@
             @click="createHeadLibrarian(cardID,name,address,username,password)">Create Headlibrarian</button>
             &nbsp;
             <router-link to ="/login">
-            <button class="btn btn-primary">Cancle</button>
+            <button class="btn btn-primary">Cancel</button>
             </router-link>
         </table>
         <span v-if="errorHeadLibrarian" style="color:red">Error: {{errorHeadLibrarian}} </span>

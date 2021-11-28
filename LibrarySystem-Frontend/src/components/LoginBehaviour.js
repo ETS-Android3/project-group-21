@@ -56,12 +56,12 @@ export default{
                 }
                 for (const librarian of this.librarians){
                     if (cardID.localeCompare(librarian.id) == 0 && password.localeCompare(librarian.password) == 0) {
-                        this.$router.push('/reservation')
+                        this.$router.push('/librarianhome')
                     }
                 }
                 for (const aheadlibrarian of this.headlibrarian){
                     if (cardID.localeCompare(aheadlibrarian.id) == 0 && password.localeCompare(aheadlibrarian.password) == 0) {
-                        this.$router.push('/reservation')
+                        this.$router.push('/headlibrarianhome')
                     }
                 }
             }

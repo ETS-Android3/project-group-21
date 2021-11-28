@@ -8,6 +8,8 @@ import HeadLibrarian from '@/components/HeadLibrarian'
 import Librarian from '@/components/Librarian'
 import Login from '@/components/Login'
 import OpeningHour from '@/components/OpeningHour'
+import HeadLibrarianHome from '@/components/HeadLibrarianHome'
+import LibrarianHome from '@/components/LibrarianHome'
 
 Vue.use(Router)
 
@@ -52,6 +54,16 @@ export default new Router({
       path: '/openinghour',
       name: 'OpeningHour',
       component: OpeningHour
+    },
+    {
+      path: '/headlibrarianhome',
+      name: 'HeadLibrarianHome',
+      component: HeadLibrarianHome
+    },
+    {
+      path: '/librarianhome',
+      name: 'LibrarianHome',
+      component: LibrarianHome
     }
   ]
 })
