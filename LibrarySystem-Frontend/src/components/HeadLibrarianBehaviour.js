@@ -75,6 +75,54 @@ export default {
       // this.headlibrarians.push(c)
       //Reset the name field for new hl
       this.newHeadLibrarian = ''
+    },
+    updateHeadLibrarian: function (cardID, name, address, username, password) {
+      AXIOS.patch('/headlibrarian/'.concat(cardID),{},
+        {params:{
+            name: name,
+            address: address,
+            username: username,
+            password: password
+        }})
+        .then(response => {
+          AXIOS.get('/headlibrarian')
+          .then(response => {
+        //JSON responses are automatically parsed
+          this.headlibrarians = response.data
+      })
+          .catch(e => {
+          this.errorHeadLibrarian = e
+      })
+          this.newHeadLibrarian=''
+          this.errorHeadLibrarian=''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorHeadLibrarian = errorMsg
+        })
+      this.newHeadLibrarian = ''
+    },
+    deleteHeadLibrarian: function (cardID) {
+      AXIOS.delete('/headlibrarian/'.concat(cardID),{},{})
+        .then(response => {
+          AXIOS.get('/headlibrarian')
+          .then(response => {
+        //JSON responses are automatically parsed
+          this.headlibrarians = response.data
+      })
+          .catch(e => {
+          this.errorHeadLibrarian = e
+      })
+          this.newHeadLibrarian=''
+          this.errorHeadLibrarian=''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorHeadLibrarian = errorMsg
+        })
+      this.newHeadLibrarian = ''
     }
   },
 }

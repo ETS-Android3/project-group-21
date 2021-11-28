@@ -36,6 +36,12 @@
             <router-link to ="/login">
             <button class="btn btn-primary">Cancel</button>
             </router-link>
+            &nbsp;
+            <button class="btn btn-primary" v-bind:disabled="!cardID" 
+            @click="updateHeadLibrarian(cardID,name,address,username,password)">Update Headlibrarian</button>
+            &nbsp;
+            <button class="btn btn-primary" v-bind:disabled="!cardID" 
+            @click="deleteHeadLibrarian(cardID)">Delete Headlibrarian</button>
         </table>
         <span v-if="errorHeadLibrarian" style="color:red">Error: {{errorHeadLibrarian}} </span>
        

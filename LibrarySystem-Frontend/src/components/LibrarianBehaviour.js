@@ -10,9 +10,9 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
 
-function LibrarianDto(cardID, fullname, address, username, password){
+function LibrarianDto(cardID, name, address, username, password){
   this.cardID=cardID
-  this.fullname=fullname
+  this.name=name
   this.address=address
   this.username=username
   this.password=password
@@ -32,6 +32,7 @@ export default {
         newLibrarian: '',
         errorLibrarian: '',
         response: []
+   
     }
   },
   created: function() {
@@ -51,12 +52,12 @@ export default {
     // this.librarians = [c1,c2]
   },
   methods: {
-    createLibrarian: function (cardID, fullname, address, username, password) {
+    createLibrarian: function (cardID, name, address, username, password) {
       AXIOS.post('/librarians/'.concat(cardID),{},
         {params:{
             username: username,
             password: password,
-            fullname: fullname,
+            name: name,
             address: address
 
           }})
@@ -72,9 +73,57 @@ export default {
         })
 
       //create a new hl and add it to the list of hl
-      // var c = new LibrarianDto(cardID, fullname, address, username, password)
+      // var c = new LibrarianDto(cardID, name, address, username, password)
       // this.librarians.push(c)
       //Reset the name field for new hl
+      this.newLibrarian = ''
+    },
+    updateLibrarian: function (cardID, name, address, username, password) {
+      AXIOS.patch('/librarians/'.concat(cardID),{},
+        {params:{
+            name: name,
+            address: address,
+            username: username,
+            password: password
+        }})
+        .then(response => {
+          AXIOS.get('/librarians')
+          .then(response => {
+        //JSON responses are automatically parsed
+          this.librarians = response.data
+      })
+          .catch(e => {
+          this.errorLibrarian = e
+      })
+          this.newLibrarian=''
+          this.errorLibrarian=''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorLibrarian = errorMsg
+        })
+      this.newLibrarian = ''
+    },
+    deleteLibrarian: function (cardID) {
+      AXIOS.delete('/librarians/'.concat(cardID),{},{})
+        .then(response => {
+          AXIOS.get('/librarians')
+          .then(response => {
+        //JSON responses are automatically parsed
+          this.librarians = response.data
+      })
+          .catch(e => {
+          this.errorLibrarian = e
+      })
+          this.newLibrarian=''
+          this.errorLibrarian=''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorLibrarian = errorMsg
+        })
       this.newLibrarian = ''
     }
   },
