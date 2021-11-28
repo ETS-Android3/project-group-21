@@ -60,6 +60,7 @@ export default {
               .then(response => {
               //JSON responses are automatically parsed
               this.reservations = response.data
+              this.deleteReservationID=''
               })
               .catch(e => {
               this.errorReservation = e

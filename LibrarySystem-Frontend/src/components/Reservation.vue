@@ -46,14 +46,14 @@
         <h2>Exisiting Reservations</h2><br>
         <table class="tablestyle" align="center">
             <tr class="trstyle">
-                <th class="trstyle"> Reservation ID </th>
-                <th class="trstyle"> User Name </th>
-                <th class="trstyle"> Item Title </th>
+                <th class="thstyle"> Reservation ID </th>
+                <th class="thstyle"> User Name </th>
+                <th class="thstyle"> Item Title </th>
             </tr>
             <tr  class="trstyle" v-for="reservation in reservations" :key="reservation.reservationID">
-                <td  class="trstyle">{{reservation.reservationID}}</td>
-                <td  class="trstyle">{{reservation.applicationUser.name}}</td>
-                <td  class="trstyle">{{reservation.libraryItem.title}}</td>
+                <td  class="tdstyle">{{reservation.reservationID}}</td>
+                <td  class="tdstyle">{{reservation.applicationUser.name}}</td>
+                <td  class="tdstyle">{{reservation.libraryItem.title}}</td>
             </tr>
         </table>
 

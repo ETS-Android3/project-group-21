@@ -34,6 +34,24 @@
             @click="createLibraryItem(barcode, type, title, isReservable, loanPeriod)">Add Library Item</button></td>
         </tr>
         </table align="center">
+
+        <br><br>
+
+        <h2>Remove Library Item</h2><br>
+        <table align="center">
+            <tr>
+                <th><label>Library item barcode:</label></th>
+                <td><input type="text" v-model="deleteBarcode" placeholder="Barcode"></td>
+            </tr>         
+            <p style="line-height:0em;"> &nbsp; </p>
+            <tr>
+                <button class="btn btn-primary" v-bind:disabled="!deleteBarcode" 
+                @click="deleteLibraryItem(deleteBarcode)">Remove Library Item</button>
+            </tr>
+        </table>
+
+        <br><br>
+
         <p>
         <span style="color:red">{{errorLibraryItem}}</span>
         </p>

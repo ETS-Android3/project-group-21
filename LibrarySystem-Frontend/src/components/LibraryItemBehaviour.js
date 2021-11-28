@@ -29,7 +29,7 @@ export default {
         isReservable:'',
         isReserved:'',
         loanPeriod:'',
-
+        deleteBarcode:'',
         libraryitems: [],
         newLibraryItem: '',
         errorLibraryItem: '',
@@ -51,30 +51,47 @@ export default {
       },
     
     methods: {
-        createLibraryItem: function (barcode, type, title, isReservable, loanPeriod) {
+      deleteLibraryItem: function (deleteBarcode) {
+        AXIOS.delete('/libraryitems/'.concat(deleteBarcode), {}, {})
+        .then(response => {
+          AXIOS.get('/libraryitems')
+            .then(response => {
+            //JSON responses are automatically parsed
+            this.libraryitems = response.data
+            this.deleteBarcode=''
+            })
+            .catch(e => {
+            this.errorLibraryItem = e
+            })
+          })
+          .catch(e => {
+          this.errorLibraryItem = e
+          })
+      },
 
-            AXIOS.post('/libraryitems/'.concat(barcode),{},
-                {params:{
-                    type : type,
-                    title : title,
-                    isReservable : isReservable,
-                    isReserved : false,
-                    loanPeriod : loanPeriod
-                }})
-                .then(response => {
-                this.libraryitems.push(response.data)
-                this.barcode=''
-                this.type=''
-                this.title=''
-                this.isReservable=''
-                this.isReserved=''
-                this.loanPeriod=''
-                })
-                .catch(e => {
-                  var errorMsg = e.response.data.message
-                  console.log(errorMsg)
-                  this.errorReservation = errorMsg
-                })
+      createLibraryItem: function (barcode, type, title, isReservable, loanPeriod) {
+          AXIOS.post('/libraryitems/'.concat(barcode),{},
+              {params:{
+                  type : type,
+                  title : title,
+                  isReservable : isReservable,
+                  isReserved : false,
+                  loanPeriod : loanPeriod
+              }})
+              .then(response => {
+              this.libraryitems.push(response.data)
+              this.barcode=''
+              this.type=''
+              this.title=''
+              this.isReservable=''
+              this.isReserved=''
+              this.loanPeriod=''
+              })
+              .catch(e => {
+                var errorMsg = e.response.data.message
+                console.log(errorMsg)
+                this.errorReservation = errorMsg
+              })
 
           // // Create a new person and add it to the list of people
           // var li = new LibraryItemDto(barcode, type, title, isReservable, false, loanPeriod)
