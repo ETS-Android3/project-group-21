@@ -48,12 +48,6 @@ export default {
         .catch(e => {
         this.errorLibraryItem = e
         })
-
-        // Test data
-        const li1 = new LibraryItemDto(47623, 'Book', 'Little Prince', true, 21)
-        const li2 = new LibraryItemDto(71530, 'Movie', 'Winnie the Pooh', true, 7)
-        // Sample initial content
-        this.libraryitems = [li1, li2]
       },
     
     methods: {
@@ -82,10 +76,10 @@ export default {
                   this.errorReservation = errorMsg
                 })
 
-          // Create a new person and add it to the list of people
-          var li = new LibraryItemDto(barcode, type, title, isReservable, false, loanPeriod)
-          this.libraryitems.push(li)
-          // Reset the name field for new people
+          // // Create a new person and add it to the list of people
+          // var li = new LibraryItemDto(barcode, type, title, isReservable, false, loanPeriod)
+          // this.libraryitems.push(li)
+          // // Reset the name field for new people
           this.newLibraryItem = ''
         }
       }

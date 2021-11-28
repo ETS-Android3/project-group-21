@@ -10,6 +10,7 @@ import Login from '@/components/Login'
 import OpeningHour from '@/components/OpeningHour'
 import HeadLibrarianHome from '@/components/HeadLibrarianHome'
 import LibrarianHome from '@/components/LibrarianHome'
+import ItemList from '@/components/ItemList'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/reservation',
       name: 'Reservation',
       component: Reservation
+    },
+    {
+      path: '/itemlist',
+      name: 'ItemList',
+      component: ItemList
     },
     {
       path: '/libraryitem',
