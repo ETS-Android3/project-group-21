@@ -20,6 +20,7 @@ export default {
     name: 'reservation',
     data () {
       return {
+        libraryitems:[],
         reservationID:'',
 
         libraryItem: {
@@ -50,6 +51,16 @@ export default {
         .catch(e => {
         this.errorReservation = e
         })
+
+         //Initializing citizens from backend
+         AXIOS.get('/libraryitems')
+         .then(response => {
+         //JSON responses are automatically parsed
+         this.libraryitems = response.data
+         })
+         .catch(e => {
+         this.errorLibraryItem = e
+         })
       },
 
     methods: {
