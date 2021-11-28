@@ -15,9 +15,15 @@
             <p style="line-height:0em;"> &nbsp; </p>
 
             <tr>
-                <th><label>Library item barcode:</label></th>
-                <td><input type="text" v-model="libraryItem.barcode" placeholder="Library item barcode"></td>
+                <th><label>Library item barcode:</label></th>   
+                <select class="select_style" v-model="libraryItem.barcode">
+                    <option disabled value="">Item barcode - title</option>
+                    <option v-for="libraryitem in libraryitems" >
+                    {{ libraryitem.barcode }} - {{libraryitem.title}}
+                    </option>
+                </select>
             </tr>
+
             <p style="line-height:0em;"> &nbsp; </p>
             <tr>
                 <button class="btn btn-primary" v-bind:disabled="(!reservationID || !applicationUser.cardID || !libraryItem.barcode)" 
@@ -99,5 +105,12 @@
 }
 .trstyle:nth-child(even) {
   background-color: #dddddd;
+}
+.select_style {
+  background: #ddf0e5;
+  border: none;
+  color: #394066;
+  text-transform: none;
+  font-variant: normal;
 }
 </style>
