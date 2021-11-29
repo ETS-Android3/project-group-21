@@ -10,6 +10,9 @@
     <router-link to ="/libraryitem">
         <button class="btn btn-primary">Manage libraryitem</button>
     </router-link>
+    <router-link to ="/shift">
+        <button class="btn btn-primary">Manage Shifts</button>
+    </router-link>
  
 </div>
 </template>
