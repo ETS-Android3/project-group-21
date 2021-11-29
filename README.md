@@ -65,11 +65,11 @@ In the deliverable, we impliment the web frount-end by useing vue file and javas
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
 | :---              |    :---:    |          ---: |
-| Dania Pennimpede  |        |  hrs        |
-| Joris Ah-Kane     |        |  hrs        |
-| Chun Li           |      |  hrs        |
-| Yujin Li          |        |  hrs        |
-| Kaifan Zheng      |   impliment front-end of the citizen, and documentation of the report     | 8 hrs           |
+| Dania Pennimpede  |  Software Developer for implementing opening hours, Software Tester for the corresponding page      |  hrs        |
+| Joris Ah-Kane     |  Software Developer for implementing shifts, Software Tester for the corresponding page      |  hrs        |
+| Chun Li           |  Software Developer for implementing library items and reservation, Software Tester for the corresponding page    | 15 hrs        |
+| Yujin Li          |  Software Developer for implementing headlibrarian and librarian front-end, Software Tester for the corresponding page, Web page style design     | 15 hrs        |
+| Kaifan Zheng      |  Software Developer for implimenting citizen front-end, Software Tester for the corresponding page, Documentation of the report     | 8 hrs           |
 
 # D3 report
 Here is the [D3 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-3-report)
