@@ -71,7 +71,7 @@ In the deliverable, we impliment the web frount-end by useing vue file and javas
 | Yujin Li          |        |  hrs        |
 | Kaifan Zheng      |   impliment front-end of the citizen, and documentation of the report     | 8 hrs           |
 
-# D2 report
+# D3 report
 Here is the [D3 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-3-report)
 # More
 For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
