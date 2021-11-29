@@ -59,5 +59,19 @@ Software Quality Assurance Plan and the coverage result can be found [here](http
 # D2 report
 Here is the [D2 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report)
 
+# Deliverable 3
+In the deliverable, we impliment the web frount-end by useing vue file and javascript technology and connect the frount -end design with the back-end model in order to impliment our bisness logic for our website.
+
+## Roles and Time Spend
+| Name              | Role        | Time in hours |
+| :---              |    :---:    |          ---: |
+| Dania Pennimpede  |        |  hrs        |
+| Joris Ah-Kane     |        |  hrs        |
+| Chun Li           |      |  hrs        |
+| Yujin Li          |        |  hrs        |
+| Kaifan Zheng      |   impliment front-end of the citizen, and documentation of the report     | 8 hrs           |
+
+# D2 report
+Here is the [D3 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-3-report)
 # More
 For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
