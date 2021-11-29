@@ -22,22 +22,26 @@ export default{
     name: 'shift',
     data(){
       return{
-        shiftCode:'',
+        	shiftCode:'',
 		    startTime:'',
 		    endTime:'',
-        day:'',
-		    cardID:'',
+        	day:'',
+		    applicationUser: {
+				cardID: '',
+				name: ''
+			},
 
+			deleteShiftCode:'',
 		    shifts:[],
-	      newShifts:'',
-	      errorShift:'',
-	      response:[]
+	      	newShifts:'',
+	      	errorShift:'',
+	      	response:[]
         }
     },
 
     created: function() {
         //Initializing shift from backend
-        AXIOS.get('/shift')
+        AXIOS.get('/shifts')
           .then(response => {
             //JSON responses are automatically parsed
             this.shifts = response.data
@@ -47,19 +51,18 @@ export default{
           })
          //Test data
          const c1 = new ShiftDto (123, '09:30:00', '17:30:00', 'Monday', 123)
-         const c2 = new ShiftDto (123, '13:30:00', '18:30:00', 'Friday', 124)
+         const c2 = new ShiftDto (124, '13:30:00', '18:30:00', 'Friday', 124)
          // Sample initial content
          this.shifts = [c1,c2]
       },
-      methods: {
+    methods: {
 	    createShift: function (shiftCode, startTime, endTime, day, cardID) {
-			AXIOS.post('/shift/'.concat(ShiftCode), {}, 
+			AXIOS.post('/shifts/'.concat(shiftCode), {}, 
 			{params:{
-				shiftCode: shiftCode,
-			  startTime: startTime,
-			  endTime: endTime,
-        day: day,
-        cardID: cardID
+				startTime: startTime,
+				endTime: endTime,
+        		day: day,
+        		cardID: cardID
 			}})
 			
 			.then(response => {
@@ -74,10 +77,58 @@ export default{
 					this.errorShift = errorMsg
 					})
 			// Create a new openinghour and add it to the list of openinghours
-			var o = new ShiftDto(shiftCode, startTime, endTime, day, cardID)
-			this.shifts.push(o)
+			//var o = new ShiftDto(shiftCode, startTime, endTime, day, cardID)
+			//this.shifts.push(o)
 			// Reset the name field for new openinghours
 			this.newShifts = ''
-			}
-		}
+		},
+		deleteShift: function (deleteShiftCode){
+			AXIOS.delete('/shifts/'.concat(deleteShiftCode), {}, {})
+			.then(response => {
+				AXIOS.get('/shifts')
+				  .then(response => {
+				  //JSON responses are automatically parsed
+				  this.shifts = response.data
+				  this.deleteShiftCode=''
+				  })
+				  .catch(e => {
+				  this.errorShift = e
+				  })
+				})
+				.catch(e => {
+					var errorMsg = e.response.data.message
+					console.log(errorMsg)
+					this.errorReservation = errorMsg
+			})	
+		},
+		updateShift:function (shiftCode, startTime, endTime, day, cardID) {
+			AXIOS.patch('/shifts/'.concat(shiftCode), {}, 
+			{params:{
+				shiftCode: shiftCode,
+				startTime: startTime,
+				endTime: endTime,
+        		day: day,
+        		cardID: cardID
+			}})
+			.then(response => {
+				AXIOS.get('/shifts')
+				.then(response => {
+			  //JSON responses are automatically parsed
+				this.shifts = response.data
+			})
+			.catch(e => {
+				this.errorShift = e
+			})
+				this.newShifts=''
+				this.errorShift=''
+			  })
+			  .catch(e => {
+				var errorMsg = e.response.data.message
+				console.log(errorMsg)
+				this.errorShift = errorMsg
+			  })
+			this.newShifts = ''
+		  }
+
+	}
 }

@@ -118,10 +118,12 @@ public class ShiftController {
 	public ShiftDto editShift(@PathVariable ("shiftCode") Long shiftCode, 
 			@RequestParam String startTime, @RequestParam String endTime,
 			@RequestParam String day, @RequestParam Long cardID)throws IllegalArgumentException{
-		
+			
+			Citizen c = citizenService.getCitizenByID(cardID);
     		Librarian l = librarianService.getLibrarianByID(cardID);
     		HeadLibrarian hl = headLibrarianService.getHeadLibrarianByID(cardID);
-    		ApplicationUser user = null;		
+    		ApplicationUser user = null;	
+			if (c != null) user = c;	
     		if (l != null) user = l; 
     		if (hl != null) user = hl; 
     	
@@ -147,6 +149,7 @@ public class ShiftController {
 		return convertToDto(shift);
 	}
 
+	
 	/*
      * @Author: Joris Ah-Kane
      * Helper methods

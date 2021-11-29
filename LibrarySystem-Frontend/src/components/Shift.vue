@@ -1,5 +1,5 @@
 <template>
-    <div class="Shift">
+    <div class="shift">
         <h2>Shifts</h2>
 
         <table>
@@ -8,14 +8,14 @@
                 <td> startTime </td>
                 <td> endTime </td>
                 <td> day </td>
-                <td> Associated user </td>
+                <!-- <td> Associated user </td> -->
             </tr>
             <tr v-for="shift in shifts" :key="shift.shiftCode">
                 <td>{{ shift.shiftCode }}</td>
                 <td>{{ shift.startTime }}</td>
                 <td>{{ shift.endTime }}</td>
                 <td>{{ shift.day }}</td>
-                <td>{{ shift.applicationUser.name }}</td>
+                <!-- <td>{{ shift.applicationUser.name }}</td> -->
             </tr>
         </table>
         <table>
@@ -37,11 +37,17 @@
             </tr>
             <tr>
                 <th><label>Associated Employee:</label></th>
-                <td><input type="text" v-model="cardID" placeholder="User Id"></td>
+                <td><input type="text" v-model="applicationUser.cardID" placeholder="User Id"></td>
             </tr>
             <tr>
-                <button v-bind:disabled="(!shiftCode || !startTime || !endTime || !day || !cardID)" 
-                @click="createShift(shiftCode,  startTime,  endTime,  day,  cardID)">Add New Shift</button>
+                <button v-bind:disabled="(!shiftCode || !startTime || !endTime || !day || !applicationUser.cardID)" 
+                @click="createShift(shiftCode,  startTime,  endTime,  day,  applicationUser.cardID)">Add New Shift</button>
+                &nbsp;
+                <button v-bind:disabled="(!shiftCode || !startTime || !endTime || !day || !applicationUser.cardID)" 
+                @click="updateShift(shiftCode,  startTime,  endTime,  day,  applicationUser.cardID)">Update a shift</button>
+                &nbsp;
+                <button v-bind:disabled="!shiftCode" 
+                @click="deleteShift(shiftCode)">Remove Shift</button>
             </tr>
         
         </table>
