@@ -10,19 +10,6 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
 
-/*
-var backendConfigurer = function(){
-  switch(process.env.NODE_ENV){
-      case 'development':
-          return 'http://' + config.dev.backendHost + ':' + config.dev.backendPort;
-      case 'production':
-          return 'https://' + config.build.backendHost + ':' + config.build.backendPort ;
-  }
-};
-
-
-var backendUrl = backendConfigurer();
-*/
 
 function OpeningHourDto (day, startTime, endTime){
 	this.day = day
@@ -64,6 +51,56 @@ export default {
 	},
 	
 	methods: {
+	    updateOpeningHour: function(day, startTime, endTime){
+			AXIOS.patch('/openinghours/'.concat(day), {},
+			 {params:{
+				day: day,
+				startTime: startTime,
+				endTime: endTime
+			}})
+			.then(response => {
+				AXIOS.get('/openinghours')
+					.then(response =>{
+					//JSON responses are automatically parsed
+					this.openinghours = response.data
+					})
+					.catch(e => {
+						this.errorOpeningHour = e
+					})
+					this.newOpeningHour=''
+					this.errorOpeningHour=''
+				})
+				.catch(e =>{
+					var errorMsg = e.response.data.message
+            		console.log(errorMsg)
+            		this.errorOpeningHour = errorMsg
+				})
+			this.newOpeningHour=''
+		},
+		
+		deleteOpeningHour: function(day){
+			AXIOS.delete('/openinghours/'.concat(day), {}, {})
+				.then(response => {
+					AXIOS.get('/openinghours')
+					.then(response => {
+						//JSON responses are automatically parsed
+						this.openinghours = response.data
+					})
+					.catch(e =>{
+						this.errorOpeningHour = e
+					})
+					
+					this.newOpeningHour =''
+					this.errorOpeningHour = ''
+				})
+				.catch(e => {
+					var errorMsg = e.response.data.message
+					console.log(errorMsg)
+					this.errorOpeningHour = errorMsg
+        	})
+        	this.newOpeningHour =''
+		},
+		
 	    createOpeningHour: function (day, startTime, endTime) {
 			AXIOS.post('/openinghour/'.concat(day), {}, 
 			{params:{
