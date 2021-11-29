@@ -67,7 +67,7 @@ In the deliverable, we impliment the web frount-end by useing vue file and javas
 | :---              |    :---:    |          ---: |
 | Dania Pennimpede  |  Software Developer for implementing opening hours, Software Tester for the corresponding page      |  hrs        |
 | Joris Ah-Kane     |  Software Developer for implementing shifts, Software Tester for the corresponding page      |  hrs        |
-| Chun Li           |  Software Developer for implementing library items and reservation, Software Tester for the corresponding page    | 15 hrs        |
+| Chun Li           |  Software Developer for implementing library items and reservation, Software Tester for the corresponding page    | 15 hrs, Web page style design        |
 | Yujin Li          |  Software Developer for implementing headlibrarian and librarian front-end, Software Tester for the corresponding page, Web page style design     | 15 hrs        |
 | Kaifan Zheng      |  Software Developer for implimenting citizen front-end, Software Tester for the corresponding page, Documentation of the report     | 8 hrs           |
 
