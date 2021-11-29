@@ -20,7 +20,6 @@
           <td class="tdstyle">{{citizen.password}}</td>
           <td class="tdstyle">{{citizen.isLocal}}</td>
           <td class="tdstyle">{{citizen.balance}}</td>
-
       </tr>
       </table>
       <br>
@@ -41,11 +40,10 @@
         <button class="btn btn-primary" v-bind:disabled="(!ID||!name||!address||!userName||!password||!isLocal)" @click="createCitizen(ID,name,address,userName,password,isLocal,balance,onlineAccountActivated)">Create Cirizen</button>
         &nbsp;
         <router-link to ="/login">
-          <button class="btn btn-primary">Cancle</button>
+          <button class="btn btn-primary">Cancel</button>
         </router-link>
       </table>
       <span v-if="errorCitizen" style="color:red">Error: {{errorCitizen}} </span>
-
 
     </div>
 </template>

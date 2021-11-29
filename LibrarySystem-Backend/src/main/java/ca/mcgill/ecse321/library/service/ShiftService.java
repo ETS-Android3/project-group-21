@@ -138,7 +138,7 @@ public class ShiftService {
         aShift.setEndTime(endTime);
         aShift.setDay(day);
         //aShift.setShiftCode(shiftCode);
-        //if we want to update a shift then the shift code is the only onstant normally
+        //if we want to update a shift then the shift code is the only constant normally
         aShift.setApplicationUser(user);
         shiftRepository.save(aShift);
         return aShift;

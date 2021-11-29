@@ -59,5 +59,19 @@ Software Quality Assurance Plan and the coverage result can be found [here](http
 # D2 report
 Here is the [D2 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report)
 
+# Deliverable 3
+In the deliverable, we impliment the web frount-end by useing vue file and javascript technology and connect the frount -end design with the back-end model in order to impliment our bisness logic for our website.
+
+## Roles and Time Spend
+| Name              | Role        | Time in hours |
+| :---              |    :---:    |          ---: |
+| Dania Pennimpede  |  Software Developer for implementing opening hours, Software Tester for the corresponding page      |  hrs        |
+| Joris Ah-Kane     |  Software Developer for implementing shifts, Software Tester for the corresponding page      |  hrs        |
+| Chun Li           |  Software Developer for implementing library items and reservation, Software Tester for the corresponding page    | 15 hrs, Web page style design        |
+| Yujin Li          |  Software Developer for implementing headlibrarian and librarian front-end, Software Tester for the corresponding page, Web page style design     | 15 hrs        |
+| Kaifan Zheng      |  Software Developer for implimenting citizen front-end, Software Tester for the corresponding page, Documentation of the report     | 8 hrs           |
+
+# D3 report
+Here is the [D3 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-3-report)
 # More
 For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)

@@ -7,33 +7,39 @@
 
         <h2>Add Library Item</h2><br>
         <table align="center">
-        <tr>
-            <th>Barcode</th>
-            <th>Title</th>
-            <th>Type</th>
-        </tr>
-        <tr>
-            <td><input type="text" v-model="barcode" placeholder="Item Barcode"/></td>
-            <td><input type="text" v-model="title" placeholder="Item Title"></td>
-            <td><input type="text" v-model="type" placeholder="Item Type"></td>
-        </tr>
-        <tr>
-            <th>Is Reservable</th>
-            <th>Is Reserved</th>
-            <th>Loan Period</th>
-        </tr>
-        <tr>
-            <td><input type="text" v-model="isReservable" placeholder="true if reservable"/></td>
-            <td><input type="text" v-model="isReserved" placeholder="always false" disabled></td>
-            <td><input type="text" v-model="loanPeriod" placeholder="Loan period"></td>
-        </tr>
+            <tr>
+                <th>Barcode</th>
+                <th>Title</th>
+                <th>Type</th>
+            </tr>
+            <tr>
+                <td><input type="text" v-model="barcode" placeholder="Item Barcode"/></td>
+                <td><input type="text" v-model="title" placeholder="Item Title"></td>
+                <td><input type="text" v-model="type" placeholder="Item Type"></td>
+            </tr>
+            <tr>
+                <th>Is Reservable</th>
+                <th>Is Reserved</th>
+                <th>Loan Period</th>
+            </tr>
+            <tr>
+                <td><input type="text" v-model="isReservable" placeholder="true if reservable"/></td>
+                <td><input type="text" v-model="isReserved" placeholder="default false when adding"></td>
+                <td><input type="text" v-model="loanPeriod" placeholder="Loan period"></td>
+            </tr>
+        </table>
+
         <br>
-        <tr>
-        <td></td>
-            <td><button class="btn btn-primary" v-bind:disabled="(!barcode || !title || !type || !isReservable || !loanPeriod)"
-            @click="createLibraryItem(barcode, type, title, isReservable, loanPeriod)">Add Library Item</button></td>
-        </tr>
-        </table align="center">
+        <table align="center">
+            <tr>
+                <td><button class="btn btn-primary" v-bind:disabled="(!barcode || !title || !type || !isReservable || !loanPeriod)"
+                @click="createLibraryItem(barcode, type, title, isReservable, loanPeriod)">Add Library Item</button></td>
+                &nbsp;
+                <button class="btn btn-primary" v-bind:disabled="!barcode" 
+                @click="updateLibraryItem(barcode, type, title, isReservable, isReserved, loanPeriod)">Update Library Item</button>
+
+            </tr>
+        </table>
 
         <br><br>
 
@@ -43,7 +49,9 @@
                 <th><label>Library item barcode:</label></th>
                 <td><input type="text" v-model="deleteBarcode" placeholder="Barcode"></td>
             </tr>         
-            <p style="line-height:0em;"> &nbsp; </p>
+        </table>
+        <br>
+        <table align="center">
             <tr>
                 <button class="btn btn-primary" v-bind:disabled="!deleteBarcode" 
                 @click="deleteLibraryItem(deleteBarcode)">Remove Library Item</button>

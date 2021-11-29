@@ -51,6 +51,37 @@ export default {
       },
     
     methods: {
+      updateLibraryItem: function (barcode, type, title, isReservable, isReserved, loanPeriod) {
+        AXIOS.patch('/libraryitems/'.concat(barcode), {}, 
+        {params:{
+          type : type,
+          title : title,
+          isReservable : isReservable,
+          isReserved : isReserved,
+          loanPeriod : loanPeriod
+        }})
+        .then(response => {
+          AXIOS.get('/libraryitems')
+            .then(response => {
+            //JSON responses are automatically parsed
+            this.libraryitems = response.data
+            })
+            .catch(e => {
+            this.errorLibraryItem = e
+            })
+            this.barcode=''
+            this.type=''
+            this.title=''
+            this.isReservable=''
+            this.isReserved=''
+            this.loanPeriod=''
+          })
+          .catch(e => {
+            var errorMsg = e.response.data.message
+            console.log(errorMsg)
+            this.errorReservation = errorMsg
+          })
+      },
       deleteLibraryItem: function (deleteBarcode) {
         AXIOS.delete('/libraryitems/'.concat(deleteBarcode), {}, {})
         .then(response => {

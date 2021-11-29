@@ -8,7 +8,11 @@
     <router-link to ="/libraryitem">
         <button class="btn btn-primary">Manage libraryitem</button>
     </router-link>
- 
+
+    <router-link to ="/shiftview">
+        <button class="btn btn-primary">View Shifts</button>
+    </router-link>
+
 </div>
 </template>
 <script>

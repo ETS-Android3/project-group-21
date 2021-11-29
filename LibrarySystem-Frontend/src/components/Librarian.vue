@@ -33,7 +33,7 @@
             <button class="btn btn-primary" v-bind:disabled="(!cardID||!name||!address||!username||!password)" @click="createLibrarian(cardID,name,address,username,password)">Create Librarian</button>
             &nbsp;
             <router-link to ="/login">
-            <button class="btn btn-primary">Cancle</button>
+            <button class="btn btn-primary">Cancel</button>
             </router-link>
             &nbsp;
             <button class="btn btn-primary" v-bind:disabled="!cardID" 
