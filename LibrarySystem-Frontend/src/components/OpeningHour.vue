@@ -15,19 +15,31 @@
         </table>
 		<br>
         <table align="center">
-            <tr> <input type="text" v-model="day" placeholder="DayOfWeek Day"> </tr>
-            <p style="line-height:0em;"> &nbsp; </p>
-            <tr> <input type="text" v-model="startTime" placeholder="Start Time (HH:mm:ss)"> </tr>
-            <p style="line-height:0em;"> &nbsp; </p>
-            <tr> <input type="text" v-model="endTime" placeholder="End Time (HH:mm:ss)"></tr>
-            <p style="line-height:0em;"> &nbsp; </p>
-            <button class="btn btn-primary" v-bind:disabled="(!day||!startTime||!endTime)" @click="createOpeningHour(day,startTime,endTime)">Add Opening Hour</button>
-            &nbsp;
-            <button class="btn btn-primary" v-bind:disabled="(!day||!startTime||!endTime)" 
-            @click="updateOpeningHour(day,startTime,endTime)">Update Opening Hour</button>
-            &nbsp;
-            <button class="btn btn-primary" v-bind:disabled="!day" 
-            @click="deleteOpeningHour(day)">Delete Opening Hour</button>
+            <tr>
+                <th><label>Day:</label></th>
+                <td><input type="text" v-model="day" placeholder="DayOfWeek Day"></td>
+            </tr>
+            <tr>
+                <th><label>Start Time:</label></th>
+                <td><input type="text" v-model="startTime" placeholder="HH:mm:ss"></td>
+            </tr>
+            <tr>
+                <th><label>End Time:</label></th>
+                <td><input type="text" v-model="endTime" placeholder="HH:mm:ss"></td>
+            </tr>
+        </table>
+        <table align="center">
+            <tr>
+                <button class="btn btn-primary" v-bind:disabled="(!day||!startTime||!endTime)" 
+                @click="createOpeningHour(day,startTime,endTime)">Add Opening Hour</button>
+                &nbsp;
+                <button class="btn btn-primary" v-bind:disabled="(!day||!startTime||!endTime)" 
+            	@click="updateOpeningHour(day,startTime,endTime)">Update Opening Hour</button>
+                &nbsp;
+                <button class="btn btn-primary" v-bind:disabled="!day" 
+            	@click="deleteOpeningHour(day)">Delete Opening Hour</button>
+            </tr>
+        
         </table>
      
         <span v-if="errorOpeningHour" style="color:red">{{errorOpeningHour}}</span>
