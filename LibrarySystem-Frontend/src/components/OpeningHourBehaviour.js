@@ -24,8 +24,7 @@ export default {
 			day:'',
 			startTime:'',
 			endTime:'',
-			
-			deleteDay:'',
+		
 			openinghours:[],
 			newOpeningHour:'',
 			errorOpeningHour:'',
@@ -34,7 +33,7 @@ export default {
 	},
 	
 	created: function (){
-		 //Initializing citizens from backend
+		 //Initializing opening hour from backend
         AXIOS.get('/openinghours')
         .then(response => {
         //JSON responses are automatically parsed
@@ -55,17 +54,14 @@ export default {
 		createOpeningHour: function (day, startTime, endTime) {
 			AXIOS.post('/openinghours/'.concat(day), {}, 
 			{params:{
-				day: day,
 				startTime: startTime,
 				endTime: endTime
 			}})
-			
 			.then(response => {
 				// JSON responses are automatically parsed.
 				this.openinghours.push(response.data)
-				this.day=''
-				this.startTime=''
-				this.endTime=''
+				this.newOpeningHour=''
+				this.errorOpeningHour=''
 				})
 				.catch(e => {
 					var errorMsg = e.response.data.message
@@ -77,12 +73,11 @@ export default {
 			//this.openinghours.push(o)
 			// Reset the name field for new openinghours
 			this.newOpeningHour = ''
-			},
+		},
 		
 	    updateOpeningHour: function(day, startTime, endTime){
 			AXIOS.patch('/openinghours/'.concat(day), {},
 			 {params:{
-				day: day,
 				startTime: startTime,
 				endTime: endTime
 			}})
@@ -95,6 +90,8 @@ export default {
 					.catch(e => {
 					this.errorOpeningHour = e
 					})
+					this.newOpeningHour=''
+					this.errorOpeningHour=''
 					this.day=''
 					this.startTime=''
 					this.endTime=''
@@ -104,10 +101,11 @@ export default {
             		console.log(errorMsg)
             		this.errorOpeningHour = errorMsg
 				})
+			this.newOpeningHour=''
 		},
 		
-		deleteOpeningHour: function(deleteDay){
-			AXIOS.delete('/openinghours/'.concat(deleteDay), {}, {})
+		deleteOpeningHour: function(day){
+			AXIOS.delete('/openinghours/'.concat(day), {}, {})
 				.then(response => {
 					AXIOS.get('/openinghours')
 					.then(response => {
@@ -116,17 +114,21 @@ export default {
 						this.day=''
 						this.startTime=''
 						this.endTime=''
-						this.deleteDay=''
 					})
-					.catch(e =>{
-					this.errorOpeningHour = e
+						.catch(e =>{
+						this.errorOpeningHour = e
 					})
-				})
-				.catch(e => {
-				this.errorOpeningHour=e
+					
+						this.newOpeningHour=''
+						this.errorOpeningHour=''
+					})
+					.catch(e => {
+					var errorMsg = e.response.data.message
+          			console.log(errorMsg)
+          			this.errorLibrarian = errorMsg
         	})
+        	this.newOpeningHour=''
 		}
-		
 	    
-		}
+		},
 }
