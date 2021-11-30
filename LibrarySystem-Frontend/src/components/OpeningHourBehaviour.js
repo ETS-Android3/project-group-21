@@ -44,14 +44,17 @@ export default {
         this.errorOpeningHour = e
         })
 		
-		// Test data
-		//const o1 = new OpeningHourDto('Monday', '10:30:00', '11:30:00')
-		//const o2 = new OpeningHourDto('Tuesday', '10:30:00', '11:30:00')
-		// Sample initial content
-		//this.openinghours = [o1, o2]
 	},
 	
 	methods: {
+		/*
+		 * @Author: Dania Pennimpede
+		 * create an Opening Hour
+		 * @param day
+		 * @param startTime
+		 * @param endTime
+		 */
+		
 		createOpeningHour: function (day, startTime, endTime) {
 			AXIOS.post('/openinghours/'.concat(day), {}, 
 			{params:{
@@ -72,13 +75,16 @@ export default {
 					console.log(errorMsg)
 					this.errorOpeningHour = errorMsg
 					})
-			// Create a new openinghour and add it to the list of openinghours
-			//var o = new OpeningHourDto(day, startTime, endTime)
-			//this.openinghours.push(o)
-			// Reset the name field for new openinghours
+
 			this.newOpeningHour = ''
 			},
-		
+		/*
+		 * @Author: Dania Pennimpede
+		 * Update an Exisiting Opening Hour
+		 * @param day
+		 * @param startTime
+		 * @param endTime
+		 */
 	    updateOpeningHour: function(day, startTime, endTime){
 			AXIOS.patch('/openinghours/'.concat(day), {},
 			 {params:{
@@ -106,6 +112,11 @@ export default {
 				})
 		},
 		
+		/*
+		 * @Author: Dania Pennimpede
+		 * Delete Exisiting Opening Hour
+		 * @param deleteDay
+		 */
 		deleteOpeningHour: function(deleteDay){
 			AXIOS.delete('/openinghours/'.concat(deleteDay), {}, {})
 				.then(response => {
