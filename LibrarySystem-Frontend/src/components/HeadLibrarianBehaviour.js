@@ -9,7 +9,6 @@ var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
-
 function HeadLibrarianDto(cardID, name, address, username, password){
   this.cardID=cardID
   this.name=name
