@@ -65,7 +65,7 @@ In the deliverable, we impliment the web frount-end by useing vue file and javas
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
 | :---              |    :---:    |          ---: |
-| Dania Pennimpede  |  Software Developer for implementing opening hours, Software Tester for the corresponding page      |  hrs        |
+| Dania Pennimpede  |  Software Developer for implementing opening hours, Software Tester for the corresponding page      | 8 hrs        |
 | Joris Ah-Kane     |  Software Developer for implementing shifts, Software Tester for the corresponding page      |  8 hrs        |
 | Chun Li           |  Software Developer for implementing library items and reservation, Software Tester for the corresponding page    | 15 hrs, Web page style design        |
 | Yujin Li          |  Software Developer for implementing headlibrarian and librarian front-end, Software Tester for the corresponding page, Web page style design     | 15 hrs        |
