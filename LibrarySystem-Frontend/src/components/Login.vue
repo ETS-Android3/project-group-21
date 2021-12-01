@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <div class="register-href3">
+            <router-link to="/openinghourview" class="link"> Library Opening Hours </router-link>
+        </div>
+
         <div class="register-href">
             <router-link to="/citizen" class="link"> Citizen Register </router-link>
             <br>
@@ -56,6 +60,15 @@ background-color: #42b983;
 }
 .container {
     background: #f2ece8;
+}
+.register-href3 {
+  padding: 20px 1px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  text-align: center;
 }
 
 </style>
