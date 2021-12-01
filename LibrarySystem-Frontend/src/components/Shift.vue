@@ -9,44 +9,44 @@
 
         <table class="tablestyle" align="center">
             <tr class="trstyle">
-                <td> shiftCode </td>
-                <td> startTime </td>
-                <td> endTime </td>
-                <td> day </td>
-                <td> Associated user </td> <!---->
+                <td class="tdstyle"> shiftCode </td>
+                <td class="tdstyle"> startTime </td>
+                <td class="tdstyle"> endTime </td>
+                <td class="tdstyle"> day </td>
+                <td class="tdstyle"> Associated user </td> <!---->
             </tr>
             <tr class="trstyle" v-for="shift in shifts" :key="shift.shiftCode">
-                <td>{{ shift.shiftCode }}</td>
-                <td>{{ shift.startTime }}</td>
-                <td>{{ shift.endTime }}</td>
-                <td>{{ shift.day }}</td>
-                <td>{{ shift.applicationUser.name }}</td> <!---->
+                <td class="tystyle">{{ shift.shiftCode }}</td>
+                <td class="tystyle">{{ shift.startTime }}</td>
+                <td class="tystyle">{{ shift.endTime }}</td>
+                <td class="tystyle">{{ shift.day }}</td>
+                <td class="tystyle">{{ shift.applicationUser.name }}</td> <!---->
             </tr>
         </table>
         <table align="center">
-            <tr>
+            <tr >
                 <th><label>Shift Code:</label></th>
-                <td><input type="text" v-model="shiftCode" placeholder="Shift code"></td>
+                <td class="tystyle"><input type="text" v-model="shiftCode" placeholder="Shift code"></td>
             </tr>
-            <tr>
+            <tr >
                 <th><label>Start Time:</label></th>
-                <td><input type="text" v-model="startTime" placeholder="HH:mm:ss"></td>
+                <td class="tystyle"><input type="text" v-model="startTime" placeholder="HH:mm:ss"></td>
             </tr>
-            <tr>
+            <tr >
                 <th><label>End Time:</label></th>
-                <td><input type="text" v-model="endTime" placeholder="HH:mm:ss"></td>
+                <td class="tystyle"><input type="text" v-model="endTime" placeholder="HH:mm:ss"></td>
             </tr>
-            <tr>
+            <tr >
                 <th><label>Day:</label></th>
-                <td><input type="text" v-model="day" placeholder="DayOfWeek Day"></td>
+                <td class="tystyle"><input type="text" v-model="day" placeholder="DayOfWeek Day"></td>
             </tr>
-            <tr>
+            <tr >
                 <th><label>Associated Employee:</label></th>
-                <td><input type="text" v-model="applicationUser.cardID" placeholder="User Id"></td>
+                <td class="tystyle"><input type="text" v-model="applicationUser.cardID" placeholder="User Id"></td>
             </tr>
         </table>
         <table align="center">
-            <tr>
+            <tr >
                 <button class="btn btn-primary" v-bind:disabled="(!shiftCode || !startTime || !endTime || !day || !applicationUser.cardID)" 
                 @click="createShift(shiftCode,  startTime,  endTime,  day,  applicationUser.cardID)">Add New Shift</button>
                 &nbsp;
@@ -67,7 +67,7 @@
 </script>
 
 <style>
-    #Shift {
+    .shift {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     background: #f2ece8;

@@ -1,5 +1,9 @@
 <template>
 <div class="headlibrarianhome">
+    <div class="register-href">
+        <router-link to="/librarian" class="link"> Librarian Register </router-link>
+        <br>
+    </div>
     <div class="register-href2">
         <a href="javascript:history.back()">Previous Page</a>
     </div>
@@ -46,5 +50,14 @@
 }
 a {
   color: #42b983;
+}
+.register-href {
+  padding: 20px 1px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  text-align: center;
 }
 </style>

@@ -3,8 +3,7 @@
         <div class="register-href">
             <router-link to="/citizen" class="link"> Citizen Register </router-link>
             <br>
-            <router-link to="/librarian" class="link"> Librarian Register </router-link>
-            <br>
+
             <router-link to="/headlibrarian" class="link"> HeadLibrarian Register </router-link>
             
         </div>

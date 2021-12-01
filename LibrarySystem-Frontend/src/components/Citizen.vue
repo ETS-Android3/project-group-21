@@ -12,7 +12,7 @@
           <th class="thstyle">isLocal</th>
           <th class="thstyle">balance</th>
 
-        <tr class = "trstyle" v-for="citizen in citizens":key = "citizen.id">
+        <tr class = "trstyle" v-for="citizen in citizens" v-bind:key = "citizen.id">
           <td class="tdstyle">{{citizen.id}}</td>
           <td class="tdstyle">{{citizen.name}}</td>
           <td class="tdstyle">{{citizen.address}}</td>
@@ -42,6 +42,12 @@
         <router-link to ="/login">
           <button class="btn btn-primary">Cancel</button>
         </router-link>
+        &nbsp;
+        <button class="btn btn-primary" v-bind:disabled="!ID" 
+            @click="updateCitizen(ID,name,address,userName,password,isLocal)">Update Citizen</button>
+        &nbsp;
+        <button class="btn btn-primary" v-bind:disabled="!ID" 
+            @click="deleteCitizen(ID)">Delete Citizen</button>
       </table>
       <span v-if="errorCitizen" style="color:red">Error: {{errorCitizen}} </span>
       <br><br>
@@ -63,7 +69,7 @@
   border-radius: 10px;
   background-color: #42b983;
 }
-.librarian {
+.citizen {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
   background: #f2ece8;

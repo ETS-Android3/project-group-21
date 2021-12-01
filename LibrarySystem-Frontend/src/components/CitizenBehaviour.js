@@ -91,6 +91,55 @@ export default {
       //this.citizens.push(c)
       //Reset the name field for new citizen
       this.newCitizen = ''
+    },
+    updateCitizen: function (ID,name,address,userName,password,isLocal) {
+      AXIOS.patch('/citizens/'.concat(ID),{},
+        {params:{
+            name: name,
+            address: address,
+            userName: userName,
+            password: password,
+            isLocal: isLocal
+        }})
+        .then(response => {
+          AXIOS.get('/citizens')
+          .then(response => {
+        //JSON responses are automatically parsed
+          this.citizens = response.data
+      })
+          .catch(e => {
+          this.errorCitizen = e
+      })
+          this.newCitizen=''
+          this.errorCitizen=''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorCitizen = errorMsg
+        })
+      this.newCitizen = ''
+    },
+    deleteCitizen: function (ID) {
+      AXIOS.delete('/citizens/'.concat(ID),{},{})
+        .then(response => {
+          AXIOS.get('/citizens')
+          .then(response => {
+        //JSON responses are automatically parsed
+          this.citizens = response.data
+      })
+          .catch(e => {
+          this.errorCitizen = e
+      })
+          this.newCitizen=''
+          this.errorCitizen=''
+        })
+        .catch(e => {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorCitizen = errorMsg
+        })
+      this.newCitizen = ''
     }
   },
 }
