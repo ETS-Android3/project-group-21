@@ -1,5 +1,5 @@
 <template>
-    <div id="openinghour">
+    <div class="openinghour">
 
         <div class="register-href2">
             <a href="javascript:history.back()">Previous Page</a>
