@@ -76,10 +76,6 @@ export default{
 					console.log(errorMsg)
 					this.errorShift = errorMsg
 					})
-			// Create a new openinghour and add it to the list of openinghours
-			//var o = new ShiftDto(shiftCode, startTime, endTime, day, cardID)
-			//this.shifts.push(o)
-			// Reset the name field for new openinghours
 			this.newShifts = ''
 		},
 		deleteShift: function (deleteShiftCode){
