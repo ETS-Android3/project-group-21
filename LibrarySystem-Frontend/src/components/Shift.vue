@@ -13,14 +13,14 @@
                 <td class="tdstyle"> startTime </td>
                 <td class="tdstyle"> endTime </td>
                 <td class="tdstyle"> day </td>
-                <td class="tdstyle"> Associated user </td> <!---->
+                <td class="tdstyle"> Associated user </td> 
             </tr>
             <tr class="trstyle" v-for="shift in shifts" :key="shift.shiftCode">
                 <td class="tystyle">{{ shift.shiftCode }}</td>
                 <td class="tystyle">{{ shift.startTime }}</td>
                 <td class="tystyle">{{ shift.endTime }}</td>
                 <td class="tystyle">{{ shift.day }}</td>
-                <td class="tystyle">{{ shift.applicationUser.name }}</td> <!---->
+                <td class="tystyle">{{ shift.applicationUser.name }}</td> 
             </tr>
         </table>
         <table align="center">
