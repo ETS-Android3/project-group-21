@@ -13,6 +13,7 @@ import LibrarianHome from '@/components/LibrarianHome'
 import ItemList from '@/components/ItemList'
 import Shift from '@/components/Shift'
 import ShiftView from '@/components/ShiftView'
+import OpeningHourView from '@/components/OpeningHourView'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
       path: '/openinghour',
       name: 'OpeningHour',
       component: OpeningHour
+    },
+    {
+      path: '/openinghourview',
+      name: 'OpeningHourView',
+      component: OpeningHourView
     },
     {
       path: '/headlibrarianhome',
