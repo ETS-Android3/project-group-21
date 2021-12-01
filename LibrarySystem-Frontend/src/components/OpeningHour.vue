@@ -1,5 +1,10 @@
 <template>
     <div id="openinghour">
+
+        <div class="register-href2">
+            <a href="javascript:history.back()">Previous Page</a>
+        </div>
+        
         <h2>Opening Hours</h2>
 		<h5>Exisiting Opening Hours(for testing purpose):</h5>
         <table class="tablestyle" align="center">
@@ -84,5 +89,17 @@
 
 .trstyle:nth-child(even) {
   background-color: #dddddd;
+}
+.register-href2 {
+  padding: 20px 1px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  text-align: center;
+}
+a {
+  color: #42b983;
 }
 </style>

@@ -69,14 +69,14 @@ export default {
           }})
         .then(response => {
           this.citizens.push(response.data)
-          // this.ID=''
-          // this.username=''
-          // this.password=''
-          // this.fullname=''
-          // this.address=''
-          // this.onlineAccountActivated=''
-          // this.isLocal=''
-          // this.balance=''
+          this.ID=''
+          this.userName=''
+          this.password=''
+          this.name=''
+          this.address=''
+          this.onlineAccountActivated=''
+          this.isLocal=''
+          this.balance=''
           this.newCitizen=''
           this.errorCitizen=''
         })

@@ -1,5 +1,9 @@
 <template>
     <div id="reservation">
+        <div class="register-href2">
+            <a href="javascript:history.back()">Previous Page</a>
+        </div>
+
         <br>
         <h2>Reserve Library Item</h2><br>
         <table align="center">
@@ -71,7 +75,9 @@
 </template>
 
 <script src="./ReservationBehaviour.js">
-
+function goBack() {
+  window.history.back();
+}
 </script>
 
 <style>
@@ -112,5 +118,17 @@
   color: #394066;
   text-transform: none;
   font-variant: normal;
+}
+.register-href2 {
+  padding: 20px 1px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  text-align: center;
+}
+a {
+  color: #42b983;
 }
 </style>

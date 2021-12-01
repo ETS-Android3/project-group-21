@@ -44,7 +44,7 @@
         </router-link>
       </table>
       <span v-if="errorCitizen" style="color:red">Error: {{errorCitizen}} </span>
-
+      <br><br>
     </div>
 </template>
 <script src="./CitizenBehaviour.js">
@@ -84,4 +84,5 @@
 .trstyle:nth-child(even) {
   background-color: #dddddd;
 }
+
 </style>

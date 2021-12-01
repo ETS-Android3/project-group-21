@@ -1,10 +1,15 @@
 <template>
     <div id="libraryitem">
+
+        <div class="register-href2">
+            <a href="javascript:history.back()">Previous Page</a>
+        </div>
+        
         <div class="register-href">
             <router-link to="/itemlist" class="link"> Existing Library Items </router-link>
         </div>
 
-
+        <br>
         <h2>Add Library Item</h2><br>
         <table align="center">
             <tr>
@@ -94,7 +99,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 180px;
+  width: 220px;
   text-align: center;
 }
 .link{
@@ -102,5 +107,17 @@
 }
 .link:hover{
     color: #42b983;
+}
+.register-href2 {
+  padding: 20px 1px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  text-align: center;
+}
+a {
+  color: #42b983;
 }
 </style>

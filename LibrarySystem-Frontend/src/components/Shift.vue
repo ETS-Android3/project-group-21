@@ -1,5 +1,10 @@
 <template>
     <div class="shift">
+
+        <div class="register-href2">
+            <a href="javascript:history.back()">Previous Page</a>
+        </div>
+
         <h2>Shifts</h2>
 
         <table class="tablestyle" align="center">
@@ -94,5 +99,17 @@
 
 .trstyle:nth-child(even) {
   background-color: #dddddd;
+}
+.register-href2 {
+  padding: 20px 1px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  text-align: center;
+}
+a {
+  color: #42b983;
 }
 </style>

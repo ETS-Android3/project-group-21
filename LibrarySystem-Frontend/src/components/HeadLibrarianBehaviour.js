@@ -60,6 +60,11 @@ export default {
         }})
         .then(response => {
           this.headlibrarians.push(response.data)
+          this.cardID=''
+          this.username=''
+          this.password=''
+          this.name=''
+          this.address=''
           this.newHeadLibrarian=''
           this.errorHeadLibrarian=''
         })

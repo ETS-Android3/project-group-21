@@ -1,6 +1,5 @@
 <template>
-    <div class="librarian">
-    
+    <div class="librarian">    
         <h2>Librarian</h2>
         <h5>Exisiting Librarians(for testing purpose):</h5>
         <table class="tablestyle" align="center">
@@ -85,4 +84,5 @@
 .trstyle:nth-child(even) {
   background-color: #dddddd;
 }
+
 </style>
