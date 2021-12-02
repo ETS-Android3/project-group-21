@@ -27,6 +27,9 @@
             <button class="btn btn-primary">Cancel</button>
             </router-link>
         </div>
+
+        <span v-if="errorLogin" style="color:red">Error: {{errorLogin}}</span>
+
     </div>
 </template>
 

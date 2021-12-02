@@ -27,8 +27,8 @@
                 <select class="select_style" v-model="libraryItem.barcode">
                     <option disabled value="">Item barcode - title</option>
                     <option v-for="libraryitem in libraryitems" >
-                    {{ libraryitem.barcode }} - {{libraryitem.title}}
-                    </option>
+                    {{ libraryitem.barcode }}-{{libraryitem.title}}      
+                    </option>                   
                 </select>
             </tr>
 

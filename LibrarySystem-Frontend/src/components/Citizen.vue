@@ -37,7 +37,7 @@
         <tr> <input type="text" v-model="isLocal" placeholder="is Local"></tr>
         <p style="line-height:0em;"> </p>
 
-        <button class="btn btn-primary" v-bind:disabled="(!ID||!name||!address||!userName||!password||!isLocal)" @click="createCitizen(ID,name,address,userName,password,isLocal,balance,onlineAccountActivated)">Create Cirizen</button>
+        <button class="btn btn-primary" v-bind:disabled="(!ID||!name||!address||!userName||!password||!isLocal)" @click="createCitizen(ID,name,address,userName,password,isLocal,balance,onlineAccountActivated)">Create Citizen</button>
         &nbsp;
         <router-link to ="/login">
           <button class="btn btn-primary">Cancel</button>

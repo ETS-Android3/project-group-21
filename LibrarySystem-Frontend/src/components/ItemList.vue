@@ -28,10 +28,6 @@
 
         <br>
 
-        <router-link to ="/libraryitem">
-            <button class="btn btn-primary">Add Library Item</button>
-        </router-link>
-
     </div>
 </template>
 

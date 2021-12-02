@@ -21,11 +21,13 @@ export default{
           librarians: [],
           errorCitizen: '',
           errorHeadLibrarian: '',
-          errorLibrarian:''
+          errorLibrarian:'',
+          errorLogin:'',
       }
     },
     methods: {
         login: function(cardID,password){
+            this.errorLogin='';
             AXIOS.get('/citizens')
             .then(response => {
                 this.citizens = response.data
@@ -64,6 +66,7 @@ export default{
                         this.$router.push('/headlibrarianhome')
                     }
                 }
+                this.errorLogin = "User ID and password do not match!";
             }
             // function call
             loginVerification(cardID, password)

@@ -85,9 +85,11 @@ export default {
         },
         
         createReservation: function (reservationID, barcode, cardID) {
+            const myArray = barcode.split("-");
+            var firsttoken = myArray[0];
             AXIOS.post('/reservations/'.concat(reservationID),{},
                 {params:{
-                    barcode : barcode,
+                    barcode : firsttoken,
                     cardID : cardID}})
                 .then(response => {
                 this.reservations.push(response.data)

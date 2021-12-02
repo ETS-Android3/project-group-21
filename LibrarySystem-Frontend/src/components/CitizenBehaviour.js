@@ -57,6 +57,21 @@ export default {
   },
   methods: {
     createCitizen: function (cardID, fullname, address, username, password, isLocal) {
+      this.errorCitizen = '';
+      AXIOS.get('/citizens')
+      .then(response => {
+        //JSON responses are automatically parsed
+        this.citizens = response.data
+      })
+      .catch(e => {
+        this.errorCitizen = e
+      })
+      for (const citizen of this.citizens){
+        if (cardID.localeCompare(citizen.id)==0) {
+            this.errorCitizen = "Cannot create due to duplicate ID!";
+        }
+    }
+    if(this.errorCitizen.localeCompare("")==0){
       AXIOS.post('/citizens/'.concat(cardID),{},
         {params:{
             username: username,
@@ -85,12 +100,8 @@ export default {
           console.log(errorMsg)
           this.errorCitizen = errorMsg
         })
-
-      //create a new citizen and add it to the list of citizen
-      //var c = new CitizenDto(ID, fullname, address, username, password, isLocal, 0, true)
-      //this.citizens.push(c)
-      //Reset the name field for new citizen
-      this.newCitizen = ''
+        this.newCitizen = '';
+      }
     },
     updateCitizen: function (ID,name,address,userName,password,isLocal) {
       AXIOS.patch('/citizens/'.concat(ID),{},
