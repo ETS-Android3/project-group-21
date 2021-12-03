@@ -9,4 +9,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="newlibraryitem_barcode_hint">Item barcode</string>
+    <string name="newlibraryitem_title_hint">Item title</string>
+    <string name="newlibraryitem_type_hint">Item type</string>
+    <string name="newlibraryitem_isreservable_hint">Is reservable</string>
+    <string name="newlibraryitem_isreserved_hint">Is reserved</string>
+    <string name="newlibraryitem_loanperiod_hint">Loan period</string>
+    <string name="newlibraryitem_button">Add Library Item</string>
 </resources>
