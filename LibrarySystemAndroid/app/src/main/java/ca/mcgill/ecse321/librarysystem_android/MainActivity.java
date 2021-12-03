@@ -101,7 +101,15 @@ public class MainActivity extends AppCompatActivity {
     public void addLibraryItem(View v) {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.newlibraryitem_barcode);
-        HttpUtils.post("libraryitems/" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
+
+        RequestParams rp = new RequestParams();
+        rp.add("title",((TextView) findViewById(R.id.newlibraryitem_title)).getText().toString());
+        rp.add("type",((TextView) findViewById(R.id.newlibraryitem_type)).getText().toString());
+        rp.add("isReservable",((TextView) findViewById(R.id.newlibraryitem_isreservable)).getText().toString());
+        rp.add("isReserved",((TextView) findViewById(R.id.newlibraryitem_isreserved)).getText().toString());
+        rp.add("loanPeriod",((TextView) findViewById(R.id.newlibraryitem_loanperiod)).getText().toString());
+
+        HttpUtils.post("libraryitems/" + tv.getText().toString(), rp, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 refreshErrorMessage();
