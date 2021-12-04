@@ -17,4 +17,9 @@
     <string name="newlibraryitem_isreserved_hint">Is reserved</string>
     <string name="newlibraryitem_loanperiod_hint">Loan period</string>
     <string name="newlibraryitem_button">Add Library Item</string>
+
+    <string name="openingHour_day_hint">Day of the Week"</string>
+    <string name="openingHour_start_hint">Start Time "HH:mm:ss"</string>
+    <string name="openingHour_end_hint">End Time "HH:mm:ss"</string>
+    <string name="openingHour_button">Add Opening Hours"</string>
 </resources>
