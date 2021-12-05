@@ -60,7 +60,7 @@ Software Quality Assurance Plan and the coverage result can be found [here](http
 Here is the [D2 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-2-report)
 
 # Deliverable 3
-In the deliverable, we impliment the web frount-end by useing vue file and javascript technology and connect the frount -end design with the back-end model in order to impliment our bisness logic for our website.
+In the deliverable, we implimented the web front-end by using vue file and javascript technology and connect the front-end design with the back-end model in order to impliment our business logic for our website.
 
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
@@ -73,5 +73,21 @@ In the deliverable, we impliment the web frount-end by useing vue file and javas
 
 # D3 report
 Here is the [D3 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-3-report)
+
+# Deliverable 4
+In the deliverable, we implimented a mobile frontend in Android using Android Studio where we developped the "add library item" and "add opening hour" backend service. In other words, we connected our android frontend design to our backend model in order to implement our mobile application.
+
+## Roles and Time Spend
+| Name              | Role        | Time in hours |
+| :---              |    :---:    |          ---: |
+| Dania Pennimpede  |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |  hrs        |
+| Joris Ah-Kane     |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |   hrs        |
+| Chun Li           |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  hrs|
+| Yujin Li          |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page, Web page style design     |         |
+| Kaifan Zheng      |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  hrs           |
+
+# D4 report
+Here is the D4 report
+
 # More
 For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
