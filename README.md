@@ -83,7 +83,7 @@ In the deliverable, we implimented a mobile frontend in Android using Android St
 | Dania Pennimpede  |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |  hrs        |
 | Joris Ah-Kane     |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |   hrs        |
 | Chun Li           |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  hrs|
-| Yujin Li          |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page, Web page style design     |         |
+| Yujin Li          |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page, Web page style design     |    hrs     |
 | Kaifan Zheng      |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  hrs           |
 
 # D4 report
