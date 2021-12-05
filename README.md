@@ -87,7 +87,7 @@ In the deliverable, we implimented a mobile frontend in Android using Android St
 | Kaifan Zheng      |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  hrs           |
 
 # D4 report
-Here is the D4 report
+Here is the [D4 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-4-Report)
 
 # More
 For more information please vist our [wiki page](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki)
