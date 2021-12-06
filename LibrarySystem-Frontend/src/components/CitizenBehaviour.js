@@ -9,7 +9,7 @@ var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl}
 })
-
+//this is a coment
 function CitizenDto(ID, fullname, address, username, password, isLocal, balance, onlineAccountActivated){
   this.ID=ID
   this.fullname=fullname

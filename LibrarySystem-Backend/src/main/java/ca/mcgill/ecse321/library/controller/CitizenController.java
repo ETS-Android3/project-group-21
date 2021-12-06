@@ -79,7 +79,7 @@ public class CitizenController {
 		Citizen citizen = citizenService.getCitizenByID(cardID);
 		citizenService.deleteCitizen(citizen);
 	}
-    
+    //comment
   
 	@PatchMapping(value = { "/citizens/{cardID}", "/citizens/{cardID}/" })
 	public CitizenDto editCitizen(@PathVariable("cardID") Long cardID, 
