@@ -80,7 +80,7 @@ public class CitizenController {
 		citizenService.deleteCitizen(citizen);
 	}
     
-    
+    //this is a comment
 	@PatchMapping(value = { "/citizens/{cardID}", "/citizens/{cardID}/" })
 	public CitizenDto editCitizen(@PathVariable("cardID") Long cardID, 
 			@RequestParam(required=false) String username, @RequestParam (required=false) String password,
