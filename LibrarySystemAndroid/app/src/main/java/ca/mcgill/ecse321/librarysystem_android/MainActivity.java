@@ -127,6 +127,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void deleteLibraryItem(View v){
+        error = "";
+        final TextView tv = (TextView) findViewById(R.id.newlibraryitem_barcode);
+        RequestParams rp = new RequestParams();
+        HttpUtils.delete("libraryitems/" + tv.getText().toString(),rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                tv.setText("");
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
     public void addOpeningHour(View v){
         error = "";
         final TextView tv = (TextView) findViewById(R.id.newOpeningHour_day);

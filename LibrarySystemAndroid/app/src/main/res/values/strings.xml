@@ -22,4 +22,5 @@
     <string name="openingHour_start_hint">Start Time "HH:mm:ss"</string>
     <string name="openingHour_end_hint">End Time "HH:mm:ss"</string>
     <string name="openingHour_button">Add Opening Hours"</string>
+    <string name="deletlibraryitem">deletlibraryitem</string>
 </resources>

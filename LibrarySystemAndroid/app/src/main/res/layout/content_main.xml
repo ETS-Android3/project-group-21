@@ -72,9 +72,15 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:onClick="addLibraryItem"
             android:text="@string/newlibraryitem_button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:onClick="deleteLibraryItem"
+            android:text="@string/deletlibraryitem" />
 
         <View
             android:layout_height="2dp"
@@ -104,14 +110,14 @@
             android:id="@+id/newOpeningHour_end"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/openingHour_end_hint"/>
+            android:hint="@string/openingHour_end_hint" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:onClick="addOpeningHour"
-            android:text="@string/openingHour_button"/> 
+            android:text="@string/openingHour_button" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
