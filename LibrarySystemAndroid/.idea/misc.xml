@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/bakup/Documents/GitHub/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/content_main.xml" value="0.25" />
-        <entry key="..\:/Users/chun1/OneDrive/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/content_main.xml" value="0.2" />
+        <entry key="..\:/Users/chun1/OneDrive/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/activity_main.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/chun1/OneDrive/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/content_main.xml" value="0.268" />
+        <entry key="..\:/Users/chun1/OneDrive/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/fragment_first.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/chun1/OneDrive/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/fragment_second.xml" value="0.268" />
         <entry key="..\:/Users/liyuj/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/content_main.xml" value="0.5" />
         <entry key="..\:/Users/liyuj/Desktop/project-group-21/LibrarySystemAndroid/app/src/main/res/layout/fragment_second.xml" value="0.20260416666666667" />
       </map>
