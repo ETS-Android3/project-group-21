@@ -90,6 +90,7 @@ public class CitizenController {
 	
 		Citizen citizen = citizenService.getCitizenByID(cardID);
 		
+		//this is a comment
 		if (username != null) {
 			citizenService.editCitizenUsername(citizen, username);
 		}
