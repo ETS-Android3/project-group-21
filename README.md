@@ -75,7 +75,7 @@ In the deliverable, we implimented the web front-end by using vue file and javas
 Here is the [D3 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-3-report)
 
 # Deliverable 4
-In the deliverable, we implimented a mobile frontend in Android using Android Studio where we developped the "add library item" and "add opening hour" backend service. In other words, we connected our android frontend design to our backend model in order to implement our mobile application.
+In the deliverable, we implimented a mobile frontend in Android using Android Studio where we developped the "add library item", "delete library item" and "add opening hour" backend service. In other words, we connected our android frontend design to our backend model in order to implement our mobile application.
 
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
