@@ -80,7 +80,7 @@ In the deliverable, we implimented a mobile frontend in Android using Android St
 ## Roles and Time Spend
 | Name              | Role        | Time in hours |
 | :---              |    :---:    |          ---: |
-| Dania Pennimpede  |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |  hrs        |
+| Dania Pennimpede  |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      | 3 hrs        |
 | Joris Ah-Kane     |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |   3.5 hrs        |
 | Chun Li           |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    | 5 hrs|
 | Yujin Li          |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page, Web page style design     |   4 hrs     |
