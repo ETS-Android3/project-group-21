@@ -5,9 +5,9 @@ module.exports = {
   build: {
     env: require('./prod.env'),
     //added based on the tutorial
-    host: 'https://library-frontend-21gp.herokuapp.com/',
+    host: 'https://library-frontend-21gp.herokuapp.com',
     prot: 443,
-    backendHost: 'https://library-backend-21gp.herokuapp.com/',
+    backendHost: 'https://library-backend-21gp.herokuapp.com',
     backendPort: 443,
     //------
     index: path.resolve(__dirname, '../dist/index.html'),
