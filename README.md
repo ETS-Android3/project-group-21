@@ -84,7 +84,7 @@ In the deliverable, we implimented a mobile frontend in Android using Android St
 | Joris Ah-Kane     |  Software Developer for implementing add opening hour functionality, Software Tester for the corresponding page      |   3.5 hrs        |
 | Chun Li           |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    | 5 hrs|
 | Yujin Li          |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page, Web page style design     |   4 hrs     |
-| Kaifan Zheng      |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  hrs           |
+| Kaifan Zheng      |  Software Developer for implementing add library item functionality, Software Tester for the corresponding page    |  3 hrs           |
 
 # D4 report
 Here is the [D4 report](https://github.com/McGill-ECSE321-Fall2021/project-group-21/wiki/Deliverable-4-Report)
