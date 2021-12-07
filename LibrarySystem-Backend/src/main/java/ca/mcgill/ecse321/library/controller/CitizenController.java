@@ -2,7 +2,6 @@ package ca.mcgill.ecse321.library.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ca.mcgill.ecse321.library.dao.CitizenRepository;
 import ca.mcgill.ecse321.library.dto.CitizenDto;
 import ca.mcgill.ecse321.library.dto.LibrarianDto;

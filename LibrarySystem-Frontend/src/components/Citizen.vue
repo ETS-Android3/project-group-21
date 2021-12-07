@@ -12,6 +12,7 @@
           <th class="thstyle">isLocal</th>
           <th class="thstyle">balance</th>
 
+
         <tr class = "trstyle" v-for="citizen in citizens" v-bind:key = "citizen.id">
           <td class="tdstyle">{{citizen.id}}</td>
           <td class="tdstyle">{{citizen.name}}</td>
